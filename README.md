@@ -24,22 +24,22 @@ Mickey Shalev		mickey.shalev@gmail.com		200681872
 In order to set up GIT, install GIT on your PC or use Eclipse GIT Plugin
 
 1. Clone repository to your local machine using:
-*git clone https://nisanuniv@bitbucket.org/SESQAHAIFAU2018/shark-repo.git
+1.1. git clone https://nisanuniv@bitbucket.org/SESQAHAIFAU2018/shark-repo.git
 2. Define current working branch to 'develop'
-*git branch develop
-*git checkout develop
+2.1. git branch develop
+2.2. git checkout develop
 3. Config your git settings in order to be able to push:
-git config --global user.email "nisan.univ@gmail.com"
-git config --global user.name "Nisan Bahar"
+3.1. git config --global user.email "nisan.univ@gmail.com"
+3.2. git config --global user.name "Nisan Bahar"
 4. Edit changes in the files you want
 5. Add files to your current commit:
-*git add <file1> <file2> (You can use 'git status' in order to view changed files)
+5.1. git add <file1> <file2> (You can use 'git status' in order to view changed files)
 6. Use rebase in order to remotely receive changes occured between the time you pulled recent clone and up until now
 7. Check that everything still works properly
 8. Commit your changes to 'develop'
-*git commit -m "Message that describes what you did"
+8.1 git commit -m "Message that describes what you did"
 9. push changes to remote 'develop'
-*git push --set-upstream origin develop
+9.1 git push --set-upstream origin develop
 
 Enjoy! For any question, call me before doing anything!
 @Nisan.
