@@ -10,7 +10,7 @@ Version: 0.0
 Current Stage: Prototype Design
 
 ### How do I get set up? ###
-
+ 
 					*Team Members*
 Name				Mail						ID
 ==========================================================
