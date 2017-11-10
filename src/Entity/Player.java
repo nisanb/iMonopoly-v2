@@ -35,6 +35,47 @@ public class Player extends User implements Comparable<Player>{
 	public int compareTo(Player o) {
 		return this.cash.compareTo(o.cash);
 	}
+
+	public Integer getCash() {
+		return cash;
+	}
+
+	public void setCash(Integer cash) {
+		this.cash = cash;
+	}
+
+	public Integer getCurrentTile() {
+		return currentTile;
+	}
+
+	public void setCurrentTile(Integer currentTile) {
+		this.currentTile = currentTile;
+	}
+
+	public Integer getStrikesNum() {
+		return strikesNum;
+	}
+
+	public void setStrikesNum(Integer strikesNum) {
+		this.strikesNum = strikesNum;
+	}
+
+	public Boolean getInJail() {
+		return inJail;
+	}
+
+	public void setInJail(Boolean inJail) {
+		this.inJail = inJail;
+	}
+
+	public Map<Question, Boolean> getUserAnswers() {
+		return userAnswers;
+	}
+
+	public void setUserAnswers(Map<Question, Boolean> userAnswers) {
+		this.userAnswers = userAnswers;
+	}
+	
 	
 	
 	

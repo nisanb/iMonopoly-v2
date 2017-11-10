@@ -6,11 +6,9 @@ package Controller;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.print.attribute.standard.DateTimeAtCompleted;
 
 /** 
  * @author Java Summer 2018
