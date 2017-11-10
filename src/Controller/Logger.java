@@ -13,7 +13,7 @@ import java.util.Date;
 import javax.print.attribute.standard.DateTimeAtCompleted;
 
 /** 
- * @author Java Summer 2014
+ * @author Java Summer 2018
  * 
  */
 public final class Logger{
