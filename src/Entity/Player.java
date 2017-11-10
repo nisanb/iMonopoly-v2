@@ -11,6 +11,11 @@ public class Player extends User implements Comparable<Player>{
 	private Integer strikesNum;
 	private Boolean inJail;
 	
+	/**
+	 * Player Constructor
+	 * @param nickname
+	 * @param cash
+	 */
 	public Player(String nickname, Integer cash){
 		super(nickname, PlayerAuth.PLAYER);
 		
