@@ -105,4 +105,14 @@ public class MonDB implements Serializable {
 		this.gameData = gameData;
 	}
 
+	public Set<User> getPlayerData() {
+		return playerData;
+	}
+
+	public void setPlayerData(Set<User> playerData) {
+		this.playerData = playerData;
+	}
+
+	
+	
 }
