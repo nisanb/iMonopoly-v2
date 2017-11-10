@@ -1,0 +1,174 @@
+12:54:20	Initializing Monopoly
+12:54:20	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/theme.mp3
+12:54:20	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/theme.mp3
+12:54:20	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/theme.mp3
+12:54:20	Changing volume to theme.mp3 - 50.0
+12:54:22	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:22	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:24	Swapping game theme music
+12:54:24	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/theme.mp3
+12:54:26	Swapping game theme music
+12:54:26	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/theme.mp3
+12:54:27	Swapping game theme music
+12:54:27	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/theme.mp3
+12:54:28	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:28	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:28	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:28	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:29	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:29	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:29	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:29	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:29	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:29	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:29	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:29	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:30	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:30	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:31	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:31	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:31	Trying to activate button click
+12:54:31	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:31	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:32	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:32	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:32	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:32	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:32	Trying to activate button click
+12:54:32	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:32	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:33	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:33	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:33	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:33	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:33	Trying to activate button click
+12:54:33	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:33	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:34	Swapping game theme music
+12:54:34	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/theme.mp3
+12:54:34	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:34	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:35	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:35	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:35	Trying to activate button click
+12:54:35	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:35	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:35	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:35	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:35	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:35	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:36	Trying to activate button click
+12:54:36	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:36	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:36	Trying to activate button click
+12:54:36	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:36	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:36	Trying to activate button click
+12:54:36	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:36	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:36	Trying to activate button click
+12:54:36	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:36	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:36	Trying to activate button click
+12:54:36	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:36	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:36	Trying to activate button click
+12:54:36	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:36	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:37	Trying to activate button click
+12:54:37	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:37	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+12:54:40	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:40	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:42	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:42	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+12:54:46	Swapping game theme music
+12:54:46	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/theme.mp3
+****************************************************************************
+01:00:59	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:00:59	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:00:59	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:00:59	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:00:59	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:00:59	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:00	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:00	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:00	Trying to activate button click
+01:01:00	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:00	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:00	Trying to activate button click
+01:01:00	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:00	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:00	Trying to activate button click
+01:01:00	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:00	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:02	Trying to activate button click
+01:01:02	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:02	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:02	Trying to activate button click
+01:01:02	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:02	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:02	Trying to activate button click
+01:01:02	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:02	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:02	Trying to activate button click
+01:01:02	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:02	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:03	Trying to activate button click
+01:01:03	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:03	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:03	Trying to activate button click
+01:01:03	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:03	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:03	Trying to activate button click
+01:01:03	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:03	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:04	Trying to activate button click
+01:01:04	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:04	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:04	Trying to activate button click
+01:01:04	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:04	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:04	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:04	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:05	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:05	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:05	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:05	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:05	Trying to activate button click
+01:01:05	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:05	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:05	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:05	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:05	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:05	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:06	Trying to activate button click
+01:01:06	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:06	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:06	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:06	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:07	Swapping game theme music
+01:01:07	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/theme.mp3
+01:01:11	Swapping game theme music
+01:01:11	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/theme.mp3
+01:01:11	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:11	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:11	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:11	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:12	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:12	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonhover.mp3
+01:01:12	Trying to activate button click
+01:01:12	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:12	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:12	Trying to activate button click
+01:01:12	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:12	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:12	Trying to activate button click
+01:01:12	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:12	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:12	Trying to activate button click
+01:01:12	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:12	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:12	Trying to activate button click
+01:01:12	Aquired resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
+01:01:12	Getting resource: file:/C:/Users/nisan/git/shark-repo2/bin/resources/buttonclick.wav
