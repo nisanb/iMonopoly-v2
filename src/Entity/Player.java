@@ -1,5 +1,8 @@
 package Entity;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import Utils.PlayerAuth;
 
 public class Player extends User implements Comparable<Player>{
@@ -10,6 +13,7 @@ public class Player extends User implements Comparable<Player>{
 	private Integer currentTile;
 	private Integer strikesNum;
 	private Boolean inJail;
+	private Map<Question, Boolean> userAnswers;
 	
 	/**
 	 * Player Constructor
@@ -19,6 +23,7 @@ public class Player extends User implements Comparable<Player>{
 	public Player(String nickname, Integer cash){
 		super(nickname, PlayerAuth.PLAYER);
 		
+		this.userAnswers = new HashMap<>();
 		this.strikesNum 	= 0;
 		this.currentTile	= 0;
 		this.cash 			= cash;
