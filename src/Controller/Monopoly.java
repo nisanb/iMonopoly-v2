@@ -1,13 +1,16 @@
 package Controller;
 
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Monopoly extends Application{
 
+	Music gameMusic = Music.getInstance();
 	public void start(Stage primaryStage) throws Exception {
 		
 		//Initiate Log File
@@ -19,6 +22,12 @@ public class Monopoly extends Application{
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Login.fxml"));
 	    Parent root = loader.load();
 	    Scene scene = new Scene(root);
+	    primaryStage.initStyle(StageStyle.UNDECORATED);
+
+	    
+	    gameMusic.play("theme.mp3");
+	    gameMusic.changeVolume("theme.mp3", 50.0);
+	    
 	    primaryStage.setScene(scene);
 	    primaryStage.show();
 	}

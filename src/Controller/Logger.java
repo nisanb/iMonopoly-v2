@@ -61,6 +61,7 @@ public final class Logger{
 			latestMessage = System.currentTimeMillis();
 			
 			writer.write(dateprefix+"\t"+message+"\n");
+			System.out.println(dateprefix+"\t"+message+"\n");
 
 			writer.flush();
 		}
