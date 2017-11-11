@@ -22,6 +22,7 @@ public class MonDB implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static MonDB Data;
+	private static Map<String, Object> DBValues;
 
 	/**
 	 * Game Statistics & Data
@@ -33,6 +34,7 @@ public class MonDB implements Serializable {
 	private MonDB() {
 		playerData = new HashSet<>();
 		this.gameQuestions = loadQuestions();
+		initParams();
 	}
 
 	public static MonDB getInstance() {
@@ -42,6 +44,24 @@ public class MonDB implements Serializable {
 
 		return Data;
 	}
+	
+	/**
+	 * This will initiate the first params to the system.
+	 * DO NOT CHANGE
+	 * @return
+	 * TODO Keep adding requiered system parameters
+	 */
+	private void initParams() {
+		Logger.log("Initiating System Params..");
+		DBValues = new HashMap<>();
+		DBValues.put("STARTING_CASH", new Integer(500000));
+		DBValues.put("RENT_PERCENT", new Double(0.15));
+		DBValues.put("BUY_PERCENT", new Double(1.5));
+		DBValues.put("MIN_LUCK", new Integer(10000));
+		DBValues.put("MAX_LUCK", new Integer(250000000)); /* Check to make sure thats what they meant TODO */
+	}
+
+	
 
 	private static MonDB importData() {
 		try {

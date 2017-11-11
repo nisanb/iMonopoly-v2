@@ -1,4 +1,7 @@
 *.o
 *.class
 *.txt
-/bin/
+
+bin/
+*.ser
+*.cer
