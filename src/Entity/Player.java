@@ -33,7 +33,12 @@ public class Player extends User implements Comparable<Player>{
 
 	@Override
 	public int compareTo(Player o) {
-		return this.cash.compareTo(o.cash);
+		return this.getTotalPropertyValue().compareTo(getTotalPropertyValue());
+	}
+
+	private Integer getTotalPropertyValue() {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	public Integer getCash() {

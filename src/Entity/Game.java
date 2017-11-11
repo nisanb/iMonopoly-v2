@@ -2,8 +2,11 @@ package Entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.LinkedList;
+import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class Game implements Serializable {
@@ -11,9 +14,10 @@ public class Game implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer gameNum;
-	Set<Player> playerList;
+	Map<Player, Integer> playerList;
 	private Date gameDate;
 	private Integer currentRound;
+	private Boolean gameFinished;
 
 	public Game() {
 
@@ -29,13 +33,30 @@ public class Game implements Serializable {
 		 * Set Date
 		 */
 		this.setGameDate(new Date());
-		this.playerList = new TreeSet<Player>();
+		this.playerList = new TreeMap<Player, Integer>();
 		this.setCurrentRound(0);
-
+		this.gameFinished = false;
+	}
+	
+	public void run(){
+		//This will start the game
+		
+		//This will build the players' cycle
+		LinkedList<Player> playList = new LinkedList<>();
+		for(Player p : playerList.keySet())
+			playList.add(p);
+			
+		while(!gameFinished){
+			Player currentPlayer = playList.get(currentRound%playList.size());
+			//Players turn
+			//TODO Implement ..
+		}
+		
 	}
 
-	public Boolean addPlayer(Player player) {
-		return this.playerList.add(player);
+	//Adds a player to the game
+	public void addPlayer(Player player) {
+		this.playerList.put(player, 0);
 	}
 
 	public Integer rollDice() {

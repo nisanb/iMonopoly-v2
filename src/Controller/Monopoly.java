@@ -19,10 +19,13 @@ public class Monopoly extends Application{
 		//Initiate Monopoly
 		Logger.log("Initializing Monopoly");
 		
+
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Login.fxml"));
 	    Parent root = loader.load();
 	    Scene scene = new Scene(root);
-	    primaryStage.initStyle(StageStyle.UNDECORATED);
+        //scene.getStylesheets().add(gluon.class.getResource("style.css").toExternalForm());
+
+	    //primaryStage.initStyle(StageStyle.UNDECORATED);
 
 	    
 	    gameMusic.play("theme.mp3");
