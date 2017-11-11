@@ -3,6 +3,7 @@ package View;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Controller.Logger;
 import Controller.Music;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 public class Login {
 
@@ -41,13 +43,15 @@ public class Login {
     @FXML
     void doLogin(ActionEvent event) {
     	Music.getInstance().play("click.wav");
+    	Logger.log("Attempting to log in with user "+frmNickname.getText());
     }
+    
 
     @FXML
     void initialize() {
         assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Login.fxml'.";
         assert frmNickname != null : "fx:id=\"frmNickname\" was not injected: check your FXML file 'Login.fxml'.";
         assert btnLogin != null : "fx:id=\"btnLogin\" was not injected: check your FXML file 'Login.fxml'.";
-
+        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Login.fxml'.";
     }
 }
