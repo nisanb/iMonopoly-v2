@@ -1,37 +1,29 @@
 package Entity.Tile;
 
-import java.util.List;
-
+import Entity.MonDB;
 import Entity.Player;
-import Entity.Question;
 import Utils.TileType;
 
-public class LuckTile extends Tile {
+public class StartTile extends Tile implements Tilable {
 
-	public LuckTile(Integer tileNumber, String tileName) {
-		super(tileNumber, tileName, TileType.LuckyDraw);
+	public StartTile(Integer tileNumber, String tileName) {
+		super(tileNumber, tileName, TileType.StartPoint);
 		// TODO Auto-generated constructor stub
 	}
-	
-	//TODO Return 2 random questions;
-	public List<Question> generateTwoQuestions(){
-		return null;
-	}
-	
+
 	@Override
 	public void preVisit(Player currentPlayer) {
 		// TODO Auto-generated method stub
-		super.preVisit(currentPlayer);
+		currentPlayer.addCash(MonDB.getInstance().getParam("START_TILE_PASSBY"));
 	}
 	@Override
 	public void visit(Player currentPlayer) {
 		// TODO Auto-generated method stub
-		super.visit(currentPlayer);
+		currentPlayer.addCash(MonDB.getInstance().getParam("START_TILE_VISIT"));
 	}
 	@Override
 	public void postVisit(Player currentPlayer) {
 		// TODO Auto-generated method stub
 		super.postVisit(currentPlayer);
 	}
-
 }

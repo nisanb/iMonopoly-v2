@@ -79,4 +79,12 @@ public class Game implements Serializable {
 		this.currentRound = currentRound;
 	}
 
+	/**
+	 * Will move a player to the tile given
+	 * @param player
+	 * @param tileNum
+	 */
+	public void movePlayer(Player player, Integer tileNum){
+		
+	}
 }

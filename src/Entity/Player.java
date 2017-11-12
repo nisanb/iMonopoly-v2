@@ -3,6 +3,7 @@ package Entity;
 import java.util.HashMap;
 import java.util.Map;
 
+import Controller.Logger;
 import Utils.PlayerAuth;
 
 public class Player extends User implements Comparable<Player>{
@@ -81,6 +82,10 @@ public class Player extends User implements Comparable<Player>{
 		this.userAnswers = userAnswers;
 	}
 	
+	public void addCash(Object amount){
+		this.cash += Integer.parseInt(amount.toString());
+		Logger.log("Added $"+amount+" to "+getNickName());
+	}
 	
 	
 	

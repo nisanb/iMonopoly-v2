@@ -17,9 +17,19 @@ public class QMTile extends Tile {
 	}
 	
 	@Override
-	public void preVisit(Player currentPlayer) throws ClassNotFoundException {
+	public void preVisit(Player currentPlayer) {
 		// TODO Auto-generated method stub
 		super.preVisit(currentPlayer);
+	}
+	@Override
+	public void visit(Player currentPlayer) {
+		// TODO Auto-generated method stub
+		super.visit(currentPlayer);
+	}
+	@Override
+	public void postVisit(Player currentPlayer) {
+		// TODO Auto-generated method stub
+		super.postVisit(currentPlayer);
 	}
 	
 }

@@ -9,10 +9,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Random;
 import java.util.Set;
 
 import Controller.Logger;
+import Entity.Tile.*;
 import Utils.QuestionStrength;
 
 public class MonDB implements Serializable {
@@ -23,6 +25,8 @@ public class MonDB implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static MonDB Data;
 	private static Map<String, Object> DBValues;
+	transient private Game currentGame;
+	private static Set<Tilable> tileSet;
 
 	/**
 	 * Game Statistics & Data
@@ -34,8 +38,111 @@ public class MonDB implements Serializable {
 	private MonDB() {
 		playerData = new HashSet<>();
 		this.gameQuestions = loadQuestions();
+		tileSet = new HashSet<>();
 		initParams();
+		initTiles();
+		currentGame = null;
 	}
+
+	/**
+	 * Initiation of tile list
+	 */
+	public static void initTiles(){
+		
+		//Starting Tile
+		tileSet.add(new StartTile(0, "Starting Point"));
+		tileSet.add(new PropertyTile(1, "uTorrent", QuestionStrength.MEDIUM));
+		tileSet.add(new QMTile(2, "Question Mark"));
+		tileSet.add(new PropertyTile(3, "Bittorrent", QuestionStrength.MEDIUM));
+		tileSet.add(new PropertyTile(4, "Opera", QuestionStrength.EASY));
+		tileSet.add(new LuckTile(5, "Lucky Shot"));
+		tileSet.add(new PropertyTile(6, "FireFox", QuestionStrength.EASY));
+		tileSet.add(new QMTile(7, "Question Mark"));
+		tileSet.add(new PropertyTile(8, "Safari", QuestionStrength.HARD));
+		tileSet.add(new PropertyTile(9, "Pied Piper", QuestionStrength.HARD));
+		tileSet.add(new Jail(10, "Jail"));
+		tileSet.add(new PropertyTile(11, "Instagram", QuestionStrength.MEDIUM));
+		tileSet.add(new QMTile(12, "Question Mark"));
+		tileSet.add(new PropertyTile(13, "Android", QuestionStrength.MEDIUM));
+		tileSet.add(new PropertyTile(14, "Windows", QuestionStrength.HARD));
+		tileSet.add(new LuckTile(15, "Lucky Shot"));
+		tileSet.add(new PropertyTile(16, "Internet Explorer", QuestionStrength.EASY));
+		tileSet.add(new QMTile(17, "Question Mark"));
+		tileSet.add(new PropertyTile(18, "Google Drive", QuestionStrength.EASY));
+		tileSet.add(new PropertyTile(19, "Waze", QuestionStrength.EASY));
+		tileSet.add(new LuckTile(20, "Lucky Shot"));
+		tileSet.add(new PropertyTile(21, "YouTube", QuestionStrength.HARD));
+		tileSet.add(new QMTile(22, "Question Mark"));
+		tileSet.add(new PropertyTile(23, "Facebook", QuestionStrength.HARD));
+		tileSet.add(new PropertyTile(24, "Whatsapp", QuestionStrength.HARD));
+		tileSet.add(new LuckTile(25, "Lucky Shot"));
+		tileSet.add(new PropertyTile(26, "Twitter", QuestionStrength.MEDIUM));
+		tileSet.add(new PropertyTile(27, "LG", QuestionStrength.MEDIUM));
+		tileSet.add(new QMTile(28, "Question Mark"));
+		tileSet.add(new PropertyTile(29, "Intel", QuestionStrength.MEDIUM));
+		tileSet.add(new GoToJail(30, "Go To Jail"));
+		tileSet.add(new PropertyTile(31, "Viber", QuestionStrength.EASY));
+		tileSet.add(new PropertyTile(32, "Netflix", QuestionStrength.EASY));
+		tileSet.add(new LuckTile(33, "Lucky Shot"));
+		tileSet.add(new PropertyTile(34, "Microsoft", QuestionStrength.EASY));
+		tileSet.add(new QMTile(35, "Question Mark"));
+		tileSet.add(new PropertyTile(36, "Eclipse", QuestionStrength.HARD));
+		tileSet.add(new PropertyTile(37, "Google", QuestionStrength.HARD));
+		tileSet.add(new LuckTile(38, "Lucky Shot"));
+		tileSet.add(new PropertyTile(39, "Apple", QuestionStrength.HARD));
+		
+		
+		
+		
+	}
+	
+	public static MonDB getData() {
+		return Data;
+	}
+
+
+
+	public static void setData(MonDB data) {
+		Data = data;
+	}
+
+
+
+	public static Map<String, Object> getDBValues() {
+		return DBValues;
+	}
+
+
+
+	public static void setDBValues(Map<String, Object> dBValues) {
+		DBValues = dBValues;
+	}
+
+
+
+	public Game getCurrentGame() {
+		return currentGame;
+	}
+
+
+
+	public void setCurrentGame(Game currentGame) {
+		this.currentGame = currentGame;
+	}
+
+
+
+	public Map<QuestionStrength, List<Question>> getGameQuestions() {
+		return gameQuestions;
+	}
+
+
+
+	public void setGameQuestions(Map<QuestionStrength, List<Question>> gameQuestions) {
+		this.gameQuestions = gameQuestions;
+	}
+
+
 
 	public static MonDB getInstance() {
 		if (Data == null) {
@@ -133,6 +240,10 @@ public class MonDB implements Serializable {
 		this.playerData = playerData;
 	}
 
+	
+	public Object getParam(String paramName){
+		return DBValues.get(paramName);
+	}
 	
 	
 }

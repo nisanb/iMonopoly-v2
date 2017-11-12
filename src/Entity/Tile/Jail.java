@@ -10,9 +10,19 @@ public class Jail extends Tile {
 	}
 	
 	@Override
-	public void preVisit(Player currentPlayer) throws ClassNotFoundException {
-		// TODO Previsit - what happens when a player steps on "Jail" (Should be nothing..)
+	public void preVisit(Player currentPlayer) {
+		// TODO Auto-generated method stub
 		super.preVisit(currentPlayer);
+	}
+	@Override
+	public void visit(Player currentPlayer) {
+		// TODO Auto-generated method stub
+		super.visit(currentPlayer);
+	}
+	@Override
+	public void postVisit(Player currentPlayer) {
+		// TODO Auto-generated method stub
+		super.postVisit(currentPlayer);
 	}
 	
 }

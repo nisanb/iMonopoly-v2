@@ -8,7 +8,7 @@ import javax.xml.bind.helpers.NotIdentifiableEventImpl;
 import Entity.Player;
 import Utils.TileType;
 
-public class Tile {
+public class Tile implements Tilable {
 
 	private Integer tileNumber;
 	private String tileName;
@@ -55,9 +55,24 @@ public class Tile {
 		return currentPlayers;
 	}
 
-	public void preVisit(Player currentPlayer) throws ClassNotFoundException {
-		throw new ClassNotFoundException("preVisit Not supported for class Tile.");
+	@Override
+	public void preVisit(Player currentPlayer) {
+		// TODO Auto-generated method stub
+		
 	}
 
+	@Override
+	public void visit(Player currentPlayer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void postVisit(Player currentPlayer) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 	
 }
