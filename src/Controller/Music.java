@@ -31,6 +31,7 @@ public class Music {
 	public void play(String res){
 		final URL resource = getResource(res);
 		Logger.log("Getting resource: "+resource);
+		try{
 		if(!soundMap.containsKey(resource)){
 			final Media media = new Media(resource.toString());
 		    final MediaPlayer mediaPlayer = new MediaPlayer(media);
@@ -39,7 +40,10 @@ public class Music {
 	    
 		soundMap.get(resource).seek(Duration.ZERO);
 		soundMap.get(resource).play();
-		
+		}
+		catch(NullPointerException e){
+			e.printStackTrace();
+		}
 	}
 	
 	public void stop(String res){
@@ -71,7 +75,7 @@ public class Music {
 	
 	
 	private URL getResource(String res){
-		final URL resource = getClass().getResource("../resources/"+res); 
+		final URL resource = getClass().getResource("../Resources/"+res); 
 		Logger.log("Aquired resource: "+resource);
 		return resource;
 	}
