@@ -12,7 +12,7 @@ public abstract class Dice {
 		dice1 = r.nextInt(6)+1;
 		dice2 = r.nextInt(6)+1;
 		
-		return (dice1+dice2) % 40;
+		return (dice1+dice2);
 	}
 	
 	
