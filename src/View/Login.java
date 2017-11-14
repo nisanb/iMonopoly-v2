@@ -5,13 +5,14 @@ import java.util.ResourceBundle;
 
 import Controller.Logger;
 import Controller.Music;
+import Controller.iWindow;
+import Utils.Window;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
 
 public class Login {
 
@@ -28,7 +29,7 @@ public class Login {
     private TextField frmNickname;
 
     @FXML
-    private ToggleButton btnLogin;
+    private Button btnLogin;
 
     @FXML
     void MouseEntered(MouseEvent event) {
@@ -40,10 +41,12 @@ public class Login {
     	Music.getInstance().stop("theme.mp3");
     }
     
+    
     @FXML
     void doLogin(ActionEvent event) {
     	Music.getInstance().play("click.wav");
     	Logger.log("Attempting to log in with user "+frmNickname.getText());
+    	iWindow.swap(Window.Login);
     }
     
 

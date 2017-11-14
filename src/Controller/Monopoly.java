@@ -1,6 +1,7 @@
 package Controller;
 
 
+import Utils.Window;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -17,21 +18,9 @@ public class Monopoly extends Application{
 		
 		//Initiate Monopoly
 		Logger.log("Initializing Monopoly");
-		
-
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/Login.fxml"));
-	    Parent root = loader.load();
-	    Scene scene = new Scene(root);
-        //scene.getStylesheets().add(gluon.class.getResource("style.css").toExternalForm());
-
-	    //primaryStage.initStyle(StageStyle.UNDECORATED);
-
-	    
-	    gameMusic.play("theme.mp3");
+		iWindow.swap(primaryStage, Window.Login);
+		gameMusic.play("theme.mp3");
 	    gameMusic.changeVolume("theme.mp3", 50.0);
-	    
-	    primaryStage.setScene(scene);
-	    primaryStage.show();
 	}
 	
 	public static void main(String[] args) {
