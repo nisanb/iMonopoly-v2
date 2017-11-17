@@ -38,7 +38,7 @@ public class Login {
 
     @FXML
     void doSwapMusic(MouseEvent event) {
-    	Music.getInstance().stop("theme.mp3");
+    	Music.getInstance().swap("theme.mp3");
     }
     
     

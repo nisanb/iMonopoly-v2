@@ -36,6 +36,7 @@ public class iWindow {
 			ft.setToValue(0.5);
 			ft.play();
 		}
+		
 		/**
 		 * Start new window
 		 */
@@ -57,7 +58,7 @@ public class iWindow {
 		ft.setToValue(1.0);
 		ft.play();
 		iWindow.currentScene = new Scene(root);
-
+		Logger.log(iWindow.class.getResource("/Resources/css/style.css").toExternalForm());
 		iWindow.currentScene.getStylesheets()
 				.add(iWindow.class.getResource("/Resources/css/style.css").toExternalForm());
 

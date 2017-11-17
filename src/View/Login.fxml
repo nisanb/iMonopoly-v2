@@ -19,8 +19,8 @@
             <Image url="@../resources/sound_on.png" />
          </image>
       </ImageView>
-      <TextField fx:id="frmNickname" accessibleText="test" layoutX="324.0" layoutY="338.0" promptText="NICKNAME" />
+      <TextField fx:id="frmNickname" accessibleText="test" layoutX="324.0" layoutY="338.0" promptText="NICKNAME" styleClass="button-red" />
       <ButtonBar layoutX="33.0" layoutY="182.0" prefHeight="40.0" prefWidth="200.0" />
-    <Button layoutX="331.0" layoutY="418.0" mnemonicParsing="false" onAction="#doLogin" prefHeight="26.0" prefWidth="137.0" styleClass="button-red" text="LOGIN" />
+    <Button layoutX="331.0" layoutY="418.0" mnemonicParsing="false" onAction="#doLogin" onMouseEntered="#MouseEntered" prefHeight="26.0" prefWidth="137.0" styleClass="column-drag-header" text="LOGIN" />
    </children>
 </AnchorPane>
