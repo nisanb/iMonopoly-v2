@@ -43,7 +43,7 @@ public class MonDB implements Serializable {
 	 * Game Statistics & Data
 	 */
 	private static List<User> playerData;
-	transient private Map<QuestionStrength, ArrayList<Question>> gameQuestions;
+	transient private Map<QuestionStrength, List<Question>> gameQuestions;
 	private static HashMap<Integer, Game> gameData;
 
 	private MonDB() {
@@ -198,7 +198,7 @@ public class MonDB implements Serializable {
 	 */
 	public Map<QuestionStrength, List<Question>> loadQuestions() {
 		
-		HashMap<QuestionStrength, List<Question>> questions = new HashMap<QuestionStrength, ArrayList<Question>>();
+		HashMap<QuestionStrength, List<Question>> questions = new HashMap<QuestionStrength, List<Question>>();
 		JSONParser parser = new JSONParser();
 		
 		try {
