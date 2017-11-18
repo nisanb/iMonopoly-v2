@@ -43,7 +43,7 @@ public class MonDB implements Serializable {
 	 * Game Statistics & Data
 	 */
 	private static List<User> playerData;
-	transient private Map<QuestionStrength, List<Question>> gameQuestions;
+	transient private Map<QuestionStrength, ArrayList<Question>> gameQuestions;
 	private static HashMap<Integer, Game> gameData;
 
 	private MonDB() {
