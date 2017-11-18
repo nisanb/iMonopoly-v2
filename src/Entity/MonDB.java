@@ -133,11 +133,11 @@ public class MonDB implements Serializable {
 		this.currentGame = currentGame;
 	}
 
-	public Map<QuestionStrength, ArrayList<Question>> getGameQuestions() {
+	public Map<QuestionStrength, List<Question>> getGameQuestions() {
 		return gameQuestions;
 	}
 
-	public void setGameQuestions(Map<QuestionStrength, ArrayList<Question>> gameQuestions) {
+	public void setGameQuestions(Map<QuestionStrength, List<Question>> gameQuestions) {
 		this.gameQuestions = gameQuestions;
 	}
 
@@ -196,9 +196,9 @@ public class MonDB implements Serializable {
 	 * Will read questions from JSON File
 	 * @return TODO: READ QUESTIONS FROM JSON
 	 */
-	public Map<QuestionStrength, ArrayList<Question>> loadQuestions() {
+	public Map<QuestionStrength, List<Question>> loadQuestions() {
 		
-		HashMap<QuestionStrength, ArrayList<Question>> questions = new HashMap<QuestionStrength, ArrayList<Question>>();
+		HashMap<QuestionStrength, List<Question>> questions = new HashMap<QuestionStrength, ArrayList<Question>>();
 		JSONParser parser = new JSONParser();
 		
 		try {
