@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import Utils.Param;
+
 /** 
  * @author Java Summer 2018
  * 
@@ -34,7 +36,7 @@ public final class Logger{
 			e.printStackTrace();
 		} 
 	}
-	
+
 	/**
 	 * Writes given text message to the log file.
 	 * @param message The text to be written in the log

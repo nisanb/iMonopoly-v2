@@ -1,5 +1,6 @@
 package Controller;
 
+import Utils.Param;
 import Utils.Window;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
