@@ -1,13 +1,17 @@
 package Entity;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +19,10 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.Set;
 import java.util.SortedSet;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
 import Controller.Logger;
 import Entity.Tile.*;
@@ -36,7 +44,7 @@ public class MonDB implements Serializable {
 	 * Game Statistics & Data
 	 */
 	private static HashSet<User> playerData;
-	transient private Map<QuestionStrength, List<Question>> gameQuestions;
+	transient private Map<Integer, ArrayList<Question>> gameQuestions;
 	private static HashMap<Integer, Game> gameData;
 
 	private MonDB() {
@@ -120,11 +128,11 @@ public class MonDB implements Serializable {
 		this.currentGame = currentGame;
 	}
 
-	public Map<QuestionStrength, List<Question>> getGameQuestions() {
+	public Map<Integer, ArrayList<Question>> getGameQuestions() {
 		return gameQuestions;
 	}
 
-	public void setGameQuestions(Map<QuestionStrength, List<Question>> gameQuestions) {
+	public void setGameQuestions(Map<Integer, ArrayList<Question>> gameQuestions) {
 		this.gameQuestions = gameQuestions;
 	}
 
@@ -184,10 +192,61 @@ public class MonDB implements Serializable {
 	 * 
 	 * @return TODO: READ QUESTIONS FROM JSON
 	 */
-	private Map<QuestionStrength, List<Question>> loadQuestions() {
-		Map<QuestionStrength, List<Question>> toReturn = new HashMap<QuestionStrength, List<Question>>();
-
-		return toReturn;
+	public Map<Integer, ArrayList<Question>> loadQuestions() {
+		
+		HashMap<Integer, ArrayList<Question>> questions = new HashMap<Integer, ArrayList<Question>>();
+		JSONParser parser = new JSONParser();
+		
+		try {
+			//get json file
+			InputStream is = getClass().getResourceAsStream("/JSON/questions.json");		
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+			Object obj = parser.parse(reader);
+			JSONObject jo = (JSONObject) obj;
+			
+			//cast json file to array - get the array form the map
+			JSONArray quesArray = (JSONArray) jo.get("questions");
+			
+			//iterate over the values (questions)
+			Iterator<JSONObject> quesIterator = quesArray.iterator();
+			while(quesIterator.hasNext()) {
+				JSONObject q = quesIterator.next();
+			
+				//get question's answers and iterate over it
+				JSONArray ansArray = (JSONArray) q.get("answers");
+				Iterator<JSONObject> ansIterator = ansArray.iterator();
+				
+				//add all answers to arraylist
+				ArrayList<Answer> answers = new ArrayList<Answer>();
+				while(ansIterator.hasNext()) {
+					JSONObject a = ansIterator.next();
+					answers.add(new Answer((String)a.get("text"), (boolean)a.get("isCorrect")));
+					
+				}
+				
+//				System.out.println(q.get("isMultipleChoice").getClass());
+				
+				//build question object and add it to questions map
+				Question toAdd = new Question((long)q.get("id"),
+											  (long)q.get("difficulty"),
+											  (String)q.get("text"),
+											  (boolean)q.get("isMultipleChoice"), 
+											  answers, 
+											  (String)q.get("team"));
+				
+				if (!questions.containsKey(toAdd.getqStrength())) {
+					questions.put((int) toAdd.getqStrength(), new ArrayList<Question>());
+				}
+				else {
+					questions.get(toAdd.getqStrength()).add(toAdd);
+				}
+			}
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return questions;
 	}
 
 	/**
