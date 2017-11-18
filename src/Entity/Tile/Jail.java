@@ -1,5 +1,6 @@
 package Entity.Tile;
 
+import Controller.Logger;
 import Entity.Player;
 import Utils.TileType;
 
@@ -11,13 +12,12 @@ public class Jail extends Tile {
 	
 	@Override
 	public void preVisit(Player currentPlayer) {
-		// TODO Auto-generated method stub
-		super.preVisit(currentPlayer);
+		//Empty
 	}
 	@Override
 	public void visit(Player currentPlayer) {
-		// TODO Auto-generated method stub
-		super.visit(currentPlayer);
+		//Player enters jail
+		Logger.gameLog("Welcome to jail "+currentPlayer+"!");
 	}
 	@Override
 	public void postVisit(Player currentPlayer) {

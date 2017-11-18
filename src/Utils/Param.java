@@ -9,7 +9,13 @@ public enum Param {
 	MIN_LUCK(10000),		//Defines the minimum cash given on luck tile
 	MAX_LUCK(250000000),
 	START_TILE_PASS(200),
-	START_TILE_VISIT(200);	//Defines the maximum cash given on luck tile
+	START_TILE_VISIT(200),	//Defines the maximum cash given on luck tile
+	PROPERTY_PRICE_EASY_MIN(50000),
+	PROPERTY_PRICE_EASY_MAX(250000),
+	PROPERTY_PRICE_MEDIUM_MIN(250000),
+	PROPERTY_PRICE_MEDIUM_MAX(2000000),
+	PROPERTY_PRICE_HARD_MIN(2000000),
+	PROPERTY_PRICE_HARD_MAX(5000000);
 	
 	
 	public Object o;

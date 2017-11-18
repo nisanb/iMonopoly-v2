@@ -1,5 +1,6 @@
 package Entity.Tile;
 
+import Controller.Logger;
 import Entity.MonDB;
 import Entity.Player;
 import Utils.TileType;
@@ -22,12 +23,11 @@ public class GoToJail extends Tile   {
 	}
 	@Override
 	public void visit(Player currentPlayer) {
+		Logger.gameLog("Player "+currentPlayer+" is going to jail!");
 		MonDB.getInstance().getCurrentGame().movePlayer(currentPlayer, 29);
 	}
 	@Override
 	public void postVisit(Player currentPlayer) {
-		// TODO Auto-generated method stub
-		super.postVisit(currentPlayer);
 	}
 	
 }

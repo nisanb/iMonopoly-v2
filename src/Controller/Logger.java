@@ -105,6 +105,12 @@ public final class Logger{
 			e.printStackTrace();
 		}
 	}
+
+	public static void gameLog(String msg) {
+		// TODO Auto-generated method stub
+		log(msg);
+		
+	}
 	
 
 }

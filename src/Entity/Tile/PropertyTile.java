@@ -1,5 +1,8 @@
 package Entity.Tile;
 
+import java.util.Random;
+
+import Controller.Logger;
 import Entity.MonDB;
 import Entity.Player;
 import Utils.Param;
@@ -23,9 +26,27 @@ public class PropertyTile extends Tile {
 
 	private void setInitialPrice() {
 		// TODO Generate a price according the the questions strength
-		Integer price = 0;
-		this.initialPrice = price;
-		this.currentPrice = price;
+		Integer min = 0, max = 0;
+		switch (propertyStrength) {
+		case EASY:
+			min = (Integer) Param.get(Param.PROPERTY_PRICE_EASY_MIN);
+			max = (Integer) Param.get(Param.PROPERTY_PRICE_EASY_MAX);
+			break;
+		case MEDIUM:
+			min = (Integer) Param.get(Param.PROPERTY_PRICE_MEDIUM_MIN);
+			max = (Integer) Param.get(Param.PROPERTY_PRICE_MEDIUM_MAX);
+			break;
+		case HARD:
+			min = (Integer) Param.get(Param.PROPERTY_PRICE_HARD_MIN);
+			max = (Integer) Param.get(Param.PROPERTY_PRICE_HARD_MAX);
+			break;
+
+		}
+		Random r = new Random();
+		Integer chosenPrice = r.nextInt(max-min)+min;
+		this.initialPrice = chosenPrice;
+		this.currentPrice = chosenPrice;
+		Logger.log("Setting price $"+chosenPrice+" for tile #"+getTileNumber()+" - "+toString());
 	}
 
 	public QuestionStrength getPropertyStrength() {
@@ -64,7 +85,12 @@ public class PropertyTile extends Tile {
 		return currentOwner != null;
 	}
 
-	public int getBuyPrice(){
-		return currentPrice * (Integer) MonDB.getInstance().getParam(Param.BUY_PERCENT);
+	public int getBuyPrice() {
+		return currentPrice * (Integer) Param.get(Param.BUY_PERCENT);
+	}
+	
+	@Override
+	public String toString() {
+		return this.getTileName();
 	}
 }
