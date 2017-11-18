@@ -2,6 +2,7 @@ package Entity.Tile;
 
 import java.util.List;
 
+import Controller.Logger;
 import Entity.MonDB;
 import Entity.Player;
 import Entity.Question;
@@ -17,7 +18,6 @@ public class LuckTile extends Tile {
 	
 	//TODO Return 2 random questions;
 	public List<Question> generateTwoQuestions(){
-		
 		MonDB.getInstance().getRandomQuestion(QuestionStrength.MEDIUM);
 		MonDB.getInstance().getRandomQuestion(QuestionStrength.HARD);
 		
@@ -32,6 +32,8 @@ public class LuckTile extends Tile {
 	@Override
 	public void visit(Player currentPlayer) {
 		// TODO Auto-generated method stub
+		Logger.gameLog("Player "+currentPlayer+" reached Lucky Tile!");
+		Logger.gameLog("System is generating 2 questions..");
 		generateTwoQuestions();
 	}
 	@Override

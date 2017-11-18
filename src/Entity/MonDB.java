@@ -42,16 +42,19 @@ public class MonDB implements Serializable {
 	/**
 	 * Game Statistics & Data
 	 */
-	private static HashSet<User> playerData;
-	transient private Map<QuestionStrength, ArrayList<Question>> gameQuestions;
+	private static List<User> playerData;
+	transient private Map<QuestionStrength, List<Question>> gameQuestions;
 	private static HashMap<Integer, Game> gameData;
 
 	private MonDB() {
-		playerData = new HashSet<>();
+		Data = this;
+		playerData = new ArrayList<>();
 		this.gameQuestions = loadQuestions();
 		tileSet = new LinkedList<>();
+		
 		initParams();
 		initTiles();
+		Logger.log("Finished creating new instance of DB");
 		currentGame = null;
 	}
 
@@ -59,6 +62,8 @@ public class MonDB implements Serializable {
 	 * Initiation of tile list
 	 */
 	public void initTiles() {
+		
+		Logger.log("Initiating Game Board Tiles..");
 		// Starting Tile
 		tileSet.add(new StartTile(0, "Starting Point"));
 		tileSet.add(new PropertyTile(1, "uTorrent", QuestionStrength.MEDIUM));
@@ -101,6 +106,7 @@ public class MonDB implements Serializable {
 		tileSet.add(new LuckTile(38, "Lucky Shot"));
 		tileSet.add(new PropertyTile(39, "Apple", QuestionStrength.HARD));
 
+		Logger.log("Finished initiating tiles");
 	}
 
 	public static MonDB getData() {
@@ -139,7 +145,6 @@ public class MonDB implements Serializable {
 		if (Data == null) {
 			Data = importData();
 		}
-
 		return Data;
 	}
 
@@ -154,6 +159,7 @@ public class MonDB implements Serializable {
 		for (Param p : Param.values()) {
 			DBParams.put(p, p.o);
 		}
+		Logger.log("Finished initiating system params");
 	}
 
 	private static MonDB importData() {
@@ -282,11 +288,11 @@ public class MonDB implements Serializable {
 		MonDB.gameData = gameData;
 	}
 
-	public Set<User> getPlayerData() {
+	public List<User> getPlayerData() {
 		return playerData;
 	}
 
-	public void setPlayerData(HashSet<User> playerData) {
+	public void setPlayerData(List<User> playerData) {
 		MonDB.playerData = playerData;
 	}
 

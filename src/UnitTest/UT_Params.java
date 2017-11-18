@@ -15,10 +15,11 @@ public class UT_Params {
 		//Try to initiate DB
 		Logger.initializeMyFileWriter();
 		MonDB db = MonDB.getInstance();
-		Object p = db.getParam(Param.STARTING_CASH);
-		System.out.println(p.getClass());
+		
 		assertEquals(500000, db.getParam(Param.STARTING_CASH));
+		
 		db.setParam(Param.STARTING_CASH, 200000);
+		
 		assertEquals(200000, db.getParam(Param.STARTING_CASH));
 		
 	}
