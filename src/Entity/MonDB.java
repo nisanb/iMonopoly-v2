@@ -260,7 +260,22 @@ public class MonDB implements Serializable {
 		
 		return QuestionStrength.MEDIUM;
 	}
-
+	
+	/**
+	 * Helper method to convert QuestionStrength to long for json
+	 */
+	private long getQuestionStrengthAsLong(QuestionStrength value) {
+		if (value == QuestionStrength.EASY)
+			return 0;
+		else if (value == QuestionStrength.MEDIUM)
+			return 1;
+		else if (value == QuestionStrength.HARD)
+			return 2;
+		
+		return 1;
+	}
+	
+	
 	/**
 	 * Randomly generate a question by question strength
 	 * 
