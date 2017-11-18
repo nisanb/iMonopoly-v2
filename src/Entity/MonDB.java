@@ -156,7 +156,7 @@ public class MonDB implements Serializable {
 	 * This will initiate the first params to the system.
 	 * DO NOT CHANGE
 	 * @return
-	 * TODO Keep adding requiered system parameters
+	 * TODO Keep adding required system parameters
 	 */
 	private void initParams() {
 		Logger.log("Initiating System Params..");

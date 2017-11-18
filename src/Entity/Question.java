@@ -10,12 +10,12 @@ public class Question {
 	private Integer qNumber;
 	private QuestionStrength qStrength;
 	private String qQuestion;
+	private String team;
 	private List<String> qAnswers;
 	private Integer rightAnswer;
 	
 	public Question(Integer qNumber, QuestionStrength qStrength, String qQuestion, List<String> qAnswers,
-			Integer rightAnswer) {
-		super();
+			Integer rightAnswer, String team) {
 		this.qNumber = qNumber;
 		this.qStrength = qStrength;
 		this.qQuestion = qQuestion;
@@ -57,6 +57,15 @@ public class Question {
 	public void setRightAnswer(Integer rightAnswer) {
 		this.rightAnswer = rightAnswer;
 	}
+
+	public String getTeam() {
+		return team;
+	}
+
+	public void setTeam(String team) {
+		this.team = team;
+	}
+	
 	
 	
 	
