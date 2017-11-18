@@ -3,17 +3,19 @@ package Entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import Utils.QuestionStrength;
+
 public class Question {
 
 	
 	private long qNumber;
-	private long qStrength;
+	private QuestionStrength qStrength;
 	private String qQuestion;
 	private boolean isMultipleChoise;
 	private List<Answer> qAnswers;
 	private String team;
 	
-	public Question(long qNumber, long qStrength, String qQuestion, boolean isMultiple ,List<Answer> qAnswers, String team) {
+	public Question(long qNumber, QuestionStrength qStrength, String qQuestion, boolean isMultiple ,List<Answer> qAnswers, String team) {
 		super();
 		this.qNumber = qNumber;
 		this.qStrength = qStrength;
@@ -29,10 +31,10 @@ public class Question {
 	public void setqNumber(long qNumber) {
 		this.qNumber = qNumber;
 	}
-	public long getqStrength() {
+	public QuestionStrength getqStrength() {
 		return qStrength;
 	}
-	public void setqStrength(int qStrength) {
+	public void setqStrength(QuestionStrength qStrength) {
 		this.qStrength = qStrength;
 	}
 	public String getqQuestion() {

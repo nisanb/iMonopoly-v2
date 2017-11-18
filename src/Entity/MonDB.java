@@ -23,7 +23,6 @@ import java.util.SortedSet;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-
 import Controller.Logger;
 import Entity.Tile.*;
 import Utils.Param;
@@ -44,7 +43,7 @@ public class MonDB implements Serializable {
 	 * Game Statistics & Data
 	 */
 	private static HashSet<User> playerData;
-	transient private Map<Integer, ArrayList<Question>> gameQuestions;
+	transient private Map<QuestionStrength, ArrayList<Question>> gameQuestions;
 	private static HashMap<Integer, Game> gameData;
 
 	private MonDB() {
@@ -128,11 +127,11 @@ public class MonDB implements Serializable {
 		this.currentGame = currentGame;
 	}
 
-	public Map<Integer, ArrayList<Question>> getGameQuestions() {
+	public Map<QuestionStrength, ArrayList<Question>> getGameQuestions() {
 		return gameQuestions;
 	}
 
-	public void setGameQuestions(Map<Integer, ArrayList<Question>> gameQuestions) {
+	public void setGameQuestions(Map<QuestionStrength, ArrayList<Question>> gameQuestions) {
 		this.gameQuestions = gameQuestions;
 	}
 
@@ -189,12 +188,11 @@ public class MonDB implements Serializable {
 
 	/**
 	 * Will read questions from JSON File
-	 * 
 	 * @return TODO: READ QUESTIONS FROM JSON
 	 */
-	public Map<Integer, ArrayList<Question>> loadQuestions() {
+	public Map<QuestionStrength, ArrayList<Question>> loadQuestions() {
 		
-		HashMap<Integer, ArrayList<Question>> questions = new HashMap<Integer, ArrayList<Question>>();
+		HashMap<QuestionStrength, ArrayList<Question>> questions = new HashMap<QuestionStrength, ArrayList<Question>>();
 		JSONParser parser = new JSONParser();
 		
 		try {
@@ -228,14 +226,14 @@ public class MonDB implements Serializable {
 				
 				//build question object and add it to questions map
 				Question toAdd = new Question((long)q.get("id"),
-											  (long)q.get("difficulty"),
+											  getQuestionStrength((long)q.get("difficulty")),
 											  (String)q.get("text"),
 											  (boolean)q.get("isMultipleChoice"), 
 											  answers, 
 											  (String)q.get("team"));
 				
 				if (!questions.containsKey(toAdd.getqStrength())) {
-					questions.put((int) toAdd.getqStrength(), new ArrayList<Question>());
+					questions.put(toAdd.getqStrength(), new ArrayList<Question>());
 				}
 				else {
 					questions.get(toAdd.getqStrength()).add(toAdd);
@@ -247,6 +245,20 @@ public class MonDB implements Serializable {
 		}
 		
 		return questions;
+	}
+	
+	/**
+	 * Helper method to define question strength
+	 */
+	private QuestionStrength getQuestionStrength(long strength) {
+		if (strength == 0)
+			return QuestionStrength.EASY;
+		else if (strength == 1)
+			return QuestionStrength.MEDIUM;
+		else if (strength == 2)
+			return QuestionStrength.HARD;
+		
+		return QuestionStrength.MEDIUM;
 	}
 
 	/**
