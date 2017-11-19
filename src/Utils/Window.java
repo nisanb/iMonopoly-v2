@@ -5,7 +5,9 @@ public enum Window {
 	Player_Menu("Player_Menu"),
 	Player_Statistics("Player_Statistics"),
 	SASGOASJG("Player_Statistics"),
-	Num_Of_Players("NumOfPlayers");
+	Num_Of_Players("NumOfPlayers"),
+	WelcomeAdmin("WelcomeAdmin"),
+	EnterAdmin("EnterAdmin");
 	String fxmlFile;
 	
 	Window(String fxmlFile){

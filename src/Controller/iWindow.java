@@ -67,5 +67,7 @@ public class iWindow {
 		currentStage.setScene(currentScene);
 		iWindow.currentStage.show();
 	}
+	
+	
 
 }

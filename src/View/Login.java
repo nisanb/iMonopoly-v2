@@ -64,4 +64,9 @@ public class Login {
         assert btnLogin != null : "fx:id=\"btnLogin\" was not injected: check your FXML file 'Login.fxml'.";
         assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Login.fxml'.";
     }
+    
+    @FXML
+    void openAdmin(ActionEvent event) {
+    	iWindow.swap(Window.EnterAdmin);
+    }
 }
