@@ -24,6 +24,8 @@ import Utils.QuestionTag;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+
+import Controller.JSON;
 import Controller.Logger;
 import Entity.Tile.*;
 import Utils.Param;
@@ -50,7 +52,7 @@ public class MonDB implements Serializable {
 	private MonDB() {
 		Data = this;
 		playerData = new ArrayList<>();
-		this.gameQuestions = loadQuestions();
+		this.gameQuestions = JSON.getInstance().loadQuestions();
 		tileSet = new LinkedList<>();
 		gameData = new HashMap<>();
 		initParams();
@@ -193,103 +195,6 @@ public class MonDB implements Serializable {
 		}
 	}
 
-	/**
-	 * Will read questions from JSON File
-	 * @return TODO: READ QUESTIONS FROM JSON
-	 */
-	public Map<QuestionStrength, List<Question>> loadQuestions() {
-		
-		HashMap<QuestionStrength, List<Question>> questions = new HashMap<QuestionStrength, List<Question>>();
-		JSONParser parser = new JSONParser();
-		
-		try {
-			//get json file
-			InputStream is = getClass().getResourceAsStream("/JSON/questions.json");		
-			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-			Object obj = parser.parse(reader);
-			JSONObject jo = (JSONObject) obj;
-			
-			//cast json file to array - get the array form the map
-			JSONArray quesArray = (JSONArray) jo.get("questions");
-			
-			//iterate over the values (questions)
-			Iterator<JSONObject> quesIterator = quesArray.iterator();
-			while(quesIterator.hasNext()) {
-				JSONObject q = quesIterator.next();
-			
-				//get question's answers and iterate over it
-				JSONArray ansArray = (JSONArray) q.get("answers");
-				Iterator<JSONObject> ansIterator = ansArray.iterator();
-				
-				//add all answers to arraylist
-				ArrayList<Answer> answers = new ArrayList<Answer>();
-				while(ansIterator.hasNext()) {
-					JSONObject a = ansIterator.next();
-					answers.add(new Answer((String)a.get("text"), (boolean)a.get("isCorrect")));
-					
-				}
-				
-				//add all tags to arraylist
-				JSONArray tagsArray = (JSONArray) q.get("tags");
-				ArrayList<QuestionTag> tags = new ArrayList<QuestionTag>();
-				
-				for (int i = 0; i < tagsArray.size(); i++) {
-					tags.add(QuestionTag.valueOf(tagsArray.get(i).toString()));
-				}
-				
-//				System.out.println(q.get("isMultipleChoice").getClass());
-				
-				//build question object and add it to questions map
-				Question toAdd = new Question((long)q.get("id"),
-											  getQuestionStrength((long)q.get("difficulty")),
-											  (String)q.get("text"),
-											  (boolean)q.get("isMultipleChoice"),
-											  answers, 
-											  (String)q.get("team"),
-											  tags);
-				
-				if (!questions.containsKey(toAdd.getqStrength())) {
-					questions.put(toAdd.getqStrength(), new ArrayList<Question>());
-				}
-				else {
-					questions.get(toAdd.getqStrength()).add(toAdd);
-				}
-			}
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		return questions;
-	}
-	
-	/**
-	 * Helper method to define question strength
-	 */
-	private QuestionStrength getQuestionStrength(long strength) {
-		if (strength == 0)
-			return QuestionStrength.EASY;
-		else if (strength == 1)
-			return QuestionStrength.MEDIUM;
-		else if (strength == 2)
-			return QuestionStrength.HARD;
-		
-		return QuestionStrength.MEDIUM;
-	}
-	
-	/**
-	 * Helper method to convert QuestionStrength to long for json
-	 */
-	private long getQuestionStrengthAsLong(QuestionStrength value) {
-		if (value == QuestionStrength.EASY)
-			return 0;
-		else if (value == QuestionStrength.MEDIUM)
-			return 1;
-		else if (value == QuestionStrength.HARD)
-			return 2;
-		
-		return 1;
-	}
 	
 	
 	/**
