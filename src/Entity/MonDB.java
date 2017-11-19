@@ -319,5 +319,11 @@ public class MonDB implements Serializable {
 		// TODO Auto-generated method stub
 		DBParams.put(p, value);
 	}
+	
+	public void resetParamsToDefault(){
+		Logger.log("Resetting params to default..");
+		initParams();
+		Logger.log("Finished resetting params");
+	}
 
 }

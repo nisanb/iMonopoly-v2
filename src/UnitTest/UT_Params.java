@@ -21,7 +21,10 @@ public class UT_Params {
 		db.setParam(Param.STARTING_CASH, 200000);
 		
 		assertEquals(200000, db.getParam(Param.STARTING_CASH));
+	
+		db.resetParamsToDefault();
 		
+		assertEquals(500000, db.getParam(Param.STARTING_CASH));
 	}
 
 }

@@ -14,7 +14,7 @@ public class GoToJail extends Tile   {
 	
 	//TODO - Take player to jail
 	public void go(Player currentPlayer){
-		
+		MonDB.getInstance().getCurrentGame().movePlayer(currentPlayer, 29);
 	}
 	
 	@Override
@@ -24,7 +24,7 @@ public class GoToJail extends Tile   {
 	@Override
 	public void visit(Player currentPlayer) {
 		Logger.gameLog("Player "+currentPlayer+" is going to jail!");
-		MonDB.getInstance().getCurrentGame().movePlayer(currentPlayer, 29);
+		go(currentPlayer);
 	}
 	@Override
 	public void postVisit(Player currentPlayer) {
