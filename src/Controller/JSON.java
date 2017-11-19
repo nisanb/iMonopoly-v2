@@ -25,9 +25,7 @@ public class JSON {
 	private static JSON json;
 	private static String JsonPath = "Resources/JSON/questions.json";
 	
-	public JSON () {
-		
-	}
+	public JSON () {}
 	
 	public static JSON getInstance() {
 		if (json == null) {

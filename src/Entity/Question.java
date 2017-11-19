@@ -1,7 +1,10 @@
 package Entity;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
 
@@ -95,6 +98,27 @@ public class Question {
 			tag += this.tags.get(i) +" ";
 		}
 		return tag;
+	}
+	
+	/**
+	 * Will check that given answers from FE to a question are exactly the answers expected
+	 * @param answers
+	 * @return
+	 */
+	public boolean checkCorrect(List<Answer> answers){
+		
+		//If size isn't equal
+		if(answers.size() != qAnswers.size())
+			return false;
+		
+		Set<Answer> hashSet = new HashSet<>();
+		hashSet.addAll(answers);
+		hashSet.addAll(qAnswers);
+		
+		if(hashSet.size() != qAnswers.size())
+			return false;
+		
+		return true;
 	}
 		
 }
