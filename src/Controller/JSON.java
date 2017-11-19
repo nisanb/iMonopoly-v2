@@ -49,7 +49,7 @@ public class JSON {
 		
 		try {
 			//get json file
-			InputStream is = getClass().getResourceAsStream("/JSON/questions0.json");		
+			InputStream is = getClass().getResourceAsStream(JsonPath);		
 			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 			Object obj = parser.parse(reader);
 			JSONObject jo = (JSONObject) obj;
@@ -110,12 +110,15 @@ public class JSON {
 			e.printStackTrace();
 			
 		}
+
+		//print questions
+//		for (List<Question> q:questions.values()) {
+//			for (Question temp:q) {
+//				System.out.println(temp);
+//			}
+//		}
 		
-		for (List<Question> q:questions.values()) {
-			for (Question temp:q) {
-				System.out.println(temp);
-			}
-		}
+		Logger.log("Questions JSON was imported");
 		
 		return questions;
 	}
@@ -126,6 +129,7 @@ public class JSON {
 	 * This method gets map of questions and saves it as json object
 	 * @param questions
 	 */
+	@SuppressWarnings("unchecked")
 	public void saveQuestions(Map<QuestionStrength, List<Question>> questions) {
 		JSONArray JSONquestions = new JSONArray();	
 		JSONObject toWrite = new JSONObject();
@@ -152,6 +156,7 @@ public class JSON {
 					tags.add(t.getName());
 				}
 				
+
 				//put fields in the object
 				jo.put("id", q.getqNumber());
 				jo.put("text", q.getqQuestion());
@@ -173,15 +178,17 @@ public class JSON {
 		
 
 		//write the JSONObject to .json file		
-		File scores = new File("./bin/json/questions0.json");
+		File scores = new File(JsonPath);
 		try (FileWriter file = new FileWriter(scores)) {
 			file.write(toWrite.toJSONString());
+			Logger.log("Question JSON was saved");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		
 	}
+
 
 	
 	/**

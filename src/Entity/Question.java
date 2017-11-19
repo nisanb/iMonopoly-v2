@@ -87,13 +87,15 @@ public class Question {
 	@Override
 	public String toString() {
 		return "Question [qNumber=" + qNumber + ", qStrength=" + qStrength + ", qQuestion=" + qQuestion
-				+ ", isMultipleChoise=" + isMultipleChoise + ", qAnswers=" + qAnswers + ", team=" + team + "]";
+				+ ", isMultipleChoise=" + isMultipleChoise + ", qAnswers=" + qAnswers + ", team=" + team + ", tags="+printTags()+"]";
 	}
 	
-	
-	
-	
-	
-	
-	
+	private String printTags() {
+		String tag ="";
+		for (int i = 0; i < this.tags.size(); i++) {
+			tag += this.tags.get(i) +" ";
+		}
+		return tag;
+	}
+		
 }
