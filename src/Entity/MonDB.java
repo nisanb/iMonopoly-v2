@@ -19,6 +19,7 @@ import java.util.Properties;
 import java.util.Random;
 import java.util.Set;
 import java.util.SortedSet;
+import Utils.QuestionTag;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -228,15 +229,24 @@ public class MonDB implements Serializable {
 					
 				}
 				
+				//add all tags to arraylist
+				JSONArray tagsArray = (JSONArray) q.get("tags");
+				ArrayList<QuestionTag> tags = new ArrayList<QuestionTag>();
+				
+				for (int i = 0; i < tagsArray.size(); i++) {
+					tags.add(QuestionTag.valueOf(tagsArray.get(i).toString()));
+				}
+				
 //				System.out.println(q.get("isMultipleChoice").getClass());
 				
 				//build question object and add it to questions map
 				Question toAdd = new Question((long)q.get("id"),
 											  getQuestionStrength((long)q.get("difficulty")),
 											  (String)q.get("text"),
-											  (boolean)q.get("isMultipleChoice"), 
+											  (boolean)q.get("isMultipleChoice"),
 											  answers, 
-											  (String)q.get("team"));
+											  (String)q.get("team"),
+											  tags);
 				
 				if (!questions.containsKey(toAdd.getqStrength())) {
 					questions.put(toAdd.getqStrength(), new ArrayList<Question>());

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Utils.QuestionStrength;
+import Utils.QuestionTag;
 
 public class Question {
 
@@ -14,8 +15,10 @@ public class Question {
 	private boolean isMultipleChoise;
 	private List<Answer> qAnswers;
 	private String team;
+	private List<QuestionTag> tags;
 	
-	public Question(long qNumber, QuestionStrength qStrength, String qQuestion, boolean isMultiple ,List<Answer> qAnswers, String team) {
+	public Question(long qNumber, QuestionStrength qStrength, String qQuestion, boolean isMultiple, 
+			List<Answer> qAnswers, String team, List<QuestionTag> tags) {
 		super();
 		this.qNumber = qNumber;
 		this.qStrength = qStrength;
@@ -23,8 +26,25 @@ public class Question {
 		this.qAnswers = qAnswers;
 		this.team = team;
 		this.isMultipleChoise = isMultiple;
+		this.tags = tags;
 	}
 	
+	public String getTeam() {
+		return team;
+	}
+
+	public void setTeam(String team) {
+		this.team = team;
+	}
+
+	public List<QuestionTag> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<QuestionTag> tags) {
+		this.tags = tags;
+	}
+
 	public long getqNumber() {
 		return qNumber;
 	}
