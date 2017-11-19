@@ -2,7 +2,6 @@ package Entity;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
 

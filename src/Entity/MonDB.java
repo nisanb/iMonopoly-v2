@@ -1,30 +1,16 @@
 package Entity;
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Random;
-import java.util.Set;
-import java.util.SortedSet;
-import Utils.QuestionTag;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
 import Controller.JSON;
 import Controller.Logger;
 import Entity.Tile.*;
