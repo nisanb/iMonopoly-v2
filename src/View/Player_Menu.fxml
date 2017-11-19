@@ -18,9 +18,10 @@
             <Image url="@../resources/sound_on.png" />
          </image>
       </ImageView>
-    <Button layoutX="331.0" layoutY="253.0" mnemonicParsing="false" onAction="#doLogin" onMouseEntered="#MouseEntered" prefHeight="26.0" prefWidth="137.0" styleClass="column-drag-header" text="Start New Game" />
-      <Button layoutX="331.0" layoutY="300.0" mnemonicParsing="false" onAction="#doLogin" onMouseEntered="#MouseEntered" prefHeight="26.0" prefWidth="137.0" styleClass="column-drag-header" text="View Statistics" />
-      <Button layoutX="331.0" layoutY="350.0" mnemonicParsing="false" onAction="#doLogin" onMouseEntered="#MouseEntered" prefHeight="26.0" prefWidth="137.0" styleClass="column-drag-header" text="Logout" />
+    <Button layoutX="331.0" layoutY="253.0" mnemonicParsing="false" onAction="#OpenNumOfPlayers" onMouseEntered="#MouseEntered" prefHeight="26.0" prefWidth="137.0" styleClass="column-drag-header" text="Start New Game" />
+      <Button layoutX="331.0" layoutY="300.0" mnemonicParsing="false" onAction="#openStatistics" onMouseEntered="#MouseEntered" prefHeight="26.0" prefWidth="137.0" styleClass="column-drag-header" text="View Statistics" />
+      <Button layoutX="331.0" layoutY="350.0" mnemonicParsing="false" onAction="#doLogout" onMouseEntered="#MouseEntered" prefHeight="26.0" prefWidth="137.0" styleClass="column-drag-header" text="Logout" />
       <Label fx:id="lblUserLogged" layoutX="14.0" layoutY="14.0" prefHeight="18.0" prefWidth="117.0" styleClass="lblUser" text="lbl" />
+      <Button layoutX="529.0" layoutY="482.0" mnemonicParsing="false" text="Button" />
    </children>
 </AnchorPane>
