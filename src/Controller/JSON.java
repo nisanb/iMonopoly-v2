@@ -39,9 +39,9 @@ public class JSON {
 	
 
 	/**
-	 * Will read questions from JSON File/
+	 * Will read questions from JSON File
 	 * @return TODO: READ QUESTIONS FROM JSON
-	 */ 
+	 */
 	public Map<QuestionStrength, List<Question>> loadQuestions() {
 		
 		HashMap<QuestionStrength, List<Question>> questions = new HashMap<QuestionStrength, List<Question>>();
@@ -49,7 +49,7 @@ public class JSON {
 		
 		try {
 			//get json file
-			InputStream is = getClass().getResourceAsStream(JsonPath);		
+			InputStream is = getClass().getResourceAsStream("/JSON/questions0.json");		
 			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 			Object obj = parser.parse(reader);
 			JSONObject jo = (JSONObject) obj;
@@ -64,23 +64,24 @@ public class JSON {
 			
 				//get question's answers and iterate over it
 				JSONArray ansArray = (JSONArray) q.get("answers");
-				Iterator<JSONObject> ansIterator = ansArray.iterator();
-				
-				//add all answers to arraylist
 				ArrayList<Answer> answers = new ArrayList<Answer>();
-				while(ansIterator.hasNext()) {
-					JSONObject a = ansIterator.next();
+				for (int i = 0; i < ansArray.size(); i++) {
+					JSONObject a = (JSONObject)ansArray.get(i);
 					answers.add(new Answer((String)a.get("text"), (boolean)a.get("isCorrect")));
-					
-				}
+				} 
+				
+				
 				
 				//add all tags to arraylist
 				JSONArray tagsArray = (JSONArray) q.get("tags");
 				ArrayList<QuestionTag> tags = new ArrayList<QuestionTag>();
 				
 				for (int i = 0; i < tagsArray.size(); i++) {
-					tags.add(QuestionTag.valueOf(tagsArray.get(i).toString()));
+					String str = tagsArray.get(i).toString();
+					tags.add(QuestionTag.valueOf(str));
+					//System.err.println(QuestionTag.valueOf(str));
 				}
+				
 				
 //				System.out.println(q.get("isMultipleChoice").getClass());
 				
@@ -96,9 +97,12 @@ public class JSON {
 				//Add the question to question map
 				if (!questions.containsKey(toAdd.getqStrength())) {
 					questions.put(toAdd.getqStrength(), new ArrayList<Question>());
+					questions.get(toAdd.getqStrength()).add(toAdd);
+					//System.out.println(questions.get(toAdd.getqStrength()).get(0).toString());
 				}
 				else {
 					questions.get(toAdd.getqStrength()).add(toAdd);
+					//System.out.println(toAdd.toString());
 				}
 			}
 			
@@ -107,33 +111,48 @@ public class JSON {
 			
 		}
 		
+		for (List<Question> q:questions.values()) {
+			for (Question temp:q) {
+				System.out.println(temp);
+			}
+		}
+		
 		return questions;
 	}
+	
+	
 	
 	/**
 	 * This method gets map of questions and saves it as json object
 	 * @param questions
 	 */
 	public void saveQuestions(Map<QuestionStrength, List<Question>> questions) {
-		JSONArray JSONquestions = new JSONArray();
+		JSONArray JSONquestions = new JSONArray();	
+		JSONObject toWrite = new JSONObject();
 		
-		
-		JSONObject jo = new JSONObject();
 		//go over all questions and add every question to json file
 		for (Map.Entry<QuestionStrength, List<Question>> list:questions.entrySet()) {
+			JSONObject jo = new JSONObject();
+			if (list.getValue()==null) continue;
 			for (Question q:list.getValue()) {
-				JSONObject ans = new JSONObject();
 				
+				JSONArray ans = new JSONArray();		
 				//get questions properties from object to json objects and arrays
 				for (Answer a: q.getqAnswers()) {
-					ans.put("text", a.getText());
-					ans.put("isCorrect", a.isTrue());
-				}
-				JSONArray tags = new JSONArray();
-				for (QuestionTag t:q.getTags()) {
-					tags.add(t);
+					JSONObject tmp = new JSONObject();	
+					tmp.put("text", a.getText());
+					tmp.put("isCorrect", a.isTrue());
+					
+					ans.add(tmp);
 				}
 				
+				//get all tags
+				JSONArray tags = new JSONArray();
+				for (QuestionTag t : q.getTags()) {
+					tags.add(t.getName());
+				}
+				
+				//put fields in the object
 				jo.put("id", q.getqNumber());
 				jo.put("text", q.getqQuestion());
 				jo.put("difficulty", getQuestionStrengthAsLong(q.getqStrength()));
@@ -142,34 +161,28 @@ public class JSON {
 				jo.put("tags", tags);
 				jo.put("answers", ans);
 				
+				//add the object to json array
+				JSONquestions.add(jo);
+				System.err.println(JSONquestions.toJSONString());
+				
 			}
 			
-			//add question to JSONArray
-			JSONquestions.add(jo);
+			//add json array to object question
+			toWrite.put("questions", JSONquestions);
 		}
-		//write the JSONObject to .json file
-
 		
-		File quesFile = new File("./bin/Resources/JSON/questions.json");
-		try (FileWriter file = new FileWriter(quesFile)) {
-			file.write(JSONquestions.toJSONString());
+
+		//write the JSONObject to .json file		
+		File scores = new File("./bin/json/questions0.json");
+		try (FileWriter file = new FileWriter(scores)) {
+			file.write(toWrite.toJSONString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
 		
 	}
-	
 
-//		File scores = new File("./bin/json/questions.json");
-//		try (FileWriter file = new FileWriter(scores)) {
-//			file.write(fobj.toJSONString());
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	
-	
 	
 	/**
 	 * Helper method to define question strength
