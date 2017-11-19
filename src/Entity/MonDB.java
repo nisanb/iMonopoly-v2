@@ -44,14 +44,14 @@ public class MonDB implements Serializable {
 	 */
 	private static List<User> playerData;
 	transient private Map<QuestionStrength, List<Question>> gameQuestions;
-	private static HashMap<Integer, Game> gameData;
+	private static Map<Integer, Game> gameData;
 
 	private MonDB() {
 		Data = this;
 		playerData = new ArrayList<>();
 		this.gameQuestions = loadQuestions();
 		tileSet = new LinkedList<>();
-		
+		gameData = new HashMap<>();
 		initParams();
 		initTiles();
 		Logger.log("Finished creating new instance of DB");

@@ -1,4 +1,4 @@
-.button-red {
+Button {
     -fx-background-color: transparent;
     -fx-background-radius: 30;
     -fx-background-insets: 0;
@@ -9,11 +9,14 @@
 	-fx-background-color: transparent;
 }
 	
+Label {
+	-fx-text-fill: white;
+}
 
-.button-red:hover{
-    -fx-background-color: transparent;
-    -fx-border-color: black;
-    -fx-background-radius: 30;
+Button:hover{
+    -fx-background-color: blue;
+    -fx-background-radius: 50;
+    -fx-opacity: 50%;
     -fx-background-insets: 0;
     -fx-text-fill: white;
 }

@@ -1,7 +1,8 @@
 package Utils;
 
 public enum Window {
-	Login("login"), MainBoard("Board"), Login2("login2");
+	Login("login"), MainBoard("Board"), Login2("login2"),
+	Player_Menu("Player_Menu");
 	String fxmlFile;
 	
 	Window(String fxmlFile){

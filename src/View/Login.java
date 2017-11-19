@@ -6,6 +6,11 @@ import java.util.ResourceBundle;
 import Controller.Logger;
 import Controller.Music;
 import Controller.iWindow;
+import Entity.Game;
+import Entity.MonDB;
+import Entity.Player;
+import Entity.User;
+import Utils.PlayerAuth;
 import Utils.Window;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,7 +51,9 @@ public class Login {
     void doLogin(ActionEvent event) {
     	Music.getInstance().play("click.wav");
     	Logger.log("Attempting to log in with user "+frmNickname.getText());
-    	iWindow.swap(Window.Login);
+    	MonDB.getInstance().setCurrentGame(new Game());
+    	MonDB.getInstance().getCurrentGame().setCurrentLoggedUser((new User(frmNickname.getText(), PlayerAuth.PLAYER)));
+    	iWindow.swap(Window.Player_Menu);
     }
     
 
