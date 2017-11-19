@@ -22,7 +22,7 @@
          </image>
       </ImageView>
       <ButtonBar layoutX="33.0" layoutY="182.0" prefHeight="40.0" prefWidth="200.0" />
-      <Label layoutX="312.0" layoutY="156.0" text="Sharky Statistics" textFill="#fccbcb">
+      <Label layoutX="312.0" layoutY="167.0" text="Sharky Statistics" textFill="#fccbcb">
          <font>
             <Font size="25.0" />
          </font>
@@ -78,7 +78,7 @@
          </font>
       </Label>
       <PieChart fx:id="piechart" layoutX="368.0" layoutY="172.0" prefHeight="257.0" prefWidth="265.0" />
-      <Button layoutX="492.0" layoutY="435.0" mnemonicParsing="false" onAction="#btn" text="Load Chart" />
-      <Button layoutX="351.0" layoutY="484.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="99.0" text="Main Manu" />
+      <Button layoutX="511.0" layoutY="325.0" mnemonicParsing="false" onAction="#btn" text="Load Chart" />
+      <Button layoutX="136.0" layoutY="147.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="99.0" text="Back" />
    </children>
 </AnchorPane>

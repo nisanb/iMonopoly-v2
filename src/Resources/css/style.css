@@ -1,9 +1,10 @@
 Button {
-    -fx-background-color: transparent;
-    -fx-background-radius: 30;
+    -fx-background-color: #2196f3;
+    -fx-background-radius: 22;
     -fx-background-insets: 0;
     -fx-text-fill: white;
     -fx-font-size: 16;
+    -fx-font-weight: bold;
 }
 
 .textbox {
@@ -15,9 +16,26 @@ Label {
 }
 
 Button:hover{
+	    -fx-font-weight: bold;
     -fx-background-color: blue;
-    -fx-background-radius: 50;
+    -fx-background-radius: 22;
     -fx-opacity: 50%;
     -fx-background-insets: 0;
-    -fx-text-fill: white;
+    -fx-text-fill: #2196f3;
+    -fx-background-color: white;
+    -fx-border-color:#2196f3;
+    -fx-border-width:3;
+}
+
+Button:pressed{
+	-fx-font-weight: bold;
+	-fx-background-color: white;
+	-fx-background-radius: 22;
+	 -fx-font-size: 16;
+	  -fx-text-fill: #2196f3;
+	  -fx-background-radius: 20;
+	   -fx-border-width:3;
+	   -fx-rotate:10;
+	  
+	
 }

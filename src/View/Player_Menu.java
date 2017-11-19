@@ -63,4 +63,9 @@ public class Player_Menu {
         assert lblUserLogged != null : "fx:id=\"lblUserLogged\" was not injected: check your FXML file 'Player_Menu.fxml'.";
 
     }
+    
+    @FXML
+    void back(ActionEvent event) {
+    	iWindow.swap(Window.Login);
+    }
 }

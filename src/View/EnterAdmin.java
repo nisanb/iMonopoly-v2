@@ -6,6 +6,10 @@ package View;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Controller.iWindow;
+import Utils.Window;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -36,4 +40,15 @@ public class EnterAdmin {
         assert lblUserLogged != null : "fx:id=\"lblUserLogged\" was not injected: check your FXML file 'EnterAdmin.fxml'.";
 
     }
+    
+    @FXML
+    void back(ActionEvent event) {
+    	iWindow.swap(Window.Login);
+    }
+    
+    @FXML
+    void openWelcomeAdmin(ActionEvent event) {
+    	iWindow.swap(Window.WelcomeAdmin);
+    }
+
 }

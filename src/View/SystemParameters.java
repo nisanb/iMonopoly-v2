@@ -1,5 +1,5 @@
 /**
- * Sample Skeleton for 'WelcomeAdmin.fxml' Controller Class
+ * Sample Skeleton for 'SystemParameters.fxml' Controller Class
  */
 
 package View;
@@ -14,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class WelcomeAdmin {
+public class SystemParameters {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -26,43 +26,23 @@ public class WelcomeAdmin {
     private ImageView btnVolume; // Value injected by FXMLLoader
 
     @FXML
-    void MouseEntered(MouseEvent event) {
-
-    }
-
-    @FXML
-    void doLogin(ActionEvent event) {
-
-    }
-
-    @FXML
     void doSwapMusic(MouseEvent event) {
 
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'WelcomeAdmin.fxml'.";
+        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'SystemParameters.fxml'.";
 
     }
     
-    @FXML
-    void openAdminStatistics(ActionEvent event) {
-    	iWindow.swap(Window.AdminStatistics);
-    }
-    
-    @FXML
-    void openSystemParameters(ActionEvent event) {
-    	iWindow.swap(Window.SystemParameters);
-    }
-    
-
     @FXML
     void back(ActionEvent event) {
-    	iWindow.swap(Window.EnterAdmin);
+    	iWindow.swap(Window.WelcomeAdmin);
     }
     
-    
-    
-  
+    @FXML
+    void save(ActionEvent event) {
+
+    }
 }
