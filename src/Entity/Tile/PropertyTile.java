@@ -3,7 +3,6 @@ package Entity.Tile;
 import java.util.Random;
 
 import Controller.Logger;
-import Entity.MonDB;
 import Entity.Player;
 import Utils.Param;
 import Utils.QuestionStrength;
@@ -78,6 +77,31 @@ public class PropertyTile extends Tile {
 	}
 
 	/**
+	 * When a visitor wishes to pay rent
+	 * @param visitor
+	 * @return
+	 */
+	public Boolean payRent(Player visitor){
+		
+		if(!isOwned()){
+			Logger.log("Why would player "+visitor+" need to pay rent for "+this+" when it isn't owned by anyone?");
+			return false;
+		}
+		
+		if(!visitor.hasEnough(getRentPrice())){
+			Logger.gameLog("Player "+visitor+" has insufficient funds to rent property "+this+" from "+currentOwner);
+			return false;
+		}
+		
+		visitor.deductCash(getRentPrice());
+		currentOwner.addCash(getRentPrice());
+		Logger.gameLog("Player "+visitor+" paid "+currentOwner+" $"+getRentPrice()+" for visiting "+this);
+		
+		return true;
+		
+	}
+
+	/**
 	 * When a buyer wants to buy the property
 	 * 
 	 * @param newBuyer
@@ -93,7 +117,7 @@ public class PropertyTile extends Tile {
 			}
 
 		// In case buyer don't have enough cash
-		if (newBuyer.getCash() < getCurrentPrice()) {
+		if (newBuyer.getCash() < getBuyPrice()) {
 			Logger.gameLog("Player " + newBuyer + " has insufficient funds to buy property " + this);
 			return false;
 		}
@@ -103,13 +127,13 @@ public class PropertyTile extends Tile {
 			currentOwner.removeProperty(this);
 			currentOwner.addCash(getCurrentPrice());
 		}
-		
+
 		currentOwner = newBuyer;
-		newBuyer.deductCash(getCurrentPrice());
+		newBuyer.deductCash(getBuyPrice());
 		newBuyer.addProperty(this);
-		Logger.gameLog("Player " + newBuyer + " purchased property " + this + " for " + getCurrentPrice());
+		Logger.gameLog("Player " + newBuyer + " purchased property " + this + " for " + getBuyPrice());
 		currentPrice = getCurrentPrice();
-		
+
 		return true;
 	}
 
@@ -123,6 +147,10 @@ public class PropertyTile extends Tile {
 
 	public int getBuyPrice() {
 		return currentPrice * (Integer) Param.get(Param.BUY_PERCENT);
+	}
+
+	public int getRentPrice() {
+		return currentPrice * (Integer) Param.get(Param.RENT_PERCENT);
 	}
 
 	@Override

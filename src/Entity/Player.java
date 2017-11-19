@@ -102,6 +102,10 @@ public class Player extends User implements Comparable<Player>{
 		this.cash -= amount;
 	}
 	
+	public Boolean hasEnough(Integer amount){
+		return amount>=this.cash;
+	}
+	
 	
 	
 }
