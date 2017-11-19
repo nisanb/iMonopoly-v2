@@ -1,9 +1,12 @@
 package Entity;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import Controller.Logger;
+import Entity.Tile.PropertyTile;
 import Utils.PlayerAuth;
 
 public class Player extends User implements Comparable<Player>{
@@ -15,7 +18,7 @@ public class Player extends User implements Comparable<Player>{
 	private Integer strikesNum;
 	private Boolean inJail;
 	private Map<Question, Boolean> userAnswers;
-	
+	private Set<PropertyTile> propertyList;
 	/**
 	 * Player Constructor
 	 * @param nickname
@@ -23,7 +26,7 @@ public class Player extends User implements Comparable<Player>{
 	 */
 	public Player(String nickname, Integer cash){
 		super(nickname, PlayerAuth.PLAYER);
-		
+		this.propertyList = new HashSet<>();
 		this.userAnswers = new HashMap<>();
 		this.strikesNum 	= 0;
 		this.currentTile	= 0;
@@ -41,7 +44,15 @@ public class Player extends User implements Comparable<Player>{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public Boolean addProperty(PropertyTile pro){
+		return this.propertyList.add(pro);
+	}
 
+	public Boolean removeProperty(PropertyTile pro){
+		return this.propertyList.remove(pro);
+	}
+	
 	public Integer getCash() {
 		return cash;
 	}
@@ -87,7 +98,9 @@ public class Player extends User implements Comparable<Player>{
 		Logger.log("Added $"+amount+" to "+getNickName());
 	}
 	
-	
+	public void deductCash(Integer amount){
+		this.cash -= amount;
+	}
 	
 	
 	

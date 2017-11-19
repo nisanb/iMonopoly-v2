@@ -43,10 +43,10 @@ public class PropertyTile extends Tile {
 
 		}
 		Random r = new Random();
-		Integer chosenPrice = r.nextInt(max-min)+min;
+		Integer chosenPrice = r.nextInt(max - min) + min;
 		this.initialPrice = chosenPrice;
 		this.currentPrice = chosenPrice;
-		Logger.log("Setting price $"+chosenPrice+" for tile #"+getTileNumber()+" - "+toString());
+		Logger.log("Setting price $" + chosenPrice + " for tile #" + getTileNumber() + " - " + toString());
 	}
 
 	public QuestionStrength getPropertyStrength() {
@@ -77,6 +77,42 @@ public class PropertyTile extends Tile {
 		return currentOwner;
 	}
 
+	/**
+	 * When a buyer wants to buy the property
+	 * 
+	 * @param newBuyer
+	 * @return
+	 */
+	public Boolean purchaseProperty(Player newBuyer) {
+		Logger.log("Player " + newBuyer + " attempts to purchase property " + this);
+		// In case somebody already owns it or its the same owner
+		if (currentOwner != null)
+			if (currentOwner == newBuyer) {
+				Logger.gameLog("Cancelled purchase. Player " + newBuyer + " attempted to purchase his own property");
+				return false;
+			}
+
+		// In case buyer don't have enough cash
+		if (newBuyer.getCash() < getCurrentPrice()) {
+			Logger.gameLog("Player " + newBuyer + " has insufficient funds to buy property " + this);
+			return false;
+		}
+
+		// Proceed with purchase
+		if (currentOwner != null) {
+			currentOwner.removeProperty(this);
+			currentOwner.addCash(getCurrentPrice());
+		}
+		
+		currentOwner = newBuyer;
+		newBuyer.deductCash(getCurrentPrice());
+		newBuyer.addProperty(this);
+		Logger.gameLog("Player " + newBuyer + " purchased property " + this + " for " + getCurrentPrice());
+		currentPrice = getCurrentPrice();
+		
+		return true;
+	}
+
 	public void setCurrentOwner(Player currentOwner) {
 		this.currentOwner = currentOwner;
 	}
@@ -88,7 +124,7 @@ public class PropertyTile extends Tile {
 	public int getBuyPrice() {
 		return currentPrice * (Integer) Param.get(Param.BUY_PERCENT);
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.getTileName();
