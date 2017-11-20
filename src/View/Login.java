@@ -51,13 +51,9 @@ public class Login {
     void doLogin(ActionEvent event) {
     	Music.getInstance().play("click.wav");
     	Logger.log("Attempting to log in with user "+frmNickname.getText());
-<<<<<<< HEAD
     	MonDB.getInstance().setCurrentGame(new Game());
     	MonDB.getInstance().getCurrentGame().setCurrentLoggedUser((new User(frmNickname.getText(), PlayerAuth.PLAYER)));
     	iWindow.swap(Window.Player_Menu);
-=======
-    	iWindow.swap(Window.MainBoardTal);
->>>>>>> Added new board UI and images
     }
     
 

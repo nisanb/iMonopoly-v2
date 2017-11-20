@@ -173,16 +173,6 @@ public class TalUI {
 	    	initialize2();
 	    }
 	    
-
-<<<<<<< HEAD
-    @FXML
-    void doSwapMusic(MouseEvent event) {
-    	Music.getInstance().swap("theme.mp3");
-    }
-    
-=======
->>>>>>> Added new board UI and images
-    
     public TalUI() {
 			super();
 			initialize2();
