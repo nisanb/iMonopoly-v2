@@ -48,7 +48,7 @@ public class Player_Menu {
     @FXML
     void OpenNumOfPlayers(ActionEvent event) {
     	
-    	iWindow.swap(Window.Num_Of_Players);
+    	iWindow.swap(Window.MainBoardTal);
 
     }
 
