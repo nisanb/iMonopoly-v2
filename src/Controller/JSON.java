@@ -23,7 +23,7 @@ import Utils.QuestionTag;
 
 public class JSON {
 	private static JSON json;
-	private static String JsonPath = "Resources/JSON/questions.json";
+	private static String JsonPath = "/Resources/JSON/save.json";
 	
 	public JSON () {}
 	
@@ -47,7 +47,7 @@ public class JSON {
 		
 		try {
 			//get json file
-			InputStream is = getClass().getResourceAsStream(JsonPath);		
+			InputStream is = getClass().getResourceAsStream(JsonPath);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 			Object obj = parser.parse(reader);
 			JSONObject jo = (JSONObject) obj;
@@ -109,14 +109,14 @@ public class JSON {
 			
 		}
 
-		//print questions
-//		for (List<Question> q:questions.values()) {
-//			for (Question temp:q) {
-//				System.out.println(temp);
-//			}
-//		}
-		
-		Logger.log("Questions JSON was imported");
+//		//print questions
+		for (List<Question> q:questions.values()) {
+			for (Question temp:q) {
+				System.out.println(temp);
+			}
+		}
+//		
+//		Logger.log("Questions JSON was imported");
 		
 		return questions;
 	}
@@ -176,10 +176,10 @@ public class JSON {
 		
 
 		//write the JSONObject to .json file		
-		File scores = new File(JsonPath);
-		try (FileWriter file = new FileWriter(scores)) {
+		File f = new File("./bin"+JsonPath);
+		try (FileWriter file = new FileWriter(f)) {
 			file.write(toWrite.toJSONString());
-			Logger.log("Question JSON was saved");
+//			Logger.log("Question JSON was saved");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
