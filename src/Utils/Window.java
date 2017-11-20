@@ -1,16 +1,32 @@
 package Utils;
 
 public enum Window {
-	Login("login"), MainBoard("Board"), Login2("login2"),
-	Player_Menu("Player_Menu"),
-	Player_Statistics("Player_Statistics"),
-	SASGOASJG("Player_Statistics"),
-	Num_Of_Players("NumOfPlayers"),
-	WelcomeAdmin("WelcomeAdmin"),
-	EnterAdmin("EnterAdmin"),
-	AdminStatistics("AdminStatistics"),
-	SystemParameters("SystemParameters"),
-	MainBoardTal("TalUI");
+	/**
+	 * General
+	 */
+	Login("login"),
+	
+	/**
+	 * Player Menus
+	 */
+	Player_Menu("Player/Menu"),
+	Player_Statistics("Player/Statistics"),
+	Player_GameSettings("Player/GameSettings"),
+	
+	/**
+	 * Admin Menus
+	 */
+	Admin_Menu("Admin/Menu"),
+	Admin_Login("Admin/Login"),
+	Admin_Statistics("Admin/Statistics"),
+	Admin_SysParams("Admin/SysParam"),
+	Admin_Questions("Admin/Questions"),
+	
+	/**
+	 * Game
+	 */
+	Game_UI("Game/UI")
+	;
 	String fxmlFile;
 	
 	Window(String fxmlFile){
