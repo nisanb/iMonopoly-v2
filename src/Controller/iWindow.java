@@ -20,9 +20,11 @@ public class iWindow {
 
 	public static void swap(Stage primaryStage, Window toOpen) {
 		currentStage = primaryStage;
+		
 		currentStage.initStyle(StageStyle.UNDECORATED);
 		swap(toOpen);
 		currentStage.show();
+		currentScene.getWindow().centerOnScreen();
 	}
 
 	public static void swap(Window toOpen) {
@@ -67,6 +69,8 @@ public class iWindow {
 
 		currentStage.setScene(currentScene);
 		iWindow.currentStage.show();
+
+		currentScene.getWindow().centerOnScreen();
 	}
 	
 	
