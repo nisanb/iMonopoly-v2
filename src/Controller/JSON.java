@@ -166,7 +166,7 @@ public class JSON {
 				
 				//add the object to json array
 				JSONquestions.add(jo);
-				System.err.println(JSONquestions.toJSONString());
+				//System.err.println(JSONquestions.toJSONString());
 				
 			}
 			

@@ -233,4 +233,66 @@ public class MonDB implements Serializable {
 		MonDB d=new MonDB();
 		d.initTiles();
 	}
+	
+	
+	/**
+	 * This method removes specific question from map and json
+	 * @param question q
+	 * @return true of removed
+	 */
+	public boolean deleteQuestion(Question q) {
+		if (this.gameQuestions == null)
+			return false;
+		if (this.gameQuestions.get(q) == null)
+			return false;
+		
+		//get the correct list
+		int indexToDelete = this.gameQuestions.get(q.getqStrength()).indexOf(q);
+		
+		//if object was found delete it, save the new json, and return true
+		if (indexToDelete > 0) {
+			this.gameQuestions.get(q.getqStrength()).remove(indexToDelete);
+			JSON.getInstance().saveQuestions(this.gameQuestions);
+			return true;
+		}
+		return false;
+	}
+	
+	/**
+	 * This method adds new question to the map and saves it to json
+	 * @param q
+	 * @return
+	 */
+	public boolean addQuesiton(Question q) {
+		//if map or list are empty initialise the data structure
+		if (this.gameQuestions == null)
+			this.gameQuestions = new HashMap<QuestionStrength, List<Question>>();
+		if (this.gameQuestions.get(q.getqStrength()) == null)
+			this.gameQuestions.put(q.getqStrength(), new ArrayList<Question>());
+		
+		//add the new question to the correct list and save the json
+		if (this.gameQuestions.get(q.getqStrength()).add(q)) {
+			JSON.getInstance().saveQuestions(this.gameQuestions);
+			return true;
+		}
+		
+		return false;
+	}
+	
+	
+	/**
+	 * Update question by deleting it and add the new one
+	 * @param qBefore
+	 * @param qAfter
+	 * @return
+	 */
+	public boolean updateQuestion(Question qBefore, Question qAfter) {
+		if (deleteQuestion(qBefore))
+			if(addQuesiton(qAfter))
+				return true;
+		
+		
+		return false;
+	}
+	
 }
