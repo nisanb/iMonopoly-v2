@@ -38,7 +38,7 @@ public class Login {
 
     @FXML
     void MouseEntered(MouseEvent event) {
-    	Music.getInstance().play("hover.mp3");
+    	//Music.getInstance().play("hover.mp3");
     }
 
     @FXML

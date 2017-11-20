@@ -9,7 +9,8 @@ public enum Window {
 	WelcomeAdmin("WelcomeAdmin"),
 	EnterAdmin("EnterAdmin"),
 	AdminStatistics("AdminStatistics"),
-	SystemParameters("SystemParameters");
+	SystemParameters("SystemParameters"),
+	MainBoardTal("TalUI");
 	String fxmlFile;
 	
 	Window(String fxmlFile){
