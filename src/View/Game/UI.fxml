@@ -1,0 +1,1212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Game.Controller.UI">
+   <children>
+      <Button fx:id="main" layoutX="139.0" layoutY="598.0" mnemonicParsing="false" onMouseClicked="#menuButton" prefHeight="77.0" prefWidth="132.0" text="main menu" />
+      <ImageView fitHeight="691.0" fitWidth="1229.0" layoutX="48.0" layoutY="39.0">
+         <image>
+            <Image url="@../../Resources/PSD/Board-1366-768.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="button1" layoutX="476.0" layoutY="423.0" mnemonicParsing="false" onMouseClicked="#positionPlayers" prefHeight="56.0" prefWidth="83.0" text="Button" />
+      <MenuBar layoutY="14.0" prefHeight="24.0" prefWidth="1366.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <Pane fx:id="pane0" layoutX="1214.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_0" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_0" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_0" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_0" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane1" layoutX="1117.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_1" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_1" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_1" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_1" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane2" layoutX="1062.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_2" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_2" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_2" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_2" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane3" layoutX="1011.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_3" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_3" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_3" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_3" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane4" layoutX="953.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_4" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_4" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_4" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_4" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane5" layoutX="902.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_5" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_5" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_5" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_5" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane6" layoutX="845.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_6" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_6" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_6" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_6" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane7" layoutX="788.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_7" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_7" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_7" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_7" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane8" layoutX="737.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_8" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_8" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_8" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_8" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane8" layoutX="683.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_8" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_8" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_8" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_8" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane9" layoutX="583.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_9" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_9" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_9" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_9" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane11" layoutX="567.0" layoutY="568.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_11" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_11" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_11" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_11" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane12" layoutX="567.0" layoutY="512.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_12" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_12" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_12" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_12" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane13" layoutX="567.0" layoutY="460.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_13" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_13" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_13" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_13" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane14" layoutX="567.0" layoutY="404.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_14" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_14" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_14" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_14" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane15" layoutX="567.0" layoutY="350.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_15" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_15" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_15" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_15" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane16" layoutX="567.0" layoutY="296.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_16" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_16" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_16" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_16" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane17" layoutX="567.0" layoutY="241.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_17" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_17" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_17" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_17" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane18" layoutX="567.0" layoutY="187.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_18" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_18" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_18" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_18" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane19" layoutX="567.0" layoutY="133.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_19" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_19" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_19" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_19" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane30" layoutX="1211.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_30" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_30" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_30" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_30" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane29" layoutX="1118.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_29" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_29" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_29" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_29" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane28" layoutX="1063.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_28" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_28" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_28" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_28" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane27" layoutX="1008.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_27" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_27" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_27" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_27" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane26" layoutX="951.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_26" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_26" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_26" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_26" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane25" layoutX="899.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_25" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_25" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_25" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_25" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane24" layoutX="842.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_24" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_24" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_24" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_24" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane23" layoutX="785.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_23" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_23" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_23" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_23" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane22" layoutX="734.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_22" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_22" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_22" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_22" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane21" layoutX="680.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_21" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_21" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_21" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_21" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane20" layoutX="579.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
+         <children>
+            <ImageView fx:id="player1_20" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_20" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_20" fitHeight="30.0" fitWidth="20.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_20" fitHeight="30.0" fitWidth="20.0" layoutX="30.0" layoutY="30.0" style="-fx-opacity: 90%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane39" layoutX="1190.0" layoutY="567.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_39" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_39" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_39" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_39" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane38" layoutX="1190.0" layoutY="513.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_38" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_38" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_38" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_38" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane37" layoutX="1190.0" layoutY="459.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_37" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_37" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_37" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_37" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane36" layoutX="1190.0" layoutY="403.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_36" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_36" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_36" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_36" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane35" layoutX="1190.0" layoutY="349.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_35" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_35" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_35" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_35" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane34" layoutX="1190.0" layoutY="295.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_34" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_34" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_34" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_34" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane33" layoutX="1190.0" layoutY="240.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_33" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_33" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_33" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_33" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane32" layoutX="1190.0" layoutY="186.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_32" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_32" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_32" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_32" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Pane fx:id="pane31" layoutX="1190.0" layoutY="132.0" prefHeight="56.0" prefWidth="108.0">
+         <children>
+            <ImageView fx:id="player1_31" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player2_31" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="-1.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player3_31" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="player4_31" fitHeight="30.0" fitWidth="20.0" layoutX="51.0" layoutY="27.0" style="-fx-opacity: 75%;">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <Button fx:id="buttonMenu" layoutX="346.0" layoutY="503.0" mnemonicParsing="false" onMouseClicked="#menuButton" prefHeight="56.0" prefWidth="97.0" text="Menu" />
+      <ImageView fx:id="player1Stats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="60.0">
+         <image>
+            <Image url="@../../Resources/PSD/Players/7.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="player2Stats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="150.0">
+         <image>
+            <Image url="@../../Resources/PSD/Players/8.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="player3Stats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="240.0">
+         <image>
+            <Image url="@../../Resources/PSD/Players/9.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="player4Stats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="330.0">
+         <image>
+            <Image url="@../../Resources/PSD/Players/10.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="player1StatsPane" layoutX="160.0" layoutY="60.0" prefHeight="77.0" prefWidth="198.0" style="-fx-background-color: transperent;">
+         <children>
+            <Label fx:id="lblMoney1" layoutX="7.0" layoutY="10.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transperent;" text="Money:" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblStrikes1" layoutX="7.0" layoutY="39.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transperent;" text="Strikes:" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="moneyPlayer1" layoutX="91.0" layoutY="9.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transperent;" text="100,000$" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="strikesPlayer1" layoutX="91.0" layoutY="38.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transperent;" text="1" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="player2StatsPane" layoutX="160.0" layoutY="150.0" prefHeight="77.0" prefWidth="198.0" style="-fx-background-color: transperent;">
+         <children>
+            <Label fx:id="lblMoney2" layoutX="7.0" layoutY="10.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transperent;" text="Money:" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblStrikes2" layoutX="7.0" layoutY="39.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transperent;" text="Strikes:" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="moneyPlayer2" layoutX="91.0" layoutY="9.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transperent;" text="100,000$" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="strikesPlayer2" layoutX="91.0" layoutY="38.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transperent;" text="0" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="player2StatsPane" layoutX="160.0" layoutY="240.0" prefHeight="77.0" prefWidth="198.0" style="-fx-background-color: transperent;">
+         <children>
+            <Label fx:id="lblMoney3" layoutX="7.0" layoutY="10.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transperent;" text="Money:" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblStrikes3" layoutX="7.0" layoutY="39.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transperent;" text="Strikes:" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="moneyPlayer3" layoutX="91.0" layoutY="9.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transperent;" text="100,000$" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="strikesPlayer3" layoutX="91.0" layoutY="38.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transperent;" text="0" textAlignment="JUSTIFY" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane fx:id="player4StatsPane" layoutX="160.0" layoutY="330.0" prefHeight="77.0" prefWidth="198.0" style="-fx-background-color: transperent;">
+         <children>
+            <Label fx:id="lblMoney4" layoutX="7.0" layoutY="10.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transperent;" text="Money:" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblStrikes4" layoutX="7.0" layoutY="39.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transperent;" text="Strikes:" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="moneyPlayer3" layoutX="91.0" layoutY="9.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transperent;" text="100,000$" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="strikesPlayer4" layoutX="91.0" layoutY="38.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transperent;" text="0" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Button layoutX="372.0" layoutY="81.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Buy Property" textFill="WHITE">
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="372.0" layoutY="142.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Sell Property" textFill="WHITE">
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Button>
+      <Button layoutX="375.0" layoutY="652.0" mnemonicParsing="false" onMouseClicked="#menuButton" prefWidth="164.0" style="-fx-background-color: red;" text="Quit Game" textFill="WHITE">
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Button>
+      <Pane fx:id="rollDicePane" layoutX="71.0" layoutY="470.0" prefHeight="222.0" prefWidth="242.0">
+         <children>
+            <Pane fx:id="cube2pane" layoutX="115.0" layoutY="100.0" prefHeight="77.0" prefWidth="76.0">
+               <children>
+                  <ImageView fx:id="roll2_1" fitHeight="70.0" fitWidth="70.0">
+                     <image>
+                        <Image url="@../../Resources/PSD/1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="roll2_2" fitHeight="70.0" fitWidth="70.0">
+                     <image>
+                        <Image url="@../../Resources/PSD/2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="roll2_3" fitHeight="70.0" fitWidth="70.0">
+                     <image>
+                        <Image url="@../../Resources/PSD/3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="roll2_4" fitHeight="70.0" fitWidth="70.0">
+                     <image>
+                        <Image url="@../../Resources/PSD/4.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="roll2_5" fitHeight="70.0" fitWidth="70.0">
+                     <image>
+                        <Image url="@../../Resources/PSD/5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="roll2_6" fitHeight="70.0" fitWidth="70.0">
+                     <image>
+                        <Image url="@../../Resources/PSD/6.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+            <Button fx:id="btnRollDice" layoutX="39.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#rollDice" prefWidth="164.0" style="-fx-background-color: red;" text="Roll Dice" textFill="WHITE">
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Button>
+            <Pane fx:id="cube1Pane" layoutX="35.0" layoutY="62.0" prefHeight="77.0" prefWidth="76.0">
+               <children>
+                  <ImageView fx:id="roll1_1" fitHeight="70.0" fitWidth="70.0">
+                     <image>
+                        <Image url="@../../Resources/PSD/1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="roll1_2" fitHeight="70.0" fitWidth="70.0">
+                     <image>
+                        <Image url="@../../Resources/PSD/2.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="roll1_3" fitHeight="70.0" fitWidth="70.0">
+                     <image>
+                        <Image url="@../../Resources/PSD/3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="roll1_4" fitHeight="70.0" fitWidth="70.0">
+                     <image>
+                        <Image url="@../../Resources/PSD/4.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="roll1_5" fitHeight="70.0" fitWidth="70.0">
+                     <image>
+                        <Image url="@../../Resources/PSD/5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="roll1_6" fitHeight="70.0" fitWidth="70.0">
+                     <image>
+                        <Image url="@../../Resources/PSD/6.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
