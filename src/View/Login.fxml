@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -21,7 +22,12 @@
       </ImageView>
       <TextField fx:id="frmNickname" accessibleText="test" layoutX="325.0" layoutY="248.0" promptText="NICKNAME" styleClass="button-red" />
       <ButtonBar layoutX="33.0" layoutY="182.0" prefHeight="40.0" prefWidth="200.0" />
+<<<<<<< HEAD
     <Button layoutX="331.0" layoutY="312.0" mnemonicParsing="false" onAction="#doLogin" onMouseEntered="#MouseEntered" prefHeight="26.0" prefWidth="137.0" styleClass="column-drag-header" text="LOGIN" />
       <Button layoutX="560.0" layoutY="482.0" mnemonicParsing="false" onAction="#openAdmin" text="Admin" />
+=======
+    <Button layoutX="331.0" layoutY="418.0" mnemonicParsing="false" onAction="#doLogin" onMouseEntered="#MouseEntered" prefHeight="26.0" prefWidth="137.0" styleClass="column-drag-header" text="LOGIN" />
+      <ChoiceBox layoutX="220.0" layoutY="210.0" prefWidth="150.0" />
+>>>>>>> Added new board UI and images
    </children>
 </AnchorPane>

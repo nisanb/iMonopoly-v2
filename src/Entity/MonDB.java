@@ -16,6 +16,7 @@ import Controller.Logger;
 import Entity.Tile.*;
 import Utils.Param;
 import Utils.QuestionStrength;
+import Utils.TileType;
 
 public class MonDB implements Serializable {
 
@@ -53,7 +54,8 @@ public class MonDB implements Serializable {
 	public void initTiles() {
 		
 		Logger.log("Initiating Game Board Tiles..");
-		// Starting Tile
+	
+		//Starting Tile
 		tileSet.add(new StartTile(0, "Starting Point"));
 		tileSet.add(new PropertyTile(1, "uTorrent", QuestionStrength.MEDIUM));
 		tileSet.add(new QMTile(2, "Question Mark"));
@@ -94,7 +96,7 @@ public class MonDB implements Serializable {
 		tileSet.add(new PropertyTile(37, "Google", QuestionStrength.HARD));
 		tileSet.add(new LuckTile(38, "Lucky Shot"));
 		tileSet.add(new PropertyTile(39, "Apple", QuestionStrength.HARD));
-
+		
 		Logger.log("Finished initiating tiles");
 	}
 
@@ -227,4 +229,8 @@ public class MonDB implements Serializable {
 		Logger.log("Finished resetting params");
 	}
 
+	public static void main (){
+		MonDB d=new MonDB();
+		d.initTiles();
+	}
 }

@@ -1,5 +1,6 @@
 package Entity.Tile;
 
+import java.lang.reflect.Array;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -14,6 +15,8 @@ public class Tile implements Tilable {
 	private String tileName;
 	private Set<Player> currentPlayers;
 	public TileType tileType;
+	private double xPos;
+	private double yPos;
 	
 	public Tile(Integer tileNumber, String tileName, TileType tileType) {
 		super();
@@ -21,6 +24,7 @@ public class Tile implements Tilable {
 		this.tileName = tileName;
 		this.currentPlayers = new HashSet<>();
 		this.tileType = tileType;
+
 	}
 	
 	public String getTileName() {
@@ -53,6 +57,24 @@ public class Tile implements Tilable {
 
 	public Set<Player> getCurrentPlayers() {
 		return currentPlayers;
+	}
+
+	
+
+	public double getxPos() {
+		return xPos;
+	}
+
+	public void setxPos(double xPos) {
+		this.xPos = xPos;
+	}
+
+	public double getyPos() {
+		return yPos;
+	}
+
+	public void setyPos(double yPos) {
+		this.yPos = yPos;
 	}
 
 	@Override

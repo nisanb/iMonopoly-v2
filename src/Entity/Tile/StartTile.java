@@ -9,7 +9,7 @@ public class StartTile extends Tile implements Tilable {
 
 	public StartTile(Integer tileNumber, String tileName) {
 		super(tileNumber, tileName, TileType.StartPoint);
-		// TODO Auto-generated constructor stub
+		// TODO Auto-generated constructor stub, 
 	}
 
 	@Override
