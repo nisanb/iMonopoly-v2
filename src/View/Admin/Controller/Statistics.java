@@ -2,7 +2,7 @@
  * Sample Skeleton for 'AdminStatistics.fxml' Controller Class
  */
 
-package View;
+package View.Admin.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -18,7 +18,7 @@ import javafx.scene.chart.PieChart.Data;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class AdminStatistics {
+public class Statistics {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -62,6 +62,6 @@ public class AdminStatistics {
     
     @FXML
     void GoBack(ActionEvent event) {
-    	iWindow.swap(Window.WelcomeAdmin);
+    	iWindow.swap(Window.Admin_Menu);
     }
 }

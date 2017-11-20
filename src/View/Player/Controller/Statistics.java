@@ -1,4 +1,4 @@
-package View;
+package View.Player.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,7 +22,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class Player_Statistics {
+public class Statistics {
 
     @FXML
     private ResourceBundle resources;

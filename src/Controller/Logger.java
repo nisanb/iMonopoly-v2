@@ -32,7 +32,7 @@ public final class Logger{
 		outputLogFile = new File("output.txt");
 		try {
 			writer = new PrintStream(outputLogFile);
-			System.setErr(writer);
+//			System.setErr(writer);
 
 			
 		}

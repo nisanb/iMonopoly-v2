@@ -2,10 +2,14 @@
  * Sample Skeleton for 'Questions.fxml' Controller Class
  */
 
-package View;
+package View.Admin.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Controller.iWindow;
+import Utils.Window;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -13,7 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class ManageQuestion {
+public class Questions {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -97,5 +101,10 @@ public class ManageQuestion {
         assert edit != null : "fx:id=\"edit\" was not injected: check your FXML file 'Questions.fxml'.";
         assert back != null : "fx:id=\"back\" was not injected: check your FXML file 'Questions.fxml'.";
 
+    }
+    
+    @FXML
+    void back(ActionEvent event) {
+    	iWindow.swap(Window.Admin_Menu);
     }
 }

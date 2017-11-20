@@ -2,7 +2,7 @@
  * Sample Skeleton for 'Player_Menu.fxml' Controller Class
  */
 
-package View;
+package View.Player.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,7 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class Player_Menu {
+public class Menu {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -48,13 +48,17 @@ public class Player_Menu {
     @FXML
     void OpenNumOfPlayers(ActionEvent event) {
     	
+<<<<<<< HEAD:src/View/Player_Menu.java
     	iWindow.swap(Window.MainBoardTal);
+=======
+    	iWindow.swap(Window.Player_GameSettings);
+>>>>>>> order package of admin,player and game:src/View/Player/Controller/Menu.java
 
     }
 
     @FXML
     void openStatistics(ActionEvent event) {
-    	iWindow.swap(Window.SASGOASJG);
+    	iWindow.swap(Window.Player_Statistics);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

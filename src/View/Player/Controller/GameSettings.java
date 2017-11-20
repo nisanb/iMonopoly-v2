@@ -2,7 +2,7 @@
  * Sample Skeleton for 'NumOfPlayers.fxml' Controller Class
  */
 
-package View;
+package View.Player.Controller;
 
 import java.net.URL;
 import java.util.Observable;
@@ -20,7 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class NumOfPlayers {
+public class GameSettings {
 	
 
 	

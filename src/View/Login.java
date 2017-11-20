@@ -66,6 +66,6 @@ public class Login {
     
     @FXML
     void openAdmin(ActionEvent event) {
-    	iWindow.swap(Window.EnterAdmin);
+    	iWindow.swap(Window.Admin_Login);
     }
 }

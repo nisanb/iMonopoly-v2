@@ -2,7 +2,7 @@
  * Sample Skeleton for 'WelcomeAdmin.fxml' Controller Class
  */
 
-package View;
+package View.Admin.Controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,7 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class WelcomeAdmin {
+public class Menu {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -48,23 +48,23 @@ public class WelcomeAdmin {
     
     @FXML
     void openAdminStatistics(ActionEvent event) {
-    	iWindow.swap(Window.AdminStatistics);
+    	iWindow.swap(Window.Admin_Statistics);
     }
     
     @FXML
     void openSystemParameters(ActionEvent event) {
-    	iWindow.swap(Window.SystemParameters);
+    	iWindow.swap(Window.Admin_SysParams);
     }
     
 
     @FXML
     void back(ActionEvent event) {
-    	iWindow.swap(Window.EnterAdmin);
+    	iWindow.swap(Window.Admin_Login);
     }
     
     @FXML
     void openquestion(ActionEvent event) {
-    	iWindow.swap(Window.ManageQuestion);
+    	iWindow.swap(Window.Admin_Questions);
     }
     
 
