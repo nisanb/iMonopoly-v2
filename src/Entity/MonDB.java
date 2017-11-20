@@ -5,16 +5,16 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Random;
-import java.util.Set;
-
+import Controller.JSON;
 import Controller.Logger;
 import Entity.Tile.*;
+import Utils.Param;
 import Utils.QuestionStrength;
 
 public class MonDB implements Serializable {
@@ -24,32 +24,36 @@ public class MonDB implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private static MonDB Data;
-	private static Map<String, Object> DBValues;
+	private Map<Param, Object> DBParams;
 	transient private Game currentGame;
-	private static Set<Tilable> tileSet;
+	private List<Tilable> tileSet;
 
 	/**
 	 * Game Statistics & Data
 	 */
-	private Set<User> playerData;
+	private static List<User> playerData;
 	transient private Map<QuestionStrength, List<Question>> gameQuestions;
-	private Map<Integer, Game> gameData;
+	private static Map<Integer, Game> gameData;
 
 	private MonDB() {
-		playerData = new HashSet<>();
-		this.gameQuestions = loadQuestions();
-		tileSet = new HashSet<>();
+		Data = this;
+		playerData = new ArrayList<>();
+		this.gameQuestions = JSON.getInstance().loadQuestions();
+		tileSet = new LinkedList<>();
+		gameData = new HashMap<>();
 		initParams();
 		initTiles();
+		Logger.log("Finished creating new instance of DB");
 		currentGame = null;
 	}
 
 	/**
 	 * Initiation of tile list
 	 */
-	public static void initTiles(){
+	public void initTiles() {
 		
-		//Starting Tile
+		Logger.log("Initiating Game Board Tiles..");
+		// Starting Tile
 		tileSet.add(new StartTile(0, "Starting Point"));
 		tileSet.add(new PropertyTile(1, "uTorrent", QuestionStrength.MEDIUM));
 		tileSet.add(new QMTile(2, "Question Mark"));
@@ -90,85 +94,62 @@ public class MonDB implements Serializable {
 		tileSet.add(new PropertyTile(37, "Google", QuestionStrength.HARD));
 		tileSet.add(new LuckTile(38, "Lucky Shot"));
 		tileSet.add(new PropertyTile(39, "Apple", QuestionStrength.HARD));
-		
-		
-		
-		
+
+		Logger.log("Finished initiating tiles");
 	}
-	
+
 	public static MonDB getData() {
 		return Data;
 	}
-
-
 
 	public static void setData(MonDB data) {
 		Data = data;
 	}
 
-
-
-	public static Map<String, Object> getDBValues() {
-		return DBValues;
+	public Map<Param, Object> getDBValues() {
+		return DBParams;
 	}
 
-
-
-	public static void setDBValues(Map<String, Object> dBValues) {
-		DBValues = dBValues;
+	public void setDBParams(Map<Param, Object> dbParamGiven) {
+		DBParams = dbParamGiven;
 	}
-
-
 
 	public Game getCurrentGame() {
 		return currentGame;
 	}
 
-
-
 	public void setCurrentGame(Game currentGame) {
 		this.currentGame = currentGame;
 	}
-
-
 
 	public Map<QuestionStrength, List<Question>> getGameQuestions() {
 		return gameQuestions;
 	}
 
-
-
 	public void setGameQuestions(Map<QuestionStrength, List<Question>> gameQuestions) {
 		this.gameQuestions = gameQuestions;
 	}
-
-
 
 	public static MonDB getInstance() {
 		if (Data == null) {
 			Data = importData();
 		}
-
 		return Data;
 	}
-	
+
 	/**
-	 * This will initiate the first params to the system.
-	 * DO NOT CHANGE
+	 * This will initiate the first params to the system. DO NOT CHANGE
+	 * 
 	 * @return
-	 * TODO Keep adding requiered system parameters
 	 */
 	private void initParams() {
 		Logger.log("Initiating System Params..");
-		DBValues = new HashMap<>();
-		DBValues.put("STARTING_CASH", new Integer(500000));
-		DBValues.put("RENT_PERCENT", new Double(0.15));
-		DBValues.put("BUY_PERCENT", new Double(1.5));
-		DBValues.put("MIN_LUCK", new Integer(10000));
-		DBValues.put("MAX_LUCK", new Integer(250000000)); /* Check to make sure thats what they meant TODO */
+		DBParams = new HashMap<>();
+		for (Param p : Param.values()) {
+			DBParams.put(p, p.o);
+		}
+		Logger.log("Finished initiating system params");
 	}
-
-	
 
 	private static MonDB importData() {
 		try {
@@ -200,17 +181,8 @@ public class MonDB implements Serializable {
 		}
 	}
 
-	/**
-	 * Will read questions from JSON File
-	 * 
-	 * @return TODO: READ QUESTIONS FROM JSON
-	 */
-	private Map<QuestionStrength, List<Question>> loadQuestions() {
-		Map<QuestionStrength, List<Question>> toReturn = new HashMap<QuestionStrength, List<Question>>();
-
-		return toReturn;
-	}
-
+	
+	
 	/**
 	 * Randomly generate a question by question strength
 	 * 
@@ -220,7 +192,7 @@ public class MonDB implements Serializable {
 	public Question getRandomQuestion(QuestionStrength str) {
 		List<Question> qlist = gameQuestions.get(str);
 		Random r = new Random();
-		
+
 		return qlist.get(r.nextInt(qlist.size()));
 	}
 
@@ -228,22 +200,31 @@ public class MonDB implements Serializable {
 		return gameData;
 	}
 
-	public void setGameData(Map<Integer, Game> gameData) {
-		this.gameData = gameData;
+	public void setGameData(HashMap<Integer, Game> gameData) {
+		MonDB.gameData = gameData;
 	}
 
-	public Set<User> getPlayerData() {
+	public List<User> getPlayerData() {
 		return playerData;
 	}
 
-	public void setPlayerData(Set<User> playerData) {
-		this.playerData = playerData;
+	public void setPlayerData(List<User> playerData) {
+		MonDB.playerData = playerData;
 	}
 
-	
-	public Object getParam(String paramName){
-		return DBValues.get(paramName);
+	public Object getParam(Param p) {
+		return DBParams.get(p);
+	}
+
+	public void setParam(Param p, Object value) {
+		// TODO Auto-generated method stub
+		DBParams.put(p, value);
 	}
 	
-	
+	public void resetParamsToDefault(){
+		Logger.log("Resetting params to default..");
+		initParams();
+		Logger.log("Finished resetting params");
+	}
+
 }

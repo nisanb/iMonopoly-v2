@@ -8,21 +8,26 @@ import Controller.Music;
 import Controller.iWindow;
 import Entity.Game;
 import Entity.MonDB;
-import Entity.Player;
 import Entity.User;
 import Utils.PlayerAuth;
 import Utils.Window;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class Login {
+public class Player_Statistics {
 
     @FXML
     private ResourceBundle resources;
+    
+
 
     @FXML
     private URL location;
@@ -56,6 +61,7 @@ public class Login {
     	iWindow.swap(Window.Player_Menu);
     }
     
+    
 
     @FXML
     void initialize() {
@@ -63,10 +69,34 @@ public class Login {
         assert frmNickname != null : "fx:id=\"frmNickname\" was not injected: check your FXML file 'Login.fxml'.";
         assert btnLogin != null : "fx:id=\"btnLogin\" was not injected: check your FXML file 'Login.fxml'.";
         assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Login.fxml'.";
+        ObservableList <Data> list=FXCollections.observableArrayList(
+    			new PieChart.Data("worng", 22),
+    			new PieChart.Data("easy", 10),
+    			new PieChart.Data("hard", 5),
+    			new PieChart.Data("meduim", 5)
+    			);
+    	piechart.setData(list);
+    	piechart.setLegendVisible(false);
+    	piechart.setPrefHeight(5.5);
+   
     }
     
+    @FXML    PieChart piechart; 
+    
     @FXML
-    void openAdmin(ActionEvent event) {
-    	iWindow.swap(Window.EnterAdmin);
+    public void btn(ActionEvent event)
+    {
+    	ObservableList <Data> list=FXCollections.observableArrayList(
+    			new PieChart.Data("worng", 22),
+    			new PieChart.Data("easy", 10),
+    			new PieChart.Data("hard", 5),
+    			new PieChart.Data("meduim", 5)
+    			);
+    	piechart.setData(list);
+    }
+    
+    public void back(ActionEvent event)
+    {
+    	iWindow.swap(Window.Player_Menu);
     }
 }

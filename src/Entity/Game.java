@@ -18,7 +18,8 @@ public class Game implements Serializable {
 	private Date gameDate;
 	private Integer currentRound;
 	private Boolean gameFinished;
-
+	private User currentLoggedUser;
+	
 	public Game() {
 
 		/**
@@ -87,4 +88,13 @@ public class Game implements Serializable {
 	public void movePlayer(Player player, Integer tileNum){
 		
 	}
+
+	public User getCurrentLoggedUser() {
+		return currentLoggedUser;
+	}
+
+	public void setCurrentLoggedUser(User currentLoggedUser) {
+		this.currentLoggedUser = currentLoggedUser;
+	}
+
 }
