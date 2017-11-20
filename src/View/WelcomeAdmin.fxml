@@ -21,7 +21,7 @@
       </ImageView>
       <ButtonBar layoutX="33.0" layoutY="182.0" prefHeight="40.0" prefWidth="200.0" />
     <Button layoutX="313.0" layoutY="448.0" mnemonicParsing="false" onAction="#back" onMouseEntered="#MouseEntered" prefHeight="26.0" prefWidth="137.0" styleClass="column-drag-header" text="Main Menu" />
-      <Button layoutX="263.0" layoutY="210.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="236.0" text="Questions">
+      <Button layoutX="263.0" layoutY="210.0" mnemonicParsing="false" onAction="#openquestion" prefHeight="25.0" prefWidth="236.0" text="Questions">
          <font>
             <Font size="14.0" />
          </font>

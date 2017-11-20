@@ -62,6 +62,12 @@ public class WelcomeAdmin {
     	iWindow.swap(Window.EnterAdmin);
     }
     
+    @FXML
+    void openquestion(ActionEvent event) {
+    	iWindow.swap(Window.ManageQuestion);
+    }
+    
+
     
     
   

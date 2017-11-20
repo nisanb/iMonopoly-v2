@@ -5,13 +5,25 @@
 package View;
 
 import java.net.URL;
+import java.util.Observable;
 import java.util.ResourceBundle;
+
+import javax.print.DocFlavor.STRING;
+
+import Controller.iWindow;
+import Utils.Window;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class NumOfPlayers {
+	
+
+	
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -42,8 +54,15 @@ public class NumOfPlayers {
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'NumOfPlayers.fxml'.";
-        
+     
         
 
     }
+    
+    @FXML
+    void back(ActionEvent event) {
+    	iWindow.swap(Window.Player_Menu);
+    }
+    
+
 }
