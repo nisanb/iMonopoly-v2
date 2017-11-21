@@ -5,7 +5,7 @@ import java.util.List;
 import Entity.Question;
 import Utils.QuestionStrength;
 
-public interface IManagement {
+public interface IBoard {
 
 	/**
 	 * Methods DONE
@@ -26,6 +26,5 @@ public interface IManagement {
 	 * @return
 	 */
 	public List<Question> getQuestionsByDifficulty(QuestionStrength qs);
-	
 	
 }
