@@ -74,5 +74,10 @@ public class iWindow {
 	}
 	
 	
+	public static Management getManagement(){
+		return Management.getInstance();
+	}
+	
+	
 
 }
