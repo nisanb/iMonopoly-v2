@@ -39,7 +39,7 @@
       </Label>
       <PasswordField layoutX="357.0" layoutY="335.0" />
       <TextField layoutX="357.0" layoutY="288.0" />
-      <Button layoutX="432.0" layoutY="415.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="140.0" text="Main Manu" />
+      <Button layoutX="432.0" layoutY="415.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="140.0" text="Back" />
       <Button layoutX="273.0" layoutY="415.0" mnemonicParsing="false" onAction="#openWelcomeAdmin" prefHeight="25.0" prefWidth="140.0" text="Login" />
    </children>
 </AnchorPane>

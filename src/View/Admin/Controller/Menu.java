@@ -51,6 +51,8 @@ public class Menu {
     	iWindow.swap(Window.Admin_Statistics);
     }
     
+//here stop//
+    
     @FXML
     void openSystemParameters(ActionEvent event) {
     	iWindow.swap(Window.Admin_SysParams);

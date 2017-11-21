@@ -43,13 +43,28 @@ public class Menu {
     void doSwapMusic(MouseEvent event) {
 
     }
+    
 
+<<<<<<< Updated upstream
     @FXML
     void OpenNumOfPlayers(ActionEvent event) {
+    	
+//<<<<<<< HEAD:src/View/Player_Menu.java
+    	iWindow.swap(Window.Game_UI);
+//=======
+  //  	iWindow.swap(Window.Player_GameSettings);
+//>>>>>>> order package of admin,player and game:src/View/Player/Controller/Menu.java
+=======
 
+    	/*
+<<<<<<< HEAD:src/View/Player_Menu.java
+    	iWindow.swap(Window.MainBoardTal);
+=======
     	iWindow.swap(Window.Player_GameSettings);
+>>>>>>> order package of admin,player and game:src/View/Player/Controller/Menu.java
+>>>>>>> Stashed changes
 
-    }
+    }*/
 
     @FXML
     void openStatistics(ActionEvent event) {

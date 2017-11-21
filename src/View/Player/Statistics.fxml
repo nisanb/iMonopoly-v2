@@ -79,6 +79,6 @@
       </Label>
       <PieChart fx:id="piechart" layoutX="368.0" layoutY="172.0" prefHeight="257.0" prefWidth="265.0" />
       <Button layoutX="511.0" layoutY="325.0" mnemonicParsing="false" onAction="#btn" text="Load Chart" />
-      <Button layoutX="136.0" layoutY="147.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="99.0" text="Back" />
+      <Button layoutX="478.0" layoutY="488.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="140.0" text="Back" />
    </children>
 </AnchorPane>

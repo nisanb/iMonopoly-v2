@@ -11,6 +11,8 @@ import Controller.iWindow;
 import Utils.Window;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -24,6 +26,8 @@ public class SysParam {
 
     @FXML // fx:id="btnVolume"
     private ImageView btnVolume; // Value injected by FXMLLoader
+    
+    
 
     @FXML
     void doSwapMusic(MouseEvent event) {
@@ -43,6 +47,14 @@ public class SysParam {
     
     @FXML
     void save(ActionEvent event) {
+    	
+    	Alert alert=new Alert(AlertType.INFORMATION);
+		alert.setTitle("");
+		alert.setHeaderText(null);
+		alert.setContentText("Parameters Saved");
+		alert.showAndWait();
+    	iWindow.swap(Window.Admin_Menu);
+    	
 
     }
 }

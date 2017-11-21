@@ -1,5 +1,5 @@
 /**
- * Sample Skeleton for 'AdminStatistics.fxml' Controller Class
+ * Sample Skeleton for 'Statistics.fxml' Controller Class
  */
 
 package View.Admin.Controller;
@@ -29,24 +29,20 @@ public class Statistics {
     @FXML // fx:id="btnVolume"
     private ImageView btnVolume; // Value injected by FXMLLoader
 
+    @FXML // fx:id="piechart"
+    private PieChart piechart; // Value injected by FXMLLoader
+
+    @FXML
+    void back(ActionEvent event) {
+    	iWindow.swap(Window.Admin_Menu);
+    }
+
+
+
     @FXML
     void doSwapMusic(MouseEvent event) {
 
     }
-
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'AdminStatistics.fxml'.";
-       	ObservableList <Data> list=FXCollections.observableArrayList(
-    			new PieChart.Data("worng", 22),
-    			new PieChart.Data("easy", 10),
-    			new PieChart.Data("hard", 5),
-    			new PieChart.Data("meduim", 5)
-    			);
-    	piechart.setData(list);
-    }
-    
-    @FXML    PieChart piechart; 
     
     @FXML
     public void btn(ActionEvent event)
@@ -59,9 +55,19 @@ public class Statistics {
     			);
     	piechart.setData(list);
     }
-    
-    @FXML
-    void GoBack(ActionEvent event) {
-    	iWindow.swap(Window.Admin_Menu);
+
+    @FXML // This method is called by the FXMLLoader when initialization is complete
+    void initialize() {
+        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Statistics.fxml'.";
+        assert piechart != null : "fx:id=\"piechart\" was not injected: check your FXML file 'Statistics.fxml'.";
+        ObservableList <Data> list=FXCollections.observableArrayList(
+    			new PieChart.Data("worng", 22),
+    			new PieChart.Data("easy", 10),
+    			new PieChart.Data("hard", 5),
+    			new PieChart.Data("meduim", 5)
+    			);
+    	piechart.setData(list);
+    	piechart.setLegendVisible(false);
+    	piechart.setPrefHeight(5.5);
     }
 }

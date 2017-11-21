@@ -15,6 +15,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -47,13 +49,42 @@ public class Login {
     
     
     @FXML
-    void doLogin(ActionEvent event) {
+    boolean doLogin(ActionEvent event) {
     	Music.getInstance().play("click.wav");
     	Logger.log("Attempting to log in with user "+frmNickname.getText());
     	MonDB.getInstance().setCurrentGame(new Game());
     	MonDB.getInstance().getCurrentGame().setCurrentLoggedUser((new User(frmNickname.getText(), PlayerAuth.PLAYER)));
+    	
+    	
+    	if(frmNickname.getText().isEmpty())
+    	{
+    		Alert alert=new Alert(AlertType.WARNING);
+    		alert.setTitle("validate fields");
+    		alert.setHeaderText(null);
+    		alert.setContentText("You must enter a username");
+    		alert.showAndWait();
+    		return false;
+    	}
+    	else if(!(frmNickname.getText().equals("user")))
+    	{
+    		Alert alert=new Alert(AlertType.WARNING);
+    		alert.setTitle("validate fields");
+    		alert.setHeaderText(null);
+    		alert.setContentText("Incorrect user");
+    		alert.showAndWait();
+    		return false;
+    		
+    	}
+    	else
     	iWindow.swap(Window.Player_Menu);
+		return true;
+
+    	
+    	
+    	
     }
+    
+   
     
 
     @FXML

@@ -90,6 +90,6 @@
       <PieChart layoutX="379.0" layoutY="209.0" prefHeight="258.0" prefWidth="246.0" />
       <PieChart fx:id="piechart" layoutX="405.0" layoutY="225.0" prefHeight="184.0" prefWidth="220.0" title="PIE CHART" />
       <Button layoutX="476.0" layoutY="393.0" mnemonicParsing="false" onAction="#btn" prefHeight="25.0" prefWidth="81.0" text="Load Chart" />
-      <Button layoutX="149.0" layoutY="166.0" mnemonicParsing="false" onAction="#GoBack" prefHeight="25.0" prefWidth="81.0" text="Back" />
+      <Button layoutX="487.0" layoutY="492.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="140.0" text="Back" />
    </children>
 </AnchorPane>

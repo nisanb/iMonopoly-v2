@@ -43,22 +43,22 @@ public class Menu {
     void doSwapMusic(MouseEvent event) {
 
     }
+    
 
     @FXML
     void OpenNumOfPlayers(ActionEvent event) {
-
-    	iWindow.swap(Window.Player_GameSettings);
+    	
+//<<<<<<< HEAD:src/View/Player_Menu.java
+    	iWindow.swap(Window.Game_UI);
+//=======
+  //  	iWindow.swap(Window.Player_GameSettings);
+//>>>>>>> order package of admin,player and game:src/View/Player/Controller/Menu.java
 
     }
 
     @FXML
     void openStatistics(ActionEvent event) {
     	iWindow.swap(Window.Player_Statistics);
-    }
-    
-    @FXML
-    void openGame(ActionEvent event) {
-    	iWindow.swap(Window.Player_GameSettings);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
