@@ -29,7 +29,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
-public class TalUI {
+public class UI {
 
 	
 	ImageView[][] players = new ImageView[40][4]; 
@@ -485,8 +485,7 @@ public class TalUI {
 	    
 
 	    
-    public TalUI() {
-			super();
+    public UI() {
 			initializeTiles();
 		}
 

@@ -15,7 +15,7 @@ public class Monopoly extends Application {
 
 		// Initiate Monopoly
 		Logger.log("Initializing Monopoly");
-		iWindow.swap(primaryStage, Window.Game_UI);
+		iWindow.swap(primaryStage, Window.Login);
 		gameMusic.play("theme.mp3");
 		gameMusic.changeVolume("theme.mp3", 50.0);
 	}
