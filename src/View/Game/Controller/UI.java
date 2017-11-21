@@ -24,7 +24,10 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -606,6 +609,40 @@ public class UI {
 
 	    @FXML
 	    private ImageView roll1_6= new ImageView();
+	    
+	    @FXML
+	    private AnchorPane inBoardMenu = new AnchorPane();
+
+	    @FXML
+	    private ScrollPane gameLogScrollPane = new ScrollPane();
+
+	    @FXML
+	    private TextArea gameLogs = new TextArea();
+
+	    @FXML
+	    private Pane questionsPane = new Pane();
+
+	    @FXML
+	    private Pane questionsPane1 = new Pane();
+
+	    @FXML
+	    private Label lblplayerXIsAnswering = new Label();
+
+	    @FXML
+	    private Label lblplayerXIsAnswering1 = new Label();
+
+	    @FXML
+	    private TextArea txtAnsw1;
+
+	    @FXML
+	    private TextArea txtAnsw2;
+
+	    @FXML
+	    private TextArea txtAnsw11;
+
+	    @FXML
+	    private TextArea txtAnsw21;
+
 
 
 	    
@@ -863,6 +900,17 @@ public class UI {
           assert roll1_4 != null : "fx:id=\"roll1_4\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert roll1_5 != null : "fx:id=\"roll1_5\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert roll1_6 != null : "fx:id=\"roll1_6\" was not injected: check your FXML file 'Game_UI.fxml'.";
+          assert inBoardMenu != null : "fx:id=\"inBoardMenu\" was not injected: check your FXML file 'UI.fxml'.";
+          assert gameLogScrollPane != null : "fx:id=\"gameLogScrollPane\" was not injected: check your FXML file 'UI.fxml'.";
+          assert gameLogs != null : "fx:id=\"gameLogs\" was not injected: check your FXML file 'UI.fxml'.";
+          assert questionsPane != null : "fx:id=\"questionsPane\" was not injected: check your FXML file 'UI.fxml'.";
+          assert questionsPane1 != null : "fx:id=\"questionsPane1\" was not injected: check your FXML file 'UI.fxml'.";
+          assert lblplayerXIsAnswering != null : "fx:id=\"lblplayerXIsAnswering\" was not injected: check your FXML file 'UI.fxml'.";
+          assert lblplayerXIsAnswering1 != null : "fx:id=\"lblplayerXIsAnswering1\" was not injected: check your FXML file 'UI.fxml'.";
+          assert txtAnsw1 != null : "fx:id=\"txtAnsw1\" was not injected: check your FXML file 'UI.fxml'.";
+          assert txtAnsw2 != null : "fx:id=\"txtAnsw2\" was not injected: check your FXML file 'UI.fxml'.";
+          assert txtAnsw11 != null : "fx:id=\"txtAnsw11\" was not injected: check your FXML file 'UI.fxml'.";
+          assert txtAnsw21 != null : "fx:id=\"txtAnsw21\" was not injected: check your FXML file 'UI.fxml'.";
         initializeTiles();
         initializeDicesFirstTime();
     }
@@ -907,6 +955,7 @@ public class UI {
     		
     		roll1[dice1-1].setVisible(true);
     		roll2[dice2-1].setVisible(true);
+    		moveAPlayer(dice1+dice2);
     		
     	}
 
@@ -1123,6 +1172,19 @@ public class UI {
     @FXML
     public void menuButton(){
     	iWindow.swap(Window.Player_Menu);
+    }
+    
+    public void moveAPlayer(int dice){
+    	int player=2;
+    	int i;
+    	for (i=0; i<40; i++)
+    		if (players[i][2].isVisible())
+    			break;
+    	int current=i;
+    	players[current][player].setVisible(false);
+		players[(dice+current)%40][player].setVisible(true);
+		
+		
     }
     
     

@@ -22,7 +22,7 @@ import javafx.scene.input.MouseEvent;
 
 public class Login {
 
-	private IManagement manage = iWindow.getManagement();
+	//private IManagement manage = iWindow.getManagement();
 	
     @FXML
     private ResourceBundle resources;
