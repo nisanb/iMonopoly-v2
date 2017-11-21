@@ -78,6 +78,8 @@ public class iWindow {
 		return Management.getInstance();
 	}
 	
-	
+	public static Board getBoard(){
+		return Board.getInstance();
+	}
 
 }
