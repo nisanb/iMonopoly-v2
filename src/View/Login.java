@@ -57,7 +57,6 @@ public class Login {
     	MonDB.getInstance().setCurrentGame(new Game());
     	MonDB.getInstance().getCurrentGame().setCurrentLoggedUser((new User(frmNickname.getText(), PlayerAuth.PLAYER)));
     	
-    	
     	if(frmNickname.getText().isEmpty())
     	{
     		Alert alert=new Alert(AlertType.WARNING);
