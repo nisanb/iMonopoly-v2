@@ -107,5 +107,38 @@ public class Game implements Serializable {
 	protected void setCurrentLoggedUser(User currentLoggedUser) {
 		this.currentLoggedUser = currentLoggedUser;
 	}
+	
+	
+	public void play() {
+		int currentPlayer;
+		int maxRounds = 50;
+		
+		//count Rounds
+		//use nisan's methodology of pre/post visit
+		while (this.currentRound < maxRounds) {
+			//roll dice (if double turn on flag and decide what to do with him)
+				//disable roll dice button and activate game buttons**
+			//move the player to the correct tile **
+			//set location - switch pointer of player and tile **
+			//check type of tile (make a move according to tile) **
+				//get player's input (buy, sell)
+				//get correct (strength) question and present it to player **
+					//switch log window and question window
+					//disable all buttons (answer question buttons working)
+					//get player's answer **
+					//check player's answer **
+			//if question was answered correctly
+				//switch pointers of player and tile **
+				//take money from player **
+			//if double flag give him another round (count round and don't switch player)
+			//else count round and get next player
+			
+			
+			//**private helper method
+			
+		}
+			
+			
+	}
 
 }

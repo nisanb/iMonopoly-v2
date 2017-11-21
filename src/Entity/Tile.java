@@ -90,7 +90,17 @@ public class Tile implements Tilable {
 		// TODO Auto-generated method stub
 		
 	}
-
 	
+	public boolean addPlayer(Player p) {
+		if (p == null) return false;
+		return this.currentPlayers.add(p);
+		
+	}
+
+	private boolean removePlayer(Player p) {
+		if (p == null) return false;
+		return this.currentPlayers.remove(p);
+		
+	}
 	
 }
