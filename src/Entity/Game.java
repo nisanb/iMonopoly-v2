@@ -5,9 +5,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 import java.util.TreeMap;
-import java.util.TreeSet;
 
 public class Game implements Serializable {
 
@@ -20,7 +18,7 @@ public class Game implements Serializable {
 	private Boolean gameFinished;
 	private User currentLoggedUser;
 	
-	public Game() {
+	protected Game() {
 
 		/**
 		 * Generate Game Number
@@ -37,9 +35,21 @@ public class Game implements Serializable {
 		this.playerList = new TreeMap<Player, Integer>();
 		this.setCurrentRound(0);
 		this.gameFinished = false;
+		
+		build();
 	}
 	
-	public void run(){
+	/**
+	 * Build current game - happens after START GAME is clicked
+	 */
+	protected void build(){
+		/**
+		 * Build players
+		 */
+		
+	}
+	
+	protected void run(){
 		//This will start the game
 		
 		//This will build the players' cycle
@@ -49,6 +59,7 @@ public class Game implements Serializable {
 			
 		while(!gameFinished){
 			Player currentPlayer = playList.get(currentRound%playList.size());
+			currentPlayer.addCash(1000);
 			//Players turn
 			//TODO Implement ..
 		}
@@ -56,11 +67,11 @@ public class Game implements Serializable {
 	}
 
 	//Adds a player to the game
-	public void addPlayer(Player player) {
+	protected void addPlayer(Player player) {
 		this.playerList.put(player, 0);
 	}
 
-	public Integer rollDice() {
+	protected Integer rollDice() {
 		return Dice.roll();
 	}
 
@@ -68,7 +79,7 @@ public class Game implements Serializable {
 		return gameDate;
 	}
 
-	public void setGameDate(Date gameDate) {
+	protected void setGameDate(Date gameDate) {
 		this.gameDate = gameDate;
 	}
 
@@ -76,7 +87,7 @@ public class Game implements Serializable {
 		return currentRound;
 	}
 
-	public void setCurrentRound(Integer currentRound) {
+	protected void setCurrentRound(Integer currentRound) {
 		this.currentRound = currentRound;
 	}
 
@@ -85,7 +96,7 @@ public class Game implements Serializable {
 	 * @param player
 	 * @param tileNum
 	 */
-	public void movePlayer(Player player, Integer tileNum){
+	protected void movePlayer(Player player, Integer tileNum){
 		
 	}
 
@@ -93,7 +104,7 @@ public class Game implements Serializable {
 		return currentLoggedUser;
 	}
 
-	public void setCurrentLoggedUser(User currentLoggedUser) {
+	protected void setCurrentLoggedUser(User currentLoggedUser) {
 		this.currentLoggedUser = currentLoggedUser;
 	}
 

@@ -1,9 +1,8 @@
-package Entity.Tile;
+package Entity;
 
 import java.util.Random;
 
 import Controller.Logger;
-import Entity.Player;
 import Utils.Param;
 import Utils.QuestionStrength;
 import Utils.TileType;

@@ -1,12 +1,12 @@
 package Entity;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import Controller.Logger;
-import Entity.Tile.PropertyTile;
 import Utils.PlayerAuth;
 
 public class Player extends User implements Comparable<Player>{
@@ -24,7 +24,7 @@ public class Player extends User implements Comparable<Player>{
 	 * @param nickname
 	 * @param cash
 	 */
-	public Player(String nickname, Integer cash){
+	protected Player(String nickname, Integer cash){
 		super(nickname, PlayerAuth.PLAYER);
 		this.propertyList = new HashSet<>();
 		this.userAnswers = new HashMap<>();
@@ -40,56 +40,56 @@ public class Player extends User implements Comparable<Player>{
 		return this.getTotalPropertyValue().compareTo(getTotalPropertyValue());
 	}
 
-	private Integer getTotalPropertyValue() {
+	public Integer getTotalPropertyValue() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	
-	public Boolean addProperty(PropertyTile pro){
+	protected Boolean addProperty(PropertyTile pro){
 		return this.propertyList.add(pro);
 	}
 
-	public Boolean removeProperty(PropertyTile pro){
+	protected Boolean removeProperty(PropertyTile pro){
 		return this.propertyList.remove(pro);
 	}
 	
-	public Integer getCash() {
+	protected Integer getCash() {
 		return cash;
 	}
 
-	public void setCash(Integer cash) {
+	protected void setCash(Integer cash) {
 		this.cash = cash;
 	}
 
-	public Integer getCurrentTile() {
+	protected Integer getCurrentTile() {
 		return currentTile;
 	}
 
-	public void setCurrentTile(Integer currentTile) {
+	protected void setCurrentTile(Integer currentTile) {
 		this.currentTile = currentTile;
 	}
 
-	public Integer getStrikesNum() {
+	protected Integer getStrikesNum() {
 		return strikesNum;
 	}
 
-	public void setStrikesNum(Integer strikesNum) {
+	protected void setStrikesNum(Integer strikesNum) {
 		this.strikesNum = strikesNum;
 	}
 
-	public Boolean getInJail() {
+	protected Boolean getInJail() {
 		return inJail;
 	}
 
-	public void setInJail(Boolean inJail) {
+	protected void setInJail(Boolean inJail) {
 		this.inJail = inJail;
 	}
 
 	public Map<Question, Boolean> getUserAnswers() {
-		return userAnswers;
+		return Collections.unmodifiableMap(userAnswers);
 	}
 
-	public void setUserAnswers(Map<Question, Boolean> userAnswers) {
+	protected void setUserAnswers(Map<Question, Boolean> userAnswers) {
 		this.userAnswers = userAnswers;
 	}
 	
@@ -98,7 +98,7 @@ public class Player extends User implements Comparable<Player>{
 		Logger.log("Added $"+amount+" to "+getNickName());
 	}
 	
-	public void deductCash(Integer amount){
+	protected void deductCash(Integer amount){
 		this.cash -= amount;
 	}
 	

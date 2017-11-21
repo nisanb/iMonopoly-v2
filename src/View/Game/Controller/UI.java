@@ -1,23 +1,9 @@
 package View.Game.Controller;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
-import java.util.ResourceBundle;
-import java.util.TimerTask;
 
-import javax.swing.text.Position;
-
-import Controller.Logger;
-import Controller.Music;
 import Controller.iWindow;
-import Entity.Game;
-import Entity.MonDB;
-import Entity.Player;
 import Utils.Window;
-import javafx.embed.swing.SwingFXUtils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

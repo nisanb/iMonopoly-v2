@@ -6,7 +6,7 @@ import Entity.Dice;
 import Entity.Game;
 import Entity.Player;
 import Entity.Question;
-import Entity.Tile.Tile;
+import Entity.Tile;
 import View.IBoard;
 
 public class Board implements IBoard{
@@ -21,12 +21,6 @@ public class Board implements IBoard{
 		return instance;
 	}
 	
-	@Override
-	public Game getCurrentGame() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	@Override
 	public Player whosTurn(Game game) {
 		// TODO Auto-generated method stub
@@ -52,10 +46,15 @@ public class Board implements IBoard{
 	}
 
 	@Override
-	public Boolean playerAnswerQuestion(Question question, Player player) {
+	public Game getCurrentGame() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	
+	@Override
+	public Boolean isPlayerRight(Question question, Player player) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

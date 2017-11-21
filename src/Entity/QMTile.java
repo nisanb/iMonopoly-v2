@@ -1,7 +1,5 @@
-package Entity.Tile;
+package Entity;
 
-import Entity.Player;
-import Entity.Question;
 import Utils.TileType;
 
 public class QMTile extends Tile {

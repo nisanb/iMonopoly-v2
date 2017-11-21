@@ -2,7 +2,6 @@ package Controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import Entity.MonDB;
 import Entity.Question;
 import Utils.QuestionStrength;
@@ -14,7 +13,7 @@ public class Management implements IManagement{
 	
 	private Management(){}
 	
-	public static Management getInstance(){
+	protected static Management getInstance(){
 		if(instance == null)
 			instance = new Management();
 		return instance;

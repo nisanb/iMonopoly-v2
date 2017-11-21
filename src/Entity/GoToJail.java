@@ -1,8 +1,6 @@
-package Entity.Tile;
+package Entity;
 
 import Controller.Logger;
-import Entity.MonDB;
-import Entity.Player;
 import Utils.TileType;
 
 public class GoToJail extends Tile   {

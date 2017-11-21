@@ -6,8 +6,7 @@ import Entity.Dice;
 import Entity.Game;
 import Entity.Player;
 import Entity.Question;
-import Entity.Tile.Tile;
-import Utils.QuestionStrength;
+import Entity.Tile;
 
 public interface IBoard {
 
@@ -57,7 +56,7 @@ public interface IBoard {
 	 * @param player - the player who try to answer the question
 	 * @return true or false if player answered correctly
 	 */
-	public Boolean playerAnswerQuestion(Question question, Player player);
+	public Boolean isPlayerRight(Question question, Player player);
 	
 	
 }

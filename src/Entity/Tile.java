@@ -1,12 +1,8 @@
-package Entity.Tile;
+package Entity;
 
-import java.lang.reflect.Array;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.xml.bind.helpers.NotIdentifiableEventImpl;
-
-import Entity.Player;
 import Utils.TileType;
 
 public class Tile implements Tilable {

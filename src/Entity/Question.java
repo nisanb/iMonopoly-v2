@@ -19,7 +19,7 @@ public class Question {
 	private String team;
 	private List<QuestionTag> tags;
 	
-	public Question(long qNumber, QuestionStrength qStrength, String qQuestion, boolean isMultiple, 
+	protected Question(long qNumber, QuestionStrength qStrength, String qQuestion, boolean isMultiple, 
 			List<Answer> qAnswers, String team, List<QuestionTag> tags) {
 		super();
 		this.qNumber = qNumber;
@@ -35,7 +35,7 @@ public class Question {
 		return team;
 	}
 
-	public void setTeam(String team) {
+	protected void setTeam(String team) {
 		this.team = team;
 	}
 
@@ -43,32 +43,32 @@ public class Question {
 		return tags;
 	}
 
-	public void setTags(List<QuestionTag> tags) {
+	protected void setTags(List<QuestionTag> tags) {
 		this.tags = tags;
 	}
 
 	public long getqNumber() {
 		return qNumber;
 	}
-	public void setqNumber(long qNumber) {
+	protected void setqNumber(long qNumber) {
 		this.qNumber = qNumber;
 	}
 	public QuestionStrength getqStrength() {
 		return qStrength;
 	}
-	public void setqStrength(QuestionStrength qStrength) {
+	protected void setqStrength(QuestionStrength qStrength) {
 		this.qStrength = qStrength;
 	}
 	public String getqQuestion() {
 		return qQuestion;
 	}
-	public void setqQuestion(String qQuestion) {
+	protected void setqQuestion(String qQuestion) {
 		this.qQuestion = qQuestion;
 	}
 	public List<Answer> getqAnswers() {
 		return qAnswers;
 	}
-	public void setqAnswers(List<Answer> qAnswers) {
+	protected void setqAnswers(List<Answer> qAnswers) {
 		this.qAnswers = qAnswers;
 	}
 
@@ -76,11 +76,11 @@ public class Question {
 		return isMultipleChoise;
 	}
 
-	public void setMultipleChoise(boolean isMultipleChoise) {
+	protected void setMultipleChoise(boolean isMultipleChoise) {
 		this.isMultipleChoise = isMultipleChoise;
 	}
 	
-	public void addAnswer(Answer a1) {
+	protected void addAnswer(Answer a1) {
 		if (this.qAnswers == null)
 			this.qAnswers = new ArrayList<Answer>();
 		this.qAnswers.add(a1);

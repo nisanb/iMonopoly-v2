@@ -1,11 +1,8 @@
-package Entity.Tile;
+package Entity;
 
 import java.util.List;
 
 import Controller.Logger;
-import Entity.MonDB;
-import Entity.Player;
-import Entity.Question;
 import Utils.QuestionStrength;
 import Utils.TileType;
 

@@ -6,17 +6,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-import Controller.JSON;
+
 import Controller.Logger;
-import Entity.Tile.*;
 import Utils.Param;
 import Utils.QuestionStrength;
-import Utils.TileType;
 
 public class MonDB implements Serializable {
 
@@ -51,7 +50,7 @@ public class MonDB implements Serializable {
 	/**
 	 * Initiation of tile list
 	 */
-	public void initTiles() {
+	protected void initTiles() {
 		
 		Logger.log("Initiating Game Board Tiles..");
 	
@@ -104,7 +103,7 @@ public class MonDB implements Serializable {
 		return Data;
 	}
 
-	public static void setData(MonDB data) {
+	protected static void setData(MonDB data) {
 		Data = data;
 	}
 
@@ -112,7 +111,7 @@ public class MonDB implements Serializable {
 		return DBParams;
 	}
 
-	public void setDBParams(Map<Param, Object> dbParamGiven) {
+	protected void setDBParams(Map<Param, Object> dbParamGiven) {
 		DBParams = dbParamGiven;
 	}
 
@@ -120,7 +119,7 @@ public class MonDB implements Serializable {
 		return currentGame;
 	}
 
-	public void setCurrentGame(Game currentGame) {
+	protected void setCurrentGame(Game currentGame) {
 		this.currentGame = currentGame;
 	}
 
@@ -128,7 +127,7 @@ public class MonDB implements Serializable {
 		return gameQuestions;
 	}
 
-	public void setGameQuestions(Map<QuestionStrength, List<Question>> gameQuestions) {
+	protected void setGameQuestions(Map<QuestionStrength, List<Question>> gameQuestions) {
 		this.gameQuestions = gameQuestions;
 	}
 
@@ -202,12 +201,12 @@ public class MonDB implements Serializable {
 		return gameData;
 	}
 
-	public void setGameData(HashMap<Integer, Game> gameData) {
+	protected void setGameData(HashMap<Integer, Game> gameData) {
 		MonDB.gameData = gameData;
 	}
 
 	public List<User> getPlayerData() {
-		return playerData;
+		return Collections.unmodifiableList(playerData);
 	}
 
 	public void setPlayerData(List<User> playerData) {

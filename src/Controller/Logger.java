@@ -4,13 +4,11 @@ package Controller;
  * This static class creates and writes a log file
  */
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import Utils.Param;
 
 /** 
  * @author Java Summer 2018
@@ -51,7 +49,7 @@ public final class Logger{
 		Logger.log(message, false);
 	}
 	
-	public static void log(String message, boolean isSeparatorNeeded){
+	protected static void log(String message, boolean isSeparatorNeeded){
 		Date dateNow = new Date();
 		SimpleDateFormat dt = new SimpleDateFormat("hh:mm:ss"); 
 		String dateprefix = dt.format(dateNow);
@@ -72,21 +70,21 @@ public final class Logger{
 	/**
 	 * Writes separator to log file.
 	 */
-	public static void writeHyphenSeparatorToLogFile(){
+	protected static void writeHyphenSeparatorToLogFile(){
 		writer.print("\n-----------------------------------------------------------------------------");
 	}
 	
 	/**
 	 * Writes separator to log file.
 	 */
-	public static void writeAsteriskSeparatorToLogFile(){
+	protected static void writeAsteriskSeparatorToLogFile(){
 		writer.print("****************************************************************************\n");
 	}
 	
 	/**
 	 * Saves the log file (by closing the file writer).
 	 */
-	public static void saveLogFile(){
+	protected static void saveLogFile(){
 		writer.close();
 	}
 

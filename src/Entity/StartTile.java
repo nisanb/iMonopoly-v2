@@ -1,7 +1,5 @@
-package Entity.Tile;
+package Entity;
 
-import Entity.MonDB;
-import Entity.Player;
 import Utils.Param;
 import Utils.TileType;
 

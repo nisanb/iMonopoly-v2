@@ -1,6 +1,4 @@
-package Entity.Tile;
-
-import Entity.Player;
+package Entity;
 
 public interface Tilable {
 	public void preVisit(Player currentPlayer);
