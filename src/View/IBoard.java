@@ -60,5 +60,4 @@ public interface IBoard {
 	public Boolean playerAnswerQuestion(Question question, Player player);
 	
 	
-	public Boolean 
 }

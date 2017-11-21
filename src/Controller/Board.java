@@ -2,8 +2,11 @@ package Controller;
 
 import java.util.List;
 
+import Entity.Dice;
+import Entity.Game;
+import Entity.Player;
 import Entity.Question;
-import Utils.QuestionStrength;
+import Entity.Tile.Tile;
 import View.IBoard;
 
 public class Board implements IBoard{
@@ -19,13 +22,37 @@ public class Board implements IBoard{
 	}
 	
 	@Override
-	public List<Question> getQuestions() {
+	public Game getCurrentGame() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Question> getQuestionsByDifficulty(QuestionStrength qs) {
+	public Player whosTurn(Game game) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Dice> rollADice(Player player, Game game, Tile CurrentTile) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Tile getCurrentTile(Player player) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Question> getQuestionsRelevantToTheProperty(Tile tile) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Boolean playerAnswerQuestion(Question question, Player player) {
 		// TODO Auto-generated method stub
 		return null;
 	}
