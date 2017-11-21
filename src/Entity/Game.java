@@ -121,12 +121,16 @@ public class Game implements Serializable {
 			//move the player to the correct tile **
 			//set location - switch pointer of player and tile **
 			//check type of tile (make a move according to tile) **
-				//get player's input (buy, sell)
-				//get correct (strength) question and present it to player **
-					//switch log window and question window
-					//disable all buttons (answer question buttons working)
-					//get player's answer **
-					//check player's answer **
+				//luck, property, jail, start
+			//check if this tile belongs to someone
+					//if he doesn't want to buy it get rent **
+					//get player's input (buy, sell)
+					//get correct (strength) question and present it to player **
+						//switch log window and question window
+						//disable all buttons (answer question buttons working)
+						//get player's answer **
+						//check player's answer **
+						//update player's parameters (total answers and correct answers)
 			//if question was answered correctly
 				//switch pointers of player and tile **
 				//take money from player **
