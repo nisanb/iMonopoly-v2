@@ -178,9 +178,12 @@ public class GameSettings {
         label3.setVisible(false);
         txt4.setVisible(false);
         label4.setVisible(false);
-     
-       
-        
-        	
     }
+    
+    @FXML
+    void openBoard(ActionEvent event) {
+    	iWindow.swap(Window.Game_UI);
+    }
+    
+    
 }
