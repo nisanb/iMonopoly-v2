@@ -105,7 +105,23 @@ public class Question {
 	 * @param answers
 	 * @return
 	 */
-	public boolean checkCorrect(List<Answer> answers){
+	
+	public boolean checkCorrect(List<Answer> ans) {
+		if (ans == null) return false;
+		
+		//check if all player's answers are correct - if at least one answer is not correct return false
+		for (Answer a:ans) {
+			if (!qAnswers.get(qAnswers.indexOf(a)).isTrue()) {
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	
+	/* NISAN'S METHOD
+	 public boolean checkCorrect2(List<Answer> answers){
 		
 		//If size isn't equal
 		if(answers.size() != qAnswers.size())
@@ -120,5 +136,5 @@ public class Question {
 		
 		return true;
 	}
-		
+	 */
 }
