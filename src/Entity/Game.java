@@ -134,6 +134,7 @@ public class Game implements Serializable {
 			//if question was answered correctly
 				//switch pointers of player and tile **
 				//take money from player **
+				//set the current property value
 			//if double flag give him another round (count round and don't switch player)
 			//else count round and get next player
 			
