@@ -11,8 +11,6 @@ public class Tile implements Tilable {
 	private String tileName;
 	private Set<Player> currentPlayers;
 	public TileType tileType;
-	private double xPos;
-	private double yPos;
 	
 	public Tile(Integer tileNumber, String tileName, TileType tileType) {
 		super();
@@ -56,23 +54,6 @@ public class Tile implements Tilable {
 	}
 
 	
-
-	public double getxPos() {
-		return xPos;
-	}
-
-	public void setxPos(double xPos) {
-		this.xPos = xPos;
-	}
-
-	public double getyPos() {
-		return yPos;
-	}
-
-	public void setyPos(double yPos) {
-		this.yPos = yPos;
-	}
-
 	@Override
 	public void preVisit(Player currentPlayer) {
 		// TODO Auto-generated method stub
