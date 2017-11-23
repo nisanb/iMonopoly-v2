@@ -20,33 +20,42 @@ public class Board implements IBoard{
 			instance = new Board();
 		return instance;
 	}
-	
+
 	@Override
-	public Player whosTurn(Game game) {
+	public String whosTurn(int gameNum) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Dice> rollADice(Player player, Game game, Tile CurrentTile) {
+	public List<Integer> getPlayersCash(int gameNum) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Tile getCurrentTile(Player player) {
+	public List<Integer> getPlayersStrikes(int gameNum) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Question> getQuestionsRelevantToTheProperty(Tile tile) {
+	public List<String> getPlayersNickNames(int gameNum) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Game getCurrentGame() {
+	public Integer getCurrentGameNum() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+
+
+	@Override
+	public List<Question> getQuestionsRelevantToTheProperty(Integer tileNum) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -57,4 +66,24 @@ public class Board implements IBoard{
 		return null;
 	}
 
+	@Override
+	public int getRound(int gameNum) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public Integer getCurrentTile(String playerNickname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Integer> rollADice(String playerNickname, int gameNum, int tileNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	
 }

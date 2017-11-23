@@ -1,8 +1,12 @@
 package View.Game.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import Controller.Board;
 import Controller.iWindow;
+import Entity.Question;
 import Utils.Window;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -523,6 +527,9 @@ public class UI {
 
 	    @FXML
 	    private Label moneyPlayer3= new Label();
+	    
+	    @FXML
+	    private Label moneyPlayer4= new Label();
 
 	    @FXML
 	    private Label strikesPlayer3= new Label();
@@ -612,7 +619,7 @@ public class UI {
 	    private Pane questionsPane1 = new Pane();
 
 	    @FXML
-	    private Label lblplayerXIsAnswering = new Label();
+	    private Label playerXIsAnswering = new Label();
 
 	    @FXML
 	    private Label lblplayerXIsAnswering1 = new Label();
@@ -624,20 +631,113 @@ public class UI {
 	    private TextArea txtAnsw2;
 
 	    @FXML
-	    private TextArea txtAnsw11;
+	    private TextArea txtAnsw3;
 
 	    @FXML
-	    private TextArea txtAnsw21;
-
-
-
+	    private TextArea txtAnsw4;
 	    
-
+	    @FXML
+	    private Button btnOfferTrade;
 	    
-    public UI() {
+	    @FXML
+	    private Label round = new Label();
+	    
+	    @FXML
+	    private Pane questionsPaneContainer;
+	    
+	    @FXML
+	    private Label theQuestion= new Label();
+
+
+	   
+	public UI() {
 			super();
 			initializeTiles();
+			//initializeGame(){
+			
 		}
+
+	public void initializeGame(){
+		
+		int gameNum=Board.getInstance().getCurrentGameNum();
+		initializeRound();
+		
+	}
+	
+	public void initializeRound(){
+		int gameNum=Board.getInstance().getCurrentGameNum();
+		int round=Board.getInstance().getRound(gameNum);
+		String playerTurn=Board.getInstance().whosTurn(gameNum);
+		//List<String> players=Board.getInstance().getPlayersNickNames(gameNum);
+		List<Integer> cash= Board.getInstance().getPlayersCash(gameNum);
+		List<Integer> strikes=Board.getInstance().getPlayersStrikes(gameNum);
+		
+		//all players current cash
+		moneyPlayer1.setText(cash.get(0)+"");
+		moneyPlayer2.setText(cash.get(1)+"");
+		moneyPlayer3.setText(cash.get(2)+"");
+		moneyPlayer4.setText(cash.get(3)+"");
+		//all players current strikes
+		strikesPlayer1.setText(strikes.get(0)+"");
+		strikesPlayer2.setText(strikes.get(1)+"");
+		strikesPlayer3.setText(strikes.get(2)+"");
+		strikesPlayer4.setText(strikes.get(3)+"");
+		//current round
+		this.round.setText(round+"");
+		//
+		
+		
+		
+	}
+	
+	@FXML
+	public void initializeQuestionsMenu(){
+		int gameNum=Board.getInstance().getCurrentGameNum();
+		String playerTurn=Board.getInstance().whosTurn(gameNum);
+		int tileNum=Board.getInstance().getCurrentTile(playerTurn);
+		
+		gameLogScrollPane.setVisible(false);
+		questionsPane.setVisible(true);
+		playerXIsAnswering.setText(playerTurn+ " is answering question :");
+		//theQuestion.setText(value);
+		//txtAnsw1.setText();
+	}
+	
+	public void answeringQuestion(String playerNickname, Question question){
+		
+	}
+	@FXML
+	public void buyProperty(){
+		
+	}
+	@FXML
+	public void sellProperty(){
+		
+	}
+	@FXML
+	public void offerTrade(){
+		
+	}
+	@FXML
+	private void rollDice(){
+		initializeDicesBeforeRoll();
+		//Board.getInstance().rollADice(playerNickName, gameNum, tileNum)
+		//Random r = new Random();
+		int gameNum=Board.getInstance().getCurrentGameNum();
+		String playerNickname=Board.getInstance().whosTurn(gameNum);
+		int tileNum= Board.getInstance().getCurrentTile(playerNickname);
+		int dice1 = (Board.getInstance().rollADice(playerNickname, gameNum, tileNum)).get(0);
+		int dice2 = (Board.getInstance().rollADice(playerNickname, gameNum, tileNum)).get(1);
+		
+		roll1[dice1-1].setVisible(true);
+		roll2[dice2-1].setVisible(true);
+		moveAPlayer(dice1+dice2);
+		
+	}
+	    
+
+	    
+   
 
 
     @FXML
@@ -862,6 +962,7 @@ public class UI {
           assert lblMoney3 != null : "fx:id=\"lblMoney3\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert lblStrikes3 != null : "fx:id=\"lblStrikes3\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert moneyPlayer3 != null : "fx:id=\"moneyPlayer3\" was not injected: check your FXML file 'Game_UI.fxml'.";
+          assert moneyPlayer4 != null : "fx:id=\"moneyPlayer4\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert strikesPlayer3 != null : "fx:id=\"strikesPlayer3\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert player4StatsPane != null : "fx:id=\"player4StatsPane\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert lblMoney4 != null : "fx:id=\"lblMoney4\" was not injected: check your FXML file 'Game_UI.fxml'.";
@@ -891,12 +992,15 @@ public class UI {
           assert gameLogs != null : "fx:id=\"gameLogs\" was not injected: check your FXML file 'UI.fxml'.";
           assert questionsPane != null : "fx:id=\"questionsPane\" was not injected: check your FXML file 'UI.fxml'.";
           assert questionsPane1 != null : "fx:id=\"questionsPane1\" was not injected: check your FXML file 'UI.fxml'.";
-          assert lblplayerXIsAnswering != null : "fx:id=\"lblplayerXIsAnswering\" was not injected: check your FXML file 'UI.fxml'.";
+          assert playerXIsAnswering != null : "fx:id=\"lblplayerXIsAnswering\" was not injected: check your FXML file 'UI.fxml'.";
           assert lblplayerXIsAnswering1 != null : "fx:id=\"lblplayerXIsAnswering1\" was not injected: check your FXML file 'UI.fxml'.";
           assert txtAnsw1 != null : "fx:id=\"txtAnsw1\" was not injected: check your FXML file 'UI.fxml'.";
           assert txtAnsw2 != null : "fx:id=\"txtAnsw2\" was not injected: check your FXML file 'UI.fxml'.";
-          assert txtAnsw11 != null : "fx:id=\"txtAnsw11\" was not injected: check your FXML file 'UI.fxml'.";
-          assert txtAnsw21 != null : "fx:id=\"txtAnsw21\" was not injected: check your FXML file 'UI.fxml'.";
+          assert txtAnsw3 != null : "fx:id=\"txtAnsw11\" was not injected: check your FXML file 'UI.fxml'.";
+          assert txtAnsw4 != null : "fx:id=\"txtAnsw21\" was not injected: check your FXML file 'UI.fxml'.";
+          assert btnOfferTrade != null : "fx:id=\"btnOfferTrade\" was not injected: check your FXML file 'UI.fxml'.";
+          assert round != null : "fx:id=\"round\" was not injected: check your FXML file 'UI.fxml'.";
+
         initializeTiles();
         initializeDicesFirstTime();
     }
@@ -922,7 +1026,8 @@ public class UI {
     		roll2[i].setVisible(false);
     	}
     }
-    	private void initializeDicesBeforeRoll() {
+    
+    private void initializeDicesBeforeRoll() {
         	for (int i=0; i<6; i++){
         		roll1[i].setVisible(false);
         		roll2[i].setVisible(false);
@@ -932,18 +1037,7 @@ public class UI {
     	/**
     	 * getting a game/2 dices and get 
     	 */
-    	@FXML
-    	private void rollDice(){
-    		initializeDicesBeforeRoll();
-    		Random r = new Random();
-    		int dice1 = r.nextInt(6)+1;
-    		int dice2 = r.nextInt(6)+1;
-    		
-    		roll1[dice1-1].setVisible(true);
-    		roll2[dice2-1].setVisible(true);
-    		moveAPlayer(dice1+dice2);
-    		
-    	}
+
 
 
 	/*
