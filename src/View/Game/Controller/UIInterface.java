@@ -79,13 +79,7 @@ public interface UIInterface {
 	 */
 	void gameLogDisplay(Boolean display);
 	
-	/////// methods i(tal) need to implement
-	// please add any extra variables if needed
-	public void buyProperty();
-	public void sellProperty();
-	public void offerTrade();
 	
-	
-	
+
 	
 }

@@ -19,13 +19,11 @@ public class Board implements IBoard{
 		return _instance;
 	}
 
-	@Override
 	public void answerQuestion(Question question, List<Answer> playerAnswers) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
 	public List<Player> getGamePlayers() {
 		// TODO Auto-generated method stub
 		return null;
@@ -49,7 +47,6 @@ public class Board implements IBoard{
 		
 	}
 
-	@Override
 	public void offerATrade() {
 		// TODO Auto-generated method stub
 		
