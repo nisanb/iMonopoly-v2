@@ -320,6 +320,8 @@ public class MonDB implements Serializable {
 		for (Question q:list) {
 			toSet.get(q.getqStrength()).add(q);
 		}
+		
+		this.gameQuestions = toSet;
 	}
 	
 	
