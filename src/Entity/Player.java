@@ -1,5 +1,6 @@
 package Entity;
 
+import java.awt.Color;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -17,6 +18,7 @@ public class Player extends User implements Comparable<Player>{
 	private Integer currentTile;
 	private Integer strikesNum;
 	private Boolean inJail;
+	private Color playerColor;
 	private Map<Question, Boolean> userAnswers;
 	private Set<PropertyTile> propertyList;
 	/**
@@ -24,13 +26,14 @@ public class Player extends User implements Comparable<Player>{
 	 * @param nickname
 	 * @param cash
 	 */
-	protected Player(String nickname, Integer cash){
+	protected Player(String nickname, Integer cash, Color playerColor){
 		super(nickname, PlayerAuth.PLAYER);
 		this.propertyList = new HashSet<>();
 		this.userAnswers = new HashMap<>();
 		this.strikesNum 	= 0;
 		this.currentTile	= 0;
 		this.cash 			= cash;
+		this.playerColor 	= playerColor;
 		this.inJail 		= false;
 		 
 	}
@@ -104,6 +107,14 @@ public class Player extends User implements Comparable<Player>{
 	
 	public Boolean hasEnough(Integer amount){
 		return amount>=this.cash;
+	}
+
+	public Color getPlayerColor() {
+		return playerColor;
+	}
+
+	public void setPlayerColor(Color playerColor) {
+		this.playerColor = playerColor;
 	}
 	
 	
