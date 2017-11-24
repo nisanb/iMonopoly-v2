@@ -20,7 +20,7 @@
    <children>
       <ImageView layoutX="-11.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="-1.0">
          <image>
-            <Image url="@../../resources/ManagementGUI.png" />
+            <Image url="@../../Resources/ManagementGUI.png" />
          </image>
       </ImageView>
       <ImageView fx:id="btnVolume" fitHeight="25.0" fitWidth="50.0" layoutX="761.0" layoutY="536.0" onMouseClicked="#doSwapMusic" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="39.0" AnchorPane.rightAnchor="14.0">
@@ -43,7 +43,7 @@
       </Label>
       <ImageView fx:id="img1" fitHeight="60.0" fitWidth="56.0" layoutX="201.0" layoutY="211.0">
          <image>
-            <Image url="@../../../../../Desktop/9.png" />
+            <Image url="@../../resources/9.png" />
          </image>
       </ImageView>
       <TextField fx:id="txt1" layoutX="177.0" layoutY="275.0" onAction="#hidetextfield1" prefHeight="25.0" prefWidth="91.0" />
@@ -54,7 +54,7 @@
       </Label>
       <ImageView fx:id="img3" fitHeight="60.0" fitWidth="56.0" layoutX="397.0" layoutY="211.0">
          <image>
-            <Image url="@../../../../../Desktop/8.png" />
+            <Image url="@../../resources/8.png" />
          </image>
       </ImageView>
       <TextField fx:id="txt3" layoutX="376.0" layoutY="275.0" onAction="#hidetextfield3" prefHeight="25.0" prefWidth="91.0" />
@@ -65,7 +65,7 @@
       </Label>
       <ImageView fx:id="img2" fitHeight="60.0" fitWidth="56.0" layoutX="299.0" layoutY="212.0">
          <image>
-            <Image url="@../../../../../Desktop/7.png" />
+            <Image url="@../../resources/7.png" />
          </image>
       </ImageView>
       <TextField fx:id="txt2" layoutX="276.0" layoutY="275.0" onAction="#hidetextfield2" prefHeight="25.0" prefWidth="91.0" />
@@ -76,7 +76,7 @@
       </Label>
       <ImageView fx:id="img4" fitHeight="60.0" fitWidth="56.0" layoutX="498.0" layoutY="212.0">
          <image>
-            <Image url="@../../../../../Desktop/10.png" />
+            <Image url="@../../resources/10.png" />
          </image>
       </ImageView>
       <SubScene height="40.0" layoutX="214.0" layoutY="154.0" opacity="0.77" width="347.0">

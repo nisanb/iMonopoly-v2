@@ -38,7 +38,7 @@
       <Button layoutX="219.0" layoutY="490.0" mnemonicParsing="false" onAction="#openWelcomeAdmin" prefHeight="25.0" prefWidth="140.0" text="Login" />
       <ImageView fitHeight="209.0" fitWidth="222.0" layoutX="97.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../Desktop/admin-icon.png" />
+            <Image url="@../../Resources/admin-icon.png" />
          </image>
       </ImageView>
       <Label fx:id="namelabel" layoutX="401.0" layoutY="384.0" text="Cannot Be Empty">

@@ -3,6 +3,7 @@ package Controller;
 import java.util.List;
 
 import Entity.Answer;
+import Entity.Player;
 import Entity.Question;
 import View.IBoard;
 
@@ -20,6 +21,18 @@ public class Board implements IBoard{
 
 	@Override
 	public void answerQuestion(Question question, List<Answer> playerAnswers) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Player> getGamePlayers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void nextTurn() {
 		// TODO Auto-generated method stub
 		
 	}

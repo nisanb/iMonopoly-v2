@@ -13,14 +13,12 @@ public interface IManagement {
 	
 
 	public List<Question> getQuestions();
-<<<<<<< Updated upstream
+
 	
 	public String getLoggedPlayer();
 	
 	
-=======
 
->>>>>>> Stashed changes
 	/**
 	 * Methods TO DO
 	 */

@@ -22,18 +22,18 @@
          </image>
       </ImageView>
       <TextField fx:id="frmNickname" accessibleText="test" layoutX="308.0" layoutY="355.0" prefHeight="32.0" prefWidth="185.0" promptText="NICKNAME" styleClass="button-red" />
-      <ButtonBar layoutX="33.0" layoutY="182.0" prefHeight="40.0" prefWidth="200.0" />
+      <ButtonBar layoutX="144.0" layoutY="200.0" prefHeight="130.0" prefWidth="200.0" />
     <Button layoutX="233.0" layoutY="413.0" mnemonicParsing="false" onAction="#doLogin" onMouseEntered="#MouseEntered" prefHeight="40.0" prefWidth="132.0" styleClass="column-drag-header" text="Player Login" />
       <Button layoutX="429.0" layoutY="413.0" mnemonicParsing="false" onAction="#openAdmin" prefHeight="40.0" prefWidth="132.0" text="Admin Login" />
-      <ImageView fitHeight="224.0" fitWidth="291.0" layoutX="185.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../Desktop/f4588a3ecaa676e34622199a51636d40.png" />
-         </image>
-      </ImageView>
       <Label fx:id="namelabel" layoutX="344.0" layoutY="387.0" text="Cannot Be Empty">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
+      <ImageView fitHeight="211.0" fitWidth="270.0" layoutX="197.0" layoutY="126.0">
+         <image>
+            <Image url="@../Resources/Login.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
