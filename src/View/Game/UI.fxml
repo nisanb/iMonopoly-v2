@@ -16,7 +16,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Game.Controller.UI">
    <children>
       <Button fx:id="main" layoutX="139.0" layoutY="598.0" mnemonicParsing="false" onMouseClicked="#menuButton" prefHeight="77.0" prefWidth="132.0" text="main menu" />
-      <ImageView fitHeight="691.0" fitWidth="1229.0" layoutX="48.0" layoutY="39.0">
+      <ImageView fitHeight="691.0" fitWidth="1229.0" layoutX="61.0" layoutY="33.0">
          <image>
             <Image url="@../../Resources/PSD/Board-1366-768.jpg" />
          </image>
@@ -1000,7 +1000,7 @@
             </ImageView>
          </children>
       </Pane>
-      <ImageView fx:id="playerBlueStats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="60.0">
+      <ImageView fx:id="playerBlueStats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="60.0" styleClass="color">
          <image>
             <Image url="@../../Resources/PSD/Players/7.png" />
          </image>
@@ -1068,7 +1068,7 @@
             </Label>
          </children>
       </Pane>
-      <Pane fx:id="player2StatsPane" layoutX="160.0" layoutY="240.0" prefHeight="77.0" prefWidth="198.0" style="-fx-background-color: transparent">
+      <Pane fx:id="player3StatsPane" layoutX="160.0" layoutY="240.0" prefHeight="77.0" prefWidth="198.0" style="-fx-background-color: transparent">
          <children>
             <Label fx:id="lblMoney3" layoutX="7.0" layoutY="10.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Money:" textFill="WHITE">
                <font>
@@ -1126,7 +1126,7 @@
             <Font name="Cooper Black" size="20.0" />
          </font>
       </Button>
-      <Button layoutX="375.0" layoutY="652.0" mnemonicParsing="false" onMouseClicked="#menuButton" prefWidth="164.0" style="-fx-background-color: red;" text="Quit Game" textFill="WHITE">
+      <Button fx:id="buttonQuitGame" layoutX="375.0" layoutY="652.0" mnemonicParsing="false" onMouseClicked="#menuButton" prefWidth="164.0" style="-fx-background-color: red;" text="Quit Game" textFill="WHITE">
          <font>
             <Font name="Cooper Black" size="20.0" />
          </font>
@@ -1266,6 +1266,20 @@
             </Pane>
          </children></AnchorPane>
       <Button fx:id="btnOfferTrade" disable="true" layoutX="372.0" layoutY="203.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Offer A Trade" textFill="WHITE">
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnPayRent" disable="true" layoutX="372.0" layoutY="264.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: blue;" text="Pay Rent" textFill="WHITE">
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Button>
+      <Pane fx:id="paneCurrentTurnPlayer1" layoutX="72.0" layoutY="56.0" prefHeight="93.0" prefWidth="83.0" style="-fx-border-color: red;" />
+      <Pane fx:id="paneCurrentTurnPlayer2" layoutX="72.0" layoutY="145.0" prefHeight="93.0" prefWidth="83.0" style="-fx-border-color: red;" />
+      <Pane fx:id="paneCurrentTurnPlayer3" layoutX="72.0" layoutY="235.0" prefHeight="93.0" prefWidth="83.0" style="-fx-border-color: red;" />
+      <Pane fx:id="paneCurrentTurnPlayer4" layoutX="72.0" layoutY="325.0" prefHeight="93.0" prefWidth="83.0" style="-fx-border-color: red;" />
+      <Button fx:id="btnFinishTurn" disable="true" layoutX="372.0" layoutY="330.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: black;" text="Finish Turn" textFill="WHITE">
          <font>
             <Font name="Cooper Black" size="20.0" />
          </font>

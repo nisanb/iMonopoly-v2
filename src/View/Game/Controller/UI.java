@@ -1,8 +1,11 @@
 package View.Game.Controller;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+import com.sun.prism.impl.ps.CachingShapeRep;
 
 import Controller.Board;
 import Controller.iWindow;
@@ -26,17 +29,14 @@ import javafx.stage.Stage;
 public class UI implements UIInterface{
 	
 	ArrayList<Player> playersList = new ArrayList<>();
-	ArrayList<Pane> currentPlayerPanes = new ArrayList<>();
-	
+	ImageView playerPics[] = new ImageView[playersList.size()];
 	ImageView[][] players = new ImageView[40][4];
 	ImageView[] roll1= new ImageView[6];
 	ImageView[] roll2= new ImageView[6];
 	
-	public static double playerStatsLeyoutx=80;
-	public static double playerStatsLeyout1y=60;
-	public static double playerStatsLeyout2y=150;
-	public static double playerStatsLeyout3y=240;
-	public static double playerStatsLeyout4y=330;
+	public static final double playerStatsLeyoutx=80;
+	public static final int[] playersStatsY={60,150,240,330};
+
 	
 
 	@FXML
@@ -488,16 +488,16 @@ public class UI implements UIInterface{
 	    private Pane pane39= new Pane();
 	    
 	    @FXML
-	    private ImageView player1Stats = new ImageView();
+	    private ImageView playerBlueStats = new ImageView();
 
 	    @FXML
-	    private ImageView player2Stats = new ImageView();
+	    private ImageView playerYellowStats = new ImageView();
 
 	    @FXML
-	    private ImageView player3Stats= new ImageView();
+	    private ImageView playerGreenStats= new ImageView();
 
 	    @FXML
-	    private ImageView player4Stats= new ImageView();
+	    private ImageView playerRedStats= new ImageView();
 
 	    @FXML
 	    private Pane player1StatsPane = new Pane();
@@ -672,7 +672,10 @@ public class UI implements UIInterface{
 
 	    @FXML
 	    private Pane paneCurrentTurnPlayer4;
-
+	    
+	    Pane currentPlayerPanes[]={paneCurrentTurnPlayer1,paneCurrentTurnPlayer2,paneCurrentTurnPlayer3,paneCurrentTurnPlayer2};
+	    Label playersStrikes[]={strikesPlayer1,strikesPlayer2,strikesPlayer3,strikesPlayer4};
+	    Label playersCash[]={moneyPlayer1,moneyPlayer2,moneyPlayer3,moneyPlayer4};
 
 	   
 	public UI() {
@@ -684,43 +687,32 @@ public class UI implements UIInterface{
 	
 	public void buildBoard(){
 		initialize();
-		//playersList.get(0).
-		//player1Stats.layoutYProperty().set(arg0);
+		
+		
+		for (int i=0; i<playersList.size(); i++){
+			if (playersList.get(i).getPlayerColor()==Color.yellow){
+				playerYellowStats.setLayoutY(playersStatsY[i]);
+				playerPics[i]=playerYellowStats;
+					
+			}
+			if (playersList.get(i).getPlayerColor()==Color.blue){
+				playerBlueStats.setLayoutY(playersStatsY[i]);
+				playerPics[i]=playerBlueStats;
+			}
+			if (playersList.get(i).getPlayerColor()==Color.red){
+				playerRedStats.setLayoutY(playersStatsY[i]);
+				playerPics[i]=playerRedStats;
+			}
+			if (playersList.get(i).getPlayerColor()==Color.green){
+				playerGreenStats.setLayoutY(playersStatsY[i]);
+				playerPics[i]=playerGreenStats;
+			}
+		}
 	}
 
 	public void initializeGame(){
-		
-	//	int gameNum=Board.getInstance().getCurrentGameNum();
-		initializeRound();
-		
+			
 	}
-	
-	public void initializeRound(){
-		/*
-		int gameNum=Board.getInstance().getCurrentGameNum();
-		int round=Board.getInstance().getRound(gameNum);
-		String playerTurn=Board.getInstance().whosTurn(gameNum);
-		//List<String> players=Board.getInstance().getPlayersNickNames(gameNum);
-		List<Integer> cash= Board.getInstance().getPlayersCash(gameNum);
-		List<Integer> strikes=Board.getInstance().getPlayersStrikes(gameNum);
-		
-		//all players current cash
-		moneyPlayer1.setText(cash.get(0)+"");
-		moneyPlayer2.setText(cash.get(1)+"");
-		moneyPlayer3.setText(cash.get(2)+"");
-		moneyPlayer4.setText(cash.get(3)+"");
-		//all players current strikes
-		strikesPlayer1.setText(strikes.get(0)+"");
-		strikesPlayer2.setText(strikes.get(1)+"");
-		strikesPlayer3.setText(strikes.get(2)+"");
-		strikesPlayer4.setText(strikes.get(3)+"");
-		//current round
-		this.round.setText(round+"");
-		//
-		*/
-		
-	}
-	
 	
 	public void answeringQuestion(String playerNickname, Question question){
 		
@@ -856,25 +848,35 @@ public class UI implements UIInterface{
 
 	@Override
 	public void updatePlayerProperties(Player player) {
-		// TODO Auto-generated method stub
+		int pos=playersList.indexOf(player);
+		//playersCash[pos].setText(player.get);
+		//playersStrikes[pos].setText(player);
+		
 		
 	}
 
 	@Override
 	public void updateCurrentPlayer(Player player) {
-		// TODO Auto-generated method stub
-		
+		for (int i=0; i<playersList.size(); i++){
+			if (playersList.get(i).equals(player)){
+				currentPlayerPanes[i].setVisible(true);
+			}
+			else
+				currentPlayerPanes[i].setVisible(false);
+		}
 	}
 
 	@Override
 	public void gameLog(String message) {
-		// TODO Auto-generated method stub
+		gameLogs.setText(gameLogs.getText()+ "\n" +message);
 		
 	}
 
 	@Override
 	public void gameLogDisplay(Boolean display) {
-		// TODO Auto-generated method stub
+		questionsPane.setVisible(!display);
+		questionsPaneContainer.setVisible(!display);
+		gameLogScrollPane.setVisible(display);
 		
 	}
     
@@ -1282,15 +1284,11 @@ public class UI implements UIInterface{
           assert player3_31 != null : "fx:id=\"player3_31\" was not injected: check your FXML file 'TalUI.fxml'.";
           assert player4_31 != null : "fx:id=\"player4_31\" was not injected: check your FXML file 'TalUI.fxml'.";
           assert buttonMenu != null : "fx:id=\"buttonMenu\" was not injected: check your FXML file 'TalUI.fxml'.";
-          assert player1Stats != null : "fx:id=\"player1Stats\" was not injected: check your FXML file 'Game_UI.fxml'.";
-          assert player2Stats != null : "fx:id=\"player2Stats\" was not injected: check your FXML file 'Game_UI.fxml'.";
-          assert player3Stats != null : "fx:id=\"player3Stats\" was not injected: check your FXML file 'Game_UI.fxml'.";
-          assert player4Stats != null : "fx:id=\"player4Stats\" was not injected: check your FXML file 'Game_UI.fxml'.";
+          assert playerBlueStats != null : "fx:id=\"player1Stats\" was not injected: check your FXML file 'Game_UI.fxml'.";
+          assert playerYellowStats != null : "fx:id=\"player2Stats\" was not injected: check your FXML file 'Game_UI.fxml'.";
+          assert playerGreenStats != null : "fx:id=\"player3Stats\" was not injected: check your FXML file 'Game_UI.fxml'.";
+          assert playerRedStats != null : "fx:id=\"player4Stats\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert player1StatsPane != null : "fx:id=\"player1StatsPane\" was not injected: check your FXML file 'Game_UI.fxml'.";
-          assert player1Stats != null : "fx:id=\"player1Stats\" was not injected: check your FXML file 'Game_UI.fxml'.";
-          assert player2Stats != null : "fx:id=\"player2Stats\" was not injected: check your FXML file 'Game_UI.fxml'.";
-          assert player3Stats != null : "fx:id=\"player3Stats\" was not injected: check your FXML file 'Game_UI.fxml'.";
-          assert player4Stats != null : "fx:id=\"player4Stats\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert player1StatsPane != null : "fx:id=\"player1StatsPane\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert lblMoney1 != null : "fx:id=\"lblMoney1\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert lblStrikes1 != null : "fx:id=\"lblStrikes1\" was not injected: check your FXML file 'Game_UI.fxml'.";

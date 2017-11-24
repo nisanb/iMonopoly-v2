@@ -38,10 +38,54 @@ public class Board implements IBoard{
 	}
 
 	@Override
-	public char getPlayerColor(Player player) {
+	public void buyProperty() {
 		// TODO Auto-generated method stub
-		return 0;
+		
 	}
+
+	@Override
+	public void payRent() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void offerATrade() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void sellProperty() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void offerTrade() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void quitGame() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void rollDice() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void AnswerQuestion(int answerNum) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 
 
 	

@@ -21,12 +21,17 @@ public interface IBoard {
 	 */
 	public List<Player> getGamePlayers();
 
-	public void nextTurn();
+	// please add any extra variables inside the methods if needed
 	
-	/**
-	 * 
-	 * @param player
-	 * @return R for RED, B for BLUE, G for GREEN and Y for YELLOW
-	 */
-	public char getPlayerColor(Player player);
+	public void nextTurn();
+	public void buyProperty();
+	public void payRent();
+	public void offerATrade();
+	public void sellProperty();
+	public void offerTrade();
+	public void quitGame();
+	public void rollDice();
+	public void AnswerQuestion(int answerNum);
+	
+
 }

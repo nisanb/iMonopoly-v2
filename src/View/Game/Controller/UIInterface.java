@@ -2,6 +2,7 @@ package View.Game.Controller;
 
 import Entity.Player;
 import Entity.Question;
+import javafx.fxml.FXML;
 
 public interface UIInterface {
 
@@ -77,6 +78,13 @@ public interface UIInterface {
 	 * @param display
 	 */
 	void gameLogDisplay(Boolean display);
+	
+	/////// methods i(tal) need to implement
+	// please add any extra variables if needed
+	public void buyProperty();
+	public void sellProperty();
+	public void offerTrade();
+	
 	
 	
 	
