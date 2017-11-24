@@ -2,8 +2,8 @@
 
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -21,7 +21,6 @@
             <Image url="@../resources/sound_on.png" />
          </image>
       </ImageView>
-      <ButtonBar layoutX="33.0" layoutY="182.0" prefHeight="40.0" prefWidth="200.0" />
       <Label layoutX="312.0" layoutY="167.0" text="Sharky Statistics" textFill="#fccbcb">
          <font>
             <Font size="25.0" />
@@ -29,56 +28,36 @@
       </Label>
       <Label layoutX="145.0" layoutY="222.0" text="Games Played:">
          <font>
-            <Font size="25.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="145.0" layoutY="270.0" text="Total Strikes:">
+      <Label layoutX="145.0" layoutY="262.0" text="Total Strikes:">
          <font>
-            <Font size="25.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="145.0" layoutY="325.0" text="Total Wins:">
+      <Label layoutX="145.0" layoutY="300.0" text="Total Wins:">
          <font>
-            <Font size="25.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="145.0" layoutY="372.0" text="Win-Loss Ratio:">
+      <Label layoutX="145.0" layoutY="337.0" text="Win-Loss Ratio:">
          <font>
-            <Font size="25.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="145.0" layoutY="417.0" text="Correct Answers:">
+      <Label layoutX="145.0" layoutY="374.0" text="Correct Answers:">
          <font>
-            <Font size="25.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="409.0" layoutY="222.0" text="7">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="402.0" layoutY="270.0" text="26">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="415.0" layoutY="325.0" text="4">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="385.0" layoutY="372.0" text="0.25">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
-      <Label layoutX="385.0" layoutY="417.0" text="0.25">
-         <font>
-            <Font size="25.0" />
-         </font>
-      </Label>
-      <PieChart fx:id="piechart" layoutX="368.0" layoutY="172.0" prefHeight="257.0" prefWidth="265.0" />
-      <Button layoutX="511.0" layoutY="325.0" mnemonicParsing="false" onAction="#btn" text="Load Chart" />
+      <Button layoutX="503.0" layoutY="322.0" mnemonicParsing="false" onAction="#btn" text="Load Chart" />
       <Button layoutX="478.0" layoutY="488.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="140.0" text="Back" />
+      <TextField layoutX="264.0" layoutY="220.0" opacity="0.71" />
+      <TextField layoutX="264.0" layoutY="259.0" opacity="0.71" />
+      <TextField layoutX="264.0" layoutY="297.0" opacity="0.71" />
+      <TextField layoutX="264.0" layoutY="334.0" opacity="0.71" />
+      <TextField layoutX="264.0" layoutY="371.0" opacity="0.71" />
+      <PieChart fx:id="piechart" layoutX="433.0" layoutY="187.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="126.0" prefWidth="177.0" />
    </children>
 </AnchorPane>

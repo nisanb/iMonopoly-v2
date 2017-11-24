@@ -1,5 +1,7 @@
+
+
 /**
- * Sample Skeleton for 'SystemParameters.fxml' Controller Class
+ * Sample Skeleton for 'SysParam.fxml' Controller Class
  */
 
 package View.Admin.Controller;
@@ -26,35 +28,34 @@ public class SysParam {
 
     @FXML // fx:id="btnVolume"
     private ImageView btnVolume; // Value injected by FXMLLoader
-    
-    
+
+    @FXML
+    void back(ActionEvent event) {
+    	iWindow.swap(Window.Admin_Menu);
+    }
 
     @FXML
     void doSwapMusic(MouseEvent event) {
 
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'SystemParameters.fxml'.";
-
-    }
-    
-    @FXML
-    void back(ActionEvent event) {
-    	iWindow.swap(Window.Admin_Menu);
-    }
-    
     @FXML
     void save(ActionEvent event) {
-    	
+
     	Alert alert=new Alert(AlertType.INFORMATION);
 		alert.setTitle("");
 		alert.setHeaderText(null);
 		alert.setContentText("Parameters Saved");
 		alert.showAndWait();
     	iWindow.swap(Window.Admin_Menu);
-    	
+    }
+
+    @FXML // This method is called by the FXMLLoader when initialization is complete
+    void initialize() {
+        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'SysParam.fxml'.";
 
     }
 }
+
+
+

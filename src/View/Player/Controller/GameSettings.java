@@ -28,6 +28,18 @@ public class GameSettings {
     private URL location;
     
     @FXML
+    private ImageView img1;
+
+    @FXML
+    private ImageView img3;
+
+    @FXML
+    private ImageView img2;
+
+    @FXML
+    private ImageView img4;
+    
+    @FXML
     private Label label1;
 
     @FXML
@@ -106,45 +118,60 @@ public class GameSettings {
     	{
     		txt1.setVisible(true);
     		label1.setVisible(true);
+    		img1.setVisible(true);
     		
     		txt2.setVisible(true);
     		label2.setVisible(true);
+    		img2.setVisible(true);
     		
     		txt3.setVisible(false);
     		label3.setVisible(false);
+    		img3.setVisible(false);
     		
     		txt4.setVisible(false);
     		label4.setVisible(false);
+    		img4.setVisible(false);
     	}
     	
     	if(combobox.getValue()=="3")
     	{
     		txt1.setVisible(true);
     		label1.setVisible(true);
+    		img1.setVisible(true);
+
     		
     		txt2.setVisible(true);
     		label2.setVisible(true);
+    		img2.setVisible(true);
+
     		
     		txt3.setVisible(true);
     		label3.setVisible(true);
+    		img3.setVisible(true);
+
     		
     		txt4.setVisible(false);
     		label4.setVisible(false);
+    		img4.setVisible(false);
     	}
     	
     	if(combobox.getValue()=="4")
     	{
     		txt1.setVisible(true);
     		label1.setVisible(true);
+    		img1.setVisible(true);
     		
     		txt2.setVisible(true);
     		label2.setVisible(true);
+    		img2.setVisible(true);
     		
     		txt3.setVisible(true);
     		label3.setVisible(true);
+    		img3.setVisible(true);
     		
     		txt4.setVisible(true);
     		label4.setVisible(true);
+    		img4.setVisible(true);
     	}
     	
     	
@@ -178,6 +205,10 @@ public class GameSettings {
         label3.setVisible(false);
         txt4.setVisible(false);
         label4.setVisible(false);
+        img1.setVisible(false);
+        img2.setVisible(false);
+        img3.setVisible(false);
+        img4.setVisible(false);
     }
     
     @FXML

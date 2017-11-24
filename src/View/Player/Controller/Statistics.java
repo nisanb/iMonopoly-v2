@@ -36,6 +36,9 @@ public class Statistics {
 
     @FXML
     private Button btnLogin;
+    
+    @FXML
+    private PieChart piechart;
 
     @FXML
     void MouseEntered(MouseEvent event) {
@@ -57,6 +60,7 @@ public class Statistics {
     	 * MonDB.getInstance().setCurrentGame(new Game());
     	 * MonDB.getInstance().getCurrentGame().setCurrentLoggedUser((new User(frmNickname.getText(), PlayerAuth.PLAYER)));
     	 */
+    	
     	iWindow.swap(Window.Player_Menu);
     }
     
@@ -80,7 +84,7 @@ public class Statistics {
    
     }
     
-    @FXML    PieChart piechart; 
+
     
     @FXML
     public void btn(ActionEvent event)

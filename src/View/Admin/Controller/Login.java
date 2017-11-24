@@ -12,10 +12,24 @@ import Utils.Window;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class Login {
+	
+    @FXML
+    private PasswordField txtPassword;
+
+    @FXML
+    private TextField txtUserName;
+
+    @FXML
+    private Label namelabel;
+
+    @FXML
+    private Label namelabel1;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -38,7 +52,12 @@ public class Login {
     void initialize() {
         assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'EnterAdmin.fxml'.";
         assert lblUserLogged != null : "fx:id=\"lblUserLogged\" was not injected: check your FXML file 'EnterAdmin.fxml'.";
+        namelabel.setVisible(false);
+        namelabel1.setVisible(false);
+        
+     
 
+        
     }
     
     @FXML
@@ -48,7 +67,29 @@ public class Login {
     
     @FXML
     void openWelcomeAdmin(ActionEvent event) {
-    	iWindow.swap(Window.Admin_Menu);
+    	
+    	   if(txtUserName.getText().isEmpty())
+           {
+           	namelabel.setVisible(true);
+           }
+    	   else
+    	   {
+    		   namelabel.setVisible(false);
+    	   }
+
+    	   if(txtPassword.getText().isEmpty())
+           {
+           	namelabel1.setVisible(true);
+           }
+    	   else
+    	   {
+    		   namelabel1.setVisible(false);
+    	   }
+
+    	   if((!txtUserName.getText().isEmpty())&&(!txtPassword.getText().isEmpty()))
+    	   {
+    		   iWindow.swap(Window.Admin_Menu);
+    	   }
     }
 
 }

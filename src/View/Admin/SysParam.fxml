@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -21,108 +20,107 @@
             <Image url="@../resources/sound_on.png" />
          </image>
       </ImageView>
-      <ButtonBar layoutX="33.0" layoutY="182.0" prefHeight="40.0" prefWidth="200.0" />
-      <Label contentDisplay="TOP" layoutX="236.0" layoutY="122.0" prefHeight="93.0" prefWidth="448.0" text="System Parameters" textAlignment="RIGHT" textFill="#da1111" textOverrun="WORD_ELLIPSIS">
+      <Label contentDisplay="TOP" layoutX="313.0" layoutY="118.0" prefHeight="93.0" prefWidth="448.0" text="System Parameters" textAlignment="RIGHT" textFill="#da1111" textOverrun="WORD_ELLIPSIS">
          <font>
-            <Font size="36.0" />
+            <Font size="24.0" />
          </font></Label>
-      <Label layoutX="137.0" layoutY="236.0" text="Rent" textFill="WHITE">
+      <Label layoutX="137.0" layoutY="219.0" prefHeight="20.0" prefWidth="140.0" text="Rent" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="137.0" layoutY="264.0" text="Buy Property" textFill="WHITE">
+      <Label layoutX="137.0" layoutY="254.0" text="Buy Property" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="137.0" layoutY="302.0" text="Min Luck" textFill="#f2f2f2">
+      <Label layoutX="137.0" layoutY="290.0" prefHeight="20.0" prefWidth="83.0" text="Min Luck" textFill="#f2f2f2">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="138.0" layoutY="344.0" text="Max Luck" textFill="WHITE">
+      <Label layoutX="138.0" layoutY="324.0" prefHeight="20.0" prefWidth="83.0" text="Max Luck" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="137.0" layoutY="386.0" text="Only Luck" textFill="WHITE">
+      <Label layoutX="137.0" layoutY="358.0" prefHeight="20.0" prefWidth="80.0" text="Only Luck" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="137.0" layoutY="421.0" text="Luck Fine" textFill="WHITE">
+      <Label layoutX="137.0" layoutY="395.0" prefHeight="20.0" prefWidth="72.0" text="Luck Fine" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="137.0" layoutY="458.0" text="Jail Fine" textFill="WHITE">
+      <Label layoutX="137.0" layoutY="430.0" text="Jail Fine" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="345.0" layoutY="209.0" text="Cheap Property" textFill="WHITE">
+      <Label layoutX="383.0" layoutY="185.0" prefHeight="20.0" prefWidth="196.0" text="Cheap Property" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="345.0" layoutY="236.0" text="Average Property" textFill="WHITE">
+      <Label layoutX="383.0" layoutY="219.0" prefHeight="20.0" prefWidth="202.0" text="Average Property" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="345.0" layoutY="264.0" text="Expensive Property" textFill="WHITE">
+      <Label layoutX="383.0" layoutY="254.0" prefHeight="20.0" prefWidth="196.0" text="Expensive Property" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="345.0" layoutY="302.0" text="Cheap Property Discount" textFill="WHITE">
+      <Label layoutX="348.0" layoutY="290.0" text="Cheap Property Discount" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="345.0" layoutY="345.0" text="Average Property Discount" textFill="WHITE">
+      <Label layoutX="337.0" layoutY="322.0" text="Average Property Discount" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="345.0" layoutY="386.0" text="Expensive Propery Discount" textFill="WHITE">
+      <Label layoutX="335.0" layoutY="359.0" text="Expensive Propery Discount" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="345.0" layoutY="421.0" text="Max Num Of Rounds" textFill="WHITE">
+      <Label layoutX="373.0" layoutY="393.0" text="Max Num Of Rounds" textFill="WHITE">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="345.0" layoutY="458.0" text="BankRupty" textFill="WHITE">
+      <Label layoutX="383.0" layoutY="431.0" text="BankRupty" textFill="WHITE">
          <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <Label layoutX="137.0" layoutY="209.0" text="Start Money" textFill="WHITE">
-         <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="14.0" />
          </font>
       </Label>
       <Button layoutX="151.0" layoutY="496.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="140.0" text="Save" />
       <Button layoutX="479.0" layoutY="496.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="140.0" text="Back" />
-      <TextField layoutX="261.0" layoutY="210.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="261.0" layoutY="237.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="261.0" layoutY="265.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="261.0" layoutY="301.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="261.0" layoutY="346.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="261.0" layoutY="387.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="261.0" layoutY="422.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="261.0" layoutY="459.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="566.0" layoutY="210.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="566.0" layoutY="237.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="566.0" layoutY="265.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="566.0" layoutY="303.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="566.0" layoutY="346.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="566.0" layoutY="387.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="566.0" layoutY="422.0" prefHeight="25.0" prefWidth="62.0" />
-      <TextField layoutX="566.0" layoutY="459.0" prefHeight="25.0" prefWidth="62.0" />
+      <TextField layoutX="226.0" layoutY="181.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="226.0" layoutY="216.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="226.0" layoutY="251.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="226.0" layoutY="286.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="225.0" layoutY="321.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="225.0" layoutY="356.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="226.0" layoutY="391.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="226.0" layoutY="428.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="519.0" layoutY="181.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="519.0" layoutY="216.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="519.0" layoutY="251.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="519.0" layoutY="286.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="519.0" layoutY="321.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="519.0" layoutY="356.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="519.0" layoutY="391.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <TextField layoutX="519.0" layoutY="428.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
+      <Label layoutX="139.0" layoutY="181.0" prefHeight="20.0" prefWidth="83.0" text="Start Money" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

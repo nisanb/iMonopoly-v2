@@ -7,14 +7,24 @@ import Controller.Logger;
 import Controller.Music;
 import Controller.iWindow;
 import Utils.Window;
+import View.Player.Controller.Check;
+import javafx.animation.ParallelTransition;
+import javafx.animation.PathTransition;
+import javafx.animation.RotateTransition;
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
+import javafx.util.Duration;
+import javafx.scene.shape.Polyline;
+import javafx.scene.shape.Rectangle;;
 
 public class Login {
 
@@ -22,6 +32,13 @@ public class Login {
 	
     @FXML
     private ResourceBundle resources;
+    
+
+    @FXML // fx:id="dice"
+    private ImageView dice; // Value injected by FXMLLoader
+    
+    @FXML
+    private Label namelabel;
 
     @FXML
     private URL location;
@@ -30,10 +47,13 @@ public class Login {
     private ImageView btnVolume;
 
     @FXML
-    private TextField frmNickname;
+    private  TextField frmNickname;
 
     @FXML
     private Button btnLogin;
+    
+
+
 
     @FXML
     void MouseEntered(MouseEvent event) {
@@ -47,38 +67,20 @@ public class Login {
     
     
     @FXML
-    boolean doLogin(ActionEvent event) {
+    public void doLogin(ActionEvent event) {
     	Music.getInstance().play("click.wav");
     	Logger.log("Attempting to log in with user "+frmNickname.getText());
-
-    		/*
-			 * Sagi - fix it using Interface
-			 * MonDB.getInstance().setCurrentGame(new Game());
-			 * MonDB.getInstance().getCurrentGame().setCurrentLoggedUser((new User(frmNickname.getText(), PlayerAuth.PLAYER)));
-			 */
     	
     	if(frmNickname.getText().isEmpty())
     	{
-    		Alert alert=new Alert(AlertType.WARNING);
-    		alert.setTitle("validate fields");
-    		alert.setHeaderText(null);
-    		alert.setContentText("You must enter a username");
-    		alert.showAndWait();
-    		return false;
-    	}
-    	else if(!(frmNickname.getText().equals("user")))
-    	{
-    		Alert alert=new Alert(AlertType.WARNING);
-    		alert.setTitle("validate fields");
-    		alert.setHeaderText(null);
-    		alert.setContentText("Incorrect user");
-    		alert.showAndWait();
-    		return false;
-    		
+    		namelabel.setVisible(true);
     	}
     	else
+    	{
+
     	iWindow.swap(Window.Player_Menu);
-		return true;
+    	}
+    	
 
     	
     	
@@ -94,6 +96,16 @@ public class Login {
         assert frmNickname != null : "fx:id=\"frmNickname\" was not injected: check your FXML file 'Login.fxml'.";
         assert btnLogin != null : "fx:id=\"btnLogin\" was not injected: check your FXML file 'Login.fxml'.";
         assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Login.fxml'.";
+        namelabel.setVisible(false);
+        
+ 
+        
+        
+        
+        
+        
+        
+        
     }
     
     @FXML

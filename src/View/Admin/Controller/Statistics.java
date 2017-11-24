@@ -15,10 +15,28 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.PieChart.Data;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class Statistics {
+    @FXML
+    private Label Players;
+
+    @FXML
+    private Label Questions;
+
+    @FXML
+    private Label easy;
+
+    @FXML
+    private Label Hard;
+
+    @FXML
+    private Label Games_Played;
+
+    @FXML
+    private Label medium;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;

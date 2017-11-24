@@ -32,8 +32,8 @@
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
-      <PasswordField layoutX="383.0" layoutY="407.0" />
-      <TextField layoutX="383.0" layoutY="356.0" />
+      <PasswordField fx:id="txtPassword" layoutX="383.0" layoutY="407.0" />
+      <TextField fx:id="txtUserName" layoutX="383.0" layoutY="356.0" />
       <Button layoutX="428.0" layoutY="490.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="140.0" text="Back" />
       <Button layoutX="219.0" layoutY="490.0" mnemonicParsing="false" onAction="#openWelcomeAdmin" prefHeight="25.0" prefWidth="140.0" text="Login" />
       <ImageView fitHeight="209.0" fitWidth="222.0" layoutX="97.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
@@ -41,5 +41,15 @@
             <Image url="@../../../../../Desktop/admin-icon.png" />
          </image>
       </ImageView>
+      <Label fx:id="namelabel" layoutX="401.0" layoutY="384.0" text="Cannot Be Empty">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="namelabel1" layoutX="401.0" layoutY="440.0" text="Cannot Be Empty">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
