@@ -16,6 +16,7 @@ import java.util.Random;
 import Controller.Logger;
 import Utils.Param;
 import Utils.QuestionStrength;
+import Utils.QuestionTag;
 
 public class MonDB implements Serializable {
 
@@ -292,6 +293,34 @@ public class MonDB implements Serializable {
 		
 		
 		return false;
+	} 
+	
+	
+	/**
+	 * This method returns the question map as list
+	 * @return
+	 */
+	public List<Question> getQuestionsAsList(){
+		List<Question> list = new ArrayList<Question>();
+		for (Map.Entry<QuestionStrength, List<Question>> ls:gameQuestions.entrySet()) {
+			for(Question q:ls.getValue()) {
+				list.add(q);
+			}
+		}
+		
+		return list;
 	}
+	
+	/**
+	 * This method gets a list of questions and sets it as the game question list
+	 * @param list
+	 */
+	public void setQuestionList(List<Question> list) {
+		Map<QuestionStrength, List<Question>> toSet = new HashMap<QuestionStrength, List<Question>>();
+		for (Question q:list) {
+			toSet.get(q.getqStrength()).add(q);
+		}
+	}
+	
 	
 }
