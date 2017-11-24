@@ -97,6 +97,9 @@ public class Check {
     		txt1.setVisible(true);
     		label1.setVisible(true);
     		img1.setVisible(true);
+    		txt3Err.setVisible(false);
+    		txt2Err.setVisible(false);
+    		txt4Err.setVisible(false);
     		
     		txt2.setVisible(true);
     		label2.setVisible(true);
@@ -116,6 +119,10 @@ public class Check {
     		txt1.setVisible(true);
     		label1.setVisible(true);
     		img1.setVisible(true);
+    		txt3Err.setVisible(false);
+    		txt2Err.setVisible(false);
+    		txt4Err.setVisible(false);
+    		
 
     		
     		txt2.setVisible(true);
@@ -138,6 +145,9 @@ public class Check {
     		txt1.setVisible(true);
     		label1.setVisible(true);
     		img1.setVisible(true);
+    		txt3Err.setVisible(false);
+    		txt2Err.setVisible(false);
+    		txt4Err.setVisible(false);
     		
     		txt2.setVisible(true);
     		label2.setVisible(true);
@@ -220,9 +230,12 @@ public class Check {
     		if(txt2.getText().isEmpty())
     		{
     			txt2Err.setVisible(true);
+    		
     		}
+    		
     		else
     		{
+    			
     			iWindow.swap(Window.Game_UI);
     		}
     	}
@@ -256,10 +269,12 @@ public class Check {
     	 		if(txt2.getText().isEmpty())
         		{
         			txt2Err.setVisible(true);
+        			
         		}
         		else
         		{
         			txt2Err.setVisible(false);
+        		
         		}
         		if(txt3.getText().isEmpty())
         		{
