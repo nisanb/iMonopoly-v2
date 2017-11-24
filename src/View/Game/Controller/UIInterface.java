@@ -28,6 +28,8 @@ public interface UIInterface {
 	 * @param allow
 	 */
 	public void allowPurchase(Boolean allow);
+	
+	
 	public void allowRent(Boolean allow);
 	
 	/**
@@ -45,8 +47,9 @@ public interface UIInterface {
 	/**
 	 * Will display a question on-screen with possible answers
 	 * @param question
+	 *  @param player the player who is trying to answer this question
 	 */
-	public void displayQuestion(Question question);
+	public void displayQuestion(Question question, Player player);
 		
 	/**
 	 * When activated, will update the players' properties:

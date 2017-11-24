@@ -6,6 +6,7 @@ import java.util.Random;
 
 import Controller.Board;
 import Controller.iWindow;
+import Entity.Player;
 import Entity.Question;
 import Utils.Window;
 import javafx.fxml.FXML;
@@ -22,12 +23,21 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
-public class UI {
-
+public class UI implements UIInterface{
+	
+	ArrayList<Player> playersList = new ArrayList<>();
+	ArrayList<Pane> currentPlayerPanes = new ArrayList<>();
 	
 	ImageView[][] players = new ImageView[40][4];
 	ImageView[] roll1= new ImageView[6];
 	ImageView[] roll2= new ImageView[6];
+	
+	public static double playerStatsLeyoutx=80;
+	public static double playerStatsLeyout1y=60;
+	public static double playerStatsLeyout2y=150;
+	public static double playerStatsLeyout3y=240;
+	public static double playerStatsLeyout4y=330;
+	
 
 	@FXML
 	private ImageView player1_0= new ImageView();
@@ -647,24 +657,46 @@ public class UI {
 	    
 	    @FXML
 	    private Label theQuestion= new Label();
+	    
+	    @FXML
+	    private Button btnPayRent;
+
+	    @FXML
+	    private Pane paneCurrentTurnPlayer1;
+
+	    @FXML
+	    private Pane paneCurrentTurnPlayer2;
+
+	    @FXML
+	    private Pane paneCurrentTurnPlayer3;
+
+	    @FXML
+	    private Pane paneCurrentTurnPlayer4;
 
 
 	   
 	public UI() {
 			super();
-			initializeTiles();
+			
 			//initializeGame(){
 			
 		}
+	
+	public void buildBoard(){
+		initialize();
+		//playersList.get(0).
+		//player1Stats.layoutYProperty().set(arg0);
+	}
 
 	public void initializeGame(){
 		
-		int gameNum=Board.getInstance().getCurrentGameNum();
+	//	int gameNum=Board.getInstance().getCurrentGameNum();
 		initializeRound();
 		
 	}
 	
 	public void initializeRound(){
+		/*
 		int gameNum=Board.getInstance().getCurrentGameNum();
 		int round=Board.getInstance().getRound(gameNum);
 		String playerTurn=Board.getInstance().whosTurn(gameNum);
@@ -685,23 +717,10 @@ public class UI {
 		//current round
 		this.round.setText(round+"");
 		//
-		
-		
+		*/
 		
 	}
 	
-	@FXML
-	public void initializeQuestionsMenu(){
-		int gameNum=Board.getInstance().getCurrentGameNum();
-		String playerTurn=Board.getInstance().whosTurn(gameNum);
-		int tileNum=Board.getInstance().getCurrentTile(playerTurn);
-		
-		gameLogScrollPane.setVisible(false);
-		questionsPane.setVisible(true);
-		playerXIsAnswering.setText(playerTurn+ " is answering question :");
-		//theQuestion.setText(value);
-		//txtAnsw1.setText();
-	}
 	
 	public void answeringQuestion(String playerNickname, Question question){
 		
@@ -723,6 +742,7 @@ public class UI {
 		initializeDicesBeforeRoll();
 		//Board.getInstance().rollADice(playerNickName, gameNum, tileNum)
 		//Random r = new Random();
+		/*
 		int gameNum=Board.getInstance().getCurrentGameNum();
 		String playerNickname=Board.getInstance().whosTurn(gameNum);
 		int tileNum= Board.getInstance().getCurrentTile(playerNickname);
@@ -732,14 +752,336 @@ public class UI {
 		roll1[dice1-1].setVisible(true);
 		roll2[dice2-1].setVisible(true);
 		moveAPlayer(dice1+dice2);
+		*/
+	}
+
+    private void initializeDicesBeforeRoll() {
+        	for (int i=0; i<6; i++){
+        		roll1[i].setVisible(false);
+        		roll2[i].setVisible(false);
+        	}
 		
 	}
-	    
+ 
+	/*
+    @FXML
+    void initialize() {
+        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Login.fxml'.";
+        assert frmNickname != null : "fx:id=\"frmNickname\" was not injected: check your FXML file 'Login.fxml'.";
+        assert btnLogin != null : "fx:id=\"btnLogin\" was not injected: check your FXML file 'Login.fxml'.";
+        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Login.fxml'.";
+    }
+    */
 
-	    
-   
 
+    public void start(Stage primaryStage) throws Exception {
 
+        // just load fxml file and display it in the stage:
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainUI.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    @FXML
+    public void menuButton(){
+    	iWindow.swap(Window.Player_Menu);
+    }
+    
+    public void moveAPlayer(int dice){
+    	int player=2;
+    	int i;
+    	for (i=0; i<40; i++)
+    		if (players[i][2].isVisible())
+    			break;
+    	int current=i;
+    	players[current][player].setVisible(false);
+		players[(dice+current)%40][player].setVisible(true);
+		
+		
+    }
+    
+    
+
+	@Override
+	public UI getUI() {
+		return this;
+	}
+
+	@Override
+	public void movePlayer(Player player, int tileFrom, int tileTo) {
+		int playerPosition= playersList.indexOf(player);
+		players[tileFrom][playerPosition].setVisible(false);
+		players[tileTo][playerPosition].setVisible(true);
+		
+	}
+
+	@Override
+	public void allowPurchase(Boolean allow) {
+		btnBuyProperty.setDisable(!allow);
+		
+	}
+
+	@Override
+	public void allowRent(Boolean allow) {
+		btnPayRent.setDisable(!allow);
+		
+	}
+
+	@Override
+	public void allowRollDice(Boolean enabled) {
+		btnRollDice.setDisable(!enabled);
+		
+	}
+
+	@Override
+	public void finishGame() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void displayQuestion(Question question, Player player) {
+		gameLogScrollPane.setVisible(false);
+		questionsPane.setVisible(true);
+		playerXIsAnswering.setText(player.getNickName()+ " is answering question :");
+		theQuestion.setText(question.getqQuestion());
+		txtAnsw1.setText(question.getqAnswers().get(0)+"");
+		txtAnsw2.setText(question.getqAnswers().get(1)+"");
+		txtAnsw3.setText(question.getqAnswers().get(2)+"");
+		txtAnsw4.setText(question.getqAnswers().get(3)+"");
+		
+	}
+
+	@Override
+	public void updatePlayerProperties(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateCurrentPlayer(Player player) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void gameLog(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void gameLogDisplay(Boolean display) {
+		// TODO Auto-generated method stub
+		
+	}
+    
+    
+    
+    
+    
+   //////////////////////////////////////////////////initialize 
+    
+    private void initializeDicesFirstTime() {
+    	roll1[0]=roll1_1;
+    	roll1[1]=roll1_2;
+    	roll1[2]=roll1_3;
+    	roll1[3]=roll1_4;
+    	roll1[4]=roll1_5;
+    	roll1[5]=roll1_6;
+    	roll2[0]=roll2_1;
+    	roll2[1]=roll2_2;
+    	roll2[2]=roll2_3;
+    	roll2[3]=roll2_4;
+    	roll2[4]=roll2_5;
+    	roll2[5]=roll2_6;
+		
+    	for (int i=0; i<6; i++){
+    		roll1[i].setVisible(false);
+    		roll2[i].setVisible(false);
+    	}
+    }
+    
+    
+    
+    @FXML
+    void initializeTiles(){
+    	 /*panes.add(pane0);
+    	 panes.add(pane1);*/
+    	 
+    	players[0][0] = player1_0;
+    	players[0][1] = player2_0;
+    	players[0][2] = player3_0;
+    	players[0][3] = player4_0;
+    	players[1][0] = player1_1;
+    	players[1][1] = player2_1;
+    	players[1][2] = player3_1;
+    	players[1][3] = player4_1;
+    	players[2][0] = player1_2;
+    	players[2][1] = player2_2;
+    	players[2][2] = player3_2;
+    	players[2][3] = player4_2;
+    	players[3][0] = player1_3;
+    	players[3][1] = player2_3;
+    	players[3][2] = player3_3;
+    	players[3][3] = player4_3;
+    	players[4][0] = player1_4;
+    	players[4][1] = player2_4;
+    	players[4][2] = player3_4;
+    	players[4][3] = player4_4;
+    	players[5][0] = player1_5;
+    	players[5][1] = player2_5;
+    	players[5][2] = player3_5;
+    	players[5][3] = player4_5;
+    	players[6][0] = player1_6;
+    	players[6][1] = player2_6;
+    	players[6][2] = player3_6;
+    	players[6][3] = player4_6;
+    	players[7][0] = player1_7;
+    	players[7][1] = player2_7;
+    	players[7][2] = player3_7;
+    	players[7][3] = player4_7;
+    	players[8][0] = player1_8;
+    	players[8][1] = player2_8;
+    	players[8][2] = player3_8;
+    	players[8][3] = player4_8;
+    	players[9][0] = player1_9;
+    	players[9][1] = player2_9;
+    	players[9][2] = player3_9;
+    	players[9][3] = player4_9;
+    	players[10][0] = player1_10;
+    	players[10][1] = player2_10;
+    	players[10][2] = player3_10;
+    	players[10][3] = player4_10;
+    	players[11][0] = player1_11;
+    	players[11][1] = player2_11;
+    	players[11][2] = player3_11;
+    	players[11][3] = player4_11;
+    	players[12][0] = player1_12;
+    	players[12][1] = player2_12;
+    	players[12][2] = player3_12;
+    	players[12][3] = player4_12;
+    	players[13][0] = player1_13;
+    	players[13][1] = player2_13;
+    	players[13][2] = player3_13;
+    	players[13][3] = player4_13;
+    	players[14][0] = player1_14;
+    	players[14][1] = player2_14;
+    	players[14][2] = player3_14;
+    	players[14][3] = player4_14;
+    	players[15][0] = player1_15;
+    	players[15][1] = player2_15;
+    	players[15][2] = player3_15;
+    	players[15][3] = player4_15;
+    	players[16][0] = player1_16;
+    	players[16][1] = player2_16;
+    	players[16][2] = player3_16;
+    	players[16][3] = player4_16;
+    	players[17][0] = player1_17;
+    	players[17][1] = player2_17;
+    	players[17][2] = player3_17;
+    	players[17][3] = player4_17;
+    	players[18][0] = player1_18;
+    	players[18][1] = player2_18;
+    	players[18][2] = player3_18;
+    	players[18][3] = player4_18;
+    	players[19][0] = player1_19;
+    	players[19][1] = player2_19;
+    	players[19][2] = player3_19;
+    	players[19][3] = player4_19;
+    	players[20][0] = player1_20;
+    	players[20][1] = player2_20;
+    	players[20][2] = player3_20;
+    	players[20][3] = player4_20;
+    	players[21][0] = player1_21;
+    	players[21][1] = player2_21;
+    	players[21][2] = player3_21;
+    	players[21][3] = player4_21;
+    	players[22][0] = player1_22;
+    	players[22][1] = player2_22;
+    	players[22][2] = player3_22;
+    	players[22][3] = player4_22;
+    	players[23][0] = player1_23;
+    	players[23][1] = player2_23;
+    	players[23][2] = player3_23;
+    	players[23][3] = player4_23;
+    	players[24][0] = player1_24;
+    	players[24][1] = player2_24;
+    	players[24][2] = player3_24;
+    	players[24][3] = player4_24;
+    	players[25][0] = player1_25;
+    	players[25][1] = player2_25;
+    	players[25][2] = player3_25;
+    	players[25][3] = player4_25;
+    	players[26][0] = player1_26;
+    	players[26][1] = player2_26;
+    	players[26][2] = player3_26;
+    	players[26][3] = player4_26;
+    	players[27][0] = player1_27;
+    	players[27][1] = player2_27;
+    	players[27][2] = player3_27;
+    	players[27][3] = player4_27;
+    	players[28][0] = player1_28;
+    	players[28][1] = player2_28;
+    	players[28][2] = player3_28;
+    	players[28][3] = player4_28;
+    	players[29][0] = player1_29;
+    	players[29][1] = player2_29;
+    	players[29][2] = player3_29;
+    	players[29][3] = player4_29;
+    	players[30][0] = player1_30;
+    	players[30][1] = player2_30;
+    	players[30][2] = player3_30;
+    	players[30][3] = player4_30;
+    	players[31][0] = player1_31;
+    	players[31][1] = player2_31;
+    	players[31][2] = player3_31;
+    	players[31][3] = player4_31;
+    	players[32][0] = player1_32;
+    	players[32][1] = player2_32;
+    	players[32][2] = player3_32;
+    	players[32][3] = player4_32;
+    	players[33][0] = player1_33;
+    	players[33][1] = player2_33;
+    	players[33][2] = player3_33;
+    	players[33][3] = player4_33;
+    	players[34][0] = player1_34;
+    	players[34][1] = player2_34;
+    	players[34][2] = player3_34;
+    	players[34][3] = player4_34;
+    	players[35][0] = player1_35;
+    	players[35][1] = player2_35;
+    	players[35][2] = player3_35;
+    	players[35][3] = player4_35;
+    	players[36][0] = player1_36;
+    	players[36][1] = player2_36;
+    	players[36][2] = player3_36;
+    	players[36][3] = player4_36;
+    	players[37][0] = player1_37;
+    	players[37][1] = player2_37;
+    	players[37][2] = player3_37;
+    	players[37][3] = player4_37;
+    	players[38][0] = player1_38;
+    	players[38][1] = player2_38;
+    	players[38][2] = player3_38;
+    	players[38][3] = player4_38;
+    	players[39][0] = player1_39;
+    	players[39][1] = player2_39;
+    	players[39][2] = player3_39;
+    	players[39][3] = player4_39;
+    	 
+    	 for (int i=1; i<40; i++)
+    		 for (int j=0; j<4; j++)
+    			 players[i][j].setVisible(false);
+    	 for (Player p: playersList);
+    	 
+    	 //currentPlayerPanes.add()
+    	 
+    }
+    
+    
     @FXML
     void initialize() {
     	  assert main != null : "fx:id=\"main\" was not injected: check your FXML file 'TalUI.fxml'.";
@@ -1000,273 +1342,14 @@ public class UI {
           assert txtAnsw4 != null : "fx:id=\"txtAnsw21\" was not injected: check your FXML file 'UI.fxml'.";
           assert btnOfferTrade != null : "fx:id=\"btnOfferTrade\" was not injected: check your FXML file 'UI.fxml'.";
           assert round != null : "fx:id=\"round\" was not injected: check your FXML file 'UI.fxml'.";
+          assert btnPayRent != null : "fx:id=\"btnPayRent\" was not injected: check your FXML file 'UI.fxml'.";
+          assert paneCurrentTurnPlayer1 != null : "fx:id=\"paneCurrentTurnPlayer1\" was not injected: check your FXML file 'UI.fxml'.";
+          assert paneCurrentTurnPlayer2 != null : "fx:id=\"paneCurrentTurnPlayer2\" was not injected: check your FXML file 'UI.fxml'.";
+          assert paneCurrentTurnPlayer3 != null : "fx:id=\"paneCurrentTurnPlayer3\" was not injected: check your FXML file 'UI.fxml'.";
+          assert paneCurrentTurnPlayer4 != null : "fx:id=\"paneCurrentTurnPlayer4\" was not injected: check your FXML file 'UI.fxml'.";
 
         initializeTiles();
         initializeDicesFirstTime();
     }
-       
-         
-    
-    private void initializeDicesFirstTime() {
-    	roll1[0]=roll1_1;
-    	roll1[1]=roll1_2;
-    	roll1[2]=roll1_3;
-    	roll1[3]=roll1_4;
-    	roll1[4]=roll1_5;
-    	roll1[5]=roll1_6;
-    	roll2[0]=roll2_1;
-    	roll2[1]=roll2_2;
-    	roll2[2]=roll2_3;
-    	roll2[3]=roll2_4;
-    	roll2[4]=roll2_5;
-    	roll2[5]=roll2_6;
-		
-    	for (int i=0; i<6; i++){
-    		roll1[i].setVisible(false);
-    		roll2[i].setVisible(false);
-    	}
-    }
-    
-    private void initializeDicesBeforeRoll() {
-        	for (int i=0; i<6; i++){
-        		roll1[i].setVisible(false);
-        		roll2[i].setVisible(false);
-        	}
-		
-	}
-    	/**
-    	 * getting a game/2 dices and get 
-    	 */
 
-
-
-	/*
-    @FXML
-    void initialize() {
-        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Login.fxml'.";
-        assert frmNickname != null : "fx:id=\"frmNickname\" was not injected: check your FXML file 'Login.fxml'.";
-        assert btnLogin != null : "fx:id=\"btnLogin\" was not injected: check your FXML file 'Login.fxml'.";
-        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Login.fxml'.";
-    }
-    */
-    @FXML
-    void initializeTiles(){
-    	 /*panes.add(pane0);
-    	 panes.add(pane1);*/
-    	 
-    	players[0][0] = player1_0;
-    	players[0][1] = player2_0;
-    	players[0][2] = player3_0;
-    	players[0][3] = player4_0;
-    	players[1][0] = player1_1;
-    	players[1][1] = player2_1;
-    	players[1][2] = player3_1;
-    	players[1][3] = player4_1;
-    	players[2][0] = player1_2;
-    	players[2][1] = player2_2;
-    	players[2][2] = player3_2;
-    	players[2][3] = player4_2;
-    	players[3][0] = player1_3;
-    	players[3][1] = player2_3;
-    	players[3][2] = player3_3;
-    	players[3][3] = player4_3;
-    	players[4][0] = player1_4;
-    	players[4][1] = player2_4;
-    	players[4][2] = player3_4;
-    	players[4][3] = player4_4;
-    	players[5][0] = player1_5;
-    	players[5][1] = player2_5;
-    	players[5][2] = player3_5;
-    	players[5][3] = player4_5;
-    	players[6][0] = player1_6;
-    	players[6][1] = player2_6;
-    	players[6][2] = player3_6;
-    	players[6][3] = player4_6;
-    	players[7][0] = player1_7;
-    	players[7][1] = player2_7;
-    	players[7][2] = player3_7;
-    	players[7][3] = player4_7;
-    	players[8][0] = player1_8;
-    	players[8][1] = player2_8;
-    	players[8][2] = player3_8;
-    	players[8][3] = player4_8;
-    	players[9][0] = player1_9;
-    	players[9][1] = player2_9;
-    	players[9][2] = player3_9;
-    	players[9][3] = player4_9;
-    	players[10][0] = player1_10;
-    	players[10][1] = player2_10;
-    	players[10][2] = player3_10;
-    	players[10][3] = player4_10;
-    	players[11][0] = player1_11;
-    	players[11][1] = player2_11;
-    	players[11][2] = player3_11;
-    	players[11][3] = player4_11;
-    	players[12][0] = player1_12;
-    	players[12][1] = player2_12;
-    	players[12][2] = player3_12;
-    	players[12][3] = player4_12;
-    	players[13][0] = player1_13;
-    	players[13][1] = player2_13;
-    	players[13][2] = player3_13;
-    	players[13][3] = player4_13;
-    	players[14][0] = player1_14;
-    	players[14][1] = player2_14;
-    	players[14][2] = player3_14;
-    	players[14][3] = player4_14;
-    	players[15][0] = player1_15;
-    	players[15][1] = player2_15;
-    	players[15][2] = player3_15;
-    	players[15][3] = player4_15;
-    	players[16][0] = player1_16;
-    	players[16][1] = player2_16;
-    	players[16][2] = player3_16;
-    	players[16][3] = player4_16;
-    	players[17][0] = player1_17;
-    	players[17][1] = player2_17;
-    	players[17][2] = player3_17;
-    	players[17][3] = player4_17;
-    	players[18][0] = player1_18;
-    	players[18][1] = player2_18;
-    	players[18][2] = player3_18;
-    	players[18][3] = player4_18;
-    	players[19][0] = player1_19;
-    	players[19][1] = player2_19;
-    	players[19][2] = player3_19;
-    	players[19][3] = player4_19;
-    	players[20][0] = player1_20;
-    	players[20][1] = player2_20;
-    	players[20][2] = player3_20;
-    	players[20][3] = player4_20;
-    	players[21][0] = player1_21;
-    	players[21][1] = player2_21;
-    	players[21][2] = player3_21;
-    	players[21][3] = player4_21;
-    	players[22][0] = player1_22;
-    	players[22][1] = player2_22;
-    	players[22][2] = player3_22;
-    	players[22][3] = player4_22;
-    	players[23][0] = player1_23;
-    	players[23][1] = player2_23;
-    	players[23][2] = player3_23;
-    	players[23][3] = player4_23;
-    	players[24][0] = player1_24;
-    	players[24][1] = player2_24;
-    	players[24][2] = player3_24;
-    	players[24][3] = player4_24;
-    	players[25][0] = player1_25;
-    	players[25][1] = player2_25;
-    	players[25][2] = player3_25;
-    	players[25][3] = player4_25;
-    	players[26][0] = player1_26;
-    	players[26][1] = player2_26;
-    	players[26][2] = player3_26;
-    	players[26][3] = player4_26;
-    	players[27][0] = player1_27;
-    	players[27][1] = player2_27;
-    	players[27][2] = player3_27;
-    	players[27][3] = player4_27;
-    	players[28][0] = player1_28;
-    	players[28][1] = player2_28;
-    	players[28][2] = player3_28;
-    	players[28][3] = player4_28;
-    	players[29][0] = player1_29;
-    	players[29][1] = player2_29;
-    	players[29][2] = player3_29;
-    	players[29][3] = player4_29;
-    	players[30][0] = player1_30;
-    	players[30][1] = player2_30;
-    	players[30][2] = player3_30;
-    	players[30][3] = player4_30;
-    	players[31][0] = player1_31;
-    	players[31][1] = player2_31;
-    	players[31][2] = player3_31;
-    	players[31][3] = player4_31;
-    	players[32][0] = player1_32;
-    	players[32][1] = player2_32;
-    	players[32][2] = player3_32;
-    	players[32][3] = player4_32;
-    	players[33][0] = player1_33;
-    	players[33][1] = player2_33;
-    	players[33][2] = player3_33;
-    	players[33][3] = player4_33;
-    	players[34][0] = player1_34;
-    	players[34][1] = player2_34;
-    	players[34][2] = player3_34;
-    	players[34][3] = player4_34;
-    	players[35][0] = player1_35;
-    	players[35][1] = player2_35;
-    	players[35][2] = player3_35;
-    	players[35][3] = player4_35;
-    	players[36][0] = player1_36;
-    	players[36][1] = player2_36;
-    	players[36][2] = player3_36;
-    	players[36][3] = player4_36;
-    	players[37][0] = player1_37;
-    	players[37][1] = player2_37;
-    	players[37][2] = player3_37;
-    	players[37][3] = player4_37;
-    	players[38][0] = player1_38;
-    	players[38][1] = player2_38;
-    	players[38][2] = player3_38;
-    	players[38][3] = player4_38;
-    	players[39][0] = player1_39;
-    	players[39][1] = player2_39;
-    	players[39][2] = player3_39;
-    	players[39][3] = player4_39;
-    	 
-    	 for (int i=1; i<40; i++)
-    		 for (int j=0; j<4; j++)
-    			 players[i][j].setVisible(false);
-    	 
-    }
-
-    
-    @FXML
-     void positionPlayers(){//List <Player> players){
-    	
-    	int player=2;
-    	int current=0;
-    	int dice=4;
-    	players[current][player].setVisible(false);
-		players[(dice+current)%40][player].setVisible(true);
-    		
-    		  	
-    }
-    private void move(int i){
-    	
-    	players[i][2].setVisible(false);
-		players[i+1][2].setVisible(true);
-
-    }
-    public void start(Stage primaryStage) throws Exception {
-
-        // just load fxml file and display it in the stage:
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("mainUI.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
-    @FXML
-    public void menuButton(){
-    	iWindow.swap(Window.Player_Menu);
-    }
-    
-    public void moveAPlayer(int dice){
-    	int player=2;
-    	int i;
-    	for (i=0; i<40; i++)
-    		if (players[i][2].isVisible())
-    			break;
-    	int current=i;
-    	players[current][player].setVisible(false);
-		players[(dice+current)%40][player].setVisible(true);
-		
-		
-    }
-    
-    
-    
 }

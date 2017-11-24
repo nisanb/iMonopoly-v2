@@ -1000,7 +1000,7 @@
             </ImageView>
          </children>
       </Pane>
-      <ImageView fx:id="player1Stats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="60.0">
+      <ImageView fx:id="player1Stats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="60.0" styleClass="color">
          <image>
             <Image url="@../../Resources/PSD/Players/7.png" />
          </image>
@@ -1270,5 +1270,14 @@
             <Font name="Cooper Black" size="20.0" />
          </font>
       </Button>
+      <Button fx:id="btnPayRent" disable="true" layoutX="372.0" layoutY="264.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: blue;" text="Pay Rent" textFill="WHITE">
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Button>
+      <Pane fx:id="paneCurrentTurnPlayer1" layoutX="72.0" layoutY="56.0" prefHeight="93.0" prefWidth="83.0" style="-fx-border-color: red;" />
+      <Pane fx:id="paneCurrentTurnPlayer2" layoutX="72.0" layoutY="145.0" prefHeight="93.0" prefWidth="83.0" style="-fx-border-color: red;" />
+      <Pane fx:id="paneCurrentTurnPlayer3" layoutX="72.0" layoutY="235.0" prefHeight="93.0" prefWidth="83.0" style="-fx-border-color: red;" />
+      <Pane fx:id="paneCurrentTurnPlayer4" layoutX="72.0" layoutY="325.0" prefHeight="93.0" prefWidth="83.0" style="-fx-border-color: red;" />
    </children>
 </AnchorPane>

@@ -37,6 +37,15 @@ public class Board implements IBoard{
 		
 	}
 
+<<<<<<< Updated upstream
+=======
+	@Override
+	public char getPlayerColor(Player player) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+>>>>>>> Stashed changes
 
 	
 }

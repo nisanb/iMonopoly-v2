@@ -22,4 +22,11 @@ public interface IBoard {
 	public List<Player> getGamePlayers();
 
 	public void nextTurn();
+	
+	/**
+	 * 
+	 * @param player
+	 * @return R for RED, B for BLUE, G for GREEN and Y for YELLOW
+	 */
+	public char getPlayerColor(Player player);
 }
