@@ -14,7 +14,7 @@ public interface IManagement {
 
 	public List<Question> getQuestions();
 	
-	
+	public String getLoggedPlayer();
 	
 	
 	/**

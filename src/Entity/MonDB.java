@@ -15,6 +15,7 @@ import java.util.Random;
 
 import Controller.Logger;
 import Utils.Param;
+import Utils.PlayerAuth;
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
 
@@ -27,6 +28,7 @@ public class MonDB implements Serializable {
 	private static MonDB Data;
 	private Map<Param, Object> DBParams;
 	transient private Game currentGame;
+	transient private Player currentPlayer;
 	private List<Tilable> tileSet;
 
 	/**
@@ -322,6 +324,26 @@ public class MonDB implements Serializable {
 		}
 		
 		this.gameQuestions = toSet;
+	}
+
+	public Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+
+	public void setCurrentPlayer(Player currentPlayer) {
+		this.currentPlayer = currentPlayer;
+	}
+
+	/**
+	 * Logs in the user to the system
+	 * @param nickname
+	 */
+	public String login(String nickname) {
+		if(!playerData.contains(nickname)){
+			playerData.add(new User(nickname, PlayerAuth.PLAYER));
+		}
+		
+		return playerData.get(playerData.indexOf(new User(nickname))).getNickName();
 	}
 	
 	

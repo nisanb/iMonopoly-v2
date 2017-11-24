@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import Entity.MonDB;
 import Entity.Question;
+import Entity.User;
 import Utils.QuestionStrength;
 import View.IManagement;
 
 public class Management implements IManagement{
 
 	private static Management instance = null;
-	
+	private static MonDB _db = MonDB.getInstance();
 	private Management(){}
 	
 	protected static Management getInstance(){
@@ -34,5 +35,13 @@ public class Management implements IManagement{
 		return null;
 	}
 
+	@Override
+	public String getLoggedPlayer() {
+		return MonDB.getInstance().getCurrentPlayer().getNickName();
+	}
+
+	public void login(String nickname){
+		_db.login(nickname);
+	}
 	
 }
