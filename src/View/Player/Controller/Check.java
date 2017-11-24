@@ -22,6 +22,15 @@ public class Check {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
+    
+    @FXML
+    private Label txt2Err;
+
+    @FXML
+    private Label txt3Err;
+
+    @FXML
+    private Label txt4Err;
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
@@ -203,8 +212,98 @@ public class Check {
 
     @FXML
     void openBoard(ActionEvent event) {
-    	iWindow.swap(Window.Game_UI);
-    }
+    	
+    	Integer res= Integer.valueOf((int) slide1.getValue());
+    	System.out.println(res);
+    	if(res==2)
+    	{
+    		if(txt2.getText().isEmpty())
+    		{
+    			txt2Err.setVisible(true);
+    		}
+    		else
+    		{
+    			iWindow.swap(Window.Game_UI);
+    		}
+    	}
+    	
+    	if(res==3)
+    	{
+    		if(txt2.getText().isEmpty())
+    		{
+    			txt2Err.setVisible(true);
+    		}
+    		else
+    		{
+    			txt2Err.setVisible(false);
+    		}
+    		if(txt3.getText().isEmpty())
+    		{
+    			txt3Err.setVisible(true);
+    		}
+    		else
+    		{
+    			txt3Err.setVisible(false);
+    		}
+    		if((!txt2.getText().isEmpty())&&(!txt3.getText().isEmpty()))
+    		{
+    			iWindow.swap(Window.Game_UI);
+    		}
+    		
+    	}
+    		if(res==4)
+    		{
+    	 		if(txt2.getText().isEmpty())
+        		{
+        			txt2Err.setVisible(true);
+        		}
+        		else
+        		{
+        			txt2Err.setVisible(false);
+        		}
+        		if(txt3.getText().isEmpty())
+        		{
+        			txt3Err.setVisible(true);
+        		}
+        		else
+        		{
+        			txt3Err.setVisible(false);
+        		}
+        		
+        		if(txt4.getText().isEmpty())
+        		{
+        			txt4Err.setVisible(true);
+        		}
+        		else
+        		{
+        			txt4Err.setVisible(false);
+        		}
+        		
+        		if((!txt2.getText().isEmpty())&&(!txt3.getText().isEmpty())&&(!txt4.getText().isEmpty()))
+        		{
+        			iWindow.swap(Window.Game_UI);
+        		}
+  
+    		}
+    	}
+    	 
+
+			
+			
+    	
+    	
+    
+
+        		
+    		
+    		
+    	
+    	
+    	
+    	
+    	
+    
+    
     
   
 
@@ -235,6 +334,10 @@ public class Check {
       
         img3.setVisible(false);
         img4.setVisible(false);
+        
+        txt2Err.setVisible(false);
+        txt3Err.setVisible(false);
+        txt4Err.setVisible(false);
 
     }
     
