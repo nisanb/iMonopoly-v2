@@ -3,6 +3,7 @@ package View;
 import java.util.List;
 
 import Entity.Answer;
+import Entity.Player;
 import Entity.Question;
 
 public interface IBoard {
@@ -13,4 +14,12 @@ public interface IBoard {
 	 * @param playerAnswers
 	 */
 	public void answerQuestion(Question question, List<Answer> playerAnswers);
+
+	/**
+	 * Returns the current game players
+	 * @return
+	 */
+	public List<Player> getGamePlayers();
+
+	public void nextTurn();
 }

@@ -20,7 +20,7 @@ public interface UIInterface {
 	 * @param playerNumber
 	 * @param tileNumber
 	 */
-	public void movePlayer(int playerNumber, int tileFrom, int tileTo);
+	public void movePlayer(Player player, int tileFrom, int tileTo);
 	
 	/**
 	 * if allow==true - display purchase option
@@ -62,6 +62,18 @@ public interface UIInterface {
 	 * @param player
 	 */
 	public void updateCurrentPlayer(Player player);
+	
+	/**
+	 * Get a message to print in game log
+	 * @param message
+	 */
+	public void gameLog(String message);
+	
+	/**
+	 * Display the history of game log
+	 * @param display
+	 */
+	void gameLogDisplay(Boolean display);
 	
 	
 	
