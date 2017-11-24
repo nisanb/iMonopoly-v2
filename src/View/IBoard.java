@@ -86,6 +86,7 @@ public interface IBoard {
 	 */
 	public Boolean isPlayerRight(Question question, Player player);
 	
+<<<<<<< Updated upstream
 	/**
 	 * 
 	 * @param gameNum the number of the game
@@ -93,4 +94,7 @@ public interface IBoard {
 	 */
 	public int getRound(int gameNum);
 
+=======
+	
+>>>>>>> Stashed changes
 }
