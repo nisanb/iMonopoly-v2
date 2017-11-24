@@ -13,10 +13,14 @@ public interface IManagement {
 	
 
 	public List<Question> getQuestions();
+<<<<<<< Updated upstream
 	
 	public String getLoggedPlayer();
 	
 	
+=======
+
+>>>>>>> Stashed changes
 	/**
 	 * Methods TO DO
 	 */
@@ -26,6 +30,14 @@ public interface IManagement {
 	 * @return
 	 */
 	public List<Question> getQuestionsByDifficulty(QuestionStrength qs);
+	
+	
+	
+	/*
+	 * return String of User who login to System
+	 */
+	public String GetLoginUser(String UserNickName);
+	
 	
 	
 }

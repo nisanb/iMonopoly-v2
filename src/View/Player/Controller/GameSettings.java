@@ -213,6 +213,11 @@ public class GameSettings {
     
     @FXML
     void openBoard(ActionEvent event) {
+    	if(combobox.getValue()=="2")
+    	{
+    		
+    	}
+    	
     	iWindow.swap(Window.Game_UI);
     }
     

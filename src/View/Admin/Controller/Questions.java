@@ -177,8 +177,7 @@ public class Questions {
     }
    
 
-    ObservableList<String> list=FXCollections.observableArrayList("1","2","3","4");
-    ObservableList<String> list1=FXCollections.observableArrayList("Easy","Medium","Hard");
+
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -217,6 +216,7 @@ public class Questions {
         FalseBu2.setSelected(true);
         FalseBu3.setSelected(true);
         FalseBu4.setSelected(true);
+        getQeuestions();
     
       
         
@@ -268,6 +268,24 @@ public class Questions {
     void ChangeTrueBu4(MouseEvent event) {
     	FalseBu4.setSelected(false);
     	TrueBu4.setSelected(true);
+    }
+    
+    ObservableList<String> list=FXCollections.observableArrayList("1","2","3","4");
+    ObservableList<String> list1=FXCollections.observableArrayList("Easy","Medium","Hard");
+    
+   
+    
+    
+    
+    //=====================================  METHODS ============================================
+    private void getQeuestions(){
+    	Map<QuestionStrength, List<Question>> questions = MonDB.getInstance().getGameQuestions();
+    	for (Map.Entry<QuestionStrength, List<Question>> list: questions.entrySet()){
+    		for (Question q:list.getValue()){
+    			System.out.println(q);
+    		}
+    	}
+    	
     }
 
 

@@ -36,6 +36,7 @@ public class Management implements IManagement{
 	}
 
 	@Override
+<<<<<<< Updated upstream
 	public String getLoggedPlayer() {
 		return MonDB.getInstance().getCurrentPlayer().getNickName();
 	}
@@ -43,5 +44,12 @@ public class Management implements IManagement{
 	public void login(String nickname){
 		_db.login(nickname);
 	}
+=======
+	public String GetLoginUser(String UserNickName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+>>>>>>> Stashed changes
 	
 }
