@@ -33,7 +33,7 @@ public class GameEngine implements IGameEngine {
 		disableAll();
 
 		// Enable Roll Dice
-		ui.updateCurrentPlayer(_game.nextPlayer());
+		ui.updateCurrentPlayer(_game.nextPlayer().getNickName());
 
 	}
 
@@ -86,7 +86,7 @@ public class GameEngine implements IGameEngine {
 
 			currentLocation %= 40;
 			
-			ui.movePlayer(currentPlayer(), currentLocation, currentLocation + 1);
+			ui.movePlayer(currentPlayer().getNickName(), currentLocation, currentLocation + 1);
 			
 			currentLocation++;
 			

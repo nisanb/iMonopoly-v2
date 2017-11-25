@@ -1,8 +1,6 @@
 package View.Game.Controller;
 
-import Entity.Player;
 import Entity.Question;
-import javafx.fxml.FXML;
 
 public interface UIInterface {
 
@@ -12,7 +10,7 @@ public interface UIInterface {
 	 * @param playerNumber
 	 * @param tileNumber
 	 */
-	public void movePlayer(Player player, int tileFrom, int tileTo);
+	public void movePlayer(String player, int tileFrom, int tileTo);
 	
 	/**
 	 * if allow==true - display purchase option
@@ -41,7 +39,7 @@ public interface UIInterface {
 	 * @param question
 	 *  @param player the player who is trying to answer this question
 	 */
-	public void displayQuestion(Question question, Player player);
+	public void displayQuestion(Question question, String nickname);
 		
 	/**
 	 * When activated, will update the players' properties:
@@ -57,7 +55,7 @@ public interface UIInterface {
 	 * Will highlight the current player who is playing
 	 * @param player
 	 */
-	public void updateCurrentPlayer(Player player);
+	public void updateCurrentPlayer(String player);
 	
 	/**
 	 * Get a message to print in game log
@@ -94,7 +92,7 @@ public interface UIInterface {
 	 * @param AssetName to show on screen
 	 * @return true for buy - false for rent
 	 */
-	public boolean buyOrRentProperty(int buyAmount, int rentAmount, Player player, String AssetName);
+	public boolean buyOrRentProperty(int buyAmount, int rentAmount, String player, String AssetName);
 	
 	
 }

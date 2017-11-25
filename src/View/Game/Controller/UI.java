@@ -797,7 +797,7 @@ public class UI implements UIInterface{
 	}
 
 	@Override
-	public void movePlayer(Player player, int tileFrom, int tileTo) {
+	public void movePlayer(String player, int tileFrom, int tileTo) {
 		//the player's order in the game
 		int playerPosition= playersList.indexOf(player);
 		players[tileFrom][playerPosition].setVisible(false);
@@ -830,10 +830,10 @@ public class UI implements UIInterface{
 	}
 
 	@Override
-	public void displayQuestion(Question question, Player player) {
+	public void displayQuestion(Question question, String player) {
 		gameLogScrollPane.setVisible(false);
 		questionsPane.setVisible(true);
-		playerXIsAnswering.setText(player.getNickName()+ " is answering question :");
+		playerXIsAnswering.setText(player + " is answering question :");
 		theQuestion.setText(question.getqQuestion());
 		txtAnsw1.setText(question.getqAnswers().get(0)+"");
 		txtAnsw2.setText(question.getqAnswers().get(1)+"");
@@ -847,9 +847,9 @@ public class UI implements UIInterface{
 	}
 
 	@Override
-	public void updateCurrentPlayer(Player player) {
+	public void updateCurrentPlayer(String nickname) {
 		for (int i=0; i<playersList.size(); i++){
-			if (playersList.get(i).equals(player)){
+			if (playersList.get(i).equals(nickname)){
 				currentPlayerPanes[i].setVisible(true);
 			}
 			else
@@ -916,7 +916,7 @@ public class UI implements UIInterface{
 	}
 	
 	@Override
-	public boolean buyOrRentProperty(int buyAmount, int rentAmount, Player player, String AssetName) {
+	public boolean buyOrRentProperty(int buyAmount, int rentAmount, String player, String AssetName) {
 		// TODO Auto-generated method stub
 		return false;
 	}
