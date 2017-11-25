@@ -22,7 +22,7 @@ public class Game implements Serializable {
 	 */
 	private List<Tilable> _gameTiles;
 	private LinkedList<Player> _playList;
-	
+	private List<Player> _gamePlayers;
 	/**
 	 * Current
 	 */
@@ -88,6 +88,7 @@ public class Game implements Serializable {
 	//Adds a player to the game
 	protected void addPlayer(Player player) {
 		_playList.add(player);
+		_gamePlayers.add(player);
 	}
 
 	public Dice rollDice() {
@@ -131,6 +132,8 @@ public class Game implements Serializable {
 	public void play() {
 		int currentPlayer;
 		int maxRounds = 50;
+		
+		
 		//count Rounds
 		//use nisan's methodology of pre/post visit
 		while (_currentRound < maxRounds) {
