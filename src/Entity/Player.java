@@ -70,7 +70,7 @@ public class Player extends User implements Comparable<Player> {
 		_cash = cash;
 	}
 
-	protected Tilable getCurrentTile() {
+	public Tilable getCurrentTile() {
 		return _currentTile;
 	}
 
