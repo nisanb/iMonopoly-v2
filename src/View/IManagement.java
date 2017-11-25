@@ -36,6 +36,6 @@ public interface IManagement {
 	 */
 	public String GetLoginUser(String UserNickName);
 	
-	
-	
+	public void build(List<String> playerList);
+	public void login(String nickname);
 }

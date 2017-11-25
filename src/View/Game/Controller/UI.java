@@ -1389,7 +1389,7 @@ public class UI implements UIInterface{
           assert txtAnswerPane4 != null : "fx:id=\"txtAnswerPane4\" was not injected: check your FXML file 'UI.fxml'.";
           assert txtAnswerPane3 != null : "fx:id=\"txtAnswerPane3\" was not injected: check your FXML file 'UI.fxml'.";
           assert txtAnswerPane1 != null : "fx:id=\"txtAnswerPane3\" was not injected: check your FXML file 'UI.fxml'.";
-          
+         ge.setUI(this);
         initializeTiles();
         initializeDicesFirstTime();
     }

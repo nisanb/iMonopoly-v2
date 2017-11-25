@@ -1,9 +1,14 @@
 package View;
 
+import View.Game.Controller.UI;
+
 public interface IGameEngine {
 
 	// please add any extra variables inside the methods if needed
-	
+	/**
+	 * DO NOT TOUCH
+	 */
+	public void setUI(UI ui);
 	
 	/**
 	 * Button Clicked methods sent from UI

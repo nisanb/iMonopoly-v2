@@ -5,10 +5,13 @@
 package View.Player.Controller;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import Controller.iWindow;
 import Utils.Window;
+import View.IManagement;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,6 +23,8 @@ import javafx.scene.input.SwipeEvent;
 
 public class Check {
 
+	private IManagement mng = iWindow.getManagement();
+	
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
     
@@ -235,7 +240,11 @@ public class Check {
     		
     		else
     		{
-    			
+    		
+    			List<String> playerList = new ArrayList<String>();
+    			playerList.add(mng.getLoggedPlayer());
+    			playerList.add(txt2.getText());
+    			mng.build(playerList);
     			iWindow.swap(Window.Game_UI);
     		}
     	}

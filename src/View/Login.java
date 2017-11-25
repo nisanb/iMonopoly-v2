@@ -33,6 +33,7 @@ public class Login {
     @FXML
     private ResourceBundle resources;
     
+    private IManagement mng = iWindow.getManagement();
 
     @FXML // fx:id="dice"
     private ImageView dice; // Value injected by FXMLLoader
@@ -77,7 +78,7 @@ public class Login {
     	}
     	else
     	{
-
+    	mng.login(frmNickname.getText());
     	iWindow.swap(Window.Player_Menu);
     	}
     	

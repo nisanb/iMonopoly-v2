@@ -1,5 +1,6 @@
 package Entity;
 
+import java.awt.Color;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -27,7 +28,7 @@ public class MonDB implements Serializable {
 	private static MonDB Data;
 	private Map<Param, Object> DBParams;
 	transient private Game currentGame;
-	transient private Player currentPlayer;
+	transient private User currentUser;
 	private List<Tilable> tileSet;
 
 	/**
@@ -53,10 +54,10 @@ public class MonDB implements Serializable {
 	 * Initiation of tile list
 	 */
 	protected void initTiles() {
-		
+
 		Logger.log("Initiating Game Board Tiles..");
-	
-		//Starting Tile
+
+		// Starting Tile
 		tileSet.add(new StartTile(0, "Starting Point"));
 		tileSet.add(new PropertyTile(1, "uTorrent", QuestionStrength.MEDIUM));
 		tileSet.add(new QMTile(2, "Question Mark"));
@@ -97,7 +98,7 @@ public class MonDB implements Serializable {
 		tileSet.add(new PropertyTile(37, "Google", QuestionStrength.HARD));
 		tileSet.add(new LuckTile(38, "Lucky Shot"));
 		tileSet.add(new PropertyTile(39, "Apple", QuestionStrength.HARD));
-		
+
 		Logger.log("Finished initiating tiles");
 	}
 
@@ -184,8 +185,6 @@ public class MonDB implements Serializable {
 		}
 	}
 
-	
-	
 	/**
 	 * Randomly generate a question by question strength
 	 * 
@@ -223,22 +222,23 @@ public class MonDB implements Serializable {
 		// TODO Auto-generated method stub
 		DBParams.put(p, value);
 	}
-	
-	public void resetParamsToDefault(){
+
+	public void resetParamsToDefault() {
 		Logger.log("Resetting params to default..");
 		initParams();
 		Logger.log("Finished resetting params");
 	}
 
-	public static void main (){
-		MonDB d=new MonDB();
+	public static void main() {
+		MonDB d = new MonDB();
 		d.initTiles();
 	}
-	
-	
+
 	/**
 	 * This method removes specific question from map and json
-	 * @param question q
+	 * 
+	 * @param question
+	 *            q
 	 * @return true of removed
 	 */
 	public boolean deleteQuestion(Question q) {
@@ -246,11 +246,11 @@ public class MonDB implements Serializable {
 			return false;
 		if (this.gameQuestions.get(q) == null)
 			return false;
-		
-		//get the correct list
+
+		// get the correct list
 		int indexToDelete = this.gameQuestions.get(q.getqStrength()).indexOf(q);
-		
-		//if object was found delete it, save the new json, and return true
+
+		// if object was found delete it, save the new json, and return true
 		if (indexToDelete > 0) {
 			this.gameQuestions.get(q.getqStrength()).remove(indexToDelete);
 			JSON.getInstance().saveQuestions(this.gameQuestions);
@@ -258,91 +258,91 @@ public class MonDB implements Serializable {
 		}
 		return false;
 	}
-	
+
 	/**
 	 * This method adds new question to the map and saves it to json
+	 * 
 	 * @param q
 	 * @return
 	 */
 	public boolean addQuesiton(Question q) {
-		//if map or list are empty initialise the data structure
+		// if map or list are empty initialise the data structure
 		if (this.gameQuestions == null)
 			this.gameQuestions = new HashMap<QuestionStrength, List<Question>>();
 		if (this.gameQuestions.get(q.getqStrength()) == null)
 			this.gameQuestions.put(q.getqStrength(), new ArrayList<Question>());
-		
-		//add the new question to the correct list and save the json
+
+		// add the new question to the correct list and save the json
 		if (this.gameQuestions.get(q.getqStrength()).add(q)) {
 			JSON.getInstance().saveQuestions(this.gameQuestions);
 			return true;
 		}
-		
+
 		return false;
 	}
-	
-	
+
 	/**
 	 * Update question by deleting it and add the new one
+	 * 
 	 * @param qBefore
 	 * @param qAfter
 	 * @return
 	 */
 	public boolean updateQuestion(Question qBefore, Question qAfter) {
 		if (deleteQuestion(qBefore))
-			if(addQuesiton(qAfter))
+			if (addQuesiton(qAfter))
 				return true;
-		
-		
+
 		return false;
-	} 
-	
-	
+	}
+
 	/**
 	 * This method returns the question map as list
+	 * 
 	 * @return
 	 */
-	public List<Question> getQuestionsAsList(){
+	public List<Question> getQuestionsAsList() {
 		List<Question> list = new ArrayList<Question>();
-		for (Map.Entry<QuestionStrength, List<Question>> ls:gameQuestions.entrySet()) {
-			for(Question q:ls.getValue()) {
+		for (Map.Entry<QuestionStrength, List<Question>> ls : gameQuestions.entrySet()) {
+			for (Question q : ls.getValue()) {
 				list.add(q);
 			}
 		}
-		
+
 		return list;
 	}
-	
+
 	/**
-	 * This method gets a list of questions and sets it as the game question list
+	 * This method gets a list of questions and sets it as the game question
+	 * list
+	 * 
 	 * @param list
 	 */
 	public void setQuestionList(List<Question> list) {
 		Map<QuestionStrength, List<Question>> toSet = new HashMap<QuestionStrength, List<Question>>();
-		for (Question q:list) {
+		for (Question q : list) {
 			toSet.get(q.getqStrength()).add(q);
 		}
-		
+
 		this.gameQuestions = toSet;
 	}
 
-	public Player getCurrentPlayer() {
-		return currentPlayer;
+	public User getCurrentUser() {
+		return currentUser;
 	}
 
-	public void setCurrentPlayer(Player currentPlayer) {
-		this.currentPlayer = currentPlayer;
+	public void setCurrentUser(User currentPlayer) {
+		this.currentUser = currentPlayer;
 	}
 
 	/**
 	 * Logs in the user to the system
+	 * 
 	 * @param nickname
 	 */
 	public String login(String nickname) {
-		if(!playerData.contains(nickname)){
-			playerData.add(new User(nickname, PlayerAuth.PLAYER));
-		}
-		
-		return playerData.get(playerData.indexOf(new User(nickname))).getNickName();
+		setCurrentUser(new User(verifyPlayer(nickname)));
+		return nickname;
 	}
 
 	public List<Tilable> getTileSet() {
@@ -352,6 +352,25 @@ public class MonDB implements Serializable {
 	protected void setTileSet(List<Tilable> tileSet) {
 		this.tileSet = tileSet;
 	}
+
+	public String verifyPlayer(String nickname) {
+		if (!playerData.contains(nickname)) {
+			playerData.add(new User(nickname, PlayerAuth.PLAYER));
+		}
+
+		return playerData.get(playerData.indexOf(new User(nickname))).getNickName();
+	}
 	
-	
+	public void buildGame(List<String> playerList){
+		List<Player> newPlayerList = new ArrayList<>();
+		Color[] clist = {Color.GREEN, Color.BLUE, Color.YELLOW, Color.RED};
+		int i=0;
+		currentGame = new Game();
+		for(String s : playerList){
+			newPlayerList.add(new Player(MonDB.getInstance().login(s), (Integer)Param.get(Param.STARTING_CASH), clist[i++]));
+		}
+		
+		currentGame.build(newPlayerList);
+	}
+
 }

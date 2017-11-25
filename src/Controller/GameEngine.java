@@ -9,7 +9,7 @@ import View.Game.Controller.UI;
 
 public class GameEngine implements IGameEngine {
 
-	private UI ui = UI.getInstance();
+	private UI ui;
 	private static GameEngine _instance = null;
 	private Game _game;
 
@@ -23,6 +23,10 @@ public class GameEngine implements IGameEngine {
 		return _instance;
 	}
 
+	public void setUI(UI ui){
+		this.ui = ui;
+	}
+	
 	/**
 	 * This will transfer the board state to a new players' turn based on the
 	 * players' linked list

@@ -28,7 +28,7 @@ public class Player extends User implements Comparable<Player> {
 	 * @param nickname
 	 * @param cash
 	 */
-	protected Player(String nickname, Integer cash, Color playerColor) {
+	public Player(String nickname, Integer cash, Color playerColor) {
 		super(nickname, PlayerAuth.PLAYER);
 		_propertyList = new ArrayList<>();
 		_userAnswers = new HashMap<>();
@@ -39,7 +39,7 @@ public class Player extends User implements Comparable<Player> {
 		_inJail = false;
 
 	}
-	
+
 	public List<PropertyTile> getPropertyList() {
 		return _propertyList;
 	}

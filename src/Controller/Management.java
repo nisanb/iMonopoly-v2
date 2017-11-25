@@ -2,12 +2,18 @@ package Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 import Entity.MonDB;
+import Entity.Player;
 import Entity.Question;
 import Entity.User;
+import Utils.Param;
 import Utils.PlayerAuth;
 import Utils.QuestionStrength;
 import View.IManagement;
+
+import java.awt.Color;
 
 public class Management implements IManagement{
 
@@ -37,7 +43,7 @@ public class Management implements IManagement{
 
 
 	public String getLoggedPlayer() {
-		return MonDB.getInstance().getCurrentPlayer().getNickName();
+		return MonDB.getInstance().getCurrentUser().getNickName();
 	}
 
 	public void login(String nickname){
@@ -53,6 +59,9 @@ public class Management implements IManagement{
 		return u.getNickName();
 	}
 
+	public void build(List<String> playerList){
+		_db.buildGame(playerList);
+	}
 
 	
 }
