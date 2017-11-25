@@ -67,6 +67,7 @@ public class Game implements Serializable {
 		 */
 		_playList = new LinkedList<>();
 		_playList.addAll(playerList);
+		_currentPlayer = nextPlayer();
 		_gamePlayers = playerList;
 
 	}
@@ -213,7 +214,7 @@ public class Game implements Serializable {
 
 	public Tilable getTile(int tileNumber) {
 		try {
-			return _gameTiles.get(_gameTiles.indexOf(new Tile(tileNumber)));
+			return _gameTiles.get(tileNumber);
 		} catch (Exception e) {
 
 			return null;

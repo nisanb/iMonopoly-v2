@@ -87,11 +87,10 @@ public class GameEngine implements IGameEngine {
 
 		while (currentLocation != moveToTile) {
 			currentPlayer().getCurrentTile().postVisit(currentPlayer());
-
 			currentLocation %= 40;
 			
 			ui.movePlayer(currentPlayer().getNickName(), currentLocation, currentLocation + 1);
-			
+			currentPlayer().setCurrentTile(_game.getTile(currentLocation+1));
 			currentLocation++;
 			
 			currentPlayer().getCurrentTile().preVisit(currentPlayer());

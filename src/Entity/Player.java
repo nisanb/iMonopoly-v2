@@ -74,7 +74,7 @@ public class Player extends User implements Comparable<Player> {
 		return _currentTile;
 	}
 
-	protected void setCurrentTile(Tilable currentTile) {
+	public void setCurrentTile(Tilable currentTile) {
 		_currentTile = currentTile;
 	}
 
