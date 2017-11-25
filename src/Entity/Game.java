@@ -238,5 +238,13 @@ public class Game implements Serializable {
 	public Player getCurrentPlayer() {
 		return _playList.peekFirst();
 	}
+	
+	public List<String> getPlayerList(){
+		List<String> newList = new ArrayList<String>();
+		for(Player p : _playList)
+			newList.add(p.getNickName());
+		
+		return newList;
+	}
 
 }

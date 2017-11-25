@@ -25,6 +25,7 @@ public class GameEngine implements IGameEngine {
 
 	public void setUI(UI ui){
 		this.ui = ui;
+		ui.build(_game.getPlayerList());
 	}
 	
 	/**

@@ -1,5 +1,7 @@
 package View.Game.Controller;
 
+import java.util.List;
+
 import Entity.Question;
 
 public interface UIInterface {
@@ -94,5 +96,9 @@ public interface UIInterface {
 	 */
 	public boolean buyOrRentProperty(int buyAmount, int rentAmount, String player, String AssetName);
 	
-	
+	/**
+	 * Build the game board and send the player list to initialize
+	 * @param playerList
+	 */
+	public void build(List<String> playerList);
 }

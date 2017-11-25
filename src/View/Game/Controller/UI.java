@@ -2,6 +2,7 @@ package View.Game.Controller;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.List;
 
 import Controller.iWindow;
 import Entity.Player;
@@ -1397,6 +1398,12 @@ public class UI implements UIInterface{
 	@Override
 	public void updatePlayerProperties(String nickname, Integer cash, Integer strikes, Integer assetsWorth,
 			Integer assetsAmount) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void build(List<String> playerList) {
 		// TODO Auto-generated method stub
 		
 	}
