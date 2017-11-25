@@ -27,7 +27,6 @@ public class Management implements IManagement{
 		return instance;
 	}
 	
-	
 	@Override
 	public List<Question> getQuestions() {
 		List<Question> toReturn = new ArrayList<Question>();
@@ -40,7 +39,6 @@ public class Management implements IManagement{
 	public List<Question> getQuestionsByDifficulty(QuestionStrength qs) {
 		return _db.getGameQuestions().get(qs);
 	}
-
 
 	public String getLoggedPlayer() {
 		return MonDB.getInstance().getCurrentUser().getNickName();
@@ -63,5 +61,4 @@ public class Management implements IManagement{
 		_db.buildGame(playerList);
 	}
 
-	
 }

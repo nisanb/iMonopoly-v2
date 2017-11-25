@@ -131,4 +131,10 @@ public class Player extends User implements Comparable<Player> {
 		return _propertyList.size();
 	}
 	
+	
+	@Override
+	public String toString() {
+		return getNickName();
+	}
+	
 }
