@@ -21,6 +21,10 @@ public class Player extends User implements Comparable<Player>{
 	private Color playerColor;
 	private Map<Question, Boolean> userAnswers;
 	private Set<PropertyTile> propertyList;
+	private int sktrikes;
+	
+
+
 	/**
 	 * Player Constructor
 	 * @param nickname
@@ -36,6 +40,23 @@ public class Player extends User implements Comparable<Player>{
 		this.playerColor 	= playerColor;
 		this.inJail 		= false;
 		 
+	}
+	
+	
+	public Set<PropertyTile> getPropertyList() {
+		return propertyList;
+	}
+
+	public void setPropertyList(Set<PropertyTile> propertyList) {
+		this.propertyList = propertyList;
+	}
+
+	public int getSktrikes() {
+		return sktrikes;
+	}
+
+	public void setSktrikes(int sktrikes) {
+		this.sktrikes = sktrikes;
 	}
 
 	@Override
@@ -116,7 +137,6 @@ public class Player extends User implements Comparable<Player>{
 	public void setPlayerColor(Color playerColor) {
 		this.playerColor = playerColor;
 	}
-	
 	
 	
 }

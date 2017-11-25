@@ -7,6 +7,9 @@ import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
 
+import Utils.Param;
+import View.Game.Controller.UIInterface;
+
 public class Game implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -71,9 +74,15 @@ public class Game implements Serializable {
 		this.playerList.put(player, 0);
 	}
 
-	protected Integer rollDice() {
-		return Dice.roll();
+	protected Integer[] rollDice() {
+		Integer[] dice = new Integer[2];
+		Dice d = new Dice();
+		dice[0] = d.getDice1();
+		dice[1] = d.getDice2();
+		
+		return dice;
 	}
+	
 
 	public Date getGameDate() {
 		return gameDate;
@@ -108,10 +117,8 @@ public class Game implements Serializable {
 		this.currentLoggedUser = currentLoggedUser;
 	}
 	
-	
 	public void play() {
 		int currentPlayer;
-		int maxRounds = 50;
 		
 		//count Rounds
 		//use nisan's methodology of pre/post visit
@@ -142,8 +149,44 @@ public class Game implements Serializable {
 			//**private helper method
 			
 		}
+	
+	}
+	
+	
+	/**
+	 * This method checks if the conditions to end game have reached
+	 * @return
+	 */
+	public boolean isFinished() {
+		if (currentRound > (Integer)MonDB.getInstance().getParam(Param.MAX_ROUNDS))
+			return true;
+		
+		int bankruptPlayers = 0;
+		for (Map.Entry<Player, Integer> p:playerList.entrySet()) {
+			if ((p.getKey().getCash().intValue() + getPropertyVlaue(p.getKey())) < (Integer)MonDB.getInstance().getParam(Param.BANKRUPTCY))
+				bankruptPlayers++;
+		}
+		
+		if (bankruptPlayers > playerList.size()-2)
+			return true;
 			
-			
+		
+		return false;
+	}
+	
+	
+	/**
+	 * This method sums the value of players properties
+	 * @param p
+	 * @return
+	 */
+	private int getPropertyVlaue(Player p) {
+		int value = 0;
+		for (PropertyTile pt:p.getPropertyList()) {
+			value += pt.getCurrentPrice();
+		}
+		
+		return value;
 	}
 
 }
