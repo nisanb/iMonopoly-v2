@@ -1001,17 +1001,17 @@
             </ImageView>
          </children>
       </Pane>
-      <ImageView fx:id="playerBlueStats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="150.0" styleClass="color">
+      <ImageView fx:id="playerBlueStats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="60.0" styleClass="color">
          <image>
             <Image url="@../../Resources/PSD/Players/7.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="playerYellowStats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="240.0">
+      <ImageView fx:id="playerYellowStats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="150.0">
          <image>
             <Image url="@../../Resources/PSD/Players/8.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="playerGreenStats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="60.0">
+      <ImageView fx:id="playerGreenStats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="240.0">
          <image>
             <Image url="@../../Resources/PSD/Players/9.png" />
          </image>
@@ -1222,7 +1222,7 @@
       <AnchorPane fx:id="inBoardMenu" layoutX="685.0" layoutY="365.0" prefHeight="240.0" prefWidth="470.0">
          <children>
             <Pane fx:id="inBoardWhitePane" opacity="0.51" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: white;" />
-            <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.51" pannable="true" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;" visible="false">
+            <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.51" pannable="true" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;">
                <content>
                   <TextArea fx:id="gameLogs" editable="false" prefHeight="240.0" prefWidth="470.0" style="-fx-border-color: black;" text="Player 1: Rolled dice and moved 8 steps                                       Player 1: Rolled dice and moved 8 steps" wrapText="true">
                      <font>
@@ -1299,8 +1299,7 @@
                   <ListView layoutX="321.0" layoutY="35.0" prefHeight="166.0" prefWidth="136.0" />
                </children>
             </Pane>
-         </children>
-      </AnchorPane>
+         </children></AnchorPane>
       <Button fx:id="btnOfferTrade" disable="true" layoutX="372.0" layoutY="203.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Offer A Trade" textFill="WHITE">
          <font>
             <Font name="Cooper Black" size="20.0" />
@@ -1315,7 +1314,7 @@
       <Pane fx:id="paneCurrentTurnPlayer2" layoutX="72.0" layoutY="145.0" prefHeight="93.0" prefWidth="83.0" style="-fx-border-color: red;" />
       <Pane fx:id="paneCurrentTurnPlayer3" layoutX="72.0" layoutY="235.0" prefHeight="93.0" prefWidth="83.0" style="-fx-border-color: red;" />
       <Pane fx:id="paneCurrentTurnPlayer4" layoutX="72.0" layoutY="325.0" prefHeight="93.0" prefWidth="83.0" style="-fx-border-color: red;" />
-      <Button fx:id="btnFinishTurn" disable="true" layoutX="372.0" layoutY="330.0" mnemonicParsing="false" onAction="#btnFinishTurn" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: black;" text="Finish Turn" textFill="WHITE">
+      <Button fx:id="btnFinishTurn" layoutX="372.0" layoutY="330.0" mnemonicParsing="false" onAction="#btnFinishTurn" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: black;" text="Finish Turn" textFill="WHITE">
          <font>
             <Font name="Cooper Black" size="20.0" />
          </font>

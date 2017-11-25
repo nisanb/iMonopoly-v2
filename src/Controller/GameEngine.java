@@ -132,7 +132,7 @@ public class GameEngine implements IGameEngine {
 			currentPlayer().getCurrentTile().preVisit(currentPlayer());
 		}
 		currentPlayer().getCurrentTile().visit(currentPlayer());
-
+		ui.allowFinishTurn(true);
 	}
 
 	@Override
@@ -161,6 +161,6 @@ public class GameEngine implements IGameEngine {
 	@Override
 	public void btnFinishTurn() {
 		// TODO Auto-generated method stub
-		
+		btnNextTurn();
 	}
 }

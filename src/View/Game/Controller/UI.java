@@ -673,16 +673,16 @@ public class UI implements UIInterface{
 	    private Button btnFinishTurn;
 
 	    @FXML
-	    private Pane paneCurrentTurnPlayer1;
+	    private Pane paneCurrentTurnPlayer1= new Pane();
 
 	    @FXML
-	    private Pane paneCurrentTurnPlayer2;
+	    private Pane paneCurrentTurnPlayer2= new Pane();
 
 	    @FXML
-	    private Pane paneCurrentTurnPlayer3;
+	    private Pane paneCurrentTurnPlayer3= new Pane();
 
 	    @FXML
-	    private Pane paneCurrentTurnPlayer4;
+	    private Pane paneCurrentTurnPlayer4= new Pane();
 	    
 	    @FXML
 	    private Pane txtAnswerPane1;
@@ -696,7 +696,7 @@ public class UI implements UIInterface{
 	    @FXML
 	    private Pane txtAnswerPane4;
 	    
-	    Pane currentPlayerPanes[]={paneCurrentTurnPlayer1,paneCurrentTurnPlayer2,paneCurrentTurnPlayer3,paneCurrentTurnPlayer2};
+	    Pane currentPlayerPanes[]={paneCurrentTurnPlayer1,paneCurrentTurnPlayer2,paneCurrentTurnPlayer3,paneCurrentTurnPlayer4};
 	    Label playersStrikes[]={strikesPlayer1,strikesPlayer2,strikesPlayer3,strikesPlayer4};
 	    Label playersCash[]={moneyPlayer1,moneyPlayer2,moneyPlayer3,moneyPlayer4};
 	    
@@ -811,8 +811,7 @@ public class UI implements UIInterface{
 	}
 	@FXML
     void btnTest(MouseEvent event) {
-		players[0][5]= new ImageView(players[0][0].getImage());
-		players[0][0]=null;
+		
 		
 	}
 
@@ -906,7 +905,6 @@ public class UI implements UIInterface{
 				
 		playerYellowStats.setVisible(false);
 		playerRedStats.setVisible(false);
-		paneCurrentTurnPlayer1.setVisible(false);
 		paneCurrentTurnPlayer2.setVisible(false);
 		paneCurrentTurnPlayer3.setVisible(false);
 		paneCurrentTurnPlayer4.setVisible(false);
@@ -924,8 +922,7 @@ public class UI implements UIInterface{
 		}
 					
 
-			
-	
+		
 				
 	
 	
@@ -1165,13 +1162,6 @@ public class UI implements UIInterface{
     		 for (int j=0; j<4; j++)
     			 players[i][j].setVisible(false);
 
-    	 for (int i=0; i<40; i++)
-    		 for (int j=0; j<4; j++)
-    			 if (players[i][j].isVisible())
-    				 System.out.println(i+" blabla");
-
-    	 
-    	 //currentPlayerPanes.add()
     	 
     }
     
@@ -1470,11 +1460,10 @@ public class UI implements UIInterface{
 	}
 	
 	@FXML
-	
     void btnFinishTurn(ActionEvent event) {
+		System.out.println("finish turn btn");
 		ge.btnFinishTurn();
-    }
-
+	}
 
 
 		
