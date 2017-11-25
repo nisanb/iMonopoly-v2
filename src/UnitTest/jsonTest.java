@@ -7,15 +7,19 @@ import java.util.Map;
 import org.junit.Test;
 
 import Entity.JSON;
+import Entity.MonDB;
 import Entity.Question;
+import Utils.Param;
 import Utils.QuestionStrength;
 
 public class jsonTest {
 
 	@Test
 	public void test() {
-		Map<QuestionStrength, List<Question>> list = JSON.getInstance().loadQuestions();
-		JSON.getInstance().saveQuestions(list);
+		//Map<QuestionStrength, List<Question>> list = JSON.getInstance().loadQuestions();
+		//JSON.getInstance().saveQuestions(list);
+		
+		System.out.println(Param.valueOf(Param.MAX_ROUNDS.toString()));
 	}
 
 }

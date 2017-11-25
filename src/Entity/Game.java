@@ -18,7 +18,6 @@ public class Game implements Serializable {
 	Map<Player, Integer> playerList;
 	private Date gameDate;
 	private Integer currentRound;
-	private Boolean gameFinished;
 	private User currentLoggedUser;
 	
 	protected Game() {
@@ -37,7 +36,6 @@ public class Game implements Serializable {
 		this.setGameDate(new Date());
 		this.playerList = new TreeMap<Player, Integer>();
 		this.setCurrentRound(0);
-		this.gameFinished = false;
 		
 		build();
 	}
@@ -60,7 +58,7 @@ public class Game implements Serializable {
 		for(Player p : playerList.keySet())
 			playList.add(p);
 			
-		while(!gameFinished){
+		while(!isFinished()){
 			Player currentPlayer = playList.get(currentRound%playList.size());
 			currentPlayer.addCash(1000);
 			//Players turn
@@ -158,12 +156,12 @@ public class Game implements Serializable {
 	 * @return
 	 */
 	public boolean isFinished() {
-		if (currentRound > (Integer)MonDB.getInstance().getParam(Param.MAX_ROUNDS))
+		if (currentRound > 50) //update max rounds and bankruptcy to value from enum
 			return true;
 		
 		int bankruptPlayers = 0;
 		for (Map.Entry<Player, Integer> p:playerList.entrySet()) {
-			if ((p.getKey().getCash().intValue() + getPropertyVlaue(p.getKey())) < (Integer)MonDB.getInstance().getParam(Param.BANKRUPTCY))
+			if ((p.getKey().getCash().intValue() + getPropertyVlaue(p.getKey())) < -100000) //use enum
 				bankruptPlayers++;
 		}
 		
