@@ -1,46 +1,89 @@
-
-
-/**
- * Sample Skeleton for 'SysParam.fxml' Controller Class
- */
-
 package View.Admin.Controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import Controller.iWindow;
-import Utils.Window;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Spinner;
 
 public class SysParam {
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
+    @FXML
+    private Button btnSave;
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
+    @FXML
+    private Button btnBack;
 
-    @FXML // fx:id="btnVolume"
-    private ImageView btnVolume; // Value injected by FXMLLoader
+    @FXML
+    private Button btnRestore;
+
+    @FXML
+    private Spinner<Integer> spinStartMoney;
+
+    @FXML
+    private Spinner<Double> spinRent = new Spinner<Double>(0,100,50);
+
+    @FXML
+    private Spinner<Double> spinBuy;
+
+    @FXML
+    private Spinner<Integer> spinMinLuck;
+
+    @FXML
+    private Spinner<Integer> spinMaxLuck;
+
+    @FXML
+    private Spinner<Integer> spinOnlyLuck;
+
+    @FXML
+    private Spinner<Integer> spinLuckFIne;
+
+    @FXML
+    private Spinner<Integer> spinJailFine;
+
+    @FXML
+    private Spinner<Integer> spinCheapProperty;
+
+    @FXML
+    private Spinner<Integer> SpinAverageProperty;
+
+    @FXML
+    private Spinner<Integer> spinExpensiveProperty;
+
+    @FXML
+    private Spinner<Double> spinCheapDisc;
+
+    @FXML
+    private Spinner<Double> spinAvgDisc;
+
+    @FXML
+    private Spinner<Double> spinExpensiveDisc;
+
+    @FXML
+    private Spinner<Integer> spinMaxRounds;
+
+    @FXML
+    private Spinner<Integer> spinBankruptcy;
 
     @FXML
     void back(ActionEvent event) {
-    	iWindow.swap(Window.Admin_Menu);
-    }
-
-    @FXML
-    void doSwapMusic(MouseEvent event) {
-
+    	
     }
 
     @FXML
     void save(ActionEvent event) {
+
+    }
+
+    @FXML
+    public void initialize() {
+    	
+    }
+}
+
+    //================================== Action Events ============================================
+    /*
+    @FXML
+    protected void saveClicked(ActionEvent event) {
 
     	Alert alert=new Alert(AlertType.INFORMATION);
 		alert.setTitle("");
@@ -49,13 +92,27 @@ public class SysParam {
 		alert.showAndWait();
     	iWindow.swap(Window.Admin_Menu);
     }
-
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'SysParam.fxml'.";
-
+    
+    
+    protected void nouseExitedPercent(ActionEvent event) {
+    	
     }
-}
-
+    
+    
+    protected void mouseExitedNumber(ActionEvent event) {
+    	
+    }
+    
+    
+    protected void mouseBackClicked(ActionEvent event) {
+    	
+    }
+    
+    
+    
+    protected void mouseRestoreClicked(ActionEvent event) {
+    	
+    }
+*/
 
 
