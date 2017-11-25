@@ -13,12 +13,12 @@ public class StartTile extends Tile implements Tilable {
 	@Override
 	public void preVisit(Player currentPlayer) {
 		// TODO Auto-generated method stub
-		currentPlayer.addCash(MonDB.getInstance().getParam(Param.START_TILE_PASS));
+		currentPlayer.addCash(Param.get(Param.START_TILE_PASS));
 	}
 	@Override
 	public void visit(Player currentPlayer) {
 		// TODO Auto-generated method stub
-		currentPlayer.addCash(MonDB.getInstance().getParam(Param.START_TILE_VISIT));
+		currentPlayer.addCash(Param.get(Param.START_TILE_VISIT));
 	}
 	@Override
 	public void postVisit(Player currentPlayer) {
