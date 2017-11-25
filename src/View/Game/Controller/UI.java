@@ -10,6 +10,8 @@ import Entity.Player;
 import Entity.Question;
 import Utils.Window;
 import View.IGameEngine;
+import View.Admin.Controller.SysParam;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -531,6 +533,9 @@ public class UI implements UIInterface{
 
 	    @FXML
 	    private Label strikesPlayer2= new Label();
+	    
+	    @FXML
+	    private Pane player3StatsPane= new Pane();
 
 	    @FXML
 	    private Label lblMoney3= new Label();
@@ -663,6 +668,9 @@ public class UI implements UIInterface{
 	    
 	    @FXML
 	    private Button btnPayRent;
+	    
+	    @FXML
+	    private Button btnFinishTurn;
 
 	    @FXML
 	    private Pane paneCurrentTurnPlayer1;
@@ -748,7 +756,7 @@ public class UI implements UIInterface{
 		ge.btnOfferTrade();
 	}
 	@FXML
-	private void rollDice(){
+	 void rollDice(){
 		initializeDicesBeforeRoll();
 		ge.btnRollDice();
 	}
@@ -794,8 +802,9 @@ public class UI implements UIInterface{
 	@Override
 	public void movePlayer(String player, int tileFrom, int tileTo) {
 		//the player's order in the game
-		
+		System.out.println(playersList);
 		int playerPosition= playersList.indexOf(player);
+		System.out.println(playerPosition);
 		players[tileFrom][playerPosition].setVisible(false);
 		players[tileTo][playerPosition].setVisible(true);
 		
@@ -864,6 +873,8 @@ public class UI implements UIInterface{
 		gameLogs.setText(gameLogs.getText()+ "\n" +message);
 		gameLogDisplay(true);
 		
+		
+		
 	}
 
 	@Override
@@ -896,17 +907,20 @@ public class UI implements UIInterface{
 				
 		playerYellowStats.setVisible(false);
 		playerRedStats.setVisible(false);
-		
+		paneCurrentTurnPlayer1.setVisible(false);
+		paneCurrentTurnPlayer2.setVisible(false);
+		paneCurrentTurnPlayer3.setVisible(false);
+		paneCurrentTurnPlayer4.setVisible(false);
+		player4StatsPane.setVisible(false);
+		player3StatsPane.setVisible(false);
 		if (playersList.size()==2){
 			playerGreenStats.setLayoutY(playersStatsY[0]);
 			playerBlueStats.setLayoutY(playersStatsY[1]);
 		}
-		else if  (playersList.size()==3 && !playersList.get(2).equals(null)) {
-			playerYellowStats.setLayoutY(playersStatsY[2]);
+		else if  (playersList.size()==3 ) {
 			playerYellowStats.setVisible(true);
 		}
-		else if (playersList.size()==4 && !playersList.get(3).equals(null)) {
-			playerRedStats.setLayoutY(playersStatsY[3]);
+		else if (playersList.size()==4) {
 			playerRedStats.setVisible(true);
 		}
 					
@@ -935,7 +949,7 @@ public class UI implements UIInterface{
 		if (diceNumber==1)
 			roll1[amount-1].setVisible(true);
 		if (diceNumber==2)
-			roll1[amount-1].setVisible(true);
+			roll2[amount-1].setVisible(true);
 		
 	}
 	
@@ -949,6 +963,12 @@ public class UI implements UIInterface{
 	public void updatePlayerProperties(String nickname, Integer cash, Integer strikes, Integer assetsWorth,
 			Integer assetsAmount) {
 		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	public void allowFinishTurn(Boolean enabled) {
+		
 		
 	}
     
@@ -1373,6 +1393,7 @@ public class UI implements UIInterface{
           assert lblStrikes2 != null : "fx:id=\"lblStrikes2\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert moneyPlayer2 != null : "fx:id=\"moneyPlayer2\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert strikesPlayer2 != null : "fx:id=\"strikesPlayer2\" was not injected: check your FXML file 'Game_UI.fxml'.";
+          assert player3StatsPane != null : "fx:id=\"player4StatsPane\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert lblMoney3 != null : "fx:id=\"lblMoney3\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert lblStrikes3 != null : "fx:id=\"lblStrikes3\" was not injected: check your FXML file 'Game_UI.fxml'.";
           assert moneyPlayer3 != null : "fx:id=\"moneyPlayer3\" was not injected: check your FXML file 'Game_UI.fxml'.";
@@ -1413,6 +1434,7 @@ public class UI implements UIInterface{
           assert txtAnsw3 != null : "fx:id=\"txtAnsw11\" was not injected: check your FXML file 'UI.fxml'.";
           assert txtAnsw4 != null : "fx:id=\"txtAnsw21\" was not injected: check your FXML file 'UI.fxml'.";
           assert btnOfferTrade != null : "fx:id=\"btnOfferTrade\" was not injected: check your FXML file 'UI.fxml'.";
+          assert btnFinishTurn != null : "fx:id=\"btnOfferTrade\" was not injected: check your FXML file 'UI.fxml'.";
           assert round != null : "fx:id=\"round\" was not injected: check your FXML file 'UI.fxml'.";
           assert btnPayRent != null : "fx:id=\"btnPayRent\" was not injected: check your FXML file 'UI.fxml'.";
           assert paneCurrentTurnPlayer1 != null : "fx:id=\"paneCurrentTurnPlayer1\" was not injected: check your FXML file 'UI.fxml'.";
@@ -1436,9 +1458,7 @@ public class UI implements UIInterface{
 	@Override
 	public void build(List<String> playerList) {
 		Logger.log("Adding "+playerList.size()+" players to Game UI");
-		for(String s : playerList)
-			this.playersList.add(s);
-		this.playersList.addAll(playersList);
+		this.playersList.addAll(playerList);
 		
 	}
 
@@ -1449,6 +1469,16 @@ public class UI implements UIInterface{
 
 		
 	}
+	
+	@FXML
+	
+    void btnFinishTurn(ActionEvent event) {
+		ge.btnFinishTurn();
+    }
+
+
+
+		
 
 
 

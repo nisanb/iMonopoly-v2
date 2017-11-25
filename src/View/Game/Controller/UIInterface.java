@@ -23,6 +23,7 @@ public interface UIInterface {
 	public void allowSellProperty(Boolean allow);
 	public void allowRent(Boolean allow);
 	public void allowRollDice(Boolean enabled);
+	public void allowFinishTurn(Boolean enabled);
 	
 	/**
 	 * Will display score board sorted by player total property value and cash
@@ -94,5 +95,7 @@ public interface UIInterface {
 	 * @param playerList
 	 */
 	public void build(List<String> playerList);
+	
+
 	
 }

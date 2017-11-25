@@ -98,7 +98,7 @@ public class GameEngine implements IGameEngine {
 		ui.changeDice(1, dice.getDice1());
 		ui.changeDice(2, dice.getDice2());
 
-<<<<<<< Updated upstream
+
 		/**
 		 * Jail Treatment
 		 */
@@ -114,10 +114,10 @@ public class GameEngine implements IGameEngine {
 			}
 		}
 		
-=======
+
 		System.out.println(dice.getSum());
 		System.out.println(currentPlayer().getCurrentTile());
->>>>>>> Stashed changes
+
 		Integer moveToTile = dice.getSum() + currentPlayer().getCurrentTile().getTileNumber() % 40;
 		Integer currentLocation = currentPlayer().getCurrentTile().getTileNumber();
 
@@ -156,5 +156,11 @@ public class GameEngine implements IGameEngine {
 
 	private void updatePlayerProperties(Player player){
 		ui.updatePlayerProperties(player.getNickName(), player.getCash(), player.getStrikesNum(), player.getTotalAssetsWorth(), player.getTotalAssets());
+	}
+
+	@Override
+	public void btnFinishTurn() {
+		// TODO Auto-generated method stub
+		
 	}
 }

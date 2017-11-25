@@ -20,6 +20,7 @@ public interface IGameEngine {
 	public void btnOfferTrade();
 	public void btnQuitGame();
 	public void btnRollDice();
+	public void btnFinishTurn();
 	
 	
 	
