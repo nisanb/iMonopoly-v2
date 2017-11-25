@@ -115,4 +115,7 @@ public class GameEngine implements IGameEngine {
 		return _game.getCurrentPlayer();
 	}
 
+	private void updatePlayerProperties(Player player){
+		ui.updatePlayerProperties(player.getNickName(), player.getCash(), player.getStrikesNum(), player.getTotalAssetsWorth(), player.getTotalAssets());
+	}
 }

@@ -2,12 +2,7 @@ package View.Game.Controller;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
-import com.sun.prism.impl.ps.CachingShapeRep;
-
-import Controller.GameEngine;
 import Controller.iWindow;
 import Entity.Player;
 import Entity.Question;
@@ -852,16 +847,6 @@ public class UI implements UIInterface{
 	}
 
 	@Override
-	public void updatePlayerProperties(Player player) {
-		int pos=playersList.indexOf(player);
-		
-		//playersCash[pos].setText(player.get);
-		//playersStrikes[pos].setText(player);
-		
-		
-	}
-
-	@Override
 	public void updateCurrentPlayer(Player player) {
 		for (int i=0; i<playersList.size(); i++){
 			if (playersList.get(i).equals(player)){
@@ -1408,6 +1393,13 @@ public class UI implements UIInterface{
         initializeTiles();
         initializeDicesFirstTime();
     }
+
+	@Override
+	public void updatePlayerProperties(String nickname, Integer cash, Integer strikes, Integer assetsWorth,
+			Integer assetsAmount) {
+		// TODO Auto-generated method stub
+		
+	}
 
 
 

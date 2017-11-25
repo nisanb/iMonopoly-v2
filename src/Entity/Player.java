@@ -39,7 +39,7 @@ public class Player extends User implements Comparable<Player> {
 		_inJail = false;
 
 	}
-
+	
 	public List<PropertyTile> getPropertyList() {
 		return _propertyList;
 	}
@@ -62,7 +62,7 @@ public class Player extends User implements Comparable<Player> {
 		return _propertyList.remove(pro);
 	}
 
-	protected Integer getCash() {
+	public Integer getCash() {
 		return _cash;
 	}
 
@@ -78,7 +78,7 @@ public class Player extends User implements Comparable<Player> {
 		_currentTile = currentTile;
 	}
 
-	protected Integer getStrikesNum() {
+	public Integer getStrikesNum() {
 		return _strikesNum;
 	}
 
@@ -119,4 +119,16 @@ public class Player extends User implements Comparable<Player> {
 		_playerColor = playerColor;
 	}
 
+	public Integer getTotalAssetsWorth(){
+		Integer amount = 0;
+		for(PropertyTile p : _propertyList)
+			amount+=p.getCurrentPrice();
+		
+		return amount;
+	}
+	
+	public Integer getTotalAssets(){
+		return _propertyList.size();
+	}
+	
 }

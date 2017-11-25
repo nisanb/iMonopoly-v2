@@ -47,10 +47,11 @@ public interface UIInterface {
 	 * When activated, will update the players' properties:
 	 * 	- Cash
 	 *  - Strikes
-	 *  - Assets
+	 *  - Assets Worth
+	 *  - Assets Amount
 	 * @param player
 	 */
-	public void updatePlayerProperties(Player player);
+	public void updatePlayerProperties(String nickname, Integer cash, Integer strikes, Integer assetsWorth, Integer assetsAmount);
 	
 	/**
 	 * Will highlight the current player who is playing
