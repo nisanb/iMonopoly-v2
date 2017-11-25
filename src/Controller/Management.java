@@ -5,6 +5,7 @@ import java.util.List;
 import Entity.MonDB;
 import Entity.Question;
 import Entity.User;
+import Utils.PlayerAuth;
 import Utils.QuestionStrength;
 import View.IManagement;
 
@@ -31,8 +32,7 @@ public class Management implements IManagement{
 
 	@Override
 	public List<Question> getQuestionsByDifficulty(QuestionStrength qs) {
-		// TODO Auto-generated method stub
-		return null;
+		return _db.getGameQuestions().get(qs);
 	}
 
 
@@ -44,9 +44,13 @@ public class Management implements IManagement{
 		_db.login(nickname);
 	}
 
-	public String GetLoginUser(String UserNickName) {
-		// TODO Auto-generated method stub
-		return null;
+	public String GetLoginUser(String nickname) {
+
+		User u = new User(nickname, PlayerAuth.PLAYER);
+		if(!_db.getPlayerData().contains(u))
+			_db.getPlayerData().add(u);
+		
+		return u.getNickName();
 	}
 
 
