@@ -86,11 +86,11 @@ public class Player extends User implements Comparable<Player> {
 		_strikesNum = strikesNum;
 	}
 
-	protected Boolean getInJail() {
+	public Boolean isInJail() {
 		return _inJail;
 	}
 
-	protected void setInJail(Boolean inJail) {
+	public void setIsInJail(Boolean inJail) {
 		_inJail = inJail;
 	}
 

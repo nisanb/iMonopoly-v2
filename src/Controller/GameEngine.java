@@ -40,7 +40,12 @@ public class GameEngine implements IGameEngine {
 
 		// Enable Roll Dice
 		ui.updateCurrentPlayer(_game.nextPlayer().getNickName());
-
+		ui.gameLog(currentPlayer()+"s' turn");
+		if(currentPlayer().isInJail()){
+			ui.gameLog("Player "+currentPlayer()+" will not attempt to roll a double to get out of jail!");
+		}
+		ui.allowRollDice(true);
+		
 	}
 
 	@Override
@@ -93,6 +98,21 @@ public class GameEngine implements IGameEngine {
 		ui.changeDice(1, dice.getDice1());
 		ui.changeDice(2, dice.getDice2());
 
+		/**
+		 * Jail Treatment
+		 */
+		if(currentPlayer().isInJail()){
+			if(dice.getDice1().equals(dice.getDice2())){
+				ui.gameLog("Player "+currentPlayer()+" rolled a double and is free from jail!");
+				currentPlayer().setIsInJail(false);
+			}
+			else{
+				ui.gameLog("Player "+currentPlayer()+" did not roll a double. Moving on to next turn.");
+				btnNextTurn();
+				return;
+			}
+		}
+		
 		Integer moveToTile = dice.getSum() + currentPlayer().getCurrentTile().getTileNumber() % 40;
 		Integer currentLocation = currentPlayer().getCurrentTile().getTileNumber();
 
