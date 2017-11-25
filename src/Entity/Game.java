@@ -119,7 +119,7 @@ public class Game implements Serializable {
 	
 	public void play() {
 		int currentPlayer;
-		
+		int maxRounds = 50;
 		//count Rounds
 		//use nisan's methodology of pre/post visit
 		while (this.currentRound < maxRounds) {
