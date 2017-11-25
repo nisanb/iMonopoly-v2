@@ -1,10 +1,5 @@
 package Controller;
 
-import java.util.List;
-
-import Entity.Answer;
-import Entity.Player;
-import Entity.Question;
 import View.IGameEngine;
 
 public class GameEngine implements IGameEngine{

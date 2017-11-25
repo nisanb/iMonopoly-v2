@@ -39,7 +39,7 @@ public class UI implements UIInterface{
 	public static final double playerStatsLeyoutx=80;
 	public static final int[] playersStatsY={60,150,240,330};
 
-	public static final IGameEngine ge = GameEngine.getInstance();
+	public static final IGameEngine ge = iWindow.getGameEngine();
 	
 	@FXML
 	private ImageView player1_0= new ImageView();

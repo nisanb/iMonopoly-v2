@@ -77,9 +77,8 @@ public class iWindow {
 	public static Management getManagement(){
 		return Management.getInstance();
 	}
-	
-	public static Board getBoard(){
-		return Board.getInstance();
-	}
 
+	public static GameEngine getGameEngine(){
+		return GameEngine.getInstance();
+	}
 }
