@@ -14,9 +14,14 @@ public class GameEngine implements IGameEngine{
 		return _instance;
 	}
 
+	
+	/**
+	 * This will transfer the board state to a new players' turn based on the players' linked list
+	 */
 	@Override
 	public void btnNextTurn() {
-		// TODO Auto-generated method stub
+		//Disable all buttons
+		//Enable Roll Dice
 		
 	}
 
@@ -64,7 +69,16 @@ public class GameEngine implements IGameEngine{
 
 	
 	
-
+	
+	
+	
+	
+	/**
+	 * Private Methods
+	 */
+	private void disableAll(){
+		
+	}
 
 
 	

@@ -1,11 +1,5 @@
 package View;
 
-import java.util.List;
-
-import Entity.Answer;
-import Entity.Player;
-import Entity.Question;
-
 public interface IGameEngine {
 
 	// please add any extra variables inside the methods if needed

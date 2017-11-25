@@ -2,25 +2,32 @@ package Entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
-import java.util.TreeMap;
-
 import Utils.Param;
-import View.Game.Controller.UIInterface;
 
 public class Game implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Game Properties
+	 */
 	private Integer _gameNum;
-	Map<Player, Integer> _playerList;
 	private Date _gameDate;
-	private Integer _currentRound;
-	private User _currentLoggedUser;
+	
+	/**
+	 * Lists
+	 */
 	private List<Tilable> _gameTiles;
+	private List<Player> _playList;
+	
+	/**
+	 * Current
+	 */
+	private User _currentLoggedUser;
+	private Player _currentPlayer;
+	private Integer _currentRound;
 	
 	protected Game() {
 
@@ -36,7 +43,6 @@ public class Game implements Serializable {
 		 * Set Date
 		 */
 		this.setGameDate(new Date());
-		this._playerList = new TreeMap<Player, Integer>();
 		this.setCurrentRound(0);
 		this._gameTiles.addAll(MonDB.getInstance().getTileSet());
 		build();
@@ -46,9 +52,13 @@ public class Game implements Serializable {
 	 * Build current game - happens after START GAME is clicked
 	 */
 	protected void build(){
+		
 		/**
 		 * Build players
 		 */
+		if(_gameTiles.size() != 40){
+			throw new NullPointerException("Cannot initiate game - no tiles were set.");
+		}
 		
 	}
 	
@@ -56,6 +66,10 @@ public class Game implements Serializable {
 		//This will start the game
 		
 		//This will build the players' cycle
+		
+		/**
+		 * Why is this here? TODO Mickey
+		 
 		LinkedList<Player> playList = new LinkedList<>();
 		for(Player p : _playerList.keySet())
 			playList.add(p);
@@ -67,11 +81,12 @@ public class Game implements Serializable {
 			//TODO Implement ..
 		}
 		
+		**/
 	}
 
 	//Adds a player to the game
 	protected void addPlayer(Player player) {
-		_playerList.put(player, 0);
+		_playList.add(player);
 	}
 
 	protected Integer[] rollDice() {
@@ -158,18 +173,18 @@ public class Game implements Serializable {
 	 * @return
 	 */
 	public boolean isFinished() {
-		if (_currentRound > 50) //update max rounds and bankruptcy to value from enum
+		
+		/**
+		 * In case rounds exceeded max rounds
+		 */
+		if (_currentRound > (Integer) Param.get(Param.MAX_ROUNDS)) //update max rounds and bankruptcy to value from enum
 			return true;
 		
-		int bankruptPlayers = 0;
-		for (Map.Entry<Player, Integer> p : _playerList.entrySet()) {
-			if ((p.getKey().getCash().intValue() + getPropertyVlaue(p.getKey())) < -100000) //use enum
-				bankruptPlayers++;
-		}
-		
-		if (bankruptPlayers > _playerList.size()-2)
+		/**
+		 * In case only 1 player left to play
+		 */
+		if(_playList.size()==1)
 			return true;
-			
 		
 		return false;
 	}
@@ -207,5 +222,13 @@ public class Game implements Serializable {
 		catch(Exception e){
 			return null;
 		}
+	}
+
+	public Player get_currentPlayer() {
+		return _currentPlayer;
+	}
+
+	public void set_currentPlayer(Player _currentPlayer) {
+		this._currentPlayer = _currentPlayer;
 	}
 }

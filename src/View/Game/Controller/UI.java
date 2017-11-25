@@ -30,6 +30,8 @@ import javafx.stage.Stage;
 
 public class UI implements UIInterface{
 	
+	private static UI _instance = null;
+	
 	ArrayList<Player> playersList = new ArrayList<>();
 	ImageView playerPics[] = new ImageView[playersList.size()];
 	ImageView[][] players = new ImageView[40][4];
@@ -810,9 +812,8 @@ public class UI implements UIInterface{
     
     
 
-	@Override
-	public UI getUI() {
-		return this;
+	public static UI getInstance() {
+		return _instance;
 	}
 
 	@Override
@@ -1138,6 +1139,7 @@ public class UI implements UIInterface{
     
     @FXML
     void initialize() {
+    	  _instance = this;
     	  assert main != null : "fx:id=\"main\" was not injected: check your FXML file 'TalUI.fxml'.";
           assert button1 != null : "fx:id=\"button1\" was not injected: check your FXML file 'TalUI.fxml'.";
           assert pane0 != null : "fx:id=\"pane0\" was not injected: check your FXML file 'TalUI.fxml'.";

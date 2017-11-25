@@ -8,15 +8,6 @@ public interface UIInterface {
 
 	
 	/**
-	 * Return the UI.java object
-	 * -> getUI(){
-	 * 		return this;
-	 * 	  }
-	 * @return
-	 */
-	public UI getUI();
-	
-	/**
 	 * Move a player from a tile to a tile
 	 * @param playerNumber
 	 * @param tileNumber
@@ -94,6 +85,5 @@ public interface UIInterface {
 	 */
 	public void changeDice(int diceNumber, int amount);
 	
-
 	
 }
