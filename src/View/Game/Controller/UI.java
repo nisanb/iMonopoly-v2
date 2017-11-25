@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
+import Controller.Logger;
 import Controller.iWindow;
 import Entity.Player;
 import Entity.Question;
@@ -28,7 +29,7 @@ public class UI implements UIInterface{
 	
 	private static UI _instance = null;
 	
-	ArrayList<Player> playersList = new ArrayList<>();
+	List<String> playersList = new ArrayList<>();
 	ImageView playerPics[] = new ImageView[playersList.size()];
 	ImageView[][] players = new ImageView[40][4];
 	ImageView[] roll1= new ImageView[6];
@@ -653,7 +654,7 @@ public class UI implements UIInterface{
 	    private Label round = new Label();
 	    
 	    @FXML
-	    private Pane questionsPaneContainer;
+	    private Pane questionsPaneContainer = new Pane();
 	    
 	    @FXML
 	    private Label theQuestion= new Label();
@@ -696,7 +697,7 @@ public class UI implements UIInterface{
 	
 	public void buildBoard(){
 		initialize();
-		
+		/*
 		
 		for (int i=0; i<playersList.size(); i++){
 			if (playersList.get(i).getPlayerColor()==Color.yellow){
@@ -717,6 +718,7 @@ public class UI implements UIInterface{
 				playerPics[i]=playerGreenStats;
 			}
 		}
+		*/
 	}
 
 	public void initializeGame(){
@@ -861,6 +863,7 @@ public class UI implements UIInterface{
 	@Override
 	public void gameLog(String message) {
 		gameLogs.setText(gameLogs.getText()+ "\n" +message);
+		gameLogDisplay(true);
 		
 	}
 
@@ -1117,7 +1120,6 @@ public class UI implements UIInterface{
     	 for (int i=1; i<40; i++)
     		 for (int j=0; j<4; j++)
     			 players[i][j].setVisible(false);
-    	 for (Player p: playersList);
     	 
     	 //currentPlayerPanes.add()
     	 
@@ -1404,7 +1406,10 @@ public class UI implements UIInterface{
 
 	@Override
 	public void build(List<String> playerList) {
-		// TODO Auto-generated method stub
+		Logger.log("Adding "+playerList.size()+" players to Game UI");
+		for(String s : playerList)
+			this.playersList.add(s);
+		this.playersList.addAll(playersList);
 		
 	}
 
