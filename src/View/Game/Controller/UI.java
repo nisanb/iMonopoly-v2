@@ -893,26 +893,29 @@ public class UI implements UIInterface{
     
 	@Override
 	public void BuildBoard() {
+				
+		playerYellowStats.setVisible(false);
+		playerRedStats.setVisible(false);
 		
-		/*
-				playerYellowStats.setLayoutY(playersStatsY[i]);
-				playerPics[i]=playerYellowStats;
-					
-			}
-			if (playersList.get(i).getPlayerColor()==Color.blue){
-				playerBlueStats.setLayoutY(playersStatsY[i]);
-				playerPics[i]=playerBlueStats;
-			}
-			if (playersList.get(i).getPlayerColor()==Color.red){
-				playerRedStats.setLayoutY(playersStatsY[i]);
-				playerPics[i]=playerRedStats;
-			}
-			if (playersList.get(i).getPlayerColor()==Color.green){
-				playerGreenStats.setLayoutY(playersStatsY[i]);
-				playerPics[i]=playerGreenStats;
-			}
+		if (playersList.size()==2){
+			playerGreenStats.setLayoutY(playersStatsY[0]);
+			playerBlueStats.setLayoutY(playersStatsY[1]);
 		}
-		*/
+		else if  (playersList.size()==3 && !playersList.get(2).equals(null)) {
+			playerYellowStats.setLayoutY(playersStatsY[2]);
+			playerYellowStats.setVisible(true);
+		}
+		else if (playersList.size()==4 && !playersList.get(3).equals(null)) {
+			playerRedStats.setLayoutY(playersStatsY[3]);
+			playerRedStats.setVisible(true);
+		}
+					
+
+			
+	
+				
+	
+	
 	}
 
 	@Override

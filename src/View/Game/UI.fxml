@@ -1222,7 +1222,7 @@
       <AnchorPane fx:id="inBoardMenu" layoutX="685.0" layoutY="365.0" prefHeight="240.0" prefWidth="470.0">
          <children>
             <Pane fx:id="inBoardWhitePane" opacity="0.51" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: white;" />
-            <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.51" pannable="true" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;" visible="false">
+            <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.51" pannable="true" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;">
                <content>
                   <TextArea fx:id="gameLogs" editable="false" prefHeight="240.0" prefWidth="470.0" style="-fx-border-color: black;" text="Player 1: Rolled dice and moved 8 steps                                       Player 1: Rolled dice and moved 8 steps" wrapText="true">
                      <font>
@@ -1288,7 +1288,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="sellTradePane" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: transparent;">
+            <Pane fx:id="sellTradePane" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: transparent;" visible="false">
                <children>
                   <Label fx:id="playerXSellOrTrade" layoutX="10.0" opacity="0.7" prefHeight="25.0" prefWidth="323.0" text="Player 2, here all your properties :">
                      <font>
