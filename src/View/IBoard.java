@@ -17,7 +17,13 @@ public interface IBoard {
 	public void offerTrade();
 	public void quitGame();
 	public void rollDice();
+	/**
+	 * 
+	 * @param answerNum 1/2/3/4 -- not 0
+	 */
 	public void AnswerQuestion(int answerNum);
+	
+	
 	
 
 }

@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -673,10 +674,22 @@ public class UI implements UIInterface{
 	    @FXML
 	    private Pane paneCurrentTurnPlayer4;
 	    
+	    @FXML
+	    private Pane txtAnswerPane1;
+	    
+	    @FXML
+	    private Pane txtAnswerPane2;
+	    
+	    @FXML
+	    private Pane txtAnswerPane3;
+	    
+	    @FXML
+	    private Pane txtAnswerPane4;
+	    
 	    Pane currentPlayerPanes[]={paneCurrentTurnPlayer1,paneCurrentTurnPlayer2,paneCurrentTurnPlayer3,paneCurrentTurnPlayer2};
 	    Label playersStrikes[]={strikesPlayer1,strikesPlayer2,strikesPlayer3,strikesPlayer4};
 	    Label playersCash[]={moneyPlayer1,moneyPlayer2,moneyPlayer3,moneyPlayer4};
-
+	    
 	   
 	public UI() {
 			super();
@@ -843,12 +856,17 @@ public class UI implements UIInterface{
 		txtAnsw2.setText(question.getqAnswers().get(1)+"");
 		txtAnsw3.setText(question.getqAnswers().get(2)+"");
 		txtAnsw4.setText(question.getqAnswers().get(3)+"");
+		txtAnswerPane1.setVisible(false);
+		txtAnswerPane2.setVisible(false);
+		txtAnswerPane3.setVisible(false);
+		txtAnswerPane4.setVisible(false);
 		
 	}
 
 	@Override
 	public void updatePlayerProperties(Player player) {
 		int pos=playersList.indexOf(player);
+		
 		//playersCash[pos].setText(player.get);
 		//playersStrikes[pos].setText(player);
 		
@@ -879,8 +897,41 @@ public class UI implements UIInterface{
 		gameLogScrollPane.setVisible(display);
 		
 	}
+	@FXML
+	public void answer1(MouseEvent event){
+		Board.getInstance().AnswerQuestion(1);
+	}
+	@FXML
+	public void answer2(MouseEvent event){
+		Board.getInstance().AnswerQuestion(2);
+	}
+	@FXML
+	public void answer3(MouseEvent event){
+		Board.getInstance().AnswerQuestion(3);
+	}
+	@FXML
+	public void answer4(MouseEvent event){
+		Board.getInstance().AnswerQuestion(4);
+	}
+	
     
-    
+	@Override
+	public void BuildBoard() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void showAnswer(int answerNum) {
+	if (answerNum==1)
+		txtAnswerPane1.setVisible(true);
+	if (answerNum==2)
+		txtAnswerPane2.setVisible(true);
+	if (answerNum==3)
+		txtAnswerPane3.setVisible(true);
+	if (answerNum==4)
+		txtAnswerPane4.setVisible(true);
+	}
     
     
     
@@ -1345,9 +1396,15 @@ public class UI implements UIInterface{
           assert paneCurrentTurnPlayer2 != null : "fx:id=\"paneCurrentTurnPlayer2\" was not injected: check your FXML file 'UI.fxml'.";
           assert paneCurrentTurnPlayer3 != null : "fx:id=\"paneCurrentTurnPlayer3\" was not injected: check your FXML file 'UI.fxml'.";
           assert paneCurrentTurnPlayer4 != null : "fx:id=\"paneCurrentTurnPlayer4\" was not injected: check your FXML file 'UI.fxml'.";
-
+          assert txtAnswerPane2 != null : "fx:id=\"txtAnswerPane2\" was not injected: check your FXML file 'UI.fxml'.";
+          assert txtAnswerPane4 != null : "fx:id=\"txtAnswerPane4\" was not injected: check your FXML file 'UI.fxml'.";
+          assert txtAnswerPane3 != null : "fx:id=\"txtAnswerPane3\" was not injected: check your FXML file 'UI.fxml'.";
+          assert txtAnswerPane1 != null : "fx:id=\"txtAnswerPane3\" was not injected: check your FXML file 'UI.fxml'.";
+          
         initializeTiles();
         initializeDicesFirstTime();
     }
+
+	
 
 }

@@ -1218,7 +1218,7 @@
             </Pane>
          </children>
       </Pane>
-      <AnchorPane fx:id="inBoardMenu" layoutX="690.0" layoutY="365.0" prefHeight="240.0" prefWidth="470.0">
+      <AnchorPane fx:id="inBoardMenu" layoutX="700.0" layoutY="365.0" prefHeight="240.0" prefWidth="470.0">
          <children>
             <Pane fx:id="questionsPane" opacity="0.51" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: white;" />
             <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.51" pannable="true" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;" visible="false">
@@ -1230,7 +1230,7 @@
                   </TextArea>
                </content>
             </ScrollPane>
-            <Pane fx:id="questionsPaneContainer" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: transparent;">
+            <Pane fx:id="txtAnswerPane1" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: transparent;">
                <children>
                   <Label fx:id="playerXIsAnswering" layoutX="10.0" prefHeight="25.0" prefWidth="323.0" text="Player 2 is answering question :">
                      <font>
@@ -1242,26 +1242,30 @@
                         <Font name="Cooper Black" size="16.0" />
                      </font>
                   </Label>
-                  <TextArea fx:id="txtAnsw1" editable="false" layoutX="10.0" layoutY="120.0" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="1. Answer 1" wrapText="true">
+                  <TextArea fx:id="txtAnsw1" editable="false" layoutX="10.0" layoutY="120.0" onMousePressed="#answer1" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="1. Answer 1" wrapText="true">
                      <font>
                         <Font name="Cooper Black" size="12.0" />
                      </font>
                   </TextArea>
-                  <TextArea fx:id="txtAnsw2" editable="false" layoutX="240.0" layoutY="120.0" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="2. Answer 2" wrapText="true">
+                  <TextArea fx:id="txtAnsw2" editable="false" layoutX="240.0" layoutY="120.0" onMousePressed="#answer2" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="2. Answer 2" wrapText="true">
                      <font>
                         <Font name="Cooper Black" size="12.0" />
                      </font>
                   </TextArea>
-                  <TextArea fx:id="txtAnsw3" editable="false" layoutX="10.0" layoutY="180.0" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="1. Answer 1&#10;" wrapText="true">
+                  <TextArea fx:id="txtAnsw3" editable="false" layoutX="10.0" layoutY="180.0" onMousePressed="#answer3" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="1. Answer 1&#10;" wrapText="true">
                      <font>
                         <Font name="Cooper Black" size="12.0" />
                      </font>
                   </TextArea>
-                  <TextArea fx:id="txtAnsw4" editable="false" layoutX="240.0" layoutY="180.0" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="2. Answer 2" wrapText="true">
+                  <TextArea fx:id="txtAnsw4" editable="false" layoutX="240.0" layoutY="180.0" onMousePressed="#answer4" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="2. Answer 2" wrapText="true">
                      <font>
                         <Font name="Cooper Black" size="12.0" />
                      </font>
                   </TextArea>
+                  <Pane fx:id="txtAnswerPane2" layoutX="240.0" layoutY="120.0" prefHeight="50.0" prefWidth="220.0" style="-fx-border-color: green;" />
+                  <Pane fx:id="txtAnswerPane1" layoutX="10.0" layoutY="120.0" prefHeight="50.0" prefWidth="220.0" style="-fx-border-color: green;" />
+                  <Pane fx:id="txtAnswerPane4" layoutX="240.0" layoutY="180.0" prefHeight="50.0" prefWidth="220.0" style="-fx-border-color: green;" />
+                  <Pane fx:id="txtAnswerPane3" layoutX="10.0" layoutY="180.0" prefHeight="50.0" prefWidth="220.0" style="-fx-border-color: green;" />
                </children>
             </Pane>
          </children></AnchorPane>

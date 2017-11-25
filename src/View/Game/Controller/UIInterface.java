@@ -77,7 +77,16 @@ public interface UIInterface {
 	 * Display the history of game log
 	 * @param display
 	 */
-	void gameLogDisplay(Boolean display);
+	public void gameLogDisplay(Boolean display);
+	
+	public void BuildBoard();
+	/**
+	 * 
+	 * @param answerNum show the right answer
+	 */
+	public void showAnswer(int answerNum);
+	
+	
 	
 	
 
