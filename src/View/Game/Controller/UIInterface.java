@@ -87,7 +87,12 @@ public interface UIInterface {
 	public void showAnswer(int answerNum);
 	
 	
-	
+	/**
+	 * Will change the dice visibility with the 'amount' number
+	 * @param diceNumber - 1 or 2
+	 * @param amount - 1 to 6
+	 */
+	public void changeDice(int diceNumber, int amount);
 	
 
 	

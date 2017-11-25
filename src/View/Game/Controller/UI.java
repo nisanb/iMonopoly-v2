@@ -1406,6 +1406,12 @@ public class UI implements UIInterface{
         initializeDicesFirstTime();
     }
 
+	@Override
+	public void changeDice(int diceNumber, int amount) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 
 }

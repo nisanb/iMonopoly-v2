@@ -3,6 +3,7 @@ package Entity;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
@@ -14,11 +15,12 @@ public class Game implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer gameNum;
-	Map<Player, Integer> playerList;
-	private Date gameDate;
-	private Integer currentRound;
-	private User currentLoggedUser;
+	private Integer _gameNum;
+	Map<Player, Integer> _playerList;
+	private Date _gameDate;
+	private Integer _currentRound;
+	private User _currentLoggedUser;
+	private List<Tilable> _gameTiles;
 	
 	protected Game() {
 
@@ -27,16 +29,16 @@ public class Game implements Serializable {
 		 */
 		Random r = new Random();
 		do {
-			gameNum = r.nextInt(999999) + 111111;
-		} while (MonDB.getInstance().getGameData().containsKey(gameNum));
+			_gameNum = r.nextInt(999999) + 111111;
+		} while (MonDB.getInstance().getGameData().containsKey(_gameNum));
 
 		/**
 		 * Set Date
 		 */
 		this.setGameDate(new Date());
-		this.playerList = new TreeMap<Player, Integer>();
+		this._playerList = new TreeMap<Player, Integer>();
 		this.setCurrentRound(0);
-		
+		this._gameTiles.addAll(MonDB.getInstance().getTileSet());
 		build();
 	}
 	
@@ -55,11 +57,11 @@ public class Game implements Serializable {
 		
 		//This will build the players' cycle
 		LinkedList<Player> playList = new LinkedList<>();
-		for(Player p : playerList.keySet())
+		for(Player p : _playerList.keySet())
 			playList.add(p);
 			
 		while(!isFinished()){
-			Player currentPlayer = playList.get(currentRound%playList.size());
+			Player currentPlayer = playList.get(_currentRound%playList.size());
 			currentPlayer.addCash(1000);
 			//Players turn
 			//TODO Implement ..
@@ -69,7 +71,7 @@ public class Game implements Serializable {
 
 	//Adds a player to the game
 	protected void addPlayer(Player player) {
-		this.playerList.put(player, 0);
+		_playerList.put(player, 0);
 	}
 
 	protected Integer[] rollDice() {
@@ -83,19 +85,19 @@ public class Game implements Serializable {
 	
 
 	public Date getGameDate() {
-		return gameDate;
+		return _gameDate;
 	}
 
 	protected void setGameDate(Date gameDate) {
-		this.gameDate = gameDate;
+		this._gameDate = gameDate;
 	}
 
 	public Integer getCurrentRound() {
-		return currentRound;
+		return _currentRound;
 	}
 
 	protected void setCurrentRound(Integer currentRound) {
-		this.currentRound = currentRound;
+		this._currentRound = currentRound;
 	}
 
 	/**
@@ -108,11 +110,11 @@ public class Game implements Serializable {
 	}
 
 	public User getCurrentLoggedUser() {
-		return currentLoggedUser;
+		return _currentLoggedUser;
 	}
 
 	protected void setCurrentLoggedUser(User currentLoggedUser) {
-		this.currentLoggedUser = currentLoggedUser;
+		_currentLoggedUser = currentLoggedUser;
 	}
 	
 	public void play() {
@@ -120,7 +122,7 @@ public class Game implements Serializable {
 		int maxRounds = 50;
 		//count Rounds
 		//use nisan's methodology of pre/post visit
-		while (this.currentRound < maxRounds) {
+		while (_currentRound < maxRounds) {
 			//roll dice (if double turn on flag and decide what to do with him)
 				//disable roll dice button and activate game buttons**
 			//move the player to the correct tile **
@@ -156,16 +158,16 @@ public class Game implements Serializable {
 	 * @return
 	 */
 	public boolean isFinished() {
-		if (currentRound > 50) //update max rounds and bankruptcy to value from enum
+		if (_currentRound > 50) //update max rounds and bankruptcy to value from enum
 			return true;
 		
 		int bankruptPlayers = 0;
-		for (Map.Entry<Player, Integer> p:playerList.entrySet()) {
+		for (Map.Entry<Player, Integer> p : _playerList.entrySet()) {
 			if ((p.getKey().getCash().intValue() + getPropertyVlaue(p.getKey())) < -100000) //use enum
 				bankruptPlayers++;
 		}
 		
-		if (bankruptPlayers > playerList.size()-2)
+		if (bankruptPlayers > _playerList.size()-2)
 			return true;
 			
 		
@@ -187,4 +189,23 @@ public class Game implements Serializable {
 		return value;
 	}
 
+	
+	public Tilable getTile(int tileNumber){
+		try{
+			return _gameTiles.get(_gameTiles.indexOf(new Tile(tileNumber)));
+		}
+		catch(Exception e){
+			
+			return null;
+		}
+	}
+	
+	public Tilable getTile(Tile tile){
+		try{
+		return _gameTiles.get(_gameTiles.indexOf(tile));
+		}
+		catch(Exception e){
+			return null;
+		}
+	}
 }

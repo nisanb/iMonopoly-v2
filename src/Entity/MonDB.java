@@ -17,7 +17,6 @@ import Controller.Logger;
 import Utils.Param;
 import Utils.PlayerAuth;
 import Utils.QuestionStrength;
-import Utils.QuestionTag;
 
 public class MonDB implements Serializable {
 
@@ -344,6 +343,14 @@ public class MonDB implements Serializable {
 		}
 		
 		return playerData.get(playerData.indexOf(new User(nickname))).getNickName();
+	}
+
+	public List<Tilable> getTileSet() {
+		return tileSet;
+	}
+
+	protected void setTileSet(List<Tilable> tileSet) {
+		this.tileSet = tileSet;
 	}
 	
 	
