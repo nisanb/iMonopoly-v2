@@ -2,6 +2,7 @@ package Entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 import Utils.Param;
@@ -20,7 +21,7 @@ public class Game implements Serializable {
 	 * Lists
 	 */
 	private List<Tilable> _gameTiles;
-	private List<Player> _playList;
+	private LinkedList<Player> _playList;
 	
 	/**
 	 * Current
@@ -89,13 +90,8 @@ public class Game implements Serializable {
 		_playList.add(player);
 	}
 
-	protected Integer[] rollDice() {
-		Integer[] dice = new Integer[2];
-		Dice d = new Dice();
-		dice[0] = d.getDice1();
-		dice[1] = d.getDice2();
-		
-		return dice;
+	public Dice rollDice() {
+		return new Dice();
 	}
 	
 
@@ -224,11 +220,14 @@ public class Game implements Serializable {
 		}
 	}
 
-	public Player get_currentPlayer() {
-		return _currentPlayer;
+	public Player nextPlayer(){
+		Player nextPlayer = _playList.removeFirst();
+		_playList.addLast(nextPlayer);
+		return nextPlayer;
+	}
+	
+	public Player getCurrentPlayer() {
+		return _playList.peekFirst();
 	}
 
-	public void set_currentPlayer(Player _currentPlayer) {
-		this._currentPlayer = _currentPlayer;
-	}
 }

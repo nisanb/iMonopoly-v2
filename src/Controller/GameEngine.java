@@ -1,12 +1,19 @@
 package Controller;
 
+import Entity.Dice;
+import Entity.Game;
+import Entity.MonDB;
 import View.IGameEngine;
+import View.Game.Controller.UI;
 
 public class GameEngine implements IGameEngine{
 
+	private UI ui = UI.getInstance();
 	private static GameEngine _instance = null;
-	
-	private GameEngine(){}
+	private Game _game;
+	private GameEngine(){
+		_game = MonDB.getInstance().getCurrentGame();
+	}
 	
 	public static GameEngine getInstance(){
 		if(_instance == null)
@@ -21,7 +28,10 @@ public class GameEngine implements IGameEngine{
 	@Override
 	public void btnNextTurn() {
 		//Disable all buttons
+		disableAll();
+		
 		//Enable Roll Dice
+		ui.updateCurrentPlayer(_game.nextPlayer());
 		
 	}
 
@@ -57,8 +67,9 @@ public class GameEngine implements IGameEngine{
 
 	@Override
 	public void btnRollDice() {
-		// TODO Auto-generated method stub
-		
+		Dice dice = _game.rollDice();
+		ui.gameLog("Player "+_game.getCurrentPlayer() + " rolled "+dice.getSum()+" !");
+		ui.allowRollDice(false);
 	}
 
 	@Override
@@ -77,8 +88,11 @@ public class GameEngine implements IGameEngine{
 	 * Private Methods
 	 */
 	private void disableAll(){
-		
+		ui.allowPurchase(false);
+		ui.allowRent(false);
+		ui.allowRollDice(false);
 	}
+	
 
 
 	

@@ -26,6 +26,11 @@ public class Dice {
 	public Integer getDice2(){
 		return dice2;
 	}
+
+
+	public Integer getSum() {
+		return dice1+dice2;
+	}
 	
 	
 }
