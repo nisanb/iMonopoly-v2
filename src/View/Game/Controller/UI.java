@@ -7,11 +7,12 @@ import java.util.Random;
 
 import com.sun.prism.impl.ps.CachingShapeRep;
 
-import Controller.Board;
+import Controller.GameEngine;
 import Controller.iWindow;
 import Entity.Player;
 import Entity.Question;
 import Utils.Window;
+import View.IGameEngine;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -38,8 +39,8 @@ public class UI implements UIInterface{
 	public static final double playerStatsLeyoutx=80;
 	public static final int[] playersStatsY={60,150,240,330};
 
+	public static final IGameEngine ge = GameEngine.getInstance();
 	
-
 	@FXML
 	private ImageView player1_0= new ImageView();
 	@FXML
@@ -899,19 +900,19 @@ public class UI implements UIInterface{
 	}
 	@FXML
 	public void answer1(MouseEvent event){
-		Board.getInstance().AnswerQuestion(1);
+		ge.AnswerQuestion(1);
 	}
 	@FXML
 	public void answer2(MouseEvent event){
-		Board.getInstance().AnswerQuestion(2);
+		ge.AnswerQuestion(2);
 	}
 	@FXML
 	public void answer3(MouseEvent event){
-		Board.getInstance().AnswerQuestion(3);
+		ge.AnswerQuestion(3);
 	}
 	@FXML
 	public void answer4(MouseEvent event){
-		Board.getInstance().AnswerQuestion(4);
+		ge.AnswerQuestion(4);
 	}
 	
     
