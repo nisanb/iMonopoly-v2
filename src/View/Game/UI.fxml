@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -16,7 +17,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Game.Controller.UI">
    <children>
       <Button fx:id="main" layoutX="139.0" layoutY="598.0" mnemonicParsing="false" onMouseClicked="#menuButton" prefHeight="77.0" prefWidth="132.0" text="main menu" />
-      <ImageView fitHeight="691.0" fitWidth="1229.0" layoutX="61.0" layoutY="33.0">
+      <ImageView fitHeight="691.0" fitWidth="1229.0" layoutX="45.0" layoutY="40.0">
          <image>
             <Image url="@../../Resources/PSD/Board-1366-768.jpg" />
          </image>
@@ -64,7 +65,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane1" layoutX="1117.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane1" layoutX="1117.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_1" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -88,7 +89,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane2" layoutX="1062.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane2" layoutX="1062.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_2" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -112,7 +113,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane3" layoutX="1011.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane3" layoutX="1011.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_3" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -136,7 +137,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane4" layoutX="953.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane4" layoutX="953.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_4" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -160,7 +161,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane5" layoutX="902.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane5" layoutX="902.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_5" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -184,7 +185,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane6" layoutX="845.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane6" layoutX="845.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_6" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -208,7 +209,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane7" layoutX="788.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane7" layoutX="788.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_7" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -232,7 +233,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane8" layoutX="737.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane8" layoutX="737.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_8" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -256,7 +257,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane8" layoutX="683.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane8" layoutX="683.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_8" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -280,7 +281,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane9" layoutX="583.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane9" layoutX="583.0" layoutY="657.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_9" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -304,7 +305,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane11" layoutX="567.0" layoutY="568.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane11" layoutX="567.0" layoutY="568.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_11" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -328,7 +329,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane12" layoutX="567.0" layoutY="512.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane12" layoutX="567.0" layoutY="512.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_12" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -352,7 +353,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane13" layoutX="567.0" layoutY="460.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane13" layoutX="567.0" layoutY="460.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_13" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -376,7 +377,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane14" layoutX="567.0" layoutY="404.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane14" layoutX="567.0" layoutY="404.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_14" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -400,7 +401,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane15" layoutX="567.0" layoutY="350.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane15" layoutX="567.0" layoutY="350.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_15" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -424,7 +425,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane16" layoutX="567.0" layoutY="296.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane16" layoutX="567.0" layoutY="296.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_16" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -448,7 +449,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane17" layoutX="567.0" layoutY="241.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane17" layoutX="567.0" layoutY="241.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_17" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -472,7 +473,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane18" layoutX="567.0" layoutY="187.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane18" layoutX="567.0" layoutY="187.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_18" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -496,7 +497,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane19" layoutX="567.0" layoutY="133.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane19" layoutX="567.0" layoutY="133.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_19" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -520,7 +521,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane30" layoutX="1211.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane30" layoutX="1211.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_30" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -544,7 +545,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane29" layoutX="1118.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane29" layoutX="1118.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_29" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -568,7 +569,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane28" layoutX="1063.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane28" layoutX="1063.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_28" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -592,7 +593,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane27" layoutX="1008.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane27" layoutX="1008.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_27" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -616,7 +617,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane26" layoutX="951.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane26" layoutX="951.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_26" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -640,7 +641,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane25" layoutX="899.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane25" layoutX="899.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_25" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -664,7 +665,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane24" layoutX="842.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane24" layoutX="842.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_24" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -688,7 +689,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane23" layoutX="785.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane23" layoutX="785.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_23" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -712,7 +713,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane22" layoutX="734.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane22" layoutX="734.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_22" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -736,7 +737,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane21" layoutX="680.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane21" layoutX="680.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_21" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -760,7 +761,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane20" layoutX="579.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0" visible="false">
+      <Pane fx:id="pane20" layoutX="579.0" layoutY="52.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_20" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
                <image>
@@ -784,7 +785,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane39" layoutX="1190.0" layoutY="567.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane39" layoutX="1190.0" layoutY="567.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_39" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -808,7 +809,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane38" layoutX="1190.0" layoutY="513.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane38" layoutX="1190.0" layoutY="513.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_38" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -832,7 +833,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane37" layoutX="1190.0" layoutY="459.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane37" layoutX="1190.0" layoutY="459.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_37" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -856,7 +857,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane36" layoutX="1190.0" layoutY="403.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane36" layoutX="1190.0" layoutY="403.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_36" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -880,7 +881,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane35" layoutX="1190.0" layoutY="349.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane35" layoutX="1190.0" layoutY="349.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_35" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -904,7 +905,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane34" layoutX="1190.0" layoutY="295.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane34" layoutX="1190.0" layoutY="295.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_34" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -928,7 +929,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane33" layoutX="1190.0" layoutY="240.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane33" layoutX="1190.0" layoutY="240.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_33" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -952,7 +953,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane32" layoutX="1190.0" layoutY="186.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane32" layoutX="1190.0" layoutY="186.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_32" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -976,7 +977,7 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane fx:id="pane31" layoutX="1190.0" layoutY="132.0" prefHeight="56.0" prefWidth="108.0" visible="false">
+      <Pane fx:id="pane31" layoutX="1190.0" layoutY="132.0" prefHeight="56.0" prefWidth="108.0">
          <children>
             <ImageView fx:id="player1_31" fitHeight="30.0" fitWidth="20.0" layoutX="14.0" layoutY="-1.0" style="-fx-opacity: 75%;">
                <image>
@@ -1218,9 +1219,9 @@
             </Pane>
          </children>
       </Pane>
-      <AnchorPane fx:id="inBoardMenu" layoutX="700.0" layoutY="365.0" prefHeight="240.0" prefWidth="470.0">
+      <AnchorPane fx:id="inBoardMenu" layoutX="685.0" layoutY="365.0" prefHeight="240.0" prefWidth="470.0">
          <children>
-            <Pane fx:id="questionsPane" opacity="0.51" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: white;" />
+            <Pane fx:id="inBoardWhitePane" opacity="0.51" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: white;" />
             <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.51" pannable="true" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;" visible="false">
                <content>
                   <TextArea fx:id="gameLogs" editable="false" prefHeight="240.0" prefWidth="470.0" style="-fx-border-color: black;" text="Player 1: Rolled dice and moved 8 steps                                       Player 1: Rolled dice and moved 8 steps" wrapText="true">
@@ -1230,7 +1231,7 @@
                   </TextArea>
                </content>
             </ScrollPane>
-            <Pane fx:id="txtAnswerPane1" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: transparent;">
+            <Pane fx:id="txtAnswerPane" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: transparent;" visible="false">
                <children>
                   <Label fx:id="playerXIsAnswering" layoutX="10.0" prefHeight="25.0" prefWidth="323.0" text="Player 2 is answering question :">
                      <font>
@@ -1268,6 +1269,36 @@
                   <Pane fx:id="txtAnswerPane3" layoutX="10.0" layoutY="180.0" prefHeight="50.0" prefWidth="220.0" style="-fx-border-color: green;" />
                </children>
             </Pane>
+            <Pane fx:id="buyRentPane" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: transparent;" visible="false">
+               <children>
+                  <Label fx:id="playerXRentOrBuy" layoutX="10.0" opacity="0.7" prefHeight="25.0" prefWidth="323.0" text="Player 2, you got full price on &quot;Apple&quot;">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtBuyPrice" layoutX="10.0" layoutY="40.0" opacity="0.7" pickOnBounds="false" prefHeight="50.0" prefWidth="448.0" text="Would you like to buy &quot;Apple&quot; for 150,000$ ?">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="txtRentPrice" layoutX="10.0" layoutY="70.0" opacity="0.7" pickOnBounds="false" prefHeight="50.0" prefWidth="448.0" text="Would you like to rent &quot;Apple&quot; for 1,999$ ?">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="sellTradePane" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: transparent;">
+               <children>
+                  <Label fx:id="playerXSellOrTrade" layoutX="10.0" opacity="0.7" prefHeight="25.0" prefWidth="323.0" text="Player 2, here all your properties :">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <ListView layoutX="15.0" layoutY="35.0" prefHeight="166.0" prefWidth="200.0" />
+                  <ListView layoutX="321.0" layoutY="35.0" prefHeight="166.0" prefWidth="136.0" />
+               </children>
+            </Pane>
          </children></AnchorPane>
       <Button fx:id="btnOfferTrade" disable="true" layoutX="372.0" layoutY="203.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Offer A Trade" textFill="WHITE">
          <font>
@@ -1288,5 +1319,6 @@
             <Font name="Cooper Black" size="20.0" />
          </font>
       </Button>
+      <Button fx:id="btnTest" layoutX="413.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#btnTest" text="Button" />
    </children>
 </AnchorPane>

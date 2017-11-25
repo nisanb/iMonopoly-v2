@@ -29,7 +29,9 @@ public class UI implements UIInterface{
 	
 	private static UI _instance = null;
 	
+
 	List<String> playersList = new ArrayList<>();
+
 	ImageView playerPics[] = new ImageView[playersList.size()];
 	ImageView[][] players = new ImageView[40][4];
 	ImageView[] roll1= new ImageView[6];
@@ -690,11 +692,15 @@ public class UI implements UIInterface{
 	    Label playersStrikes[]={strikesPlayer1,strikesPlayer2,strikesPlayer3,strikesPlayer4};
 	    Label playersCash[]={moneyPlayer1,moneyPlayer2,moneyPlayer3,moneyPlayer4};
 	    
+	    @FXML
+	    private Button btnTest;
+	    
 	   
 	public UI() {
 		super();
 	}
 	
+
 	public void buildBoard(){
 		initialize();
 		/*
@@ -725,6 +731,7 @@ public class UI implements UIInterface{
 			
 	}
 	
+
 	public void answeringQuestion(String playerNickname, Question question){
 		
 	}
@@ -780,21 +787,6 @@ public class UI implements UIInterface{
     }
     
 
-    public void moveAPlayer(int dice){
-    	int player=2;
-    	int i;
-    	for (i=0; i<40; i++)
-    		if (players[i][2].isVisible())
-    			break;
-    	int current=i;
-    	players[current][player].setVisible(false);
-		players[(dice+current)%40][player].setVisible(true);
-		
-		
-    }
-    
-    
-
 	public static UI getInstance() {
 		return _instance;
 	}
@@ -802,9 +794,16 @@ public class UI implements UIInterface{
 	@Override
 	public void movePlayer(String player, int tileFrom, int tileTo) {
 		//the player's order in the game
+		
 		int playerPosition= playersList.indexOf(player);
 		players[tileFrom][playerPosition].setVisible(false);
 		players[tileTo][playerPosition].setVisible(true);
+		
+	}
+	@FXML
+    void btnTest(MouseEvent event) {
+		players[0][5]= new ImageView(players[0][0].getImage());
+		players[0][0]=null;
 		
 	}
 
@@ -894,8 +893,26 @@ public class UI implements UIInterface{
     
 	@Override
 	public void BuildBoard() {
-		// TODO Auto-generated method stub
 		
+		/*
+				playerYellowStats.setLayoutY(playersStatsY[i]);
+				playerPics[i]=playerYellowStats;
+					
+			}
+			if (playersList.get(i).getPlayerColor()==Color.blue){
+				playerBlueStats.setLayoutY(playersStatsY[i]);
+				playerPics[i]=playerBlueStats;
+			}
+			if (playersList.get(i).getPlayerColor()==Color.red){
+				playerRedStats.setLayoutY(playersStatsY[i]);
+				playerPics[i]=playerRedStats;
+			}
+			if (playersList.get(i).getPlayerColor()==Color.green){
+				playerGreenStats.setLayoutY(playersStatsY[i]);
+				playerPics[i]=playerGreenStats;
+			}
+		}
+		*/
 	}
 
 	@Override
@@ -925,7 +942,12 @@ public class UI implements UIInterface{
 		return false;
 	}
     
-    
+	@Override
+	public void updatePlayerProperties(String nickname, Integer cash, Integer strikes, Integer assetsWorth,
+			Integer assetsAmount) {
+		// TODO Auto-generated method stub
+		
+	}
     
    //////////////////////////////////////////////////initialize 
     
@@ -1120,6 +1142,12 @@ public class UI implements UIInterface{
     	 for (int i=1; i<40; i++)
     		 for (int j=0; j<4; j++)
     			 players[i][j].setVisible(false);
+
+    	 for (int i=0; i<40; i++)
+    		 for (int j=0; j<4; j++)
+    			 if (players[i][j].isVisible())
+    				 System.out.println(i+" blabla");
+
     	 
     	 //currentPlayerPanes.add()
     	 
@@ -1392,17 +1420,15 @@ public class UI implements UIInterface{
           assert txtAnswerPane4 != null : "fx:id=\"txtAnswerPane4\" was not injected: check your FXML file 'UI.fxml'.";
           assert txtAnswerPane3 != null : "fx:id=\"txtAnswerPane3\" was not injected: check your FXML file 'UI.fxml'.";
           assert txtAnswerPane1 != null : "fx:id=\"txtAnswerPane3\" was not injected: check your FXML file 'UI.fxml'.";
-         ge.setUI(this);
+          assert btnTest != null : "fx:id=\"btnTest\" was not injected: check your FXML file 'UI.fxml'.";
+          
+          ge.setUI(this);
         initializeTiles();
         initializeDicesFirstTime();
+        BuildBoard();
     }
 
-	@Override
-	public void updatePlayerProperties(String nickname, Integer cash, Integer strikes, Integer assetsWorth,
-			Integer assetsAmount) {
-		// TODO Auto-generated method stub
-		
-	}
+
 
 	@Override
 	public void build(List<String> playerList) {
@@ -1416,6 +1442,8 @@ public class UI implements UIInterface{
 	@Override
 	public void allowSellProperty(Boolean allow) {
 		// TODO Auto-generated method stub
+
+
 		
 	}
 
