@@ -156,4 +156,9 @@ public class PropertyTile extends Tile {
 	public String toString() {
 		return this.getTileName();
 	}
+	
+	public Integer getSellPrice(){
+		return (int) (currentPrice * 0.5);
+	}
+	
 }

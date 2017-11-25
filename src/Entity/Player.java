@@ -103,7 +103,7 @@ public class Player extends User implements Comparable<Player> {
 		Logger.log("Added $" + amount + " to " + getNickName());
 	}
 
-	protected void deductCash(Integer amount) {
+	public void deductCash(Integer amount) {
 		_cash -= amount;
 	}
 
@@ -136,5 +136,12 @@ public class Player extends User implements Comparable<Player> {
 	public String toString() {
 		return getNickName();
 	}
-	
+
+	public String sellProperty(){
+		PropertyTile pt = (PropertyTile) getCurrentTile();
+		addCash(pt.getSellPrice());
+		_propertyList.remove(pt);
+		pt.setCurrentOwner(null);
+		return "Player "+toString()+" has sold "+pt+" for $"+pt.getSellPrice();
+	}
 }

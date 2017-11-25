@@ -15,20 +15,13 @@ public interface UIInterface {
 	public void movePlayer(String player, int tileFrom, int tileTo);
 	
 	/**
-	 * if allow==true - display purchase option
-	 * if allow==false - hide purchase option
+	 * if allow==true - allow option
+	 * if allow==false - hide option
 	 * @param allow
 	 */
 	public void allowPurchase(Boolean allow);
-	
-	
+	public void allowSellProperty(Boolean allow);
 	public void allowRent(Boolean allow);
-	
-	/**
-	 * if enabled==true - rollDice button = enabled
-	 * if enabled==false - rollDice button - disabled
-	 * @param allow
-	 */
 	public void allowRollDice(Boolean enabled);
 	
 	/**
@@ -101,4 +94,5 @@ public interface UIInterface {
 	 * @param playerList
 	 */
 	public void build(List<String> playerList);
+	
 }

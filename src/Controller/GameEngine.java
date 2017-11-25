@@ -4,6 +4,7 @@ import Entity.Dice;
 import Entity.Game;
 import Entity.MonDB;
 import Entity.Player;
+import Entity.PropertyTile;
 import View.IGameEngine;
 import View.Game.Controller.UI;
 
@@ -44,32 +45,41 @@ public class GameEngine implements IGameEngine {
 
 	@Override
 	public void btnBuyProperty() {
-		// TODO Auto-generated method stub
-
+		ui.allowPurchase(false);
+		
 	}
 
+	/**
+	 * Player clicked pay rent
+	 */
 	@Override
 	public void btnPayRent() {
-		// TODO Auto-generated method stub
-
+		//Get the tiles' amount of rent
+		ui.allowRent(false);
+		PropertyTile rentTile = (PropertyTile)currentPlayer().getCurrentTile();
+		currentPlayer().deductCash(rentTile.getRentPrice());
+		ui.gameLog("Player "+currentPlayer()+" paid $"+rentTile.getRentPrice()+" of rent "+rentTile.getCurrentOwner());
 	}
 
+	/**
+	 * Allow a player to sell his property
+	 */
 	@Override
 	public void btnSellProperty() {
-		// TODO Auto-generated method stub
-
+		ui.allowSellProperty(false);
+		ui.gameLog(currentPlayer().sellProperty());
 	}
 
 	@Override
 	public void btnOfferTrade() {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void btnQuitGame() {
 		// TODO Auto-generated method stub
-
+		ui.finishGame();
 	}
 
 	/**

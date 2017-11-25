@@ -1408,6 +1408,12 @@ public class UI implements UIInterface{
 		
 	}
 
+	@Override
+	public void allowSellProperty(Boolean allow) {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 
 
