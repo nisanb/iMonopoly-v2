@@ -860,11 +860,10 @@ public class UI implements UIInterface{
 	@Override
 	public void updateCurrentPlayer(String nickname) {
 		for (int i=0; i<playersList.size(); i++){
+			currentPlayerPanes[i].setVisible(false);
 			if (playersList.get(i).equals(nickname)){
 				currentPlayerPanes[i].setVisible(true);
-			}
-			else
-				currentPlayerPanes[i].setVisible(false);
+			}				
 		}
 	}
 
@@ -968,7 +967,7 @@ public class UI implements UIInterface{
 	
 	@Override
 	public void allowFinishTurn(Boolean enabled) {
-		
+		btnFinishTurn.setDisable(!enabled);
 		
 	}
     
