@@ -695,11 +695,8 @@ public class UI implements UIInterface{
 	    
 	   
 	public UI() {
-			super();
-			
-			//initializeGame(){
-			
-		}
+		super();
+	}
 	
 	public void buildBoard(){
 		initialize();
@@ -735,40 +732,27 @@ public class UI implements UIInterface{
 	}
 	@FXML
 	public void buyProperty(){
-		
+		ge.btnBuyProperty();
 	}
 	@FXML
 	public void sellProperty(){
-		
+		ge.btnSellProperty();
 	}
 	@FXML
 	public void offerTrade(){
-		
+		ge.btnOfferTrade();
 	}
 	@FXML
 	private void rollDice(){
 		initializeDicesBeforeRoll();
-		//Board.getInstance().rollADice(playerNickName, gameNum, tileNum)
-		//Random r = new Random();
-		/*
-		int gameNum=Board.getInstance().getCurrentGameNum();
-		String playerNickname=Board.getInstance().whosTurn(gameNum);
-		int tileNum= Board.getInstance().getCurrentTile(playerNickname);
-		int dice1 = (Board.getInstance().rollADice(playerNickname, gameNum, tileNum)).get(0);
-		int dice2 = (Board.getInstance().rollADice(playerNickname, gameNum, tileNum)).get(1);
-		
-		roll1[dice1-1].setVisible(true);
-		roll2[dice2-1].setVisible(true);
-		moveAPlayer(dice1+dice2);
-		*/
+		ge.btnRollDice();
 	}
 
     private void initializeDicesBeforeRoll() {
         	for (int i=0; i<6; i++){
         		roll1[i].setVisible(false);
         		roll2[i].setVisible(false);
-        	}
-		
+        	}	
 	}
  
 	/*
@@ -797,6 +781,7 @@ public class UI implements UIInterface{
     	iWindow.swap(Window.Player_Menu);
     }
     
+
     public void moveAPlayer(int dice){
     	int player=2;
     	int i;
@@ -818,6 +803,7 @@ public class UI implements UIInterface{
 
 	@Override
 	public void movePlayer(Player player, int tileFrom, int tileTo) {
+		//the player's order in the game
 		int playerPosition= playersList.indexOf(player);
 		players[tileFrom][playerPosition].setVisible(false);
 		players[tileTo][playerPosition].setVisible(true);
@@ -933,6 +919,21 @@ public class UI implements UIInterface{
 		txtAnswerPane3.setVisible(true);
 	if (answerNum==4)
 		txtAnswerPane4.setVisible(true);
+	}
+	
+	@Override
+	public void changeDice(int diceNumber, int amount) {
+		if (diceNumber==1)
+			roll1[amount-1].setVisible(true);
+		if (diceNumber==2)
+			roll1[amount-1].setVisible(true);
+		
+	}
+	
+	@Override
+	public boolean buyOrRentProperty(int buyAmount, int rentAmount, Player player, String AssetName) {
+		// TODO Auto-generated method stub
+		return false;
 	}
     
     
@@ -1408,11 +1409,9 @@ public class UI implements UIInterface{
         initializeDicesFirstTime();
     }
 
-	@Override
-	public void changeDice(int diceNumber, int amount) {
-		// TODO Auto-generated method stub
-		
-	}
+
+
+
 
 	
 

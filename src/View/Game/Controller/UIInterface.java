@@ -85,5 +85,15 @@ public interface UIInterface {
 	 */
 	public void changeDice(int diceNumber, int amount);
 	
+	/**
+	 * 
+	 * @param buyAmount the amount money you need to buy the asset (switch owner)
+	 * @param rentAmount the amount money you need to rent the asset (doesnt switch owner)
+	 * @param player to show on screen
+	 * @param AssetName to show on screen
+	 * @return true for buy - false for rent
+	 */
+	public boolean buyOrRentProperty(int buyAmount, int rentAmount, Player player, String AssetName);
+	
 	
 }
