@@ -802,9 +802,9 @@ public class UI implements UIInterface{
 	@Override
 	public void movePlayer(String player, int tileFrom, int tileTo) {
 		//the player's order in the game
-		System.out.println(playersList);
 		int playerPosition= playersList.indexOf(player);
-		System.out.println(playerPosition);
+		System.out.println("tile from "+ tileFrom);
+		System.out.println("tile to "+ tileTo);
 		players[tileFrom][playerPosition].setVisible(false);
 		players[tileTo][playerPosition].setVisible(true);
 		
@@ -858,9 +858,12 @@ public class UI implements UIInterface{
 
 	@Override
 	public void updateCurrentPlayer(String nickname) {
+		System.out.println("update");
 		for (int i=0; i<playersList.size(); i++){
+			System.out.println("in loop");
 			currentPlayerPanes[i].setVisible(false);
 			if (playersList.get(i).equals(nickname)){
+				System.out.println("true");
 				currentPlayerPanes[i].setVisible(true);
 			}				
 		}
@@ -910,15 +913,19 @@ public class UI implements UIInterface{
 		paneCurrentTurnPlayer4.setVisible(false);
 		player4StatsPane.setVisible(false);
 		player3StatsPane.setVisible(false);
+		players[0][3].setVisible(false);
+		players[0][2].setVisible(false);
 		if (playersList.size()==2){
 			playerGreenStats.setLayoutY(playersStatsY[0]);
 			playerBlueStats.setLayoutY(playersStatsY[1]);
 		}
 		else if  (playersList.size()==3 ) {
 			playerYellowStats.setVisible(true);
+			players[0][2].setVisible(true);
 		}
 		else if (playersList.size()==4) {
 			playerRedStats.setVisible(true);
+			players[0][3].setVisible(true);
 		}
 					
 
@@ -1161,6 +1168,7 @@ public class UI implements UIInterface{
     	 for (int i=1; i<40; i++)
     		 for (int j=0; j<4; j++)
     			 players[i][j].setVisible(false);
+    	 System.out.println("visible? "+ players[8][0].isVisible());
 
     	 
     }
