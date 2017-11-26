@@ -114,5 +114,8 @@ public class Tile implements Tilable {
 	}
 	
 	
-	
+	@Override
+	public String toString() {
+		return this.getTileName();
+	}
 }

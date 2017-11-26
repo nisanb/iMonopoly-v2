@@ -5,6 +5,8 @@ import Entity.Game;
 import Entity.MonDB;
 import Entity.Player;
 import Entity.PropertyTile;
+import Utils.Param;
+import Utils.TileType;
 import View.IGameEngine;
 import View.Game.Controller.UI;
 
@@ -116,7 +118,7 @@ public class GameEngine implements IGameEngine {
 		System.out.println(dice.getSum());
 		System.out.println(currentPlayer().getCurrentTile());
 
-		Integer moveToTile = dice.getSum() + currentPlayer().getCurrentTile().getTileNumber() % 40;
+		Integer moveToTile = (dice.getSum() + currentPlayer().getCurrentTile().getTileNumber()) % 40;
 
 		Thread doChangeLocation = new Thread() {
 			@Override
@@ -140,9 +142,19 @@ public class GameEngine implements IGameEngine {
 						e.printStackTrace();
 					}
 
+					
+					if(currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)){
+						//Player passed by start point
+						ui.gameLog("Player "+currentPlayer()+" has passed by Starting Point (0) and received "+Param.get(Param.START_TILE_PASS));
+					}
 				}
 				ui.gameLog("Player "+currentPlayer()+" has arrived to "+currentPlayer().getCurrentTile()+" ("+currentPlayer().getCurrentTile().getTileNumber()+")");
 				currentPlayer().getCurrentTile().visit(currentPlayer());
+				if(currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)){
+					//Player passed by start point
+					ui.gameLog("Player "+currentPlayer()+" has arrived to Starting Point (0) and received "+Param.get(Param.START_TILE_VISIT));
+				}
+				updatePlayerProperties(currentPlayer());
 			}
 
 		};

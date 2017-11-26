@@ -154,7 +154,7 @@ public class PropertyTile extends Tile {
 
 	@Override
 	public String toString() {
-		return this.getTileName();
+		return super.toString();
 	}
 	
 	public Integer getSellPrice(){

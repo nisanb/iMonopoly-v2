@@ -39,4 +39,8 @@ public class LuckTile extends Tile {
 		super.postVisit(currentPlayer);
 	}
 
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 }

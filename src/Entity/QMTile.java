@@ -29,5 +29,9 @@ public class QMTile extends Tile {
 		// TODO Auto-generated method stub
 		super.postVisit(currentPlayer);
 	}
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 	
 }

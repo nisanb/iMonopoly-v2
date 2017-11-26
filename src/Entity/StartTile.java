@@ -25,4 +25,8 @@ public class StartTile extends Tile implements Tilable {
 		// TODO Auto-generated method stub
 		super.postVisit(currentPlayer);
 	}
+	@Override
+	public String toString() {
+		return super.toString();
+	}
 }

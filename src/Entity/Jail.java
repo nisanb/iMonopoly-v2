@@ -24,4 +24,9 @@ public class Jail extends Tile {
 		super.postVisit(currentPlayer);
 	}
 	
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+	
 }

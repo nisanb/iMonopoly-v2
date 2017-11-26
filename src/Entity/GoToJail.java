@@ -28,4 +28,9 @@ public class GoToJail extends Tile   {
 	public void postVisit(Player currentPlayer) {
 	}
 	
+	@Override
+	public String toString() {
+		return super.toString();
+	}
+	
 }
