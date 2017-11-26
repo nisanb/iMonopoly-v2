@@ -224,7 +224,6 @@ public class Check {
     void openBoard(ActionEvent event) {
     	
     	Integer res= Integer.valueOf((int) slide1.getValue());
-<<<<<<< Updated upstream
     	System.out.println(res);
     	if(res==2)
     	{
@@ -244,8 +243,6 @@ public class Check {
     			iWindow.swap(Window.Game_UI);
     		}
     	}
-=======
->>>>>>> Stashed changes
     	
     	switch (res)
     	{
