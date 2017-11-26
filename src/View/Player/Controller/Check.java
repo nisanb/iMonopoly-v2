@@ -24,309 +24,274 @@ import javafx.scene.input.SwipeEvent;
 public class Check {
 
 	private IManagement mng = iWindow.getManagement();
+
+	@FXML // ResourceBundle that was given to the FXMLLoader
+	private ResourceBundle resources;
+
+	@FXML
+	private Label txt2Err;
+
+	@FXML
+	private Label txt3Err;
+
+	@FXML
+	private Label txt4Err;
+
+	@FXML // URL location of the FXML file that was given to the FXMLLoader
+	private URL location;
+
+	@FXML // fx:id="btnVolume"
+	private ImageView btnVolume; // Value injected by FXMLLoader
+
+	@FXML // fx:id="slide1"
+	private Slider slide1; // Value injected by FXMLLoader
+
+	@FXML // fx:id="label1"
+	private Label label1; // Value injected by FXMLLoader
+
+	@FXML // fx:id="img1"
+	private ImageView img1; // Value injected by FXMLLoader
+
+	@FXML // fx:id="img11"
+	private ImageView img11; // Value injected by FXMLLoader
+
+	@FXML // fx:id="txt1"
+	private TextField txt1; // Value injected by FXMLLoader
+
+	@FXML // fx:id="label3"
+	private Label label3; // Value injected by FXMLLoader
+
+	@FXML // fx:id="img3"
+	private ImageView img3; // Value injected by FXMLLoader
+
+	@FXML // fx:id="txt3"
+	private TextField txt3; // Value injected by FXMLLoader
+
+	@FXML // fx:id="label2"
+	private Label label2; // Value injected by FXMLLoader
+
+	@FXML // fx:id="img2"
+	private ImageView img2; // Value injected by FXMLLoader
+
+	@FXML // fx:id="txt2"
+	private TextField txt2; // Value injected by FXMLLoader
+
+	@FXML // fx:id="label4"
+	private Label label4; // Value injected by FXMLLoader
+
+	@FXML // fx:id="img4"
+	private ImageView img4; // Value injected by FXMLLoader
+
+	@FXML // fx:id="txt4"
+	private TextField txt4; // Value injected by FXMLLoader
+
+	@FXML
+	void back(ActionEvent event) {
+		iWindow.swap(Window.Player_Menu);
+	}
 	
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
-    
-    @FXML
-    private Label txt2Err;
 
-    @FXML
-    private Label txt3Err;
+	// For generic checks
+	private List<TextField> txtfields = new ArrayList<>();
+		
+	@FXML
+	void check1(MouseEvent event) {
 
-    @FXML
-    private Label txt4Err;
+		Integer res = Integer.valueOf((int) slide1.getValue());
+	/*	int i=0;
+		for(TextField tf : txtfields){
+			if(i<res){
+				tf.setVisible(true);
+			}else{
+				tf.setVisible(false);
+			}
+		}
+	*/	
+		switch (res) {
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
+		case 2:
+			txt1.setVisible(true);
+			label1.setVisible(true);
+			img1.setVisible(true);
 
-    @FXML // fx:id="btnVolume"
-    private ImageView btnVolume; // Value injected by FXMLLoader
+			txt2.setVisible(true);
+			label2.setVisible(true);
+			img2.setVisible(true);
+			txt2Err.setVisible(false);
 
-    @FXML // fx:id="slide1"
-    private Slider slide1; // Value injected by FXMLLoader
+			txt3.setVisible(false);
+			label3.setVisible(false);
+			img3.setVisible(false);
+			txt3Err.setVisible(false);
 
-    @FXML // fx:id="label1"
-    private Label label1; // Value injected by FXMLLoader
+			txt4.setVisible(false);
+			label4.setVisible(false);
+			img4.setVisible(false);
+			txt4Err.setVisible(false);
+			break;
 
-    @FXML // fx:id="img1"
-    private ImageView img1; // Value injected by FXMLLoader
+		case 3:
+			txt1.setVisible(true);
+			label1.setVisible(true);
+			img1.setVisible(true);
+			txt3Err.setVisible(false);
+			txt2Err.setVisible(false);
+			txt4Err.setVisible(false);
 
-    @FXML // fx:id="img11"
-    private ImageView img11; // Value injected by FXMLLoader
+			txt2.setVisible(true);
+			label2.setVisible(true);
+			img2.setVisible(true);
 
-    @FXML // fx:id="txt1"
-    private TextField txt1; // Value injected by FXMLLoader
+			txt3.setVisible(true);
+			label3.setVisible(true);
+			img3.setVisible(true);
 
-    @FXML // fx:id="label3"
-    private Label label3; // Value injected by FXMLLoader
+			txt4.setVisible(false);
+			label4.setVisible(false);
+			img4.setVisible(false);
+			break;
 
-    @FXML // fx:id="img3"
-    private ImageView img3; // Value injected by FXMLLoader
+		case 4:
+			txt1.setVisible(true);
+			label1.setVisible(true);
+			img1.setVisible(true);
+			txt3Err.setVisible(false);
+			txt2Err.setVisible(false);
+			txt4Err.setVisible(false);
 
-    @FXML // fx:id="txt3"
-    private TextField txt3; // Value injected by FXMLLoader
+			txt2.setVisible(true);
+			label2.setVisible(true);
+			img2.setVisible(true);
 
-    @FXML // fx:id="label2"
-    private Label label2; // Value injected by FXMLLoader
+			txt3.setVisible(true);
+			label3.setVisible(true);
+			img3.setVisible(true);
 
-    @FXML // fx:id="img2"
-    private ImageView img2; // Value injected by FXMLLoader
+			txt4.setVisible(true);
+			label4.setVisible(true);
+			img4.setVisible(true);
+			break;
+		}
+	}
 
-    @FXML // fx:id="txt2"
-    private TextField txt2; // Value injected by FXMLLoader
+	@FXML
+	void CheckRight(SwipeEvent event) {
 
-    @FXML // fx:id="label4"
-    private Label label4; // Value injected by FXMLLoader
+	}
 
-    @FXML // fx:id="img4"
-    private ImageView img4; // Value injected by FXMLLoader
+	@FXML
+	void check2(MouseEvent event) {
 
-    @FXML // fx:id="txt4"
-    private TextField txt4; // Value injected by FXMLLoader
+	}
 
-    @FXML
-    void back(ActionEvent event) {
-    	iWindow.swap(Window.Player_Menu);
-    }
+	@FXML
+	void doSwapMusic(MouseEvent event) {
 
-    @FXML
-    void check1(MouseEvent event) {
-    
-    	Integer res= Integer.valueOf((int) slide1.getValue());
-    	
-    	switch(res){
-    	
-    	case 2:
-    		txt1.setVisible(true);
-    		label1.setVisible(true);
-    		img1.setVisible(true);
+	}
 
-    		txt2.setVisible(true);
-    		label2.setVisible(true);
-    		img2.setVisible(true);
-    		txt2Err.setVisible(false);
-    		
-    		txt3.setVisible(false);
-    		label3.setVisible(false);
-    		img3.setVisible(false);
-    		txt3Err.setVisible(false);
-    		
-    		txt4.setVisible(false);
-    		label4.setVisible(false);
-    		img4.setVisible(false);
-    		txt4Err.setVisible(false);
-    		break;
-    		
-    	case 3:
-    		txt1.setVisible(true);
-    		label1.setVisible(true);
-    		img1.setVisible(true);
-    		txt3Err.setVisible(false);
-    		txt2Err.setVisible(false);
-    		txt4Err.setVisible(false);
+	@FXML
+	void hidelabel1(MouseEvent event) {
 
-    		txt2.setVisible(true);
-    		label2.setVisible(true);
-    		img2.setVisible(true);
+	}
 
-    		txt3.setVisible(true);
-    		label3.setVisible(true);
-    		img3.setVisible(true);
+	@FXML
+	void hidelabel2(MouseEvent event) {
 
-    		txt4.setVisible(false);
-    		label4.setVisible(false);
-    		img4.setVisible(false);
-    		break;
-    		
-    	case 4:
-    		txt1.setVisible(true);
-    		label1.setVisible(true);
-    		img1.setVisible(true);
-    		txt3Err.setVisible(false);
-    		txt2Err.setVisible(false);
-    		txt4Err.setVisible(false);
-    		
-    		txt2.setVisible(true);
-    		label2.setVisible(true);
-    		img2.setVisible(true);
-    		
-    		txt3.setVisible(true);
-    		label3.setVisible(true);
-    		img3.setVisible(true);
-    		
-    		txt4.setVisible(true);
-    		label4.setVisible(true);
-    		img4.setVisible(true);
-    		break;
-    	}
-    }
+	}
 
-    
-    @FXML
-    void CheckRight(SwipeEvent event) {
-    	
- 
-    }
-    
-    @FXML
-    void check2(MouseEvent event) {
-    	 
-    }
+	@FXML
+	void hidelabel3(MouseEvent event) {
+
+	}
+
+	@FXML
+	void hidelabel4(MouseEvent event) {
+
+	}
+
+	@FXML
+	void hidetextfield1(ActionEvent event) {
+
+	}
+
+	@FXML
+	void hidetextfield2(ActionEvent event) {
+
+	}
+
+	@FXML
+	void hidetextfield3(ActionEvent event) {
+
+	}
+
+	@FXML
+	void hidetextfield4(ActionEvent event) {
+
+	}
+
+	@FXML
+	void openBoard(ActionEvent event) {
+
+		Integer res = Integer.valueOf((int) slide1.getValue());
 
 
-    @FXML
-    void doSwapMusic(MouseEvent event) {
+		List<String> playerList = new ArrayList<String>();
+		// Add first player which is logged in
 
-    }
+		playerList.add(mng.getLoggedPlayer());
 
-    @FXML
-    void hidelabel1(MouseEvent event) {
+		// Add second player - MUST
+		for (TextField box : txtfields) {
+			if (!box.getText().isEmpty()) {
+				playerList.add(box.getText());
+			}
+		}
 
-    }
+		if (playerList.size() != res) {
+			// There is a problem
+			// print a problem
+			//TODO
+		} else {
+			mng.build(playerList);
+			iWindow.swap(Window.Game_UI);
+		}
+	}
 
-    @FXML
-    void hidelabel2(MouseEvent event) {
+	@FXML // This method is called by the FXMLLoader when initialization is
+			// complete
+	void initialize() {
+		assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Check.fxml'.";
+		assert slide1 != null : "fx:id=\"slide1\" was not injected: check your FXML file 'Check.fxml'.";
+		assert label1 != null : "fx:id=\"label1\" was not injected: check your FXML file 'Check.fxml'.";
+		assert img1 != null : "fx:id=\"img1\" was not injected: check your FXML file 'Check.fxml'.";
+		assert img11 != null : "fx:id=\"img11\" was not injected: check your FXML file 'Check.fxml'.";
+		assert txt1 != null : "fx:id=\"txt1\" was not injected: check your FXML file 'Check.fxml'.";
+		assert label3 != null : "fx:id=\"label3\" was not injected: check your FXML file 'Check.fxml'.";
+		assert img3 != null : "fx:id=\"img3\" was not injected: check your FXML file 'Check.fxml'.";
+		assert txt3 != null : "fx:id=\"txt3\" was not injected: check your FXML file 'Check.fxml'.";
+		assert label2 != null : "fx:id=\"label2\" was not injected: check your FXML file 'Check.fxml'.";
+		assert img2 != null : "fx:id=\"img2\" was not injected: check your FXML file 'Check.fxml'.";
+		assert txt2 != null : "fx:id=\"txt2\" was not injected: check your FXML file 'Check.fxml'.";
+		assert label4 != null : "fx:id=\"label4\" was not injected: check your FXML file 'Check.fxml'.";
+		assert img4 != null : "fx:id=\"img4\" was not injected: check your FXML file 'Check.fxml'.";
+		assert txt4 != null : "fx:id=\"txt4\" was not injected: check your FXML file 'Check.fxml'.";
 
-    }
+		txtfields.add(txt2);
+		txtfields.add(txt3);
+		txtfields.add(txt4);
+		
+		txt3.setVisible(false);
+		label3.setVisible(false);
+		txt4.setVisible(false);
+		label4.setVisible(false);
 
-    @FXML
-    void hidelabel3(MouseEvent event) {
+		img3.setVisible(false);
+		img4.setVisible(false);
 
-    }
+		txt2Err.setVisible(false);
+		txt3Err.setVisible(false);
+		txt4Err.setVisible(false);
 
-    @FXML
-    void hidelabel4(MouseEvent event) {
+	}
 
-    }
-
-    @FXML
-    void hidetextfield1(ActionEvent event) {
-
-    }
-
-    @FXML
-    void hidetextfield2(ActionEvent event) {
-
-    }
-
-    @FXML
-    void hidetextfield3(ActionEvent event) {
-
-    }
-
-    @FXML
-    void hidetextfield4(ActionEvent event) {
-
-    }
-
-    @FXML
-    void openBoard(ActionEvent event) {
-    	
-    	Integer res= Integer.valueOf((int) slide1.getValue());
-    	System.out.println(res);
-    	if(res==2)
-    	{
-    		if(txt2.getText().isEmpty())
-    		{
-    			txt2Err.setVisible(true);
-    		
-    		}
-    		
-    		else
-    		{
-    		
-    			List<String> playerList = new ArrayList<String>();
-    			playerList.add(mng.getLoggedPlayer());
-    			playerList.add(txt2.getText());
-    			mng.build(playerList);
-    			iWindow.swap(Window.Game_UI);
-    		}
-    	}
-    	
-    	switch (res)
-    	{
-	    	case 2:
-	    			if(txt2.getText().isEmpty()){
-	    			  txt2Err.setVisible(true);
-	    			}
-	    			else{
-	    				iWindow.swap(Window.Game_UI);
-	    			}
-	    			break;
-    			
-	    	case 3:
-			    	if(txt2.getText().isEmpty()){
-			  		   txt2Err.setVisible(true);}
-			    		else{
-			    			txt2Err.setVisible(false);
-			    			}
-			    	if(txt3.getText().isEmpty()){
-					  		txt3Err.setVisible(true);}
-			  			else{
-				    		txt3Err.setVisible(false);
-			  				}
-			  			if((!txt2.getText().isEmpty())&&(!txt3.getText().isEmpty()))
-			    		{
-			    			iWindow.swap(Window.Game_UI);
-			    		}
-			  			break;
-			  			
-	    	case 4:
-		    	 		if(txt2.getText().isEmpty()){
-		        			txt2Err.setVisible(true);}
-		    	 		else{
-		    	 			txt2Err.setVisible(false);}
-		    	 		
-		    	 		if(txt3.getText().isEmpty()){
-		        			txt3Err.setVisible(true);}
-		        		else{
-		        			txt3Err.setVisible(false);}
-		    	 		if(txt4.getText().isEmpty()){
-		        			txt4Err.setVisible(true);}
-		        		else{
-		        			txt4Err.setVisible(false);}
-		    	 		if((!txt2.getText().isEmpty())&&(!txt3.getText().isEmpty())&&(!txt4.getText().isEmpty()))
-		        		{
-		        			iWindow.swap(Window.Game_UI);
-		        		}
-		    	 		break;			
-    	}
-    }
-
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Check.fxml'.";
-        assert slide1 != null : "fx:id=\"slide1\" was not injected: check your FXML file 'Check.fxml'.";
-        assert label1 != null : "fx:id=\"label1\" was not injected: check your FXML file 'Check.fxml'.";
-        assert img1 != null : "fx:id=\"img1\" was not injected: check your FXML file 'Check.fxml'.";
-        assert img11 != null : "fx:id=\"img11\" was not injected: check your FXML file 'Check.fxml'.";
-        assert txt1 != null : "fx:id=\"txt1\" was not injected: check your FXML file 'Check.fxml'.";
-        assert label3 != null : "fx:id=\"label3\" was not injected: check your FXML file 'Check.fxml'.";
-        assert img3 != null : "fx:id=\"img3\" was not injected: check your FXML file 'Check.fxml'.";
-        assert txt3 != null : "fx:id=\"txt3\" was not injected: check your FXML file 'Check.fxml'.";
-        assert label2 != null : "fx:id=\"label2\" was not injected: check your FXML file 'Check.fxml'.";
-        assert img2 != null : "fx:id=\"img2\" was not injected: check your FXML file 'Check.fxml'.";
-        assert txt2 != null : "fx:id=\"txt2\" was not injected: check your FXML file 'Check.fxml'.";
-        assert label4 != null : "fx:id=\"label4\" was not injected: check your FXML file 'Check.fxml'.";
-        assert img4 != null : "fx:id=\"img4\" was not injected: check your FXML file 'Check.fxml'.";
-        assert txt4 != null : "fx:id=\"txt4\" was not injected: check your FXML file 'Check.fxml'.";
-        
-       
-        
-        txt3.setVisible(false);
-        label3.setVisible(false);
-        txt4.setVisible(false);
-        label4.setVisible(false);
-      
-        img3.setVisible(false);
-        img4.setVisible(false);
-        
-        txt2Err.setVisible(false);
-        txt3Err.setVisible(false);
-        txt4Err.setVisible(false);
-
-    }
-    
-   
 }

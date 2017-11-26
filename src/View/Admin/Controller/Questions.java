@@ -86,7 +86,7 @@ public class Questions {
     private TextField txtQuestion1; // Value injected by FXMLLoader
 
     @FXML // fx:id="List2"
-    private ListView<String> List2; // Value injected by FXMLLoader
+    private ListView<QuestionTag> List2; // Value injected by FXMLLoader
 
     @FXML // fx:id="RightImg"
     private ImageView RightImg; // Value injected by FXMLLoader
@@ -95,11 +95,11 @@ public class Questions {
     private ImageView LeftImg; // Value injected by FXMLLoader
 
     @FXML // fx:id="List1"
-    private ListView<String> List1; // Value injected by FXMLLoader
+    private ListView<QuestionTag> List1; // Value injected by FXMLLoader
 
     @FXML // fx:id="DiffComboox"
     private ComboBox<QuestionStrength> DiffComboox; // Value injected by FXMLLoader
-
+    
     @FXML // fx:id="managequestion"
     private Label managequestion; // Value injected by FXMLLoader
 
@@ -279,6 +279,8 @@ public class Questions {
     					txtQuestion.setText(q.getqQuestion());
     					txtQuestion1.setText(q.getTeam());
     				}
+    				//Get the question tags
+    				List1.getItems().addAll(q.getTags());
     			}
     		}
     	}
