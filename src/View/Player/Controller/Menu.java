@@ -50,6 +50,11 @@ public class Menu {
     	iWindow.swap(Window.Player_GameSettings);
 
     }
+    
+    @FXML
+    void openRules(ActionEvent event) {
+    	iWindow.swap(Window.Rules_Window);
+    }
 
     @FXML
     void openStatistics(ActionEvent event) {
@@ -58,7 +63,7 @@ public class Menu {
     
     @FXML
     void openGame(ActionEvent event) {
-    	iWindow.swap(Window.Check_Window);
+    	iWindow.swap(Window.Player_GameSettings);
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete

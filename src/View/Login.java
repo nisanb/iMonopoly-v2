@@ -7,7 +7,7 @@ import Controller.Logger;
 import Controller.Music;
 import Controller.iWindow;
 import Utils.Window;
-import View.Player.Controller.Check;
+import View.Player.Controller.GameSettings;
 import javafx.animation.ParallelTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.RotateTransition;

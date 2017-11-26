@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import java.util.jar.Attributes.Name;
 
 import Controller.iWindow;
+import Entity.Answer;
 import Entity.MonDB;
 import Entity.Question;
 import Utils.QuestionStrength;
@@ -214,6 +215,7 @@ public class Questions {
         FalseBu3.setSelected(true);
         FalseBu4.setSelected(true);
        /* getQeuestions();*/
+     
         
     }
     
@@ -278,9 +280,12 @@ public class Questions {
     				if(q.getqNumber()==Selected){
     					txtQuestion.setText(q.getqQuestion());
     					txtQuestion1.setText(q.getTeam());
+    					//Get the question tags
+    					List1.getItems().clear();
+        				List1.getItems().addAll(q.getTags());
+        				SetQuestion(Selected);
     				}
-    				//Get the question tags
-    				List1.getItems().addAll(q.getTags());
+    				
     			}
     		}
     	}
@@ -314,6 +319,30 @@ public class Questions {
 	   	NumQuestionCombo.getItems().clear();
 		txtQuestion1.clear();
 		txtQuestion.clear();
+		txtanswer1.clear();
+		txtanswer2.clear();
+		txtanswer3.clear();
+		txtanswer4.clear();
+		FalseBu.setSelected(true);
+	    FalseBu2.setSelected(true);
+	    FalseBu3.setSelected(true);
+	    FalseBu4.setSelected(true);
+	    TrueBu.setSelected(false);
+	    TrueBu2.setSelected(false);
+	    TrueBu3.setSelected(false);
+	    TrueBu4.setSelected(false);
+	    
+	    answer3.setVisible(true);
+		txtanswer3.setVisible(true);
+		TrueBu3.setVisible(true);
+		FalseBu3.setVisible(true);
+		
+		answer4.setVisible(true);
+		txtanswer4.setVisible(true);
+		TrueBu4.setVisible(true);
+		FalseBu4.setVisible(true);
+		
+		List1.getItems().clear();
 	   	for (Map.Entry<QuestionStrength, List<Question>> list: questions.entrySet()){
   		for (Question q:list.getValue()){
   			if(q.getqStrength().equals(x)){
@@ -321,10 +350,152 @@ public class Questions {
   		
   			}
   		}
+  	   
 	}
+  }
+  
+  private void SetQuestion (Integer x)
+  {
+	   	Map<QuestionStrength, List<Question>> questions = MonDB.getInstance().getGameQuestions();
+	   	for (Map.Entry<QuestionStrength, List<Question>> list: questions.entrySet()){
+  		for (Question q:list.getValue()){
+  			if(q.getqNumber()==x)
+  			{
+  				 List<Answer> name= q.getqAnswers();
+  				CheckIsTrue(name);
+  		
+  				for(int i=name.size()-1;i<name.size();i++)
+  				{	
+  					if(name.size()==2){
+  					txtanswer1.setText(name.get(i-i).getText());
+  					
+  					
+  					txtanswer2.setText(name.get(i-i+1).getText());
+  					
+  					
+  				}
+  					else{
+  					txtanswer1.setText(name.get(i-i).getText());
+  					
+  					
+  					txtanswer2.setText(name.get(i-i+1).getText());
+  					
+  					txtanswer3.setText(name.get(i-i+2).getText());
+  					
+  					txtanswer4.setText(name.get(i).getText());}
+  					
+  					
+  				}
+  			}
+  			
+  			
+  			
+  }
+  
+  }
+	   	}
+  
+private void CheckIsTrue(List<Answer> a)
+{
+	List<Answer> name=a;
+	for(int i=name.size()-1;i<name.size();i++)
+	{
+		if(name.size()==2)
+		{
+			answer3.setVisible(false);
+			txtanswer3.setVisible(false);
+			TrueBu3.setVisible(false);
+			FalseBu3.setVisible(false);
+			
+			answer4.setVisible(false);
+			txtanswer4.setVisible(false);
+			TrueBu4.setVisible(false);
+			FalseBu4.setVisible(false);
+			
+			
+			
+			if(name.get(i-i).getIsTrue(name.get(i-i)))
+			{
+				TrueBu.setSelected(true);
+				FalseBu.setSelected(false);
+			}
+			else
+			{
+				FalseBu.setSelected(true);
+				TrueBu.setSelected(false);
+			}
+			
+			if(name.get(i-i+1).getIsTrue(name.get(i-i+1)))
+					{
+						TrueBu2.setSelected(true);
+						FalseBu2.setSelected(false);
+					}
+			else
+			{
+				FalseBu2.setSelected(true);
+				TrueBu2.setSelected(false);
+			}
+		}
+		else
+		{
+			if(name.get(i-i).getIsTrue(name.get(i-i)))
+			{
+				TrueBu.setSelected(true);
+				FalseBu.setSelected(false);
+			}
+			else
+			{
+				FalseBu.setSelected(true);
+				TrueBu.setSelected(false);
+			}
+			
+			if(name.get(i-i+1).getIsTrue(name.get(i-i+1)))
+					{
+						TrueBu2.setSelected(true);
+						FalseBu2.setSelected(false);
+					}
+			else
+			{
+				FalseBu2.setSelected(true);
+				TrueBu2.setSelected(false);
+			}
+			
+			if(name.get(i-i+2).getIsTrue(name.get(i-i+2)))
+			{
+				TrueBu3.setSelected(true);
+				FalseBu3.setSelected(false);
+			}
+			else
+			{
+				FalseBu3.setSelected(true);
+				TrueBu3.setSelected(false);
+			}
+			if(name.get(i-i+3).getIsTrue(name.get(i-i+3)))
+			{
+				TrueBu4.setSelected(true);
+				FalseBu4.setSelected(false);
+			}
+			else
+			{
+				FalseBu4.setSelected(true);
+				TrueBu4.setSelected(false);
+			}
+			
+		}
 	}
+}
+  
+  
+	   	
+  
+  
   
 }
+	
+  
+  
+
+	   	
 
 
 

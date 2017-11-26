@@ -12,7 +12,6 @@ public enum Window {
 	Player_Menu("Player/Menu"),
 	Player_Statistics("Player/Statistics"),
 	Player_GameSettings("Player/GameSettings"),
-	Check_Window("Player/Check"),
 	Rules_Window("Player/Rules"),
 	
 	

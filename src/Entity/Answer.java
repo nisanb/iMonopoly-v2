@@ -25,6 +25,15 @@ public class Answer {
 	protected void setTrue(boolean isTrue) {
 		this.isTrue = isTrue;
 	}
+	
+	public boolean getIsTrue(Answer a) {
+		if(a.isTrue)
+		{
+			return true;
+		}
+		else
+			return false;
+	}
 
 	@Override
 	public int hashCode() {
