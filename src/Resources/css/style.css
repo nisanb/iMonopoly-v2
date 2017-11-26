@@ -12,8 +12,7 @@ Button {
 }
 	
 Label {
-	-fx-text-fill: white;
-	
+	-fx-text-fill: white;	
 }
 
 
@@ -62,9 +61,6 @@ TextField{
 
 }
 
-
-
-
 #txtPassword
 {
 	-fx-background-color: white;
@@ -85,4 +81,17 @@ ComboBox
 
 #b1{
 	-fx-background-image: url(http://www.mcarmel.co.il/uploadimages/96120853.GIF) 
+}
+
+#txt2Err
+{
+	-fx-text-fill: red;
+}
+#txt3Err
+{
+	-fx-text-fill: red;
+}
+#txt4Err
+{
+	-fx-text-fill: red;
 }

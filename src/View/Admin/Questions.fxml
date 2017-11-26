@@ -76,7 +76,7 @@
       <TextField fx:id="txtanswer2" layoutX="250.0" layoutY="471.0" opacity="0.71" prefHeight="25.0" prefWidth="272.0" />
       <TextField fx:id="txtanswer1" layoutX="250.0" layoutY="436.0" opacity="0.71" prefHeight="25.0" prefWidth="272.0" />
       <TextField fx:id="txtQuestion" layoutX="250.0" layoutY="402.0" opacity="0.71" prefHeight="25.0" prefWidth="272.0" />
-      <ComboBox layoutX="250.0" layoutY="366.0" opacity="0.71" prefHeight="25.0" prefWidth="272.0" />
+      <ComboBox fx:id="NumQuestionCombo" layoutX="250.0" layoutY="366.0" onAction="#NumByDiff" opacity="0.71" prefHeight="25.0" prefWidth="272.0" />
       <TextField fx:id="txtQuestion1" layoutX="250.0" layoutY="330.0" opacity="0.71" prefHeight="25.0" prefWidth="272.0" />
       <ListView fx:id="List2" layoutX="426.0" layoutY="206.0" opacity="0.71" prefHeight="117.0" prefWidth="93.0" />
       <ImageView fx:id="RightImg" fitHeight="48.0" fitWidth="50.0" layoutX="362.0" layoutY="210.0" onMouseClicked="#moveTag" pickOnBounds="true" preserveRatio="true">

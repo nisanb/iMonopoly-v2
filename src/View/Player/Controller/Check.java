@@ -93,60 +93,53 @@ public class Check {
     @FXML
     void check1(MouseEvent event) {
     
-    
     	Integer res= Integer.valueOf((int) slide1.getValue());
     	
+    	switch(res){
     	
-      	if(res==2)
-    	{
+    	case 2:
     		txt1.setVisible(true);
     		label1.setVisible(true);
     		img1.setVisible(true);
-    		txt3Err.setVisible(false);
-    		txt2Err.setVisible(false);
-    		txt4Err.setVisible(false);
-    		
+
     		txt2.setVisible(true);
     		label2.setVisible(true);
     		img2.setVisible(true);
+    		txt2Err.setVisible(false);
     		
     		txt3.setVisible(false);
     		label3.setVisible(false);
     		img3.setVisible(false);
+    		txt3Err.setVisible(false);
     		
     		txt4.setVisible(false);
     		label4.setVisible(false);
     		img4.setVisible(false);
-    	}
-    	
-    	if(res==3)
-    	{
+    		txt4Err.setVisible(false);
+    		break;
+    		
+    	case 3:
     		txt1.setVisible(true);
     		label1.setVisible(true);
     		img1.setVisible(true);
     		txt3Err.setVisible(false);
     		txt2Err.setVisible(false);
     		txt4Err.setVisible(false);
-    		
 
-    		
     		txt2.setVisible(true);
     		label2.setVisible(true);
     		img2.setVisible(true);
 
-    		
     		txt3.setVisible(true);
     		label3.setVisible(true);
     		img3.setVisible(true);
 
-    		
     		txt4.setVisible(false);
     		label4.setVisible(false);
     		img4.setVisible(false);
-    	}
-    	
-    	if(res==4)
-    	{
+    		break;
+    		
+    	case 4:
     		txt1.setVisible(true);
     		label1.setVisible(true);
     		img1.setVisible(true);
@@ -165,8 +158,10 @@ public class Check {
     		txt4.setVisible(true);
     		label4.setVisible(true);
     		img4.setVisible(true);
+    		break;
     	}
     }
+
     
     @FXML
     void CheckRight(SwipeEvent event) {
@@ -229,6 +224,7 @@ public class Check {
     void openBoard(ActionEvent event) {
     	
     	Integer res= Integer.valueOf((int) slide1.getValue());
+<<<<<<< Updated upstream
     	System.out.println(res);
     	if(res==2)
     	{
@@ -248,88 +244,58 @@ public class Check {
     			iWindow.swap(Window.Game_UI);
     		}
     	}
+=======
+>>>>>>> Stashed changes
     	
-    	if(res==3)
+    	switch (res)
     	{
-    		if(txt2.getText().isEmpty())
-    		{
-    			txt2Err.setVisible(true);
-    		}
-    		else
-    		{
-    			txt2Err.setVisible(false);
-    		}
-    		if(txt3.getText().isEmpty())
-    		{
-    			txt3Err.setVisible(true);
-    		}
-    		else
-    		{
-    			txt3Err.setVisible(false);
-    		}
-    		if((!txt2.getText().isEmpty())&&(!txt3.getText().isEmpty()))
-    		{
-    			iWindow.swap(Window.Game_UI);
-    		}
-    		
+	    	case 2:
+	    			if(txt2.getText().isEmpty()){
+	    			  txt2Err.setVisible(true);
+	    			}
+	    			else{
+	    				iWindow.swap(Window.Game_UI);
+	    			}
+	    			break;
+    			
+	    	case 3:
+			    	if(txt2.getText().isEmpty()){
+			  		   txt2Err.setVisible(true);}
+			    		else{
+			    			txt2Err.setVisible(false);
+			    			}
+			    	if(txt3.getText().isEmpty()){
+					  		txt3Err.setVisible(true);}
+			  			else{
+				    		txt3Err.setVisible(false);
+			  				}
+			  			if((!txt2.getText().isEmpty())&&(!txt3.getText().isEmpty()))
+			    		{
+			    			iWindow.swap(Window.Game_UI);
+			    		}
+			  			break;
+			  			
+	    	case 4:
+		    	 		if(txt2.getText().isEmpty()){
+		        			txt2Err.setVisible(true);}
+		    	 		else{
+		    	 			txt2Err.setVisible(false);}
+		    	 		
+		    	 		if(txt3.getText().isEmpty()){
+		        			txt3Err.setVisible(true);}
+		        		else{
+		        			txt3Err.setVisible(false);}
+		    	 		if(txt4.getText().isEmpty()){
+		        			txt4Err.setVisible(true);}
+		        		else{
+		        			txt4Err.setVisible(false);}
+		    	 		if((!txt2.getText().isEmpty())&&(!txt3.getText().isEmpty())&&(!txt4.getText().isEmpty()))
+		        		{
+		        			iWindow.swap(Window.Game_UI);
+		        		}
+		    	 		break;			
     	}
-    		if(res==4)
-    		{
-    	 		if(txt2.getText().isEmpty())
-        		{
-        			txt2Err.setVisible(true);
-        			
-        		}
-        		else
-        		{
-        			txt2Err.setVisible(false);
-        		
-        		}
-        		if(txt3.getText().isEmpty())
-        		{
-        			txt3Err.setVisible(true);
-        		}
-        		else
-        		{
-        			txt3Err.setVisible(false);
-        		}
-        		
-        		if(txt4.getText().isEmpty())
-        		{
-        			txt4Err.setVisible(true);
-        		}
-        		else
-        		{
-        			txt4Err.setVisible(false);
-        		}
-        		
-        		if((!txt2.getText().isEmpty())&&(!txt3.getText().isEmpty())&&(!txt4.getText().isEmpty()))
-        		{
-        			iWindow.swap(Window.Game_UI);
-        		}
-  
-    		}
-    	}
-    	 
-
-			
-			
-    	
-    	
-    
-
-        		
-    		
-    		
-    	
-    	
-    	
-    	
-    	
-    
-    
-    
-  
+    }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {

@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.jar.Attributes.Name;
 
 import Controller.iWindow;
 import Entity.MonDB;
 import Entity.Question;
 import Utils.QuestionStrength;
+import Utils.QuestionTag;
 import Utils.Window;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -76,7 +78,7 @@ public class Questions {
 
     @FXML // fx:id="txtanswer1"
     private TextField txtanswer1; // Value injected by FXMLLoader
-
+    
     @FXML // fx:id="txtQuestion"
     private TextField txtQuestion; // Value injected by FXMLLoader
 
@@ -96,7 +98,7 @@ public class Questions {
     private ListView<String> List1; // Value injected by FXMLLoader
 
     @FXML // fx:id="DiffComboox"
-    private ComboBox<String> DiffComboox; // Value injected by FXMLLoader
+    private ComboBox<QuestionStrength> DiffComboox; // Value injected by FXMLLoader
 
     @FXML // fx:id="managequestion"
     private Label managequestion; // Value injected by FXMLLoader
@@ -124,6 +126,9 @@ public class Questions {
 
     @FXML // fx:id="FalseBu2"
     private RadioButton FalseBu2; // Value injected by FXMLLoader
+    
+    @FXML
+    private ComboBox<Integer> NumQuestionCombo;
 
     @FXML
     void CheckDiffAndSetAns(MouseEvent event) {
@@ -131,18 +136,12 @@ public class Questions {
     }
 
     @FXML
-    void ChooseDiff(ActionEvent event) {
+    void ChooseDiff(ActionEvent event) // do more Efficient//
+    {
+    	QuestionStrength MyChoise= DiffComboox.getSelectionModel().getSelectedItem();
+    	System.out.println(MyChoise);
     	
-     	if(DiffComboox.getSelectionModel().getSelectedItem()=="Easy")
-    	{
-     	
-    		List1.setItems(list);
-    	}
-    	 if((DiffComboox.getSelectionModel().getSelectedItem()=="Medium")||(DiffComboox.getSelectionModel().getSelectedItem()=="Hard"))
-    	{
-    		List1.getItems().clear();
-    		List2.getItems().clear();
-    	}
+    	GetAndSend(MyChoise);
     }
 
     @FXML
@@ -175,14 +174,12 @@ public class Questions {
     	List2.getItems().add(List1.getSelectionModel().getSelectedItem());
     	List1.getItems().remove(List1.getSelectionModel().getSelectedIndex());
     }
-   
-
-
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
     	
-    	DiffComboox.setItems(list1);
+    	DiffComboox.setItems(list2);
+
         assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Questions.fxml'.";
         assert save != null : "fx:id=\"save\" was not injected: check your FXML file 'Questions.fxml'.";
         assert edit != null : "fx:id=\"edit\" was not injected: check your FXML file 'Questions.fxml'.";
@@ -216,10 +213,7 @@ public class Questions {
         FalseBu2.setSelected(true);
         FalseBu3.setSelected(true);
         FalseBu4.setSelected(true);
-        getQeuestions();
-    
-      
-        
+       /* getQeuestions();*/
         
     }
     
@@ -269,24 +263,73 @@ public class Questions {
     	FalseBu4.setSelected(false);
     	TrueBu4.setSelected(true);
     }
+
     
-    ObservableList<String> list=FXCollections.observableArrayList("1","2","3","4");
-    ObservableList<String> list1=FXCollections.observableArrayList("Easy","Medium","Hard");
+    ObservableList<QuestionStrength> list2=FXCollections.observableArrayList(QuestionStrength.values());
+
+    @FXML
+    void NumByDiff(ActionEvent event) {	
+
+      	Map<QuestionStrength, List<Question>> questions = MonDB.getInstance().getGameQuestions();
+    	for (Map.Entry<QuestionStrength, List<Question>> list: questions.entrySet()){
+    		for (Question q:list.getValue()){
+    			if (NumQuestionCombo.getSelectionModel().getSelectedItem()!=null){
+    				Integer Selected=NumQuestionCombo.getSelectionModel().getSelectedItem() ;
+    				if(q.getqNumber()==Selected){
+    					txtQuestion.setText(q.getqQuestion());
+    					txtQuestion1.setText(q.getTeam());
+    				}
+    			}
+    		}
+    	}
+    	/*		 List<QuestionTag> name= q.getTags();
+        			for(QuestionTag myList:name)
+        			{
+        				List1.getItems().clear();
+        				List1.getItems().add(myList.toString());
+        			
+        			}*/
+
+    }
     
-   
-    
-    
-    
-    //=====================================  METHODS ============================================
-    private void getQeuestions(){
+  //=====================================  METHODS ============================================
+  
+  private void getQeuestions(){
     	Map<QuestionStrength, List<Question>> questions = MonDB.getInstance().getGameQuestions();
     	for (Map.Entry<QuestionStrength, List<Question>> list: questions.entrySet()){
     		for (Question q:list.getValue()){
-    			System.out.println(q);
+    			System.out.println(q); 
+    			
     		}
-    	}
     	
-    }
+  }
+   }
 
+  private void GetAndSend(QuestionStrength x)
+  {
 
+	   	Map<QuestionStrength, List<Question>> questions = MonDB.getInstance().getGameQuestions();
+	   	NumQuestionCombo.getItems().clear();
+		txtQuestion1.clear();
+		txtQuestion.clear();
+	   	for (Map.Entry<QuestionStrength, List<Question>> list: questions.entrySet()){
+  		for (Question q:list.getValue()){
+  			if(q.getqStrength().equals(x)){
+  			NumQuestionCombo.getItems().add((int) q.getqNumber());
+  		
+  			}
+  		}
+	}
+	}
+  
 }
+
+
+
+
+
+
+  
+
+
+
