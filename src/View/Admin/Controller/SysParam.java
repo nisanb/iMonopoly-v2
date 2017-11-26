@@ -1,10 +1,12 @@
 package View.Admin.Controller;
 
-<<<<<<< Updated upstream
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.TextField;
 
 public class SysParam {
 
@@ -19,23 +21,6 @@ public class SysParam {
 
     @FXML
     private Spinner<Integer> spinStartMoney;
-=======
-import java.net.URL;
-import java.util.ResourceBundle;
-
-import Controller.iWindow;
-import Entity.MonDB;
-import Utils.Param;
-import Utils.Window;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.TextField;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-
-public class SysParam {
 
 
     @FXML
@@ -86,7 +71,6 @@ public class SysParam {
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
->>>>>>> Stashed changes
 
     @FXML
     private Spinner<Double> spinRent = new Spinner<Double>(0,100,50);

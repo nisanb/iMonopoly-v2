@@ -117,7 +117,6 @@ public class GameEngine implements IGameEngine {
 		System.out.println(currentPlayer().getCurrentTile());
 
 		Integer moveToTile = dice.getSum() + currentPlayer().getCurrentTile().getTileNumber() % 40;
-		
 
 		Thread doChangeLocation = new Thread() {
 			@Override
@@ -125,28 +124,31 @@ public class GameEngine implements IGameEngine {
 				Integer currentLocation = currentPlayer().getCurrentTile().getTileNumber();
 				while (currentLocation != moveToTile) {
 					currentPlayer().getCurrentTile().postVisit(currentPlayer());
+					
 					currentLocation %= 40;
-
-					ui.movePlayer(currentPlayer().getNickName(), currentLocation, currentLocation + 1);
-					currentPlayer().setCurrentTile(_game.getTile(currentLocation + 1));
+					Integer nextLocation = (currentLocation+1)%40;
+					
+					ui.movePlayer(currentPlayer().getNickName(), currentLocation, nextLocation);
+					currentPlayer().setCurrentTile(_game.getTile(nextLocation));
 					currentLocation++;
 
 					currentPlayer().getCurrentTile().preVisit(currentPlayer());
 
-					currentPlayer().getCurrentTile().visit(currentPlayer());
 					try {
 						Thread.sleep(500);
 					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+
 				}
+				ui.gameLog("Player "+currentPlayer()+" has arrived to "+currentPlayer().getCurrentTile()+" ("+currentPlayer().getCurrentTile().getTileNumber()+")");
+				currentPlayer().getCurrentTile().visit(currentPlayer());
 			}
 
 		};
 		doChangeLocation.start();
-	
-	ui.allowFinishTurn(true);
+
+		ui.allowFinishTurn(true);
 
 	}
 
