@@ -80,6 +80,7 @@ public class SysParam {
     @FXML
     public void initialize() {
     	turnOffEmpty();
+    	loadParams();
     }
     
     
@@ -91,7 +92,16 @@ public class SysParam {
     	lblEmpty2.setVisible(false);
     	spinEmpty1.setVisible(false);
     	spinEmpty2.setVisible(false);
+
     }
+    
+    /**
+     * This method load the saved params from monDB
+     */
+    private void loadParams() {
+    	
+    }
+    
     
     /**
      * Action Listener - get the source of the button and does the required action
