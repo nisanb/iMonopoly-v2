@@ -3,7 +3,6 @@ package View.Admin.Controller;
 import Utils.*;
 import View.IManagement;
 
-import java.lang.management.ManagementPermission;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -93,6 +92,7 @@ public class SysParam {
     public void initialize() {
     	mng = iWindow.getManagement();
     	turnOffEmpty();
+    	errorLabelControl(null, false);
     	addParamsToMap();
     	loadParams();
     }
@@ -182,7 +182,10 @@ public class SysParam {
      */
     private void saveParams() {
     	for (Map.Entry<Spinner, Param> n: _parms.entrySet()) {
-    		if (validateNumbers(n.getKey().getValue().toString())) return;
+    		if (validateNumbers(n.getKey().getValue().toString())) {
+    			errorLabelControl("Can not save parametes with letters", true);
+    			return;
+    		}
     	}
     	
     	for (Map.Entry<Spinner, Param> n: _parms.entrySet()) {
