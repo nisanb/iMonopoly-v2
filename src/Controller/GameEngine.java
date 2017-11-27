@@ -175,6 +175,12 @@ public class GameEngine implements IGameEngine {
 		// TODO Auto-generated method stub
 
 	}
+	
+	@Override
+	public void btnFinishTurn() {
+		// TODO Auto-generated method stub
+		btnNextTurn();
+	}
 
 	/**
 	 * Private Methods
@@ -194,9 +200,5 @@ public class GameEngine implements IGameEngine {
 				player.getTotalAssetsWorth(), player.getTotalAssets());
 	}
 
-	@Override
-	public void btnFinishTurn() {
-		// TODO Auto-generated method stub
-		btnNextTurn();
-	}
+
 }
