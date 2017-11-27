@@ -23,6 +23,6 @@
       <Button layoutX="301.0" layoutY="369.0" mnemonicParsing="false" onAction="#doLogout" onMouseEntered="#MouseEntered" prefHeight="26.0" prefWidth="194.0" styleClass="column-drag-header" text="Logout" />
       <Label fx:id="lblUserLogged" layoutX="14.0" layoutY="14.0" prefHeight="18.0" prefWidth="117.0" styleClass="lblUser" text="lbl" />
       <Button layoutX="486.0" layoutY="488.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="140.0" text="Back" />
-      <Button fx:id="Rules" layoutX="300.0" layoutY="330.0" mnemonicParsing="false" onAction="#openRules" onMouseEntered="#MouseEntered" prefHeight="26.0" prefWidth="194.0" styleClass="column-drag-header" text="Rules" />
+      <Button fx:id="Rules" layoutX="300.0" layoutY="330.0" mnemonicParsing="false" onAction="#openRules" prefHeight="26.0" prefWidth="194.0" styleClass="column-drag-header" text="Rules" />
    </children>
 </AnchorPane>

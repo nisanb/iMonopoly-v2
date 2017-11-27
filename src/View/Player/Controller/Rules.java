@@ -30,8 +30,8 @@ public class Rules {
     private Button Back; // Value injected by FXMLLoader
 
     @FXML
-    void PrevToSellingProperetirs(MouseEvent event) {
-
+    void Back(ActionEvent event) {
+    	iWindow.swap(Window.Player_Menu);
     }
 
     @FXML
@@ -45,10 +45,4 @@ public class Rules {
         assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'Rules.fxml'.";
 
     }
-    
-    @FXML
-    void Back(ActionEvent event) {
-    	iWindow.swap(Window.Player_Menu);
-    }
-
 }
