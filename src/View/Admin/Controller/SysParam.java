@@ -97,6 +97,7 @@ public class SysParam {
      * Action Listener - get the source of the button and does the required action
      * @param e
      */
+    @FXML
     private void buttonClicked(ActionEvent e) {
     	if (e.getSource().equals(btnSave)) {
     		saveParams();
@@ -126,7 +127,7 @@ public class SysParam {
      * This method saves the params input
      */
     private void saveParams() {
-    	System.out.println(spinAvgDisc.getValue());
+    	System.out.println(spinStartMoney.getValue());
     }
     
     
