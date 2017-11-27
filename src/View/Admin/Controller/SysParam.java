@@ -69,7 +69,7 @@ public class SysParam {
 
     @FXML
     void back(ActionEvent event) {
-    	
+    	iWindow.swap(Window.Admin_Menu);
     }
 
     @FXML

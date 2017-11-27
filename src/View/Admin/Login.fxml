@@ -34,9 +34,9 @@
       </Label>
       <PasswordField fx:id="txtPassword" layoutX="383.0" layoutY="407.0" />
       <TextField fx:id="txtUserName" layoutX="383.0" layoutY="356.0" />
-      <Button layoutX="428.0" layoutY="490.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="140.0" text="Back" />
-      <Button layoutX="219.0" layoutY="490.0" mnemonicParsing="false" onAction="#openWelcomeAdmin" prefHeight="25.0" prefWidth="140.0" text="Login" />
-      <ImageView fitHeight="209.0" fitWidth="222.0" layoutX="97.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+      <Button layoutX="462.0" layoutY="490.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="140.0" text="Back" />
+      <Button layoutX="313.0" layoutY="490.0" mnemonicParsing="false" onAction="#openWelcomeAdmin" prefHeight="27.0" prefWidth="140.0" text="Login" />
+      <ImageView fitHeight="209.0" fitWidth="222.0" layoutX="99.0" layoutY="159.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Resources/admin-icon.png" />
          </image>

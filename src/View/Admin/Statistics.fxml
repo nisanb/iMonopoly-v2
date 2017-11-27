@@ -58,7 +58,7 @@
       </Label>
       <PieChart fx:id="piechart" layoutX="457.0" layoutY="197.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.91" prefHeight="150.0" prefWidth="168.0" />
       <Button layoutX="508.0" layoutY="349.0" mnemonicParsing="false" onAction="#btn" prefHeight="25.0" prefWidth="114.0" text="Load Chart" />
-      <Button layoutX="505.0" layoutY="502.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="120.0" text="Back" />
+      <Button layoutX="616.0" layoutY="518.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="120.0" text="Back" />
       <TextField layoutX="290.0" layoutY="223.0" opacity="0.71" />
       <TextField layoutX="290.0" layoutY="259.0" opacity="0.71" />
       <TextField layoutX="290.0" layoutY="297.0" opacity="0.71" />

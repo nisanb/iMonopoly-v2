@@ -23,8 +23,8 @@
       </ImageView>
       <TextField fx:id="frmNickname" accessibleText="test" layoutX="308.0" layoutY="355.0" prefHeight="32.0" prefWidth="185.0" promptText="NICKNAME" styleClass="button-red" />
       <ButtonBar layoutX="144.0" layoutY="200.0" prefHeight="130.0" prefWidth="200.0" />
-    <Button layoutX="233.0" layoutY="413.0" mnemonicParsing="false" onAction="#doLogin" onMouseEntered="#MouseEntered" prefHeight="40.0" prefWidth="132.0" styleClass="column-drag-header" text="Player Login" />
-      <Button layoutX="429.0" layoutY="413.0" mnemonicParsing="false" onAction="#openAdmin" prefHeight="40.0" prefWidth="132.0" text="Admin Login" />
+    <Button layoutX="247.0" layoutY="421.0" mnemonicParsing="false" onAction="#doLogin" onMouseEntered="#MouseEntered" prefHeight="27.0" prefWidth="140.0" styleClass="column-drag-header" text="Player Login" />
+      <Button layoutX="432.0" layoutY="421.0" mnemonicParsing="false" onAction="#openAdmin" prefHeight="27.0" prefWidth="140.0" text="Admin Login" />
       <Label fx:id="namelabel" layoutX="344.0" layoutY="387.0" text="Cannot Be Empty">
          <font>
             <Font name="System Bold Italic" size="14.0" />

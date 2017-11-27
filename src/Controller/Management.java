@@ -2,6 +2,10 @@ package Controller;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import java.util.Map;
+
+import Entity.Answer;
 import Entity.MonDB;
 import Entity.Question;
 import Entity.User;
@@ -59,6 +63,7 @@ public class Management implements IManagement{
 	@Override
 
 
+
 	public void resetParamsToDefault() {
 		_db.resetParamsToDefault();
 		
@@ -76,5 +81,22 @@ public class Management implements IManagement{
 	}
 	
 	
+
+	public Map<Param, Object> getSavedParams() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+@Override
+public void CheckIsTrue(List<Answer> a) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void SetAnswer(Integer x) {
+	// TODO Auto-generated method stub
+	
+} 
 
 }

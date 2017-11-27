@@ -283,7 +283,7 @@ public class Questions {
     					//Get the question tags
     					List1.getItems().clear();
         				List1.getItems().addAll(q.getTags());
-        				SetQuestion(Selected);
+        				SetAnswer(Selected);
     				}
     				
     			}
@@ -305,10 +305,8 @@ public class Questions {
     	Map<QuestionStrength, List<Question>> questions = MonDB.getInstance().getGameQuestions();
     	for (Map.Entry<QuestionStrength, List<Question>> list: questions.entrySet()){
     		for (Question q:list.getValue()){
-    			System.out.println(q); 
-    			
+    			System.out.println(q); 	
     		}
-    	
   }
    }
 
@@ -354,7 +352,7 @@ public class Questions {
 	}
   }
   
-  private void SetQuestion (Integer x)
+  private void SetAnswer (Integer x)
   {
 	   	Map<QuestionStrength, List<Question>> questions = MonDB.getInstance().getGameQuestions();
 	   	for (Map.Entry<QuestionStrength, List<Question>> list: questions.entrySet()){
@@ -367,29 +365,19 @@ public class Questions {
   				for(int i=name.size()-1;i<name.size();i++)
   				{	
   					if(name.size()==2){
-  					txtanswer1.setText(name.get(i-i).getText());
-  					
-  					
+  					txtanswer1.setText(name.get(i-i).getText());	
   					txtanswer2.setText(name.get(i-i+1).getText());
-  					
-  					
+
   				}
   					else{
   					txtanswer1.setText(name.get(i-i).getText());
-  					
-  					
   					txtanswer2.setText(name.get(i-i+1).getText());
-  					
   					txtanswer3.setText(name.get(i-i+2).getText());
-  					
   					txtanswer4.setText(name.get(i).getText());}
-  					
-  					
+
   				}
   			}
-  			
-  			
-  			
+	
   }
   
   }

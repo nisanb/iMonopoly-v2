@@ -3,6 +3,7 @@ package View;
 import java.util.List;
 import java.util.Map;
 
+import Entity.Answer;
 import Entity.Question;
 import Utils.QuestionStrength;
 import Utils.Param;
@@ -43,23 +44,31 @@ public interface IManagement {
 	
 	
 	/**
-	 * This method returns the parameters from monDB 
+	 * This method returns the parameters from monDB (check if requred)
 	 * @return - sysParam
 	 */
-	public void resetParamsToDefault();
+	public Map<Param, Object> getSavedParams();
+	
 	
 	/**
-	 * This method will set the changed param to monDB
-	 * @param p
-	 * @param value
+	 * this method check the status of the answer. if true setvisible true else setvisible of answe false
+	 * @param a
 	 */
-	public void setParam(Param p, Object value);
+	public void CheckIsTrue(List<Answer>a);
 	
-	/**
-	 * This method gets param from monDB
-	 * @param p
-	 * @return
+	
+	/*
+	 * this method get number of question and set in textbox the answer of the question
 	 */
-	public Object getParam(Param p);
+	 public void SetAnswer (Integer x);
+
+
+	Object getParam(Param p);
+
+
+	void setParam(Param p, Object value);
+
+
+	void resetParamsToDefault();
 	
 }

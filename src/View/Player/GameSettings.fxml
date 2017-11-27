@@ -29,8 +29,8 @@
          </image>
       </ImageView>
       <ButtonBar layoutX="33.0" layoutY="182.0" prefHeight="40.0" prefWidth="200.0" />
-      <Button layoutX="138.0" layoutY="497.0" mnemonicParsing="false" onAction="#openBoard" prefHeight="25.0" prefWidth="140.0" text="Save" />
-      <Button layoutX="487.0" layoutY="496.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="140.0" text="Back" />
+      <Button layoutX="64.0" layoutY="516.0" mnemonicParsing="false" onAction="#openBoard" prefHeight="27.0" prefWidth="140.0" text="Save" />
+      <Button layoutX="585.0" layoutY="516.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="140.0" text="Back" />
       <SubScene height="167.0" layoutX="161.0" layoutY="150.0" opacity="0.07" width="429.0">
         <root>
           <Region />

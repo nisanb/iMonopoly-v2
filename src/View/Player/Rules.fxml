@@ -15,10 +15,10 @@
             <Image url="@../../resources/ManagementGUI.png" />
          </image>
       </ImageView>
-      <Button fx:id="Back" layoutX="485.0" layoutY="473.0" mnemonicParsing="false" onAction="#Back" prefHeight="35.0" prefWidth="140.0" text="Back" />
+      <Button fx:id="Back" layoutX="592.0" layoutY="506.0" mnemonicParsing="false" onAction="#Back" prefHeight="27.0" prefWidth="140.0" text="Back" />
       <ScrollPane layoutX="72.0" layoutY="181.0" prefHeight="287.0" prefWidth="672.0">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="658.0" prefWidth="666.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="658.0" prefWidth="257.0">
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="210.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -66,7 +66,6 @@
                         <Image url="@../../../../../Desktop/dice-png-transparent-images--png-all-4.png" />
                      </image>
                   </ImageView>
-                  <Text layoutX="13.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Every turn start by rolling the dice. On your turn click on ROLL DICE. your game piece  will automatically move excactly the number of space on the board. A space on the board can be shared by more than one game piece at a time. " wrappingWidth="609.9830722808838" />
                   <Text layoutX="18.0" layoutY="391.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BUY PROERTY:">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />

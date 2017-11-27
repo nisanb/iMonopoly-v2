@@ -18,11 +18,11 @@
             <Image url="@../resources/sound_on.png" />
          </image>
       </ImageView>
-    <Button layoutX="300.0" layoutY="251.0" mnemonicParsing="false" onAction="#openGame" onMouseEntered="#MouseEntered" prefHeight="26.0" prefWidth="194.0" styleClass="column-drag-header" text="Start New Game" />
-      <Button layoutX="300.0" layoutY="290.0" mnemonicParsing="false" onAction="#openStatistics" onMouseEntered="#MouseEntered" prefHeight="26.0" prefWidth="194.0" styleClass="column-drag-header" text="View Statistics" />
-      <Button layoutX="301.0" layoutY="369.0" mnemonicParsing="false" onAction="#doLogout" onMouseEntered="#MouseEntered" prefHeight="26.0" prefWidth="194.0" styleClass="column-drag-header" text="Logout" />
+    <Button layoutX="300.0" layoutY="251.0" mnemonicParsing="false" onAction="#openGame" onMouseEntered="#MouseEntered" prefHeight="27.0" prefWidth="194.0" styleClass="column-drag-header" text="Start New Game" />
+      <Button layoutX="300.0" layoutY="290.0" mnemonicParsing="false" onAction="#openStatistics" onMouseEntered="#MouseEntered" prefHeight="27.0" prefWidth="194.0" styleClass="column-drag-header" text="View Statistics" />
+      <Button layoutX="301.0" layoutY="369.0" mnemonicParsing="false" onAction="#doLogout" onMouseEntered="#MouseEntered" prefHeight="27.0" prefWidth="194.0" styleClass="column-drag-header" text="Logout" />
       <Label fx:id="lblUserLogged" layoutX="14.0" layoutY="14.0" prefHeight="18.0" prefWidth="117.0" styleClass="lblUser" text="lbl" />
-      <Button layoutX="486.0" layoutY="488.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="140.0" text="Back" />
-      <Button fx:id="Rules" layoutX="300.0" layoutY="330.0" mnemonicParsing="false" onAction="#openRules" prefHeight="26.0" prefWidth="194.0" styleClass="column-drag-header" text="Rules" />
+      <Button layoutX="594.0" layoutY="516.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="140.0" text="Back" />
+      <Button fx:id="Rules" layoutX="300.0" layoutY="330.0" mnemonicParsing="false" onAction="#openRules" prefHeight="27.0" prefWidth="194.0" styleClass="column-drag-header" text="Rules" />
    </children>
 </AnchorPane>
