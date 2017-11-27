@@ -94,31 +94,11 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-<<<<<<< Updated upstream
+
       <Button id="btnSvae" fx:id="btnSave" layoutX="123.0" layoutY="496.0" mnemonicParsing="false" onAction="#save" prefHeight="33.0" prefWidth="140.0" text="Save" />
       <Button id="btnBack" fx:id="btnBack" layoutX="563.0" layoutY="496.0" mnemonicParsing="false" onAction="#back" prefHeight="34.0" prefWidth="140.0" text="Back" />
-      <Label layoutX="83.0" layoutY="192.0" prefHeight="20.0" prefWidth="83.0" text="Start Money" textFill="WHITE">
-=======
-      <Button layoutX="151.0" layoutY="496.0" mnemonicParsing="false" onAction="#save" prefHeight="25.0" prefWidth="140.0" text="Save" />
-      <Button layoutX="479.0" layoutY="496.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="140.0" text="Back" />
-      <TextField fx:id="TxtSartMoney" layoutX="226.0" layoutY="181.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <TextField fx:id="TxtRent" layoutX="226.0" layoutY="216.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <TextField fx:id="BuyProperty" layoutX="226.0" layoutY="251.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <TextField fx:id="TxtMinLuck" layoutX="226.0" layoutY="286.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <TextField layoutX="225.0" layoutY="321.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <TextField fx:id="TxtOnlyLuck" layoutX="225.0" layoutY="356.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <TextField fx:id="TxtLuckFine" layoutX="226.0" layoutY="391.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <TextField fx:id="TxtJailFine" layoutX="226.0" layoutY="428.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <TextField fx:id="TxtCheapProperty" layoutX="519.0" layoutY="181.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <TextField fx:id="TxtAverageProperty" layoutX="519.0" layoutY="216.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <TextField fx:id="TxtExpensiveProperty" layoutX="519.0" layoutY="251.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <TextField fx:id="TxtCPd" layoutX="519.0" layoutY="286.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <TextField fx:id="TxtAPD" layoutX="519.0" layoutY="321.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <TextField fx:id="TxtExpensiveProperyDiscount" layoutX="519.0" layoutY="356.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <TextField fx:id="TxtMNOR" layoutX="519.0" layoutY="391.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <TextField fx:id="TxtBankRupty" layoutX="519.0" layoutY="428.0" opacity="0.71" prefHeight="25.0" prefWidth="108.0" />
-      <Label layoutX="139.0" layoutY="181.0" prefHeight="20.0" prefWidth="83.0" text="Start Money" textFill="WHITE">
->>>>>>> Stashed changes
+      <Label layoutX="82.0" layoutY="193.0" prefHeight="20.0" prefWidth="83.0" text="Start Money" textFill="WHITE">
+
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -140,5 +120,17 @@
       <Spinner fx:id="spinExpensiveDisc" editable="true" layoutX="577.0" layoutY="359.0" opacity="0.7" />
       <Spinner fx:id="spinMaxRounds" editable="true" layoutX="577.0" layoutY="392.0" opacity="0.7" />
       <Spinner fx:id="spinBankruptcy" editable="true" layoutX="577.0" layoutY="425.0" opacity="0.7" />
+      <Label fx:id="lblEmpty1" layoutX="82.0" layoutY="460.0" text="Empty1" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Spinner fx:id="spinEmpty2" editable="true" layoutX="190.0" layoutY="456.0" opacity="0.7" />
+      <Label fx:id="lblEmpty2" layoutX="390.0" layoutY="460.0" text="Empty2" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Spinner fx:id="spinEmpty2" editable="true" layoutX="577.0" layoutY="458.0" opacity="0.7" />
    </children>
 </AnchorPane>
