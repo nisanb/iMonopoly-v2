@@ -23,7 +23,7 @@ import Controller.Management;
 public class SysParam {
 	
 	private Map<Spinner, Param> _parms;
-	
+	private IManagement mng = null;
 	
     @FXML private Button btnSave;
 
@@ -91,6 +91,7 @@ public class SysParam {
 
     @FXML
     public void initialize() {
+    	mng = iWindow.getManagement();
     	turnOffEmpty();
     	addParamsToMap();
     	loadParams();
@@ -115,7 +116,7 @@ public class SysParam {
      */
     private void addParamsToMap() {
     	this._parms = new HashMap<Spinner, Param>();
-    	spinStartMoney.getValueFactory().setValue((Integer)Param.get(Param.STARTING_CASH));
+    	spinStartMoney.getValueFactory().setValue((Integer)mng.getParam(Param.STARTING_CASH));
     	//TODO - add all params to list
     	
     	

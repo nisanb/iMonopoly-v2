@@ -293,6 +293,9 @@ public class GameSettings {
 		txt3Err.setVisible(false);
 		txt4Err.setVisible(false);
 
+		txt1.setText(mng.getLoggedPlayer());
+		txt1.setDisable(true);
+		
 	}
 
 }
