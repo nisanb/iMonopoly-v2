@@ -44,5 +44,41 @@
 			],
 			"tags": ["TDD", "Requirements"]
 		}
+		{
+			"id": 3,
+			"text": "JSON is language independent.",
+			"difficulty": 1,
+			"isMultipleChoice": false,
+			"team": "AQUA",
+			"answers": [
+				{
+					"text": "yes",
+					"isCorrect": true
+				},
+				{
+					"text": "no",
+					"isCorrect": false
+				}
+			],
+			"tags": ["TDD", "Requirements"]
+		}
+		{
+			"id": 4,
+			"text": "JSON is language independent.",
+			"difficulty": 2,
+			"isMultipleChoice": false,
+			"team": "AQUA",
+			"answers": [
+				{
+					"text": "yes",
+					"isCorrect": true
+				},
+				{
+					"text": "no",
+					"isCorrect": false
+				}
+			],
+			"tags": ["TDD", "Requirements"]
+		}
 	]
 }

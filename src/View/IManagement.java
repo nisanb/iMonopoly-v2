@@ -31,9 +31,7 @@ public interface IManagement {
 	 * @return
 	 */
 	public List<Question> getQuestionsByDifficulty(QuestionStrength qs);
-	
-	
-	
+		
 	/*
 	 * return String of User who login to System
 	 */

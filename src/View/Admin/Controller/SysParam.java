@@ -1,18 +1,30 @@
 package View.Admin.Controller;
 
 import Utils.*;
+import View.IManagement;
+
+import java.lang.management.ManagementPermission;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import Controller.iWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
-import javafx.scene.control.TextField;
+import Controller.Management;
 
 public class SysParam {
-
+	
+	private Map<Spinner, Param> _parms;
+	
+	
     @FXML private Button btnSave;
 
     @FXML private Button btnBack;
@@ -80,8 +92,11 @@ public class SysParam {
     @FXML
     public void initialize() {
     	turnOffEmpty();
+    	addParamsToMap();
     	loadParams();
     }
+    
+    
     
     
     /**
@@ -92,14 +107,28 @@ public class SysParam {
     	lblEmpty2.setVisible(false);
     	spinEmpty1.setVisible(false);
     	spinEmpty2.setVisible(false);
-
     }
+    
+    
+    /**
+     * This method adds params to map fot easy set
+     */
+    private void addParamsToMap() {
+    	this._parms = new HashMap<Spinner, Param>();
+    	spinStartMoney.getValueFactory().setValue((Integer)Param.get(Param.STARTING_CASH));
+    	//TODO - add all params to list
+    	
+    	
+    }
+    
+    
     
     /**
      * This method load the saved params from monDB
      */
     private void loadParams() {
-    	
+    	IManagement manage = iWindow.getManagement();
+    	//_parms.put(spinStartMoney, (Integer) manage.getParam(Param.STARTING_CASH));
     }
     
     
@@ -124,11 +153,25 @@ public class SysParam {
     }
     
     
-    
     /**
      * This method restores all the params to defaults
      */
     private void restoreDefaults() {
+    	IManagement manage = iWindow.getManagement();
+    	Alert alert = new Alert(AlertType.CONFIRMATION);
+    	alert.setTitle("Restore To Default Confirmation");
+    	alert.setHeaderText("You are about to reset all parametes to default. \n"
+    			+ "This action can not be undone!");
+    	alert.setContentText("Do you want to reset all parameters to default?");
+    	
+    	Optional<ButtonType> result = alert.showAndWait();
+    	
+    	if (result.get() == ButtonType.OK){
+    	    manage.resetParamsToDefault();
+    	} else 
+    	{
+    	    return;
+    	}
     	
     }
     
@@ -137,7 +180,13 @@ public class SysParam {
      * This method saves the params input
      */
     private void saveParams() {
-    	System.out.println(spinStartMoney.getValue());
+    	for (Map.Entry<Spinner, Param> n: _parms.entrySet()) {
+    		if (validateNumbers(n.getKey().getValue().toString())) return;
+    	}
+    	
+    	for (Map.Entry<Spinner, Param> n: _parms.entrySet()) {
+    		Param.set(n.getValue(), n.getKey().getValue());
+    	}
     }
     
     
@@ -155,6 +204,18 @@ public class SysParam {
     		this.lblError.setText("Error: " + msg);
     	}
     }
+    
+    
+    
+    
+    private boolean validateNumbers(String str) {
+    	for (int i = 0; i < str.length(); i++) {
+			if (Character.isLetter(str.charAt(i))) return false;
+		}
+    	
+    	return true;
+    }
+   
     
     //spinner properties =>  min="50000" max="10000000" initialValue="100000" amountToStepBy="10000"
 }
