@@ -1,100 +1,250 @@
 package Entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.Map;
+import java.util.List;
 import java.util.Random;
-import java.util.Set;
-import java.util.TreeMap;
-import java.util.TreeSet;
+import Utils.Param;
 
 public class Game implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer gameNum;
-	Map<Player, Integer> playerList;
-	private Date gameDate;
-	private Integer currentRound;
-	private Boolean gameFinished;
-	private User currentLoggedUser;
-	
-	public Game() {
+	/**
+	 * Game Properties
+	 */
+	private Integer _gameNum;
+	private Date _gameDate;
+
+	/**
+	 * Lists
+	 */
+	private List<Tilable> _gameTiles;
+	private LinkedList<Player> _playList;
+	private List<Player> _gamePlayers;
+	/**
+	 * Current
+	 */
+	private User _currentLoggedUser;
+	private Player _currentPlayer;
+	private Integer _currentRound;
+
+	protected Game() {
 
 		/**
 		 * Generate Game Number
 		 */
 		Random r = new Random();
 		do {
-			gameNum = r.nextInt(999999) + 111111;
-		} while (MonDB.getInstance().getGameData().containsKey(gameNum));
+			_gameNum = r.nextInt(999999) + 111111;
+		} while (MonDB.getInstance().getGameData().containsKey(_gameNum));
 
 		/**
 		 * Set Date
 		 */
 		this.setGameDate(new Date());
-		this.playerList = new TreeMap<Player, Integer>();
 		this.setCurrentRound(0);
-		this.gameFinished = false;
+		this._gameTiles = new ArrayList<>();
+		this._gameTiles.addAll(MonDB.getInstance().getTileSet());
 	}
-	
-	public void run(){
-		//This will start the game
-		
-		//This will build the players' cycle
-		LinkedList<Player> playList = new LinkedList<>();
-		for(Player p : playerList.keySet())
-			playList.add(p);
-			
-		while(!gameFinished){
-			Player currentPlayer = playList.get(currentRound%playList.size());
-			//Players turn
-			//TODO Implement ..
+
+	/**
+	 * Build current game - happens after START GAME is clicked
+	 */
+	public void build(List<Player> playerList) {
+
+		/**
+		 * Build players
+		 */
+		if (_gameTiles.size() != 40) {
+			throw new NullPointerException("Cannot initiate game - no tiles were set.");
 		}
-		
+
+		/**
+		 * Set Players
+		 */
+		_playList = new LinkedList<>();
+		_playList.addAll(playerList);
+		_currentPlayer = nextPlayer();
+		_gamePlayers = playerList;
+
 	}
 
-	//Adds a player to the game
-	public void addPlayer(Player player) {
-		this.playerList.put(player, 0);
+	protected void run() {
+		// This will start the game
+
+		// This will build the players' cycle
+
+		/**
+		 * Why is this here? TODO Mickey
+		 * 
+		 * LinkedList<Player> playList = new LinkedList<>(); for(Player p :
+		 * _playerList.keySet()) playList.add(p);
+		 * 
+		 * while(!isFinished()){ Player currentPlayer =
+		 * playList.get(_currentRound%playList.size());
+		 * currentPlayer.addCash(1000); //Players turn //TODO Implement .. }
+		 * 
+		 **/
 	}
 
-	public Integer rollDice() {
-		return Dice.roll();
+	// Adds a player to the game
+	protected void addPlayer(Player player) {
+		_playList.add(player);
+		_gamePlayers.add(player);
+	}
+
+	public Dice rollDice() {
+		return new Dice();
 	}
 
 	public Date getGameDate() {
-		return gameDate;
+		return _gameDate;
 	}
 
-	public void setGameDate(Date gameDate) {
-		this.gameDate = gameDate;
+	protected void setGameDate(Date gameDate) {
+		this._gameDate = gameDate;
 	}
 
 	public Integer getCurrentRound() {
-		return currentRound;
+		return _currentRound;
 	}
 
-	public void setCurrentRound(Integer currentRound) {
-		this.currentRound = currentRound;
+	protected void setCurrentRound(Integer currentRound) {
+		this._currentRound = currentRound;
 	}
 
 	/**
 	 * Will move a player to the tile given
+	 * 
 	 * @param player
 	 * @param tileNum
 	 */
-	public void movePlayer(Player player, Integer tileNum){
-		
+	protected void movePlayer(Player player, Integer tileNum) {
+
 	}
 
 	public User getCurrentLoggedUser() {
-		return currentLoggedUser;
+		return _currentLoggedUser;
 	}
 
-	public void setCurrentLoggedUser(User currentLoggedUser) {
-		this.currentLoggedUser = currentLoggedUser;
+	protected void setCurrentLoggedUser(User currentLoggedUser) {
+		_currentLoggedUser = currentLoggedUser;
+	}
+
+	public void play() {
+		int currentPlayer;
+		int maxRounds = 50;
+
+		// count Rounds
+		// use nisan's methodology of pre/post visit
+		while (_currentRound < maxRounds) {
+			// roll dice (if double turn on flag and decide what to do with him)
+			// disable roll dice button and activate game buttons**
+			// move the player to the correct tile **
+			// set location - switch pointer of player and tile **
+			// check type of tile (make a move according to tile) **
+			// luck, property, jail, start
+			// check if this tile belongs to someone
+			// if he doesn't want to buy it get rent **
+			// get player's input (buy, sell)
+			// get correct (strength) question and present it to player **
+			// switch log window and question window
+			// disable all buttons (answer question buttons working)
+			// get player's answer **
+			// check player's answer **
+			// update player's parameters (total answers and correct answers)
+			// if question was answered correctly
+			// switch pointers of player and tile **
+			// take money from player **
+			// set the current property value
+			// if double flag give him another round (count round and don't
+			// switch player)
+			// else count round and get next player
+
+			// **private helper method
+
+		}
+
+	}
+
+	/**
+	 * This method checks if the conditions to end game have reached
+	 * 
+	 * @return
+	 */
+	public boolean isFinished() {
+
+		/**
+		 * In case rounds exceeded max rounds
+		 */
+		if (_currentRound > (Integer) Param.get(Param.MAX_ROUNDS)) // update max
+																	// rounds
+																	// and
+																	// bankruptcy
+																	// to value
+																	// from enum
+			return true;
+
+		/**
+		 * In case only 1 player left to play
+		 */
+		if (_playList.size() == 1)
+			return true;
+
+		return false;
+	}
+
+	/**
+	 * This method sums the value of players properties
+	 * 
+	 * @param p
+	 * @return
+	 */
+	private int getPropertyVlaue(Player p) {
+		int value = 0;
+		for (PropertyTile pt : p.getPropertyList()) {
+			value += pt.getCurrentPrice();
+		}
+
+		return value;
+	}
+
+	public Tilable getTile(int tileNumber) {
+		try {
+			return _gameTiles.get(tileNumber);
+		} catch (Exception e) {
+
+			return null;
+		}
+	}
+
+	public Tilable getTile(Tile tile) {
+		try {
+			return _gameTiles.get(_gameTiles.indexOf(tile));
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	public Player nextPlayer() {
+		Player nextPlayer = _playList.removeFirst();
+		_playList.addLast(nextPlayer);
+		return nextPlayer;
+	}
+
+	public Player getCurrentPlayer() {
+		return _playList.peekFirst();
+	}
+	
+	public List<String> getPlayerList(){
+		List<String> newList = new ArrayList<String>();
+		for(Player p : _playList)
+			newList.add(p.getNickName());
+		
+		return newList;
 	}
 
 }

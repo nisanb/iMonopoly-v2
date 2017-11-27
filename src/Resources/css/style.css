@@ -3,7 +3,7 @@ Button {
     -fx-background-radius: 22;
     -fx-background-insets: 0;
     -fx-text-fill: white;
-    -fx-font-size: 16;
+    -fx-font-size: 14;
     -fx-font-weight: bold;
 }
 
@@ -12,11 +12,12 @@ Button {
 }
 	
 Label {
-	-fx-text-fill: white;
+	-fx-text-fill: white;	
 }
 
+
 Button:hover{
-	    -fx-font-weight: bold;
+	 -fx-font-weight: bold;
     -fx-background-color: blue;
     -fx-background-radius: 22;
     -fx-opacity: 50%;
@@ -25,17 +26,72 @@ Button:hover{
     -fx-background-color: white;
     -fx-border-color:#2196f3;
     -fx-border-width:3;
+    
 }
 
 Button:pressed{
 	-fx-font-weight: bold;
 	-fx-background-color: white;
 	-fx-background-radius: 22;
-	 -fx-font-size: 16;
+	 -fx-font-size: 14;
 	  -fx-text-fill: #2196f3;
 	  -fx-background-radius: 20;
 	   -fx-border-width:3;
 	   -fx-rotate:10;
 	  
 	
+}
+
+RadioButton{
+	-fx-text-fill: white;
+}
+#namelabel{
+	-fx-text-fill: red;
+}
+#namelabel1{
+	-fx-text-fill: red;
+}
+
+TextField{	
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-background-insets: 0;
+    -fx-text-fill: black;
+    -fx-font-size: 14;
+
+}
+
+#txtPassword
+{
+	-fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-background-insets: 0;
+    -fx-text-fill: black;
+    -fx-font-size: 14;
+}
+
+ComboBox
+{
+
+    -fx-background-radius: 16;
+    -fx-background-insets: 0;
+    -fx-text-fill: black;
+    -fx-font-size: 14;
+}
+
+#b1{
+	-fx-background-image: url(http://www.mcarmel.co.il/uploadimages/96120853.GIF) 
+}
+
+#txt2Err
+{
+	-fx-text-fill: red;
+}
+#txt3Err
+{
+	-fx-text-fill: red;
+}
+#txt4Err
+{
+	-fx-text-fill: red;
 }

@@ -25,4 +25,10 @@ public enum QuestionTag {
 		return this.tag;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.getName();
+	}
+	
 }

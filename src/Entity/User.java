@@ -13,6 +13,10 @@ public class User implements Serializable {
 	private int correctAnswers;
 	private int totalAnswers;
 	
+	public User(String nickname){
+		this.nickName = nickname;
+	}
+	
 	public User(String nickName, PlayerAuth playerAuth){
 		this.nickName = nickName;
 		this.playerAuth = playerAuth;

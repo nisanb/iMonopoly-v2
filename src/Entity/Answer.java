@@ -1,28 +1,38 @@
 package Entity;
 
-public class Answer{
+public class Answer {
 	private String text;
 	private boolean isTrue;
-	
-	
+
 	public Answer(String text, boolean isTrue) {
 		super();
 		this.text = text;
 		this.isTrue = isTrue;
 	}
-	
-	
+
 	public String getText() {
 		return text;
 	}
-	public void setText(String text) {
+
+	protected void setText(String text) {
 		this.text = text;
 	}
-	public boolean isTrue() {
+
+	protected boolean isTrue() {
 		return isTrue;
 	}
-	public void setTrue(boolean isTrue) {
+
+	protected void setTrue(boolean isTrue) {
 		this.isTrue = isTrue;
+	}
+	
+	public boolean getIsTrue(Answer a) {
+		if(a.isTrue)
+		{
+			return true;
+		}
+		else
+			return false;
 	}
 
 	@Override
@@ -50,13 +60,9 @@ public class Answer{
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Answer [text=" + text + ", isTrue=" + isTrue + "]";
 	}
-	
-	
-	
-	
+
 }
