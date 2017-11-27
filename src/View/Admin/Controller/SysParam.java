@@ -7,9 +7,9 @@ import Controller.iWindow;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 
 public class SysParam {
 
@@ -18,48 +18,20 @@ public class SysParam {
     @FXML private Button btnBack;
 
     @FXML private Button btnRestore;
-
-    @FXML private Spinner<Integer> spinStartMoney;
-
-    @FXML private TextField TxtSartMoney;
-
-    @FXML private TextField TxtRent;
-
-    @FXML private TextField BuyProperty;
-
-    @FXML private TextField TxtMinLuck;
-
-    @FXML private TextField TxtOnlyLuck;
-
-    @FXML private TextField TxtLuckFine;
     
-    @FXML private TextField TxtJailFine;
-
-    @FXML private TextField TxtCheapProperty;
-
-    @FXML private TextField TxtAverageProperty;
-
-    @FXML private TextField TxtExpensiveProperty;
-
-    @FXML private TextField TxtCPd;
-
-    @FXML private TextField TxtAPD;
-
-    @FXML private TextField TxtExpensiveProperyDiscount;
-
-    @FXML private TextField TxtMNOR;
-
-    @FXML private TextField TxtBankRupty;
+    @FXML private Label lblEmpty1;
     
-    @FXML private TextField lblEmpty1;
+    @FXML private Label lblEmpty2;
     
-    @FXML private TextField lblEmpty2;
+    @FXML private Label lblError;
     
-
+    
     
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
+    
+    @FXML private Spinner<Integer> spinStartMoney;
 
     @FXML private Spinner<Double> spinRent = new Spinner<Double>(0,100,50);
 
@@ -91,9 +63,9 @@ public class SysParam {
 
     @FXML private Spinner<Integer> spinBankruptcy;
     
-    @FXML private Spinner<?> spinEmpty2;  
+    @FXML private Spinner<Double> spinEmpty2;  
     
-    @FXML private Spinner<?> spinEmpty1;
+    @FXML private Spinner<Double> spinEmpty1;
 
     @FXML
     void back(ActionEvent event) {
@@ -111,15 +83,20 @@ public class SysParam {
     }
     
     
-    
-    private void turnOffEmpty() {
+    /**
+     * This method turn off empty fields
+     */
+    private void turnOffEmpty() {   	
     	lblEmpty1.setVisible(false);
     	lblEmpty2.setVisible(false);
     	spinEmpty1.setVisible(false);
     	spinEmpty2.setVisible(false);
     }
     
-    
+    /**
+     * Action Listener - get the source of the button and does the required action
+     * @param e
+     */
     private void buttonClicked(ActionEvent e) {
     	if (e.getSource().equals(btnSave)) {
     		saveParams();
@@ -137,15 +114,38 @@ public class SysParam {
     
     
     
+    /**
+     * This method restores all the params to defaults
+     */
     private void restoreDefaults() {
     	
     }
     
     
-    
+    /**
+     * This method saves the params input
+     */
     private void saveParams() {
     	System.out.println(spinAvgDisc.getValue());
     }
+    
+    
+    /**
+     * This method controls the error label
+     * @param msg - message to present
+     * @param visiblity - show or not show the label
+     */
+    private void errorLabelControl(String msg, boolean visiblity) {
+    	this.lblError.setVisible(visiblity);
+    	if (msg == null) {
+    		this.lblError.setText(" ");
+    	}
+    	else {
+    		this.lblError.setText("Error: " + msg);
+    	}
+    }
+    
+    //spinner properties =>  min="50000" max="10000000" initialValue="100000" amountToStepBy="10000"
 }
 
 
