@@ -62,9 +62,24 @@ public class Management implements IManagement{
 	}
 
 	@Override
-	public Map<Param, Object> getSavedParams() {
-		// TODO Auto-generated method stub
-		return null;
+
+
+	public void resetParamsToDefault() {
+		_db.resetParamsToDefault();
+		
 	}
+
+	@Override
+	public void setParam(Param p, Object value) {
+		_db.setParam(p, value);	
+	}
+
+	@Override
+	public Object getParam(Param p) {
+		return _db.getParam(p);
+		
+	}
+	
+	
 
 }

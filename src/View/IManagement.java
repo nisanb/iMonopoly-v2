@@ -43,9 +43,23 @@ public interface IManagement {
 	
 	
 	/**
-	 * This method returns the parameters from monDB (check if requred)
+	 * This method returns the parameters from monDB 
 	 * @return - sysParam
 	 */
-	public Map<Param, Object> getSavedParams();
+	public void resetParamsToDefault();
+	
+	/**
+	 * This method will set the changed param to monDB
+	 * @param p
+	 * @param value
+	 */
+	public void setParam(Param p, Object value);
+	
+	/**
+	 * This method gets param from monDB
+	 * @param p
+	 * @return
+	 */
+	public Object getParam(Param p);
 	
 }
