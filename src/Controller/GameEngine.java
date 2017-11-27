@@ -6,6 +6,7 @@ import Entity.MonDB;
 import Entity.Player;
 import Entity.PropertyTile;
 import Utils.Param;
+import Utils.PlayerState;
 import Utils.TileType;
 import View.IGameEngine;
 import View.Game.Controller.UI;
@@ -95,6 +96,7 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void btnRollDice() {
+		disableAll();
 		Dice dice = _game.rollDice();
 		ui.allowRollDice(false);
 		ui.gameLog("Player " + _game.getCurrentPlayer() + " rolled " + dice.getSum() + " !");
@@ -124,6 +126,7 @@ public class GameEngine implements IGameEngine {
 			@Override
 			public void run() {
 				Integer currentLocation = currentPlayer().getCurrentTile().getTileNumber();
+				System.out.println("New Thread - moving player "+currentPlayer()+" from tile "+currentLocation+" to tile "+moveToTile);
 				while (currentLocation != moveToTile) {
 					currentPlayer().getCurrentTile().postVisit(currentPlayer());
 					
@@ -155,11 +158,14 @@ public class GameEngine implements IGameEngine {
 					ui.gameLog("Player "+currentPlayer()+" has arrived to Starting Point (0) and received "+Param.get(Param.START_TILE_VISIT));
 				}
 				updatePlayerProperties(currentPlayer());
+				currentPlayer().setState(PlayerState.WAITING);
 			}
 
 		};
 		doChangeLocation.start();
-
+		while(currentPlayer().getState() == PlayerState.MOVING){
+			
+		}
 		ui.allowFinishTurn(true);
 
 	}

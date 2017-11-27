@@ -803,8 +803,8 @@ public class UI implements UIInterface{
 	public void movePlayer(String player, int tileFrom, int tileTo) {
 		//the player's order in the game
 		int playerPosition= playersList.indexOf(player);
-		System.out.println("tile from "+ tileFrom);
-		System.out.println("tile to "+ tileTo);
+//		System.out.println("tile from "+ tileFrom);
+//		System.out.println("tile to "+ tileTo);
 		players[tileFrom][playerPosition].setVisible(false);
 		players[tileTo][playerPosition].setVisible(true);
 		

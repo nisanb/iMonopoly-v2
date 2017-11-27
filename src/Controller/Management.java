@@ -2,7 +2,7 @@ package Controller;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Map;
 
 import Entity.MonDB;
 import Entity.Player;
@@ -59,6 +59,12 @@ public class Management implements IManagement{
 
 	public void build(List<String> playerList){
 		_db.buildGame(playerList);
+	}
+
+	@Override
+	public Map<Param, Object> getSavedParams() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -9,6 +9,7 @@ import java.util.Map;
 
 import Controller.Logger;
 import Utils.PlayerAuth;
+import Utils.PlayerState;
 
 public class Player extends User implements Comparable<Player> {
 
@@ -21,7 +22,7 @@ public class Player extends User implements Comparable<Player> {
 	private Map<Question, Boolean> _userAnswers;
 	private List<PropertyTile> _propertyList;
 	private Tilable _currentTile;
-
+	private PlayerState _state;
 	/**
 	 * Player Constructor
 	 * 
@@ -37,7 +38,16 @@ public class Player extends User implements Comparable<Player> {
 		_cash = cash;
 		_playerColor = playerColor;
 		_inJail = false;
+		_state = PlayerState.WAITING;
 
+	}
+	
+	public PlayerState getState(){
+		return _state;
+	}
+	
+	public void setState(PlayerState ps){
+		_state = ps;
 	}
 
 	public List<PropertyTile> getPropertyList() {
