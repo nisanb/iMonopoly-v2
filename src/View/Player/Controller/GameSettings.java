@@ -15,6 +15,7 @@ import Controller.iWindow;
 import Entity.Answer;
 import Entity.MonDB;
 import Entity.Question;
+import Entity.User;
 import Utils.Param;
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
@@ -196,6 +197,7 @@ public class GameSettings {
 			img4.setVisible(true);
 			break;
 		}
+		checkNickNames();
 	}
 
 	@FXML
@@ -324,8 +326,19 @@ public class GameSettings {
 		txt1.setText(mng.getLoggedPlayer());
 		txt1.setDisable(true);
 		
+		
+		
 	}
     
+	
+	//========================================methods=======================================================//
+	
+	private void checkNickNames()
+	{
+		
+
+	}
+	
 	
 
 }

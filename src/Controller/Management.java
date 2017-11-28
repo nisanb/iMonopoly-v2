@@ -87,14 +87,15 @@ public class Management implements IManagement{
 		return null;
 	}
 
+
 @Override
-public void CheckIsTrue(List<Answer> a) {
+public void addQuestion(Question q) {
 	// TODO Auto-generated method stub
 	
 }
 
 @Override
-public void SetAnswer(Integer x) {
+public void removeQuestion(Question q) {
 	// TODO Auto-generated method stub
 	
 } 

@@ -13,18 +13,19 @@ public interface IManagement {
 	/**
 	 * Methods DONE
 	 */
-	
-
 	public List<Question> getQuestions();
-
-	
 	public String getLoggedPlayer();
-	
 	
 
 	/**
 	 * Methods TO DO
 	 */
+	
+	// this method add new question //
+	public void addQuestion(Question q);
+	
+	//this method remove question //
+	public void removeQuestion(Question q);
 	
 	/**
 	 * Returns list of questions
@@ -36,7 +37,6 @@ public interface IManagement {
 	 * return String of User who login to System
 	 */
 	public String GetLoginUser(String UserNickName);
-	
 	public void build(List<String> playerList);
 	public void login(String nickname);
 	
@@ -48,18 +48,15 @@ public interface IManagement {
 	public Map<Param, Object> getSavedParams();
 	
 	
-	/**
-	 * this method check the status of the answer. if true setvisible true else setvisible of answe false
-	 * @param a
-	 */
-	public void CheckIsTrue(List<Answer>a);
 	
 	
-	/*
-	 * this method get number of question and set in textbox the answer of the question
-	 */
-	 public void SetAnswer (Integer x);
-
+	
+	
+	
+	
+	
+	
+	
 
 	Object getParam(Param p);
 

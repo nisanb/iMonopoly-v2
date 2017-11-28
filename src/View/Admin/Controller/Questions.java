@@ -179,7 +179,8 @@ public class Questions {
     	List2.getItems().add(List1.getSelectionModel().getSelectedItem());
     	List1.getItems().remove(List1.getSelectionModel().getSelectedIndex());
     }
-
+    
+    
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
     	DiffComboox.setItems(list2);
@@ -291,6 +292,8 @@ public class Questions {
     
 
     }
+    
+   
     
   //=====================================  METHODS ============================================
   

@@ -4,8 +4,17 @@
 
 package View.Admin.Controller;
 
+import java.awt.List;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import Controller.iWindow;
+import Utils.QuestionStrength;
+import Utils.QuestionTag;
+import Utils.Team;
+import Utils.Window;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -65,7 +74,7 @@ public class AddQuestion {
     private TextField txtQuestion; // Value injected by FXMLLoader
 
     @FXML // fx:id="List2"
-    private ListView<?> List2; // Value injected by FXMLLoader
+    private ListView<QuestionTag> List2; // Value injected by FXMLLoader
 
     @FXML // fx:id="RightImg"
     private ImageView RightImg; // Value injected by FXMLLoader
@@ -74,10 +83,13 @@ public class AddQuestion {
     private ImageView LeftImg; // Value injected by FXMLLoader
 
     @FXML // fx:id="List1"
-    private ListView<?> List1; // Value injected by FXMLLoader
+    private ListView<QuestionTag> List1; // Value injected by FXMLLoader
 
     @FXML // fx:id="DiffComboox"
-    private ComboBox<?> DiffComboox; // Value injected by FXMLLoader
+    private ComboBox<QuestionStrength> DiffComboox; // Value injected by FXMLLoader
+
+    @FXML // fx:id="managequestion"
+    private Label managequestion; // Value injected by FXMLLoader
 
     @FXML // fx:id="diff"
     private Label diff; // Value injected by FXMLLoader
@@ -103,50 +115,58 @@ public class AddQuestion {
     @FXML // fx:id="FalseBu2"
     private RadioButton FalseBu2; // Value injected by FXMLLoader
 
-    @FXML // fx:id="txtQuestion2"
-    private TextField txtQuestion2; // Value injected by FXMLLoader
+    @FXML // fx:id="txtQuestion1"
+    private TextField txtQuestion1; // Value injected by FXMLLoader
 
-    @FXML // fx:id="DiffComboox1"
-    private ComboBox<?> DiffComboox1; // Value injected by FXMLLoader
+    @FXML
+    private ComboBox<Team> TeamComboBox;
 
     @FXML
     void CangeTrueBu(MouseEvent event) {
-
+    	TrueBu.setSelected(true);
+    	FalseBu.setSelected(false);
     }
 
     @FXML
     void ChangeFalseBu(MouseEvent event) {
-
+    	TrueBu.setSelected(false);
+    	FalseBu.setSelected(true);
     }
 
     @FXML
     void ChangeFalseBu2(MouseEvent event) {
-
+    	TrueBu2.setSelected(false);
+    	FalseBu2.setSelected(true);
     }
 
     @FXML
     void ChangeFalseBu3(MouseEvent event) {
-
+    	TrueBu3.setSelected(false);
+    	FalseBu3.setSelected(true);
     }
 
     @FXML
     void ChangeFalseBu4(MouseEvent event) {
-
+    	TrueBu4.setSelected(false);
+    	FalseBu4.setSelected(true);
     }
 
     @FXML
     void ChangeTrueBu2(MouseEvent event) {
-
+    	TrueBu2.setSelected(true);
+    	FalseBu2.setSelected(false);
     }
 
     @FXML
     void ChangeTrueBu3(MouseEvent event) {
-
+    	TrueBu3.setSelected(true);
+    	FalseBu3.setSelected(false);
     }
 
     @FXML
     void ChangeTrueBu4(MouseEvent event) {
-
+    	TrueBu4.setSelected(true);
+    	FalseBu4.setSelected(false);
     }
 
     @FXML
@@ -161,12 +181,17 @@ public class AddQuestion {
 
     @FXML
     void FromList2ToList1(MouseEvent event) {
-
+    	if(List2.getSelectionModel().isEmpty())
+    	{
+    		return ;
+    	}
+    	List1.getItems().add(List2.getSelectionModel().getSelectedItem());
+    	List2.getItems().remove(List2.getSelectionModel().getSelectedIndex());
     }
 
     @FXML
     void back(ActionEvent event) {
-
+    	iWindow.swap(Window.Admin_Questions);
     }
 
     @FXML
@@ -176,8 +201,15 @@ public class AddQuestion {
 
     @FXML
     void moveTag(MouseEvent event) {
-
+    	if(List1.getSelectionModel().isEmpty())
+    	{	
+    		return ;
+    	}
+    	List2.getItems().add(List1.getSelectionModel().getSelectedItem());
+    	List1.getItems().remove(List1.getSelectionModel().getSelectedIndex());
     }
+    
+
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -199,6 +231,7 @@ public class AddQuestion {
         assert LeftImg != null : "fx:id=\"LeftImg\" was not injected: check your FXML file 'AddQuestion.fxml'.";
         assert List1 != null : "fx:id=\"List1\" was not injected: check your FXML file 'AddQuestion.fxml'.";
         assert DiffComboox != null : "fx:id=\"DiffComboox\" was not injected: check your FXML file 'AddQuestion.fxml'.";
+        assert managequestion != null : "fx:id=\"managequestion\" was not injected: check your FXML file 'AddQuestion.fxml'.";
         assert diff != null : "fx:id=\"diff\" was not injected: check your FXML file 'AddQuestion.fxml'.";
         assert TagCombo != null : "fx:id=\"TagCombo\" was not injected: check your FXML file 'AddQuestion.fxml'.";
         assert Answer1 != null : "fx:id=\"Answer1\" was not injected: check your FXML file 'AddQuestion.fxml'.";
@@ -207,8 +240,47 @@ public class AddQuestion {
         assert answer4 != null : "fx:id=\"answer4\" was not injected: check your FXML file 'AddQuestion.fxml'.";
         assert TrueBu2 != null : "fx:id=\"TrueBu2\" was not injected: check your FXML file 'AddQuestion.fxml'.";
         assert FalseBu2 != null : "fx:id=\"FalseBu2\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert txtQuestion2 != null : "fx:id=\"txtQuestion2\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert DiffComboox1 != null : "fx:id=\"DiffComboox1\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-
+        assert txtQuestion1 != null : "fx:id=\"txtQuestion1\" was not injected: check your FXML file 'AddQuestion.fxml'.";
+       
+        getQuestionStrength();
+        getTeam();
+        getTag();
+        SetButtonToFalse();
+        
+        
     }
+    
+    
+    
+    //====================================================methods============================//
+    
+    private void getQuestionStrength()
+    {
+    	 ObservableList<QuestionStrength> list2=FXCollections.observableArrayList(QuestionStrength.values());
+    	 DiffComboox.setItems(list2);
+    }
+    
+    private void getTeam()
+    {
+   	 ObservableList<Team> list3=FXCollections.observableArrayList(Team.values());
+   	 TeamComboBox.setItems(list3);
+    }
+    
+    private void getTag()
+    {
+      	 ObservableList<QuestionTag> list4=FXCollections.observableArrayList(QuestionTag.values());
+      	 List1.setItems(list4);
+      
+    }
+    
+    private void SetButtonToFalse()
+    {
+    	FalseBu.setSelected(true);
+    	FalseBu2.setSelected(true);
+    	FalseBu3.setSelected(true);
+    	FalseBu4.setSelected(true);
+    }
+    
+
+    
 }
