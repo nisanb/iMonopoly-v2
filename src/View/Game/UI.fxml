@@ -1337,7 +1337,7 @@
                </children>
             </Pane>
          </children></AnchorPane>
-      <Button fx:id="btnBuyProperty" disable="true" layoutX="372.0" layoutY="81.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Buy Property" textFill="WHITE">
+      <Button fx:id="btnBuyProperty" disable="true" onAction="#btnBuyProperty" layoutX="372.0" layoutY="81.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Buy Property" textFill="WHITE">
          <font>
             <Font name="Cooper Black" size="20.0" />
          </font>

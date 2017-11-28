@@ -3,7 +3,7 @@ package Utils;
 import Entity.MonDB;
 
 public enum Param {
-	STARTING_CASH(500000), 	//Defines all players' starting cash
+	STARTING_CASH(999999999), 	//Defines all players' starting cash
 	RENT_PERCENT(0.15),  	//Defines the rent percent a user must pay on an owned property
 	BUY_PERCENT(1.5),		//Defines the purchase price when a user lands on an owned property
 	MIN_LUCK(10000),		//Defines the minimum cash given on luck tile

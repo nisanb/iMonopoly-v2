@@ -896,6 +896,7 @@ public class UI implements UIInterface{
 	@Override
 	public void allowPurchase(Boolean allow) {
 		btnBuyProperty.setDisable(!allow);
+		System.err.println("Purchase Button: "+allow);
 		
 	}
 
@@ -1040,7 +1041,7 @@ public class UI implements UIInterface{
 			Integer assetsAmount) {
 		
 		int pos=playersList.indexOf(nickname);
-		
+		System.out.println("Updating player "+nickname+" ("+pos+")");
 		playersCash[pos].setText(cash+"");
 		playersStrikes[pos].setText(strikes+"");
 		playersValue[pos].setText(assetsWorth+ "(amount: "+assetsAmount+")");
@@ -1601,6 +1602,10 @@ public class UI implements UIInterface{
     void btnFinishTurn(ActionEvent event) {
 		System.out.println("finish turn btn");
 		ge.btnFinishTurn();
+	}
+	@FXML
+    void btnBuyProperty(ActionEvent event) {
+		ge.btnBuyProperty();
 	}
 
 

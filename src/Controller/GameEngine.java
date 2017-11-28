@@ -53,7 +53,9 @@ public class GameEngine implements IGameEngine {
 
 	@Override
 	public void btnBuyProperty() {
-		ui.allowPurchase(false);
+		disableAll();
+		PropertyTile pt = (PropertyTile) currentPlayer().getCurrentTile();
+		pt.purchaseProperty(currentPlayer());
 
 	}
 
@@ -163,6 +165,12 @@ public class GameEngine implements IGameEngine {
 		doChangeLocation.start();
 		while(currentPlayer().getState() == PlayerState.MOVING){
 			
+		}
+		while(doChangeLocation.isAlive()){}
+		if(currentPlayer().getCurrentTile().getTileType() == TileType.Property)
+			ui.allowPurchase(true);
+		else{
+			System.err.println("NOT A PROPERTY TILE");
 		}
 		ui.allowFinishTurn(true);
 

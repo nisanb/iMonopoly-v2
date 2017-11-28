@@ -145,11 +145,11 @@ public class PropertyTile extends Tile {
 	}
 
 	public int getBuyPrice() {
-		return currentPrice * (Integer) Param.get(Param.BUY_PERCENT);
+		return (currentPrice * ((Double) Param.get(Param.BUY_PERCENT)).intValue());
 	}
 
 	public int getRentPrice() {
-		return currentPrice * (Integer) Param.get(Param.RENT_PERCENT);
+		return (currentPrice * ((Double) Param.get(Param.RENT_PERCENT)).intValue());
 	}
 
 	@Override
