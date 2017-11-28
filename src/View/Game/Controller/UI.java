@@ -871,7 +871,7 @@ public class UI implements UIInterface{
 
 	@Override
 	public void gameLog(String message) {
-		gameLogs.setText(gameLogs.getText()+ "\n" +message);
+		gameLogs.setText(message+"\n"+gameLogs.getText());
 		gameLogDisplay(true);
 		
 		
