@@ -1547,8 +1547,8 @@ public class UI implements UIInterface{
     }
     
     private void addGlow(int playerNum){
-    	for (int i=0; i<playersName.length; i++)
-    		playersName[i].setEffect(null);
+    //	for (int i=0; i<playersName.length; i++)
+    		//playersName[i].setEffect(null);
     	int depth = 70;//Setting the uniform variable for the glow width and height
     	System.out.println("212");
     	DropShadow borderGlow= new DropShadow();
