@@ -1,11 +1,21 @@
 package View.Player.Controller;
 
-import java.net.URL;
 import java.util.ResourceBundle;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
+import java.util.jar.Attributes.Name;
 
 import Controller.Logger;
 import Controller.Music;
 import Controller.iWindow;
+import Entity.Answer;
+import Entity.MonDB;
+import Entity.Question;
+import Utils.QuestionStrength;
+import Utils.QuestionTag;
 import Utils.Window;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,9 +24,14 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+
 
 public class Statistics {
 

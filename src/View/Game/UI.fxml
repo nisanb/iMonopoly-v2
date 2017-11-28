@@ -977,137 +977,198 @@
             </ImageView>
          </children>
       </Pane>
-      <ImageView fx:id="playerBlueStats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="60.0" styleClass="color">
-         <image>
-            <Image url="@../../Resources/PSD/Players/7.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="playerYellowStats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="150.0">
-         <image>
-            <Image url="@../../Resources/PSD/Players/8.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="playerGreenStats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="240.0">
-         <image>
-            <Image url="@../../Resources/PSD/Players/9.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="playerRedStats" fitHeight="80.0" fitWidth="67.0" layoutX="80.0" layoutY="330.0">
-         <image>
-            <Image url="@../../Resources/PSD/Players/10.png" />
-         </image>
-      </ImageView>
-      <Pane fx:id="player1StatsPane" layoutX="160.0" layoutY="60.0" prefHeight="77.0" prefWidth="198.0" style="-fx-background-color: transparent">
+      <AnchorPane fx:id="player3Container" layoutX="72.0" layoutY="260.0" prefHeight="110.0" prefWidth="286.0">
          <children>
-            <Label fx:id="lblMoney1" layoutX="7.0" layoutY="10.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Money:" textFill="WHITE">
+            <ImageView fx:id="playerGreenStats" fitHeight="80.0" fitWidth="67.0" layoutX="8.0" layoutY="20.0">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/9.png" />
+               </image>
+            </ImageView>
+            <Pane fx:id="player3StatsPane" layoutX="88.0" layoutY="40.0" prefHeight="77.0" prefWidth="198.0" style="-fx-background-color: transparent">
+               <children>
+                  <Label fx:id="lblMoney3" layoutX="7.0" layoutY="2.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Money:" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblStrikes3" layoutX="7.0" layoutY="26.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Strikes:" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="moneyPlayer3" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="strikesPlayer3" layoutX="91.0" layoutY="26.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="0" textAlignment="JUSTIFY" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblValue3" layoutX="7.0" layoutY="50.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Value:" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="valuePlayer3" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Label fx:id="txtPlayer3Name" layoutX="91.0" layoutY="14.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: transparent" text="Green" textAlignment="CENTER" textFill="#04ff00">
                <font>
-                  <Font name="Cooper Black" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblStrikes1" layoutX="7.0" layoutY="39.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Strikes:" textFill="WHITE">
-               <font>
-                  <Font name="Cooper Black" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="moneyPlayer1" layoutX="91.0" layoutY="9.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
-               <font>
-                  <Font name="Cooper Black" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="strikesPlayer1" layoutX="91.0" layoutY="38.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Cooper Black" size="16.0" />
+                  <Font name="Cooper Black" size="20.0" />
                </font>
             </Label>
          </children>
-      </Pane>
-      <Pane fx:id="player2StatsPane" layoutX="160.0" layoutY="150.0" prefHeight="77.0" prefWidth="198.0" style="-fx-background-color: transparent">
+      </AnchorPane>
+      <AnchorPane fx:id="player4Container" layoutX="72.0" layoutY="369.0" prefHeight="110.0" prefWidth="286.0">
          <children>
-            <Label fx:id="lblMoney2" layoutX="7.0" layoutY="10.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Money:" textFill="WHITE">
+            <Label fx:id="txtPlayer4Name" layoutX="91.0" layoutY="14.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: transparent" text="Red" textAlignment="CENTER" textFill="RED">
                <font>
-                  <Font name="Cooper Black" size="16.0" />
+                  <Font name="Cooper Black" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="lblStrikes2" layoutX="7.0" layoutY="39.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Strikes:" textFill="WHITE">
+            <ImageView fx:id="playerRedStats" fitHeight="80.0" fitWidth="67.0" layoutX="8.0" layoutY="20.0">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/10.png" />
+               </image>
+            </ImageView>
+            <Pane fx:id="player4StatsPane" layoutX="88.0" layoutY="40.0" prefHeight="77.0" prefWidth="198.0" style="-fx-background-color: transparent">
+               <children>
+                  <Label fx:id="lblMoney4" layoutX="7.0" layoutY="2.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Money:" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblStrikes4" layoutX="7.0" layoutY="26.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Strikes:" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="moneyPlayer4" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="strikesPlayer4" layoutX="91.0" layoutY="26.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="0" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblValue4" layoutX="7.0" layoutY="50.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Value:" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="valuePlayer4" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="player1Container" layoutX="72.0" layoutY="42.0" prefHeight="110.0" prefWidth="286.0">
+         <children>
+            <Pane fx:id="player1StatsPane" layoutX="88.0" layoutY="40.0" prefHeight="77.0" prefWidth="220.0" style="-fx-background-color: transparent">
+               <children>
+                  <Label fx:id="lblMoney1" layoutX="7.0" layoutY="2.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Money:" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblStrikes1" layoutX="7.0" layoutY="26.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Strikes:" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="moneyPlayer1" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="strikesPlayer1" layoutX="91.0" layoutY="26.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblValue1" layoutX="7.0" layoutY="50.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Value:" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="valuePlayer1" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <ImageView fx:id="playerBlueStats" fitHeight="80.0" fitWidth="67.0" layoutX="8.0" layoutY="20.0" styleClass="color">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/7.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="txtPlayer1Name" layoutX="91.0" layoutY="14.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: transparent" text="Blue" textAlignment="CENTER" textFill="#0055ff">
                <font>
-                  <Font name="Cooper Black" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="moneyPlayer2" layoutX="91.0" layoutY="9.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
-               <font>
-                  <Font name="Cooper Black" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="strikesPlayer2" layoutX="91.0" layoutY="38.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="0" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="Cooper Black" size="16.0" />
+                  <Font name="Cooper Black" size="20.0" />
                </font>
             </Label>
          </children>
-      </Pane>
-      <Pane fx:id="player3StatsPane" layoutX="160.0" layoutY="240.0" prefHeight="77.0" prefWidth="198.0" style="-fx-background-color: transparent">
+      </AnchorPane>
+      <AnchorPane fx:id="player2Container" layoutX="72.0" layoutY="150.0" prefHeight="110.0" prefWidth="286.0">
          <children>
-            <Label fx:id="lblMoney3" layoutX="7.0" layoutY="10.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Money:" textFill="WHITE">
+            <Pane fx:id="player2StatsPane" layoutX="88.0" layoutY="40.0" prefHeight="77.0" prefWidth="198.0" style="-fx-background-color: transparent">
+               <children>
+                  <Label fx:id="lblMoney2" layoutX="7.0" layoutY="2.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Money:" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblStrikes2" layoutX="7.0" layoutY="26.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Strikes:" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="moneyPlayer2" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="strikesPlayer2" layoutX="91.0" layoutY="26.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="0" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblValue2" layoutX="9.0" layoutY="50.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Value:" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="valuePlayer2" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Cooper Black" size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <ImageView fx:id="playerYellowStats" fitHeight="80.0" fitWidth="67.0" layoutX="8.0" layoutY="20.0">
+               <image>
+                  <Image url="@../../Resources/PSD/Players/8.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="txtPlayer2Name" layoutX="91.0" layoutY="14.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: transparent" text="Yellow" textAlignment="CENTER" textFill="#e4ff00">
                <font>
-                  <Font name="Cooper Black" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblStrikes3" layoutX="7.0" layoutY="39.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Strikes:" textFill="WHITE">
-               <font>
-                  <Font name="Cooper Black" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="moneyPlayer3" layoutX="91.0" layoutY="9.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
-               <font>
-                  <Font name="Cooper Black" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="strikesPlayer3" layoutX="91.0" layoutY="38.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="0" textAlignment="JUSTIFY" textFill="WHITE">
-               <font>
-                  <Font name="Cooper Black" size="16.0" />
+                  <Font name="Cooper Black" size="20.0" />
                </font>
             </Label>
          </children>
-      </Pane>
-      <Pane fx:id="player4StatsPane" layoutX="160.0" layoutY="330.0" prefHeight="77.0" prefWidth="198.0" style="-fx-background-color: transparent">
-         <children>
-            <Label fx:id="lblMoney4" layoutX="7.0" layoutY="10.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Money:" textFill="WHITE">
-               <font>
-                  <Font name="Cooper Black" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="lblStrikes4" layoutX="7.0" layoutY="39.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Strikes:" textFill="WHITE">
-               <font>
-                  <Font name="Cooper Black" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="moneyPlayer4" layoutX="91.0" layoutY="9.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
-               <font>
-                  <Font name="Cooper Black" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="strikesPlayer4" layoutX="91.0" layoutY="38.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="0" textFill="WHITE">
-               <font>
-                  <Font name="Cooper Black" size="16.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-      <Button fx:id="btnBuyProperty" disable="true" layoutX="372.0" layoutY="81.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Buy Property" textFill="WHITE">
-         <font>
-            <Font name="Cooper Black" size="20.0" />
-         </font>
-      </Button>
-      <Button fx:id="btnSellProperty" disable="true" layoutX="372.0" layoutY="142.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Sell Property" textFill="WHITE">
-         <font>
-            <Font name="Cooper Black" size="20.0" />
-         </font>
-      </Button>
-      <Button fx:id="buttonQuitGame" layoutX="375.0" layoutY="652.0" mnemonicParsing="false" onMouseClicked="#menuButton" prefWidth="164.0" style="-fx-background-color: red;" text="Quit Game" textFill="WHITE">
-         <font>
-            <Font name="Cooper Black" size="20.0" />
-         </font>
-      </Button>
+      </AnchorPane>
       <Label fx:id="lblRound" layoutX="850.0" layoutY="337.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="Round :" textFill="WHITE">
          <font>
             <Font name="Cooper Black" size="16.0" />
@@ -1118,7 +1179,7 @@
             <Font name="Cooper Black" size="16.0" />
          </font>
       </Label>
-      <Pane fx:id="rollDicePane" layoutX="71.0" layoutY="470.0" prefHeight="222.0" prefWidth="242.0">
+      <Pane fx:id="rollDicePane" layoutX="71.0" layoutY="500.0" prefHeight="222.0" prefWidth="242.0">
          <children>
             <Pane fx:id="cube2pane" layoutX="115.0" layoutY="100.0" prefHeight="77.0" prefWidth="76.0">
                <children>
@@ -1276,6 +1337,21 @@
                </children>
             </Pane>
          </children></AnchorPane>
+      <Button fx:id="btnBuyProperty" disable="true" layoutX="372.0" layoutY="81.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Buy Property" textFill="WHITE">
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="btnSellProperty" disable="true" layoutX="372.0" layoutY="142.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Sell Property" textFill="WHITE">
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonQuitGame" layoutX="375.0" layoutY="652.0" mnemonicParsing="false" onMouseClicked="#menuButton" prefWidth="164.0" style="-fx-background-color: red;" text="Quit Game" textFill="WHITE">
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Button>
       <Button fx:id="btnOfferTrade" disable="true" layoutX="372.0" layoutY="203.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Offer A Trade" textFill="WHITE">
          <font>
             <Font name="Cooper Black" size="20.0" />
@@ -1286,11 +1362,7 @@
             <Font name="Cooper Black" size="20.0" />
          </font>
       </Button>
-      <Pane fx:id="paneCurrentTurnPlayer1" layoutX="72.0" layoutY="56.0" prefHeight="93.0" prefWidth="83.0" style="-fx-border-color: red;" />
-      <Pane fx:id="paneCurrentTurnPlayer2" layoutX="72.0" layoutY="145.0" prefHeight="93.0" prefWidth="83.0" style="-fx-border-color: red;" />
-      <Pane fx:id="paneCurrentTurnPlayer3" layoutX="72.0" layoutY="235.0" prefHeight="93.0" prefWidth="83.0" style="-fx-border-color: red;" />
-      <Pane fx:id="paneCurrentTurnPlayer4" layoutX="72.0" layoutY="325.0" prefHeight="93.0" prefWidth="83.0" style="-fx-border-color: red;" />
-      <Button fx:id="btnFinishTurn" layoutX="372.0" layoutY="330.0" mnemonicParsing="false" onAction="#btnFinishTurn" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: black;" text="Finish Turn" textFill="WHITE">
+      <Button fx:id="btnFinishTurn" layoutX="372.0" layoutY="330.0" mnemonicParsing="false"  prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: black;" text="Finish Turn" textFill="WHITE">
          <font>
             <Font name="Cooper Black" size="20.0" />
          </font>
