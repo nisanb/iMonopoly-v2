@@ -16,7 +16,9 @@ public enum Param {
 	PROPERTY_PRICE_MEDIUM_MAX(2000000),
 	PROPERTY_PRICE_HARD_MIN(2000000),
 	PROPERTY_PRICE_HARD_MAX(5000000),
+	Initial_Money(100000),
 	MAX_ROUNDS(50),
+	Realse_From_Jail(100000),
 	BANKRUPTCY(-100000);
 	
 	
@@ -33,5 +35,10 @@ public enum Param {
 	public static void set(Param p, Object value){
 		MonDB.getInstance().setParam(p, value);
 	}
+	
+	
+
+	
+
 	
 }

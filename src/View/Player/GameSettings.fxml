@@ -7,6 +7,7 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.BoxBlur?>
 <?import javafx.scene.effect.InnerShadow?>
@@ -31,7 +32,7 @@
       <ButtonBar layoutX="33.0" layoutY="182.0" prefHeight="40.0" prefWidth="200.0" />
       <Button layoutX="64.0" layoutY="516.0" mnemonicParsing="false" onAction="#openBoard" prefHeight="27.0" prefWidth="140.0" text="Save" />
       <Button layoutX="585.0" layoutY="516.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="140.0" text="Back" />
-      <SubScene height="167.0" layoutX="161.0" layoutY="150.0" opacity="0.07" width="429.0">
+      <SubScene height="173.0" layoutX="161.0" layoutY="149.0" opacity="0.07" width="419.0">
         <root>
           <Region />
         </root>
@@ -85,7 +86,7 @@
          </root>
       </SubScene>
       <TextField fx:id="txt4" layoutX="476.0" layoutY="275.0" onAction="#hidetextfield4" prefHeight="25.0" prefWidth="91.0" />
-      <Slider fx:id="slide1" blockIncrement="1.0" layoutX="222.0" layoutY="162.0" majorTickUnit="1.0" max="4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" min="2.0" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="0" onMouseClicked="#check1" prefHeight="25.0" prefWidth="329.0" showTickLabels="true" showTickMarks="true">
+      <Slider fx:id="slide1" blockIncrement="1.0" layoutX="222.0" layoutY="163.0" majorTickUnit="1.0" max="4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" min="2.0" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="0" onMouseClicked="#check1" prefHeight="25.0" prefWidth="329.0" showTickLabels="true" showTickMarks="true">
          <opaqueInsets>
             <Insets bottom="12.0" />
          </opaqueInsets>
@@ -119,5 +120,44 @@
             <Image url="@../../../../../Desktop/misslauraaw-1440896.png" />
          </image>
       </ImageView>
+      <Label fx:id="lblNumOFRounds" layoutX="247.0" layoutY="363.0" text="Num Of Rounds:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="247.0" layoutY="396.0" text="An Initial Sum Of Money:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="247.0" layoutY="428.0" text="To Go BankRupt:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="247.0" layoutY="461.0" text="Payment Release From Jail:">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="311.0" layoutY="332.0" prefHeight="20.0" prefWidth="200.0" text="Ability to set new parameters">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+		<Spinner fx:id="txtNumOfRounds" amountToStepBy="1" editable="true" initialValue="50"
+       layoutX="428.0" layoutY="361.0" max="100" min="0" opacity="0.7"/>
+      <Spinner fx:id="txtInitialSumOFMoney" amountToStepBy="50000" editable="true" initialValue="100000"
+       layoutX="428.0" layoutY="394.0" max="1000000" min="0" opacity="0.7"/>
+        <Spinner fx:id="txtInitialSumOFMoney" amountToStepBy="50000" editable="true" initialValue="100000"
+       layoutX="428.0" layoutY="394.0" max="1000000" min="0" opacity="0.7"/>
+
+      
+             <Spinner fx:id="txtBankrupt" amountToStepBy="50000" editable="true" initialValue="-100000"
+       layoutX="428.0" layoutY="426.0" max="0" min="-1000000" opacity="0.7"/>
+       
+            <Spinner fx:id="txtPaymentRelaseFromJail" amountToStepBy="50000" editable="true" initialValue="100000"
+       layoutX="428.0" layoutY="459.0" max="1000000" min="0" opacity="0.7"/>
+ 
    </children>
 </AnchorPane>

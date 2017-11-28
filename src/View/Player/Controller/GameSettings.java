@@ -7,15 +7,30 @@ package View.Player.Controller;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.jar.Attributes.Name;
 
 import Controller.iWindow;
+import Entity.Answer;
+import Entity.MonDB;
+import Entity.Question;
+import Utils.Param;
+import Utils.QuestionStrength;
+import Utils.QuestionTag;
 import Utils.Window;
 import View.IManagement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
+import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -87,6 +102,19 @@ public class GameSettings {
 
 	@FXML // fx:id="txt4"
 	private TextField txt4; // Value injected by FXMLLoader
+	
+	   @FXML // fx:id="txtNumOfRounds"
+	    private Spinner<Integer> txtNumOfRounds; // Value injected by FXMLLoader
+
+	    @FXML // fx:id="txtInitialSumOFMoney"
+	    private Spinner<Integer> txtInitialSumOFMoney; // Value injected by FXMLLoader
+
+	    @FXML // fx:id="txtBankrupt"
+	    private Spinner<Integer> txtBankrupt; // Value injected by FXMLLoader
+
+	    @FXML // fx:id="txtPaymentRelaseFromJail"
+	    private Spinner<Integer> txtPaymentRelaseFromJail; // Value injected by FXMLLoader
+	
 
 	@FXML
 	void back(ActionEvent event) {
@@ -292,10 +320,16 @@ public class GameSettings {
 		txt2Err.setVisible(false);
 		txt3Err.setVisible(false);
 		txt4Err.setVisible(false);
+		
+		
+		
+		
 
 		txt1.setText(mng.getLoggedPlayer());
 		txt1.setDisable(true);
 		
 	}
+    
+	
 
 }
