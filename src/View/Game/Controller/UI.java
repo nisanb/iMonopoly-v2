@@ -777,8 +777,7 @@ public class UI implements UIInterface{
 	    Pane currentPlayerPanes[]={paneCurrentTurnPlayer1,paneCurrentTurnPlayer2,paneCurrentTurnPlayer3,paneCurrentTurnPlayer4};
 	    Label playersStrikes[]={strikesPlayer1,strikesPlayer2,strikesPlayer3,strikesPlayer4};
 	    Label playersCash[]={moneyPlayer1,moneyPlayer2,moneyPlayer3,moneyPlayer4};
-	    Label playersName[] ={txtPlayer1Name, txtPlayer2Name, txtPlayer3Name, txtPlayer4Name};
-	    
+	    Label playersValue[]={valuePlayer1,valuePlayer2,valuePlayer3,valuePlayer4};
 	    @FXML
 	    private Button btnTest;
 	    
@@ -920,18 +919,26 @@ public class UI implements UIInterface{
 
 	@Override
 	public void displayQuestion(Question question, String player) {
+		Pane[] answersP = {txtAnswerPane1, txtAnswerPane2, txtAnswerPane3, txtAnswerPane4};
+		TextArea[] answers = {txtAnsw1,txtAnsw2,txtAnsw3,txtAnsw4};
+		
+		for (int i=0; i<answers.length; i++){
+			answers[i].setText(question.getqAnswers().get(0)+"");
+			answersP[i].setVisible(false);
+		}
+		
 		gameLogScrollPane.setVisible(false);
 		questionsPane.setVisible(true);
 		playerXIsAnswering.setText(player + " is answering question :");
 		theQuestion.setText(question.getqQuestion());
-		txtAnsw1.setText(question.getqAnswers().get(0)+"");
-		txtAnsw2.setText(question.getqAnswers().get(1)+"");
-		txtAnsw3.setText(question.getqAnswers().get(2)+"");
-		txtAnsw4.setText(question.getqAnswers().get(3)+"");
-		txtAnswerPane1.setVisible(false);
-		txtAnswerPane2.setVisible(false);
-		txtAnswerPane3.setVisible(false);
-		txtAnswerPane4.setVisible(false);
+		//txtAnsw1.setText(question.getqAnswers().get(0)+"");
+	//	txtAnsw2.setText(question.getqAnswers().get(1)+"");
+		//txtAnsw3.setText(question.getqAnswers().get(2)+"");
+		//txtAnsw4.setText(question.getqAnswers().get(3)+"");
+	//	txtAnswerPane1.setVisible(false);
+	//	txtAnswerPane2.setVisible(false);
+		//txtAnswerPane3.setVisible(false);
+	//	txtAnswerPane4.setVisible(false);
 		
 	}
 
@@ -981,39 +988,36 @@ public class UI implements UIInterface{
 	
     
 	@Override
-	public void BuildBoard() {
-				
+	public void BuildBoard() {	
+		txtPlayer1Name.setText(playersList.get(0));
+		txtPlayer2Name.setText(playersList.get(1));
 		player3Container.setVisible(false);
 		player4Container.setVisible(false);
 		players[0][3].setVisible(false);
 		players[0][2].setVisible(false);
-
-		 if  (playersList.size()>2 ) {
-			 player3Container.setVisible(true);
+		if  (playersList.size()>2 ) {
+			txtPlayer3Name.setText(playersList.get(2));
+			player3Container.setVisible(true);
 			players[0][2].setVisible(true);
 		}
-		 if (playersList.size()==4) {
+		if (playersList.size()==4) {
+			txtPlayer4Name.setText(playersList.get(3));
 			player4Container.setVisible(true);
 			players[0][3].setVisible(true);
 		}
-					
-
 		
-				
-	
-	
 	}
 
 	@Override
 	public void showAnswer(int answerNum) {
-	if (answerNum==1)
-		txtAnswerPane1.setVisible(true);
-	if (answerNum==2)
-		txtAnswerPane2.setVisible(true);
-	if (answerNum==3)
-		txtAnswerPane3.setVisible(true);
-	if (answerNum==4)
-		txtAnswerPane4.setVisible(true);
+		if (answerNum==1)
+			txtAnswerPane1.setVisible(true);
+		if (answerNum==2)
+			txtAnswerPane2.setVisible(true);
+		if (answerNum==3)
+			txtAnswerPane3.setVisible(true);
+		if (answerNum==4)
+			txtAnswerPane4.setVisible(true);
 	}
 	
 	@Override
@@ -1034,7 +1038,13 @@ public class UI implements UIInterface{
 	@Override
 	public void updatePlayerProperties(String nickname, Integer cash, Integer strikes, Integer assetsWorth,
 			Integer assetsAmount) {
-		// TODO Auto-generated method stub
+		
+		int pos=playersList.indexOf(nickname);
+		
+		playersCash[pos].setText(cash+"");
+		playersStrikes[pos].setText(strikes+"");
+		playersValue[pos].setText(assetsWorth+ "(amount: "+assetsAmount+")");
+		
 		
 	}
 	
@@ -1557,7 +1567,17 @@ public class UI implements UIInterface{
     	//borderGlow.setColor(Color.RED);
     	borderGlow.setWidth(depth);
     	borderGlow.setHeight(depth);
-    	playersName[playerNum].setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+    	txtPlayer1Name.setEffect(null); //Apply the borderGlow effect to the JavaFX node
+    	txtPlayer2Name.setEffect(null); //Apply the borderGlow effect to the JavaFX node
+    	txtPlayer3Name.setEffect(null); //Apply the borderGlow effect to the JavaFX node
+    	txtPlayer4Name.setEffect(null);
+    	switch (playerNum){
+    		case (1): txtPlayer1Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+    		case (2): txtPlayer2Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+    		case (3): txtPlayer3Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+    		case (4): txtPlayer4Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+    	}
+    	
 
     }
 
