@@ -6,6 +6,7 @@ public interface IGameEngine {
 
 	// please add any extra variables inside the methods if needed
 	/**
+	 * Sets the Game UI Object
 	 * DO NOT TOUCH
 	 */
 	public void setUI(UI ui);
@@ -22,6 +23,16 @@ public interface IGameEngine {
 	public void btnRollDice();
 	public void btnFinishTurn();
 	
+	/**
+	 * Take a player to jail
+	 */
+	public void goToJail();
+	
+	/**
+	 * Forward a string to the game log in the UI
+	 * @param str
+	 */
+	public void gameLog(String str);
 	
 	
 	

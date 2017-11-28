@@ -1,6 +1,8 @@
 package Entity;
 
 import Controller.Logger;
+import Controller.Music;
+import Controller.iWindow;
 import Utils.TileType;
 
 public class GoToJail extends Tile   {
@@ -12,7 +14,7 @@ public class GoToJail extends Tile   {
 	
 	//TODO - Take player to jail
 	public void go(Player currentPlayer){
-		MonDB.getInstance().getCurrentGame().movePlayer(currentPlayer, 29);
+		iWindow.getGameEngine().goToJail();
 	}
 	
 	@Override

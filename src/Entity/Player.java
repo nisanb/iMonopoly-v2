@@ -17,7 +17,6 @@ public class Player extends User implements Comparable<Player> {
 
 	private Integer _cash;
 	private Integer _strikesNum;
-	private Boolean _inJail;
 	private Color _playerColor;
 	private Map<Question, Boolean> _userAnswers;
 	private List<PropertyTile> _propertyList;
@@ -37,7 +36,6 @@ public class Player extends User implements Comparable<Player> {
 		_currentTile = MonDB.getInstance().getCurrentGame().getTile(0);
 		_cash = cash;
 		_playerColor = playerColor;
-		_inJail = false;
 		_state = PlayerState.WAITING;
 
 	}
@@ -97,11 +95,7 @@ public class Player extends User implements Comparable<Player> {
 	}
 
 	public Boolean isInJail() {
-		return _inJail;
-	}
-
-	public void setIsInJail(Boolean inJail) {
-		_inJail = inJail;
+		return _state == PlayerState.JAILED;
 	}
 
 	public Map<Question, Boolean> getUserAnswers() {

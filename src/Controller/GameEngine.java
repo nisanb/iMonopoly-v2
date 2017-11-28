@@ -84,7 +84,35 @@ public class GameEngine implements IGameEngine {
 		// TODO Auto-generated method stub
 
 	}
+	
+	/**
+	 * Forward a message to the game log
+	 */
+	public void gameLog(String str){
+		ui.gameLog(str);
+	}
+	
+	/**
+	 * Order a player to proceed to jail
+	 */
+	@Override
+	public void goToJail() {
+		
+		//Activate siren sound
+		Music.getInstance().play("siren.wav");
+		
+		ui.gameLog("Player "+currentPlayer()+" is being taken to jail!");
 
+		//Set new player state
+		currentPlayer().setState(PlayerState.JAILED);
+		
+		//Take player to jail
+		goToTile(10);
+	}
+	
+	/**
+	 * When a game is finished, initiate a finish game sequance
+	 */
 	@Override
 	public void btnQuitGame() {
 		// TODO Auto-generated method stub
@@ -99,6 +127,7 @@ public class GameEngine implements IGameEngine {
 		disableAll();
 		Dice dice = _game.rollDice();
 		ui.allowRollDice(false);
+		ui.allowFinishTurn(false);
 		ui.gameLog("Player " + _game.getCurrentPlayer() + " rolled " + dice.getSum() + " !");
 		ui.changeDice(1, dice.getDice1());
 		ui.changeDice(2, dice.getDice2());
@@ -109,7 +138,7 @@ public class GameEngine implements IGameEngine {
 		if (currentPlayer().isInJail()) {
 			if (dice.getDice1().equals(dice.getDice2())) {
 				ui.gameLog("Player " + currentPlayer() + " rolled a double and is free from jail!");
-				currentPlayer().setIsInJail(false);
+				currentPlayer().setState(PlayerState.WAITING);
 			} else {
 				ui.gameLog("Player " + currentPlayer() + " did not roll a double. Moving on to next turn.");
 				btnNextTurn();
@@ -125,38 +154,7 @@ public class GameEngine implements IGameEngine {
 		Thread doChangeLocation = new Thread() {
 			@Override
 			public void run() {
-				Integer currentLocation = currentPlayer().getCurrentTile().getTileNumber();
-				System.out.println("New Thread - moving player "+currentPlayer()+" from tile "+currentLocation+" to tile "+moveToTile);
-				while (currentLocation != moveToTile) {
-					currentPlayer().getCurrentTile().postVisit(currentPlayer());
-					
-					currentLocation %= 40;
-					Integer nextLocation = (currentLocation+1)%40;
-					
-					ui.movePlayer(currentPlayer().getNickName(), currentLocation, nextLocation);
-					currentPlayer().setCurrentTile(_game.getTile(nextLocation));
-					currentLocation++;
-
-					currentPlayer().getCurrentTile().preVisit(currentPlayer());
-
-					try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-
-					
-					if(currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)){
-						//Player passed by start point
-						ui.gameLog("Player "+currentPlayer()+" has passed by Starting Point (0) and received "+Param.get(Param.START_TILE_PASS));
-					}
-				}
-				ui.gameLog("Player "+currentPlayer()+" has arrived to "+currentPlayer().getCurrentTile()+" ("+currentPlayer().getCurrentTile().getTileNumber()+")");
-				currentPlayer().getCurrentTile().visit(currentPlayer());
-				if(currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)){
-					//Player passed by start point
-					ui.gameLog("Player "+currentPlayer()+" has arrived to Starting Point (0) and received "+Param.get(Param.START_TILE_VISIT));
-				}
+				goToTile(moveToTile);
 				updatePlayerProperties(currentPlayer());
 				currentPlayer().setState(PlayerState.WAITING);
 			}
@@ -198,6 +196,42 @@ public class GameEngine implements IGameEngine {
 	private void updatePlayerProperties(Player player) {
 		ui.updatePlayerProperties(player.getNickName(), player.getCash(), player.getStrikesNum(),
 				player.getTotalAssetsWorth(), player.getTotalAssets());
+	}
+
+	private void goToTile(Integer tileNo){
+		Integer currentLocation = currentPlayer().getCurrentTile().getTileNumber();
+		System.out.println("New Thread - moving player "+currentPlayer()+" from tile "+currentLocation+" to tile "+tileNo);
+		while (currentLocation != tileNo) {
+			currentPlayer().getCurrentTile().postVisit(currentPlayer());
+			
+			currentLocation %= 40;
+			Integer nextLocation = (currentLocation+1)%40;
+			
+			ui.movePlayer(currentPlayer().getNickName(), currentLocation, nextLocation);
+			currentPlayer().setCurrentTile(_game.getTile(nextLocation));
+			currentLocation++;
+
+			currentPlayer().getCurrentTile().preVisit(currentPlayer());
+
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+
+			
+			if(currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)){
+				//Player passed by start point
+				ui.gameLog("Player "+currentPlayer()+" has passed by Starting Point (0) and received "+Param.get(Param.START_TILE_PASS));
+			}
+		}
+		ui.gameLog("Player "+currentPlayer()+" has arrived to "+currentPlayer().getCurrentTile()+" ("+currentPlayer().getCurrentTile().getTileNumber()+")");
+		currentPlayer().getCurrentTile().visit(currentPlayer());
+		if(currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)){
+			//Player passed by start point
+			ui.gameLog("Player "+currentPlayer()+" has arrived to Starting Point (0) and received "+Param.get(Param.START_TILE_VISIT));
+		}
+
 	}
 
 
