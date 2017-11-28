@@ -135,6 +135,11 @@ public class Questions {
     void CheckDiffAndSetAns(MouseEvent event) {
 
     }
+    
+    @FXML
+    void OpenAddQuestion(ActionEvent event) {
+    	iWindow.swap(Window.Admin_AddQuesion);
+    }
 
     @FXML
     void ChooseDiff(ActionEvent event) // do more Efficient//
@@ -168,8 +173,7 @@ public class Questions {
     @FXML
     void moveTag(MouseEvent event) {
     	if(List1.getSelectionModel().isEmpty())
-    	{
-    	
+    	{	
     		return ;
     	}
     	List2.getItems().add(List1.getSelectionModel().getSelectedItem());
@@ -178,9 +182,7 @@ public class Questions {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-    	
     	DiffComboox.setItems(list2);
-
         assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Questions.fxml'.";
         assert save != null : "fx:id=\"save\" was not injected: check your FXML file 'Questions.fxml'.";
         assert edit != null : "fx:id=\"edit\" was not injected: check your FXML file 'Questions.fxml'.";
@@ -214,9 +216,7 @@ public class Questions {
         FalseBu2.setSelected(true);
         FalseBu3.setSelected(true);
         FalseBu4.setSelected(true);
-       /* getQeuestions();*/
-     
-        
+
     }
     
     @FXML
@@ -265,7 +265,6 @@ public class Questions {
     	FalseBu4.setSelected(false);
     	TrueBu4.setSelected(true);
     }
-
     
     ObservableList<QuestionStrength> list2=FXCollections.observableArrayList(QuestionStrength.values());
 
@@ -289,13 +288,7 @@ public class Questions {
     			}
     		}
     	}
-    	/*		 List<QuestionTag> name= q.getTags();
-        			for(QuestionTag myList:name)
-        			{
-        				List1.getItems().clear();
-        				List1.getItems().add(myList.toString());
-        			
-        			}*/
+    
 
     }
     
@@ -312,7 +305,6 @@ public class Questions {
 
   private void GetAndSend(QuestionStrength x)
   {
-
 	   	Map<QuestionStrength, List<Question>> questions = MonDB.getInstance().getGameQuestions();
 	   	NumQuestionCombo.getItems().clear();
 		txtQuestion1.clear();
@@ -377,7 +369,6 @@ public class Questions {
 
   				}
   			}
-	
   }
   
   }
@@ -399,9 +390,7 @@ private void CheckIsTrue(List<Answer> a)
 			txtanswer4.setVisible(false);
 			TrueBu4.setVisible(false);
 			FalseBu4.setVisible(false);
-			
-			
-			
+
 			if(name.get(i-i).getIsTrue(name.get(i-i)))
 			{
 				TrueBu.setSelected(true);
@@ -472,11 +461,7 @@ private void CheckIsTrue(List<Answer> a)
 		}
 	}
 }
-  
-  
-	   	
-  
-  
+
   
 }
 	

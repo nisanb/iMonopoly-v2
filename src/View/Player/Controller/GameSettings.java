@@ -258,7 +258,6 @@ public class GameSettings {
 
 		Integer res = Integer.valueOf((int) slide1.getValue());
 
-
 		List<String> playerList = new ArrayList<String>();
 		// Add first player which is logged in
 
@@ -320,9 +319,6 @@ public class GameSettings {
 		txt2Err.setVisible(false);
 		txt3Err.setVisible(false);
 		txt4Err.setVisible(false);
-		
-		
-		
 		
 
 		txt1.setText(mng.getLoggedPlayer());

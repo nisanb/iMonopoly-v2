@@ -23,6 +23,7 @@ public enum Window {
 	Admin_Statistics("Admin/Statistics"),
 	Admin_SysParams("Admin/SysParam"),
 	Admin_Questions("Admin/Questions"),
+	Admin_AddQuesion("Admin/AddQuestion"),
 	
 	/**
 	 * Game
