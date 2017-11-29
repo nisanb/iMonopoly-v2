@@ -51,6 +51,7 @@ public interface IManagement {
 	public void login(String nickname);
 	
 	
+	
 	/**
 	 * This method returns the parameters from monDB (check if requred)
 	 * @return - sysParam

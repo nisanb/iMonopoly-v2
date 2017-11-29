@@ -34,10 +34,7 @@ public class Menu {
 
     }
 
-    @FXML
-    void doLogout(ActionEvent event) {
 
-    }
 
     @FXML
     void doSwapMusic(MouseEvent event) {

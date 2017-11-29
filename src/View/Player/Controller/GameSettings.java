@@ -6,9 +6,11 @@ package View.Player.Controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.jar.Attributes.Name;
 
 import Controller.iWindow;
@@ -115,13 +117,16 @@ public class GameSettings {
 
 	    @FXML // fx:id="txtPaymentRelaseFromJail"
 	    private Spinner<Integer> txtPaymentRelaseFromJail; // Value injected by FXMLLoader
-	
+	    
 
+	    @FXML // fx:id="nickNamesValid"
+	    private Label nickNamesValid; // Value injected by FXMLLoader
+	
+// back to previous form//
 	@FXML
 	void back(ActionEvent event) {
 		iWindow.swap(Window.Player_Menu);
 	}
-	
 
 	// For generic checks
 	private List<TextField> txtfields = new ArrayList<>();
@@ -132,17 +137,22 @@ public class GameSettings {
 		Integer res = Integer.valueOf((int) slide1.getValue());
 		ErrMessage.setVisible(false);
 		txt2Err.setVisible(false);
+		nickNamesValid.setVisible(false);
+		
 		switch (res) {
 
 		case 2:
 			txt1.setVisible(true);
 			label1.setVisible(true);
 			img1.setVisible(true);
+			txt3.clear();
+			txt4.clear();
 
 			txt2.setVisible(true);
 			label2.setVisible(true);
 			img2.setVisible(true);
 			txt2Err.setVisible(false);
+			nickNamesValid.setVisible(false);
 
 			txt3.setVisible(false);
 			label3.setVisible(false);
@@ -162,6 +172,10 @@ public class GameSettings {
 			txt3Err.setVisible(false);
 			txt2Err.setVisible(false);
 			txt4Err.setVisible(false);
+			nickNamesValid.setVisible(false);
+			txt2.clear();
+			txt4.clear();
+
 
 			txt2.setVisible(true);
 			label2.setVisible(true);
@@ -178,11 +192,17 @@ public class GameSettings {
 
 		case 4:
 			txt1.setVisible(true);
+			nickNamesValid.setVisible(false);
+
 			label1.setVisible(true);
 			img1.setVisible(true);
 			txt3Err.setVisible(false);
 			txt2Err.setVisible(false);
 			txt4Err.setVisible(false);
+			txt3.clear();
+			txt4.clear();
+			txt2.clear();
+		
 
 			txt2.setVisible(true);
 			label2.setVisible(true);
@@ -197,7 +217,7 @@ public class GameSettings {
 			img4.setVisible(true);
 			break;
 		}
-		checkNickNames();
+		
 	}
 
 	@FXML
@@ -273,15 +293,24 @@ public class GameSettings {
 		}
 
 		if (playerList.size() != res) {
-			// There is a problem
-			// print a problem
-			
+			// There is a problem//
 			ErrMessage.setVisible(true);
 			txt2Err.setVisible(true);
 			
+			
 		} else {
+			
+			if(duplicates(playerList))
+			{
+				ErrMessage.setVisible(true);
+				nickNamesValid.setVisible(true);
+				txt2Err.setVisible(false);
+			}
+			else{
+			
 			mng.build(playerList);
 			iWindow.swap(Window.Game_UI);
+			}
 		}
 	}
 
@@ -303,7 +332,7 @@ public class GameSettings {
 		assert label4 != null : "fx:id=\"label4\" was not injected: check your FXML file 'Check.fxml'.";
 		assert img4 != null : "fx:id=\"img4\" was not injected: check your FXML file 'Check.fxml'.";
 		assert txt4 != null : "fx:id=\"txt4\" was not injected: check your FXML file 'Check.fxml'.";
-
+		nickNamesValid.setVisible(false);
 		txtfields.add(txt2);
 		txtfields.add(txt3);
 		txtfields.add(txt4);
@@ -319,6 +348,7 @@ public class GameSettings {
 		img4.setVisible(false);
 
 		txt2Err.setVisible(false);
+		
 		txt3Err.setVisible(false);
 		txt4Err.setVisible(false);
 		
@@ -333,10 +363,16 @@ public class GameSettings {
 	
 	//========================================methods=======================================================//
 	
-	private void checkNickNames()
-	{
+	private boolean duplicates(final List<String> playerList)
+	{	
 		
-
+		Set<String> dup=new HashSet<String>();
+		for(String i:playerList)
+		{
+			if(dup.contains(i))	return true;
+			dup.add(i);
+		}
+		return false;	
 	}
 	
 	

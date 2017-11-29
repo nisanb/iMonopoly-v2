@@ -19,7 +19,7 @@
 
 <AnchorPane maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Player.Controller.GameSettings">
    <children>
-      <ImageView layoutX="-11.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="-1.0">
+      <ImageView cache="true" cacheHint="SCALE" depthTest="ENABLE" layoutX="-11.0" layoutY="-1.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="1.0" AnchorPane.leftAnchor="-11.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="-1.0">
          <image>
             <Image url="@../../Resources/ManagementGUI.png" />
          </image>
@@ -153,6 +153,11 @@
              <Spinner fx:id="txtBankrupt" amountToStepBy="50000" editable="true" initialValue="-100000" layoutX="428.0" layoutY="426.0" max="0" min="-1000000" opacity="0.7" />
        
             <Spinner fx:id="txtPaymentRelaseFromJail" amountToStepBy="50000" editable="true" initialValue="100000" layoutX="428.0" layoutY="459.0" max="1000000" min="0" opacity="0.7" />
+      <Label fx:id="nickNamesValid" layoutX="15.0" layoutY="102.0" text="nickNames Must Be Diffrent">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Label>
  
    </children>
 </AnchorPane>
