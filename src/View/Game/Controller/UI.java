@@ -990,6 +990,7 @@ public class UI implements UIInterface{
     
 	@Override
 	public void BuildBoard() {	
+
 		txtPlayer1Name.setText(playersList.get(0));
 		txtPlayer2Name.setText(playersList.get(1));
 		player3Container.setVisible(false);
@@ -1039,14 +1040,40 @@ public class UI implements UIInterface{
 	@Override
 	public void updatePlayerProperties(String nickname, Integer cash, Integer strikes, Integer assetsWorth,
 			Integer assetsAmount) {
-		
+		System.out.println(nickname+" "+ cash+ " "+ strikes + " "+assetsWorth+ " "+assetsAmount);
 		int pos=playersList.indexOf(nickname);
+/*
 		System.out.println("Updating player "+nickname+" ("+pos+")");
 		playersCash[pos].setText(cash+"");
 		playersStrikes[pos].setText(strikes+"");
 		playersValue[pos].setText(assetsWorth+ "(amount: "+assetsAmount+")");
 		
-		
+		*/
+
+		switch (pos){
+			case (0):{
+				moneyPlayer1.setText(cash+"");
+				strikesPlayer1.setText(strikes+"");
+				valuePlayer1.setText(assetsWorth+ "(amount: "+assetsAmount+")");
+			}
+			case (1):{
+				moneyPlayer2.setText(cash+"");
+				strikesPlayer2.setText(strikes+"");
+				valuePlayer2.setText(assetsWorth+ "(amount: "+assetsAmount+")");
+			}
+			case (2):{
+				moneyPlayer3.setText(cash+"");
+				strikesPlayer3.setText(strikes+"");
+				valuePlayer3.setText(assetsWorth+ "(amount: "+assetsAmount+")");
+			}
+			case (3):{
+				moneyPlayer4.setText(cash+"");
+				strikesPlayer4.setText(strikes+"");
+				valuePlayer4.setText(assetsWorth+ "(amount: "+assetsAmount+")");
+			}
+			
+		}		
+
 	}
 	
 	@Override

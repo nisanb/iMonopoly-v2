@@ -977,7 +977,12 @@
             </ImageView>
          </children>
       </Pane>
-      <AnchorPane fx:id="player2Container" layoutX="72.0" layoutY="150.0" prefHeight="110.0" prefWidth="286.0">
+      <ImageView fitHeight="80.0" fitWidth="60.0" layoutX="37.0" layoutY="169.0">
+         <image>
+            <Image url="@../../../../../Desktop/giphy.gif" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="player2Container" layoutX="75.0" layoutY="150.0" prefHeight="110.0" prefWidth="286.0">
          <children>
             <ImageView fx:id="playerGreenStats" fitHeight="80.0" fitWidth="67.0" layoutX="8.0" layoutY="20.0">
                <image>
@@ -1025,7 +1030,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="player4Container" layoutX="72.0" layoutY="369.0" prefHeight="110.0" prefWidth="286.0">
+      <AnchorPane fx:id="player4Container" layoutX="75.0" layoutY="369.0" prefHeight="110.0" prefWidth="286.0">
          <children>
             <Label fx:id="txtPlayer4Name" layoutX="91.0" layoutY="14.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: transparent" text="Red" textAlignment="CENTER" textFill="RED">
                <font>
@@ -1073,7 +1078,7 @@
             </Pane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="player1Container" layoutX="72.0" layoutY="42.0" prefHeight="110.0" prefWidth="286.0">
+      <AnchorPane fx:id="player1Container" layoutX="75.0" layoutY="42.0" prefHeight="110.0" prefWidth="286.0">
          <children>
             <Pane fx:id="player1StatsPane" layoutX="88.0" layoutY="40.0" prefHeight="77.0" prefWidth="220.0" style="-fx-background-color: transparent">
                <children>
@@ -1114,14 +1119,14 @@
                   <Image url="@../../Resources/PSD/Players/7.png" />
                </image>
             </ImageView>
-            <Label fx:id="txtPlayer1Name" layoutX="91.0" layoutY="14.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: transparent;" text="Blue" textAlignment="CENTER" textFill="#0055ff" wrapText="true">
+            <Label fx:id="txtPlayer1Name" layoutX="91.0" layoutY="14.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: transparent;" text="Blue" textAlignment="CENTER" textFill="#0055ff">
                <font>
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="player3Container" layoutX="72.0" layoutY="260.0" prefHeight="110.0" prefWidth="286.0">
+      <AnchorPane fx:id="player3Container" layoutX="75.0" layoutY="260.0" prefHeight="110.0" prefWidth="286.0">
          <children>
             <Pane fx:id="player2StatsPane" layoutX="88.0" layoutY="40.0" prefHeight="77.0" prefWidth="198.0" style="-fx-background-color: transparent">
                <children>
