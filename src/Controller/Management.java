@@ -7,12 +7,15 @@ import java.util.Map;
 
 import Entity.Answer;
 import Entity.MonDB;
+import Entity.Player;
 import Entity.Question;
 import Entity.User;
 import Utils.Param;
 import Utils.PlayerAuth;
 import Utils.QuestionStrength;
 import View.IManagement;
+import View.Admin.Controller.SysParam;
+import javafx.scene.control.Spinner;
 
 public class Management implements IManagement{
 
@@ -96,6 +99,27 @@ public void addQuestion(Question q) {
 
 @Override
 public void removeQuestion(Question q) {
+	// TODO Auto-generated method stub
+	
+}
+
+
+
+@Override
+public void btnSave() {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void btnSave(List<Player> a, Spinner NumOfRounds, Spinner InitialSumOFMoney, Spinner Bankrupt,
+		Spinner PaymentRelaseFromJail) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void btnSave(SysParam a) {
 	// TODO Auto-generated method stub
 	
 } 

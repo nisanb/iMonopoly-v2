@@ -4,8 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import Entity.Answer;
+import Entity.Player;
 import Entity.Question;
 import Utils.QuestionStrength;
+import View.Admin.Controller.SysParam;
+import javafx.scene.control.Spinner;
 import Utils.Param;
 
 public interface IManagement {
@@ -27,6 +30,13 @@ public interface IManagement {
 	//this method remove question //
 	public void removeQuestion(Question q);
 	
+	//SysParam Form//
+	
+	public void btnSave(SysParam a);
+
+	//GameSettings//
+	//This button allows the user to change the game settings//
+	public void btnSave(List<Player>a,Spinner NumOfRounds,Spinner InitialSumOFMoney,Spinner Bankrupt,Spinner PaymentRelaseFromJail );
 	/**
 	 * Returns list of questions
 	 * @return
@@ -65,5 +75,6 @@ public interface IManagement {
 
 
 	void resetParamsToDefault();
+	void btnSave();
 	
 }
