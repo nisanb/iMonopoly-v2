@@ -51,6 +51,15 @@ RadioButton{
 #namelabel1{
 	-fx-text-fill: red;
 }
+#nickNamesValid{
+	-fx-text-fill: red;
+}
+#valid
+{
+ -fx-border-color: red;
+ -fx-background-radius: 0;
+
+}
 
 TextField{	
     -fx-background-color: white;
@@ -87,11 +96,4 @@ ComboBox
 {
 	-fx-text-fill: red;
 }
-#txt3Err
-{
-	-fx-text-fill: red;
-}
-#txt4Err
-{
-	-fx-text-fill: red;
-}
+

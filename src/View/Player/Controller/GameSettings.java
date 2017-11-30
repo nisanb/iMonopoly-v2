@@ -48,15 +48,12 @@ public class GameSettings {
 
 	@FXML
 	private Label txt2Err;
+	
+    @FXML // fx:id="valid"
+    private TextField valid; // Value injected by FXMLLoader
 
-	@FXML
-	private Label txt3Err;
 
-    @FXML
-    private ImageView ErrMessage;
 
-	@FXML
-	private Label txt4Err;
 
 	@FXML // URL location of the FXML file that was given to the FXMLLoader
 	private URL location;
@@ -135,7 +132,7 @@ public class GameSettings {
 	void check1(MouseEvent event) {
 
 		Integer res = Integer.valueOf((int) slide1.getValue());
-		ErrMessage.setVisible(false);
+		valid.setVisible(false);
 		txt2Err.setVisible(false);
 		nickNamesValid.setVisible(false);
 		
@@ -157,21 +154,21 @@ public class GameSettings {
 			txt3.setVisible(false);
 			label3.setVisible(false);
 			img3.setVisible(false);
-			txt3Err.setVisible(false);
+		
 
 			txt4.setVisible(false);
 			label4.setVisible(false);
 			img4.setVisible(false);
-			txt4Err.setVisible(false);
+		
 			break;
 
 		case 3:
 			txt1.setVisible(true);
 			label1.setVisible(true);
 			img1.setVisible(true);
-			txt3Err.setVisible(false);
+			
 			txt2Err.setVisible(false);
-			txt4Err.setVisible(false);
+		
 			nickNamesValid.setVisible(false);
 			txt2.clear();
 			txt4.clear();
@@ -196,9 +193,9 @@ public class GameSettings {
 
 			label1.setVisible(true);
 			img1.setVisible(true);
-			txt3Err.setVisible(false);
+			
 			txt2Err.setVisible(false);
-			txt4Err.setVisible(false);
+		
 			txt3.clear();
 			txt4.clear();
 			txt2.clear();
@@ -294,7 +291,7 @@ public class GameSettings {
 
 		if (playerList.size() != res) {
 			// There is a problem//
-			ErrMessage.setVisible(true);
+			valid.setVisible(true);
 			txt2Err.setVisible(true);
 			
 			
@@ -302,7 +299,7 @@ public class GameSettings {
 			
 			if(duplicates(playerList))
 			{
-				ErrMessage.setVisible(true);
+				valid.setVisible(true);
 				nickNamesValid.setVisible(true);
 				txt2Err.setVisible(false);
 			}
@@ -337,7 +334,7 @@ public class GameSettings {
 		txtfields.add(txt3);
 		txtfields.add(txt4);
 		
-		ErrMessage.setVisible(false);
+		valid.setVisible(false);
 		
 		txt3.setVisible(false);
 		label3.setVisible(false);
@@ -349,8 +346,8 @@ public class GameSettings {
 
 		txt2Err.setVisible(false);
 		
-		txt3Err.setVisible(false);
-		txt4Err.setVisible(false);
+		
+
 		
 
 		txt1.setText(mng.getLoggedPlayer());
