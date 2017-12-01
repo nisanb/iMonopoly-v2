@@ -27,15 +27,15 @@ public class PropertyTile extends Tile {
 		Integer min = 0, max = 0;
 		switch (propertyStrength) {
 		case EASY:
-			min = (Integer) Param.get(Param.PROPERTY_PRICE_EASY_MIN);
+			min = (Integer) Param.get(Param.PROPERTY_MINPRICE_EASY);
 			max = (Integer) Param.get(Param.PROPERTY_PRICE_EASY_MAX);
 			break;
 		case MEDIUM:
-			min = (Integer) Param.get(Param.PROPERTY_PRICE_MEDIUM_MIN);
+			min = (Integer) Param.get(Param.PROPERTY_MINPRICE_MEDIUM);
 			max = (Integer) Param.get(Param.PROPERTY_PRICE_MEDIUM_MAX);
 			break;
 		case HARD:
-			min = (Integer) Param.get(Param.PROPERTY_PRICE_HARD_MIN);
+			min = (Integer) Param.get(Param.PROPERTY_MINPRICE_HARD);
 			max = (Integer) Param.get(Param.PROPERTY_PRICE_HARD_MAX);
 			break;
 

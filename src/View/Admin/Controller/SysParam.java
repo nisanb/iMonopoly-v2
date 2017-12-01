@@ -21,63 +21,88 @@ import Controller.Management;
 
 public class SysParam {
 	
-	private Map<Spinner, Param> _parms;
+	private Map<Spinner, Param> _params;
 	private IManagement mng = null;
 	
-    @FXML private Button btnSave;
 
-    @FXML private Button btnBack;
+    @FXML
+    private Button btnSave;
 
-    @FXML private Button btnRestore;
-    
-    @FXML private Label lblEmpty1;
-    
-    @FXML private Label lblEmpty2;
-    
-    @FXML private Label lblError;
-    
-    
-    
+    @FXML
+    private Button btnBack;
 
+    @FXML
+    private Button btnRestore;
+
+    @FXML
+    private Spinner<?> spinStartMoney;
+
+    @FXML
+    private Spinner<?> spinRent;
+
+    @FXML
+    private Spinner<?> spinBuy;
+
+    @FXML
+    private Spinner<?> spinMinLuck;
+
+    @FXML
+    private Spinner<?> spinMaxLuck;
+
+    @FXML
+    private Spinner<?> spinMedLuckFine;
+
+    @FXML
+    private Spinner<?> spinHardLuckFine;
+
+    @FXML
+    private Spinner<?> spinJailFine;
+
+    @FXML
+    private Spinner<?> spinEasyPrice;
+
+    @FXML
+    private Spinner<?> spinMedPrice;
+
+    @FXML
+    private Spinner<?> spinHardPrivce;
+
+    @FXML
+    private Spinner<?> spinEasyDisc;
+
+    @FXML
+    private Spinner<?> spinMedDisc;
+
+    @FXML
+    private Spinner<?> spinHardDisc;
+
+    @FXML
+    private Spinner<?> spinMaxRounds;
+
+    @FXML
+    private Spinner<?> spinBankruptcy;
+
+    @FXML
+    private Spinner<?> spinQMPlayerRight;
+
+    @FXML
+    private Spinner<?> spinQMWrongFine;
+
+    @FXML
+    private Label lblError;
+
+    @FXML
+    private Spinner<?> spinQMOtherRight;
+
+    @FXML
+    private Spinner<?> spinQMOnlyPlayerRight;
+    
+    
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
     
-    @FXML private Spinner<Integer> spinStartMoney;
 
-    @FXML private Spinner<Double> spinRent = new Spinner<Double>(0,100,50);
-
-    @FXML private Spinner<Double> spinBuy;
-
-    @FXML private Spinner<Integer> spinMinLuck;
-
-    @FXML private Spinner<Integer> spinMaxLuck;
-
-    @FXML private Spinner<Integer> spinOnlyLuck;
-
-    @FXML private Spinner<Integer> spinLuckFIne;
-
-    @FXML private Spinner<Integer> spinJailFine;
-
-    @FXML private Spinner<Integer> spinCheapProperty;
-
-    @FXML private Spinner<Integer> SpinAverageProperty;
-
-    @FXML private Spinner<Integer> spinExpensiveProperty;
-
-    @FXML private Spinner<Double> spinCheapDisc;
-
-    @FXML private Spinner<Double> spinAvgDisc;
-
-    @FXML private Spinner<Double> spinExpensiveDisc;
-
-    @FXML private Spinner<Integer> spinMaxRounds;
-
-    @FXML private Spinner<Integer> spinBankruptcy;
     
-    @FXML private Spinner<Double> spinEmpty2;  
-    
-    @FXML private Spinner<Double> spinEmpty1;
-
     @FXML
     void back(ActionEvent event) {
     	iWindow.swap(Window.Admin_Menu);
@@ -91,7 +116,6 @@ public class SysParam {
     @FXML
     public void initialize() {
     	mng = iWindow.getManagement();
-    	turnOffEmpty();
     	errorLabelControl(null, false);
     	addParamsToMap();
     	loadParams();
@@ -101,25 +125,32 @@ public class SysParam {
     
     
     /**
-     * This method turn off empty fields
-     */
-    private void turnOffEmpty() {   	
-    	lblEmpty1.setVisible(false);
-    	lblEmpty2.setVisible(false);
-    	spinEmpty1.setVisible(false);
-    	spinEmpty2.setVisible(false);
-    }
-    
-    
-    /**
      * This method adds params to map fot easy set
      */
     private void addParamsToMap() {
-    	this._parms = new HashMap<Spinner, Param>();
-    	spinStartMoney.getValueFactory().setValue((Integer)mng.getParam(Param.STARTING_CASH));
-    	//TODO - add all params to list
-    	
-    	
+    	this._params = new HashMap<Spinner, Param>();
+    	_params.put(spinStartMoney, Param.STARTING_CASH);
+    	_params.put(spinRent, Param.RENT_PERCENT);
+    	_params.put(spinBuy, Param.BUY_PERCENT);
+    	_params.put(spinBankruptcy, Param.BANKRUPTCY);
+    	_params.put(spinMedPrice, Param.PROPERTY_MINPRICE_MEDIUM);
+    	_params.put(spinMedDisc, Param.PROPERTY_MEDIUM_DISCOUNT);
+    	_params.put(spinEasyDisc, Param.PROPERTY_EASY_DISCOUNT);
+    	_params.put(spinEasyPrice, Param.PROPERTY_MINPRICE_EASY);
+    	_params.put(spinHardDisc, Param.PROPERTY_HARD_DISCOUNT);
+    	_params.put(spinHardPrivce, Param.PROPERTY_MINPRICE_HARD);
+    	_params.put(spinJailFine, Param.RELEASE_FROM_JAIL);
+    	_params.put(spinMedLuckFine, Param.LUCK_MEDIUM_FAIL_FINE);
+    	_params.put(spinMinLuck, Param.MIN_LUCK);
+    	_params.put(spinMaxLuck, Param.MAX_LUCK);
+    	_params.put(spinHardLuckFine, Param.LUCK_HARD_FAIL_FINE);
+    	_params.put(spinMaxRounds, Param.MAX_ROUNDS);
+    	_params.put(spinMinLuck, Param.MIN_LUCK);
+    	_params.put(spinQMOnlyPlayerRight, Param.QM_ONLY_ONE_RIGHT);
+    	_params.put(spinQMOtherRight, Param.QM_OTHER_PLAYER_RIGHT_ANSWER);
+    	_params.put(spinQMPlayerRight, Param.QM_PLAYER_RIGHT_ANSWER);
+    	_params.put(spinQMWrongFine, Param.QM_WRONG_ANSWER_FINE);
+
     }
     
     
@@ -128,8 +159,9 @@ public class SysParam {
      * This method load the saved params from monDB
      */
     private void loadParams() {
-    	IManagement manage = iWindow.getManagement();
-    	//_parms.put(spinStartMoney, (Integer) manage.getParam(Param.STARTING_CASH));
+    	for (Map.Entry<Spinner, Param> temp : _params.entrySet()) {
+    		temp.getKey().getValueFactory().setValue(mng.getParam(temp.getValue()));
+    	}
     }
     
     
@@ -181,14 +213,14 @@ public class SysParam {
      * This method saves the params input
      */
     private void saveParams() {
-    	for (Map.Entry<Spinner, Param> n: _parms.entrySet()) {
+    	for (Map.Entry<Spinner, Param> n: _params.entrySet()) {
     		if (validateNumbers(n.getKey().getValue().toString())) {
     			errorLabelControl("Can not save parametes with letters", true);
     			return;
     		}
     	}
     	
-    	for (Map.Entry<Spinner, Param> n: _parms.entrySet()) {
+    	for (Map.Entry<Spinner, Param> n: _params.entrySet()) {
     		Param.set(n.getValue(), n.getKey().getValue());
     	}
     }

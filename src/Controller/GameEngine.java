@@ -230,7 +230,7 @@ public class GameEngine implements IGameEngine {
 			
 			if(currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)){
 				//Player passed by start point
-				ui.gameLog("Player "+currentPlayer()+" has passed by Starting Point (0) and received "+Param.get(Param.START_TILE_PASS));
+				ui.gameLog("Player "+currentPlayer()+" has passed by Starting Point (0) and received "+Param.get(Param.START_TILE_VISIT));
 			}
 		}
 		ui.gameLog("Player "+currentPlayer()+" has arrived to "+currentPlayer().getCurrentTile()+" ("+currentPlayer().getCurrentTile().getTileNumber()+")");
