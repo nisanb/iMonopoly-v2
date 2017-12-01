@@ -30,6 +30,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 
 public class Questions {
 	
@@ -122,6 +123,9 @@ public class Questions {
     @FXML // fx:id="answer4"
     private Label answer4; // Value injected by FXMLLoader
     
+    @FXML // fx:id="Edit"
+    private Button Edit; // Value injected by FXMLLoader
+    
     @FXML // fx:id="TrueBu2"
     private RadioButton TrueBu2; // Value injected by FXMLLoader
 
@@ -130,10 +134,19 @@ public class Questions {
     
     @FXML
     private ComboBox<Integer> NumQuestionCombo;
+    
+
+    @FXML // fx:id="AnchoarPane"
+    private AnchorPane AnchoarPane; // Value injected by FXMLLoader
 
     @FXML
     void CheckDiffAndSetAns(MouseEvent event) {
 
+    }
+    
+    @FXML
+    void openEditQuestion(ActionEvent event) {
+    	iWindow.swap(Window.Admin_editQuestion);
     }
     
     @FXML
@@ -213,10 +226,6 @@ public class Questions {
         assert answer2 != null : "fx:id=\"answer2\" was not injected: check your FXML file 'Questions.fxml'.";
         assert answer3 != null : "fx:id=\"answer3\" was not injected: check your FXML file 'Questions.fxml'.";
         assert answer4 != null : "fx:id=\"answer4\" was not injected: check your FXML file 'Questions.fxml'.";
-        FalseBu.setSelected(true);
-        FalseBu2.setSelected(true);
-        FalseBu3.setSelected(true);
-        FalseBu4.setSelected(true);
 
     }
     

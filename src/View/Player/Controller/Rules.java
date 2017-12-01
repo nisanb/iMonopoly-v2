@@ -12,8 +12,10 @@ import Utils.Window;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Pagination;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 public class Rules {
 
@@ -22,6 +24,7 @@ public class Rules {
 
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
+
 
     @FXML // fx:id="Save"
     private ImageView Save; // Value injected by FXMLLoader
@@ -43,6 +46,7 @@ public class Rules {
     void initialize() {
         assert Save != null : "fx:id=\"Save\" was not injected: check your FXML file 'Rules.fxml'.";
         assert Back != null : "fx:id=\"Back\" was not injected: check your FXML file 'Rules.fxml'.";
+        
 
     }
 }
