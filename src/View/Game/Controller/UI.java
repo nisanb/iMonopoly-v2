@@ -686,16 +686,16 @@ public class UI implements UIInterface{
 	    private Pane paneCurrentTurnPlayer4= new Pane();
 	    
 	    @FXML
-	    private Pane txtAnswerPane1;
+	    private Pane txtAnswerPane1 = new Pane();
 	    
 	    @FXML
-	    private Pane txtAnswerPane2;
+	    private Pane txtAnswerPane2= new Pane();
 	    
 	    @FXML
-	    private Pane txtAnswerPane3;
+	    private Pane txtAnswerPane3 = new Pane();
 	    
 	    @FXML
-	    private Pane txtAnswerPane4;
+	    private Pane txtAnswerPane4 = new Pane();
 	    
 	    @FXML // fx:id="player1Container"
 	    private AnchorPane player1Container = new AnchorPane(); // Value injected by FXMLLoader
@@ -920,26 +920,27 @@ public class UI implements UIInterface{
 
 	@Override
 	public void displayQuestion(Question question, String player) {
-		Pane[] answersP = {txtAnswerPane1, txtAnswerPane2, txtAnswerPane3, txtAnswerPane4};
-		TextArea[] answers = {txtAnsw1,txtAnsw2,txtAnsw3,txtAnsw4};
-		
+	//	Pane[] answersP = {txtAnswerPane1, txtAnswerPane2, txtAnswerPane3, txtAnswerPane4};
+		//TextArea[] answers = {txtAnsw1,txtAnsw2,txtAnsw3,txtAnsw4};
+		/*
 		for (int i=0; i<answers.length; i++){
+			System.out.println("wtf?");
 			answers[i].setText(question.getqAnswers().get(0)+"");
 			answersP[i].setVisible(false);
 		}
-		
+		*/
 		gameLogScrollPane.setVisible(false);
 		questionsPane.setVisible(true);
 		playerXIsAnswering.setText(player + " is answering question :");
 		theQuestion.setText(question.getqQuestion());
-		//txtAnsw1.setText(question.getqAnswers().get(0)+"");
-	//	txtAnsw2.setText(question.getqAnswers().get(1)+"");
-		//txtAnsw3.setText(question.getqAnswers().get(2)+"");
-		//txtAnsw4.setText(question.getqAnswers().get(3)+"");
-	//	txtAnswerPane1.setVisible(false);
-	//	txtAnswerPane2.setVisible(false);
-		//txtAnswerPane3.setVisible(false);
-	//	txtAnswerPane4.setVisible(false);
+		txtAnsw1.setText(question.getqAnswers().get(0)+"");
+		txtAnsw2.setText(question.getqAnswers().get(1)+"");
+		txtAnsw3.setText(question.getqAnswers().get(2)+"");
+		txtAnsw4.setText(question.getqAnswers().get(3)+"");
+		txtAnswerPane1.setVisible(false);
+		txtAnswerPane2.setVisible(false);
+		txtAnswerPane3.setVisible(false);
+		txtAnswerPane4.setVisible(false);
 		
 	}
 
@@ -970,21 +971,30 @@ public class UI implements UIInterface{
 		gameLogScrollPane.setVisible(display);
 		
 	}
+
 	@FXML
-	public void answer1(MouseEvent event){
-		ge.AnswerQuestion(1);
+	 void answer1(MouseEvent event){
+		txtAnswerPane1.setVisible(!txtAnswerPane1.isVisible());
+		System.out.println("a");
+		//ge.AnswerQuestion(1);
 	}
 	@FXML
-	public void answer2(MouseEvent event){
-		ge.AnswerQuestion(2);
+	 void answer2(MouseEvent event){
+		txtAnswerPane2.setVisible(!txtAnswerPane2.isVisible());
+		System.out.println("aa");
+		//ge.AnswerQuestion(2);
 	}
 	@FXML
-	public void answer3(MouseEvent event){
-		ge.AnswerQuestion(3);
+	 void answer3(MouseEvent event){
+		txtAnswerPane3.setVisible(!txtAnswerPane3.isVisible());
+		System.out.println("aaa");
+		//ge.AnswerQuestion(3);
 	}
 	@FXML
-	public void answer4(MouseEvent event){
-		ge.AnswerQuestion(4);
+	 void answer4(MouseEvent event){
+		txtAnswerPane4.setVisible(!txtAnswerPane4.isVisible());
+		System.out.println("aaaa");
+		//ge.AnswerQuestion(4);
 	}
 	
     
@@ -993,6 +1003,7 @@ public class UI implements UIInterface{
 
 		txtPlayer1Name.setText(playersList.get(0));
 		txtPlayer2Name.setText(playersList.get(1));
+		
 		player3Container.setVisible(false);
 		player4Container.setVisible(false);
 		players[0][3].setVisible(false);
@@ -1007,6 +1018,10 @@ public class UI implements UIInterface{
 			player4Container.setVisible(true);
 			players[0][3].setVisible(true);
 		}
+		txtAnswerPane1.setVisible(false);
+		txtAnswerPane2.setVisible(false);
+		txtAnswerPane3.setVisible(false);
+		txtAnswerPane4.setVisible(false);
 		
 	}
 
@@ -1042,7 +1057,8 @@ public class UI implements UIInterface{
 			Integer assetsAmount) {
 		System.out.println(nickname+" "+ cash+ " "+ strikes + " "+assetsWorth+ " "+assetsAmount);
 		int pos=playersList.indexOf(nickname);
-/*
+		System.out.println(pos+ " pos");
+/*		
 		System.out.println("Updating player "+nickname+" ("+pos+")");
 		playersCash[pos].setText(cash+"");
 		playersStrikes[pos].setText(strikes+"");
@@ -1054,22 +1070,27 @@ public class UI implements UIInterface{
 			case (0):{
 				moneyPlayer1.setText(cash+"");
 				strikesPlayer1.setText(strikes+"");
-				valuePlayer1.setText(assetsWorth+ "(amount: "+assetsAmount+")");
+				String temp=assetsWorth+"(#"+assetsAmount+")";
+				valuePlayer1.setText(temp);
+				break;
 			}
 			case (1):{
 				moneyPlayer2.setText(cash+"");
 				strikesPlayer2.setText(strikes+"");
 				valuePlayer2.setText(assetsWorth+ "(amount: "+assetsAmount+")");
+				break;
 			}
 			case (2):{
 				moneyPlayer3.setText(cash+"");
 				strikesPlayer3.setText(strikes+"");
 				valuePlayer3.setText(assetsWorth+ "(amount: "+assetsAmount+")");
+				break;
 			}
 			case (3):{
 				moneyPlayer4.setText(cash+"");
 				strikesPlayer4.setText(strikes+"");
 				valuePlayer4.setText(assetsWorth+ "(amount: "+assetsAmount+")");
+				break;
 			}
 			
 		}		
