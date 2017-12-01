@@ -1367,7 +1367,7 @@
             <Font name="Cooper Black" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnFinishTurn" layoutX="372.0" layoutY="330.0" mnemonicParsing="false" onAction="#btnFinishTurn" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: black;" text="Finish Turn" textFill="WHITE">
+      <Button fx:id="btnFinishTurn" layoutX="372.0" layoutY="330.0" mnemonicParsing="false"  prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: black;" text="Finish Turn" textFill="WHITE">
          <font>
             <Font name="Cooper Black" size="20.0" />
          </font>
