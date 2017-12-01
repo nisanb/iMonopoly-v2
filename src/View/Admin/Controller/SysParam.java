@@ -120,9 +120,7 @@ public class SysParam {
     	addParamsToMap();
     	loadParams();
     }
-    
-    
-    
+       
     
     /**
      * This method adds params to map fot easy set
@@ -214,11 +212,13 @@ public class SysParam {
      */
     private void saveParams() {
     	for (Map.Entry<Spinner, Param> n: _params.entrySet()) {
-    		if (validateNumbers(n.getKey().getValue().toString())) {
+    		if (!validateNumbers(n.getKey().getValue().toString())) {
     			errorLabelControl("Can not save parametes with letters", true);
     			return;
     		}
     	}
+    	
+    	if (!checkRules()) return;
     	
     	for (Map.Entry<Spinner, Param> n: _params.entrySet()) {
     		Param.set(n.getValue(), n.getKey().getValue());
@@ -246,9 +246,40 @@ public class SysParam {
     
     private boolean validateNumbers(String str) {
     	for (int i = 0; i < str.length(); i++) {
-			if (Character.isLetter(str.charAt(i))) return false;
+    		if (str.length() < 1) return false;
+    		if (Character.isLetter(str.charAt(i))) {
+				if (!str.substring(i, i+1).equals(".") || !str.substring(i, i+1).equals("-")) {
+					return false;
+				}
+			}
 		}
     	
+    	return true;
+    }
+    
+    
+    /**
+     * This method checks if numbers are logical
+     * @return
+     */
+    private boolean checkRules() {
+    	
+    	//check if min luck < max luck
+    	if (Validators.string2Double(spinMinLuck.getValue().toString()) > 
+    			Validators.string2Double(spinMaxLuck.getValue().toString())) {
+    		errorLabelControl("Min luck can't be greater than Max luck", true);
+    		return false;
+    	}
+    	
+    	//check if prices are logical
+    	if (Validators.string2Double(spinEasyPrice.getValue().toString()) > 
+    			Validators.string2Double(spinMedPrice.getValue().toString()) ||
+    		Validators.string2Double(spinMedPrice.getValue().toString()) > 
+    				Validators.string2Double(spinHardPrivce.getValue().toString())) { 
+    		errorLabelControl("Make sure all property prices are logical", true);
+    	}
+    	
+    	errorLabelControl(null, false);
     	return true;
     }
    
