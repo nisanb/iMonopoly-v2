@@ -58,24 +58,23 @@ public interface IManagement {
 	 */
 	public Map<Param, Object> getSavedParams();
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 	Object getParam(Param p);
 
-
 	void setParam(Param p, Object value);
 
-
 	void resetParamsToDefault();
+	
 	void btnSave();
+	
+	
+	
+	/**
+	 * Methods to control questions
+	 */
+	public boolean deleteQuestion(Question q);
+	public boolean addQuesiton(Question q);
+	public boolean updateQuestion(Question qBefore, Question qAfter);
+	
 	
 }
