@@ -15,6 +15,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import Controller.Management;
@@ -184,6 +185,13 @@ public class SysParam {
     	alert.setContentText("Do you want to reset all parameters to default?");
     	
     	Optional<ButtonType> result = alert.showAndWait();
+    	
+    	/*
+    	//add style to alert
+    	DialogPane dialogPane = alert.getDialogPane();
+    	dialogPane.getStylesheets().add( getClass().getResource("/View/Admin/myDialog.css").toExternalForm());
+    	dialogPane.getStyleClass().add("myDialog");
+    	*/
     	
     	if (result.get() == ButtonType.OK){
     	    mng.resetParamsToDefault();
