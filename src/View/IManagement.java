@@ -25,10 +25,12 @@ public interface IManagement {
 	 */
 	
 	// this method add new question //
-	public void addQuestion(Question q);
+	public boolean addQuestion(Question q);
 	
 	//this method remove question //
-	public void removeQuestion(Question q);
+	public boolean removeQuestion(Question q);
+	
+	public boolean updateQuestion(Question qBefore, Question qAfter);
 	
 	//SysParam Form//
 	
@@ -66,15 +68,5 @@ public interface IManagement {
 	void resetParamsToDefault();
 	
 	void btnSave();
-	
-	
-	
-	/**
-	 * Methods to control questions
-	 */
-	public boolean deleteQuestion(Question q);
-	public boolean addQuesiton(Question q);
-	public boolean updateQuestion(Question qBefore, Question qAfter);
-	
 	
 }

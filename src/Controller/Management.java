@@ -22,13 +22,13 @@ public class Management implements IManagement{
 	private static Management instance = null;
 	private static MonDB _db = MonDB.getInstance();
 	private Management(){}
-	
+
 	protected static Management getInstance(){
 		if(instance == null)
 			instance = new Management();
 		return instance;
 	}
-	
+
 	@Override
 	public List<Question> getQuestions() {
 		List<Question> toReturn = new ArrayList<Question>();
@@ -55,7 +55,7 @@ public class Management implements IManagement{
 		User u = new User(nickname, PlayerAuth.PLAYER);
 		if(!_db.getPlayerData().contains(u))
 			_db.getPlayerData().add(u);
-		
+
 		return u.getNickName();
 	}
 
@@ -69,7 +69,7 @@ public class Management implements IManagement{
 
 	public void resetParamsToDefault() {
 		_db.resetParamsToDefault();
-		
+
 	}
 
 	@Override
@@ -80,10 +80,10 @@ public class Management implements IManagement{
 	@Override
 	public Object getParam(Param p) {
 		return _db.getParam(p);
-		
+
 	}
-	
-	
+
+
 
 	public Map<Param, Object> getSavedParams() {
 		// TODO Auto-generated method stub
@@ -91,37 +91,42 @@ public class Management implements IManagement{
 	}
 
 
-@Override
-public void addQuestion(Question q) {
-	// TODO Auto-generated method stub
+	@Override
+	public boolean addQuestion(Question q) {
+		return MonDB.getInstance().addQuesiton(q);
+
+	}
+
+	@Override
+	public boolean removeQuestion(Question q) {
+		return MonDB.getInstance().deleteQuestion(q);
+
+	}
 	
-}
-
-@Override
-public void removeQuestion(Question q) {
-	// TODO Auto-generated method stub
-	
-}
+	@Override
+	public boolean updateQuestion(Question qBefore, Question qAfter) {
+		return MonDB.getInstance().updateQuestion(qBefore, qAfter);
+	}
 
 
 
-@Override
-public void btnSave() {
-	// TODO Auto-generated method stub
-	
-}
+	@Override
+	public void btnSave() {
+		// TODO Auto-generated method stub
 
-@Override
-public void btnSave(List<Player> a, Spinner NumOfRounds, Spinner InitialSumOFMoney, Spinner Bankrupt,
-		Spinner PaymentRelaseFromJail) {
-	// TODO Auto-generated method stub
-	
-}
+	}
 
-@Override
-public void btnSave(SysParam a) {
-	// TODO Auto-generated method stub
-	
-} 
+	@Override
+	public void btnSave(List<Player> a, Spinner NumOfRounds, Spinner InitialSumOFMoney, Spinner Bankrupt,
+			Spinner PaymentRelaseFromJail) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void btnSave(SysParam a) {
+		// TODO Auto-generated method stub
+
+	} 
 
 }
