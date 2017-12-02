@@ -202,8 +202,11 @@ public class GameEngine implements IGameEngine {
 	}
 
 	private void updatePlayerProperties(Player player) {
-		ui.updatePlayerProperties(player.getNickName(), player.getCash(), player.getStrikesNum(),
-				player.getTotalAssetsWorth(), player.getTotalAssets());
+		ui.updatePlayerProperties(player.getNickName(),
+				player.getCash(), 
+				player.getStrikesNum(),
+				player.getTotalAssetsWorth(),
+				player.getTotalAssets());
 	}
 
 	private void goToTile(Integer tileNo){
