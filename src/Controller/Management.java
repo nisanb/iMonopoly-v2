@@ -109,13 +109,6 @@ public class Management implements IManagement{
 	}
 
 
-
-	@Override
-	public void btnSave() {
-		// TODO Auto-generated method stub
-
-	}
-
 	@Override
 	public void btnSave(List<Player> a, Spinner NumOfRounds, Spinner InitialSumOFMoney, Spinner Bankrupt,
 			Spinner PaymentRelaseFromJail) {
@@ -123,10 +116,5 @@ public class Management implements IManagement{
 
 	}
 
-	@Override
-	public void btnSave(SysParam a) {
-		// TODO Auto-generated method stub
-
-	} 
 
 }

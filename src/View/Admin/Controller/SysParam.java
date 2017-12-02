@@ -102,17 +102,6 @@ public class SysParam {
     private ResourceBundle resources;
     
 
-    
-    @FXML
-    void back(ActionEvent event) {
-    	iWindow.swap(Window.Admin_Menu);
-    }
-
-    @FXML
-    void save(ActionEvent event) {
-
-    }
-
     @FXML
     public void initialize() {
     	mng = iWindow.getManagement();
@@ -188,7 +177,6 @@ public class SysParam {
      * This method restores all the params to defaults
      */
     private void restoreDefaults() {
-    	IManagement manage = iWindow.getManagement();
     	Alert alert = new Alert(AlertType.CONFIRMATION);
     	alert.setTitle("Restore To Default Confirmation");
     	alert.setHeaderText("You are about to reset all parametes to default. \n"
@@ -198,7 +186,7 @@ public class SysParam {
     	Optional<ButtonType> result = alert.showAndWait();
     	
     	if (result.get() == ButtonType.OK){
-    	    manage.resetParamsToDefault();
+    	    mng.resetParamsToDefault();
     	} else 
     	{
     	    return;
@@ -221,7 +209,7 @@ public class SysParam {
     	if (!checkRules()) return;
     	
     	for (Map.Entry<Spinner, Param> n: _params.entrySet()) {
-    		Param.set(n.getValue(), n.getKey().getValue());
+    		mng.setParam(n.getValue(), n.getKey().getValue());
     	}
     }
     

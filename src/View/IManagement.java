@@ -12,61 +12,47 @@ import javafx.scene.control.Spinner;
 import Utils.Param;
 
 public interface IManagement {
+	
+	//=================================== GAME AND USER ============================================
+	
+	/**
+	 * Methods return the current user
+	 */
+	public String getLoggedPlayer();					//logged user as String
+	public String GetLoginUser(String UserNickName);	//logged user by nick name
+	public void login(String nickname);					//WTF
+	
+	public void build(List<String> playerList);			//builds a game with given players
+
+	
+	// =================================== 	QUESTIONS ==============================================
 
 	/**
-	 * Methods DONE
+	 * Methods to manage questioln
 	 */
-	public List<Question> getQuestions();
-	public String getLoggedPlayer();
-	
-
-	/**
-	 * Methods TO DO
-	 */
-	
-	// this method add new question //
 	public boolean addQuestion(Question q);
+	public boolean removeQuestion(Question q);	
+	public boolean updateQuestion(Question qBefore, Question qAfter);	
+	public List<Question> getQuestions();								 //get all questions as list
+	public List<Question> getQuestionsByDifficulty(QuestionStrength qs); //get all question in given difficulty
 	
-	//this method remove question //
-	public boolean removeQuestion(Question q);
 	
-	public boolean updateQuestion(Question qBefore, Question qAfter);
 	
-	//SysParam Form//
-	
-	public void btnSave(SysParam a);
 
-	//GameSettings//
-	//This button allows the user to change the game settings//
+	
+	//================================== SYSTEM PARAMS ==============================================
+	
+	/**
+	 * Methods to control params in sysParam view
+	 */
+	public Map<Param, Object> getSavedParams();				//return game params
+	public Object getParam(Param p);						//get specific param by name
+	public void setParam(Param p, Object value);			//set value of param
+	public void resetParamsToDefault();						//call to reset all params
+	
+	/**
+	 * This button allows the user to change the game settings
+	 */
 	public void btnSave(List<Player>a,Spinner NumOfRounds,Spinner InitialSumOFMoney,Spinner Bankrupt,Spinner PaymentRelaseFromJail );
-	/**
-	 * Returns list of questions
-	 * @return
-	 */
-	public List<Question> getQuestionsByDifficulty(QuestionStrength qs);
 		
-	/*
-	 * return String of User who login to System
-	 */
-	public String GetLoginUser(String UserNickName);
-	public void build(List<String> playerList);
-	public void login(String nickname);
-	
-	
-	
-	/**
-	 * This method returns the parameters from monDB (check if requred)
-	 * @return - sysParam
-	 */
-	public Map<Param, Object> getSavedParams();
-	
-
-	Object getParam(Param p);
-
-	void setParam(Param p, Object value);
-
-	void resetParamsToDefault();
-	
-	void btnSave();
-	
 }
