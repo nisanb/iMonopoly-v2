@@ -2,7 +2,10 @@ package View.Game.Controller;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import Controller.Logger;
 import Controller.iWindow;
@@ -971,6 +974,21 @@ public class UI implements UIInterface{
 		gameLogScrollPane.setVisible(display);
 		
 	}
+	
+
+    @FXML
+    void sendAnswerBtn(MouseEvent event) {
+    	List<Integer> answers = new ArrayList<Integer>();
+    	if (txtAnsw1.isVisible())
+    		answers.add(1);
+    	if (txtAnsw2.isVisible())
+    		answers.add(2);
+    	if (txtAnsw3.isVisible())
+    		answers.add(3);
+    	if (txtAnsw4.isVisible())
+    		answers.add(4);
+    	//ge.AnswerQuestion(answers);
+    }
 
 	@FXML
 	 void answer1(MouseEvent event){
@@ -1648,7 +1666,6 @@ public class UI implements UIInterface{
 	
 	@FXML
     void btnFinishTurn(ActionEvent event) {
-		System.out.println("finish turn btn");
 		ge.btnFinishTurn();
 	}
 	@FXML

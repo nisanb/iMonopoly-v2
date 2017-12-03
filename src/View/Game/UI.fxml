@@ -1169,12 +1169,12 @@
             </Label>
          </children>
       </AnchorPane>
-      <Label fx:id="lblRound" layoutX="850.0" layoutY="325.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="Round :" textFill="WHITE">
+      <Label fx:id="round" layoutX="930.0" layoutY="325.0" prefHeight="25.0" prefWidth="51.0" style="-fx-background-color: transparent;" text="1" textFill="WHITE">
          <font>
             <Font name="Cooper Black" size="16.0" />
          </font>
       </Label>
-      <Label fx:id="round" layoutX="930.0" layoutY="325.0" prefHeight="25.0" prefWidth="51.0" style="-fx-background-color: transparent;" text="1" textFill="WHITE">
+      <Label fx:id="lblRound" layoutX="850.0" layoutY="325.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="Round :" textFill="WHITE">
          <font>
             <Font name="Cooper Black" size="16.0" />
          </font>
@@ -1259,16 +1259,16 @@
       <AnchorPane fx:id="inBoardMenu" layoutX="685.0" layoutY="350.0" prefHeight="240.0" prefWidth="470.0">
          <children>
             <Pane fx:id="inBoardWhitePane" opacity="0.51" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: white;" />
-            <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.51" pannable="true" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;" visible="false">
+            <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.51" pannable="true" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;">
                <content>
-                  <TextArea fx:id="gameLogs" editable="false" prefHeight="240.0" prefWidth="470.0" style="-fx-border-color: black;" wrapText="true">
+                  <TextArea fx:id="gameLogs" editable="false" prefHeight="258.0" prefWidth="470.0" style="-fx-border-color: black;" wrapText="true">
                      <font>
                         <Font name="Cooper Black" size="14.0" />
                      </font>
                   </TextArea>
                </content>
             </ScrollPane>
-            <Pane fx:id="txtAnswerPane" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: transparent;">
+            <Pane fx:id="txtAnswerPane" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: transparent;" visible="false">
                <children>
                   <Label fx:id="playerXIsAnswering" layoutX="10.0" prefHeight="25.0" prefWidth="323.0" text="Player 2 is answering question :">
                      <font>
@@ -1304,7 +1304,7 @@
                         <Font name="Cooper Black" size="12.0" />
                      </font>
                   </TextArea>
-                  <Button fx:id="btnSendAnswers" layoutX="167.0" layoutY="213.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="136.0" style="-fx-background-color: black;" text="Send Answer">
+                  <Button fx:id="btnSendAnswers" layoutX="167.0" layoutY="213.0" mnemonicParsing="false" onMouseClicked="#sendAnswerBtn" prefHeight="0.0" prefWidth="136.0" style="-fx-background-color: black;" text="Send Answer">
                      <font>
                         <Font name="Cooper Black" size="16.0" />
                      </font>
@@ -1367,7 +1367,7 @@
             <Font name="Cooper Black" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnFinishTurn" layoutX="372.0" layoutY="330.0" mnemonicParsing="false"  prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: black;" text="Finish Turn" textFill="WHITE">
+      <Button fx:id="btnFinishTurn" layoutX="372.0" layoutY="330.0" mnemonicParsing="false" onAction="#btnFinishTurn" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: black;" text="Finish Turn" textFill="WHITE">
          <font>
             <Font name="Cooper Black" size="20.0" />
          </font>
