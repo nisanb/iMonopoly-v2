@@ -10,6 +10,8 @@ import Utils.PlayerState;
 import Utils.TileType;
 import View.IGameEngine;
 import View.Game.Controller.UI;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 
 public class GameEngine implements IGameEngine {
 
@@ -152,21 +154,27 @@ public class GameEngine implements IGameEngine {
 		System.out.println(currentPlayer().getCurrentTile());
 
 		Integer moveToTile = (dice.getSum() + currentPlayer().getCurrentTile().getTileNumber()) % 40;
+		
+		Task<Void> task = new Task<Void>() {
 
-		Thread doChangeLocation = new Thread() {
-			@Override
-			public void run() {
-				goToTile(moveToTile);
-				updatePlayerProperties(currentPlayer());
-				currentPlayer().setState(PlayerState.WAITING);
-			}
+		     @Override protected Void call() throws Exception {
 
-		};
-		doChangeLocation.start();
-		while(currentPlayer().getState() == PlayerState.MOVING){
+
+		             Platform.runLater(new Runnable() {
+		                 @Override public void run() {
+		                	 goToTile(moveToTile);
+		     				updatePlayerProperties(currentPlayer());
+		     				currentPlayer().setState(PlayerState.WAITING);
+		                 }
+		             });
+		         return null;
+		     }
+		 };
+		 task.run();
+		 while(currentPlayer().getState() == PlayerState.MOVING){
 			
 		}
-		while(doChangeLocation.isAlive()){}
+		while(task.isRunning()){}
 		if(currentPlayer().getCurrentTile().getTileType() == TileType.Property)
 			ui.allowPurchase(true);
 		else{

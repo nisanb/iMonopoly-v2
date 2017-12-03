@@ -34,9 +34,9 @@ public class MonDB implements Serializable {
 	/**
 	 * Game Statistics & Data
 	 */
-	private static List<User> playerData;
+	private List<User> playerData;
 	transient private Map<QuestionStrength, List<Question>> gameQuestions;
-	private static Map<Integer, Game> gameData;
+	private Map<Integer, Game> gameData;
 
 	private MonDB() {
 		Data = this;
@@ -203,7 +203,7 @@ public class MonDB implements Serializable {
 	}
 
 	protected void setGameData(HashMap<Integer, Game> gameData) {
-		MonDB.gameData = gameData;
+		this.gameData = gameData;
 	}
 
 	public List<User> getPlayerData() {
@@ -211,7 +211,7 @@ public class MonDB implements Serializable {
 	}
 
 	public void setPlayerData(List<User> playerData) {
-		MonDB.playerData = playerData;
+		this.playerData = playerData;
 	}
 
 	public Object getParam(Param p) {
@@ -354,6 +354,8 @@ public class MonDB implements Serializable {
 	}
 
 	public String verifyPlayer(String nickname) {
+		if(playerData == null)
+			playerData = new ArrayList<>();
 		if (!playerData.contains(nickname)) {
 			playerData.add(new User(nickname, PlayerAuth.PLAYER));
 		}
