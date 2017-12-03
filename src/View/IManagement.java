@@ -55,4 +55,5 @@ public interface IManagement {
 	 */
 	public void btnSave(List<Player>a,Spinner NumOfRounds,Spinner InitialSumOFMoney,Spinner Bankrupt,Spinner PaymentRelaseFromJail );
 		
+	public void exportDB();
 }

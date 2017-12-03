@@ -1,12 +1,17 @@
 package Entity;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 import Utils.TileType;
 
-public class Tile implements Tilable {
+public class Tile implements Tilable, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer _tileNumber;
 	private String _tileName;
 	private Set<Player> _currentPlayers;

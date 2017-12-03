@@ -115,6 +115,10 @@ public class Management implements IManagement{
 		// TODO Auto-generated method stub
 
 	}
+	
+	public void exportDB(){
+		MonDB.exportData();
+	}
 
 
 }

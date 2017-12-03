@@ -219,6 +219,7 @@ public class SysParam {
     	for (Map.Entry<Spinner, Param> n: _params.entrySet()) {
     		mng.setParam(n.getValue(), n.getKey().getValue());
     	}
+    mng.exportDB();
     }
     
     
