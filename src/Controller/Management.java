@@ -95,13 +95,13 @@ public class Management implements IManagement{
 	public boolean addQuestion(Question q) {
 		return MonDB.getInstance().addQuesiton(q);
 	}
-	
+
 	@Override
 	public boolean removeQuestion(Question q) {
 		return MonDB.getInstance().deleteQuestion(q);
 
 	}
-	
+
 	@Override
 	public boolean updateQuestion(Question qBefore, Question qAfter) {
 		return MonDB.getInstance().updateQuestion(qBefore, qAfter);
@@ -114,21 +114,26 @@ public class Management implements IManagement{
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	public void exportDB(){
 		MonDB.exportData();
 	}
 
-@Override
-public long getNextQuestionNum() {
-	// TODO Auto-generated method stub
-	return 0;
-}
-
-@Override
-public void btnSave() {
-	// TODO Auto-generated method stub
 	
-} 
+	@Override
+	public long getNextQuestionNum() {
+		List<Question> list = getQuestions();
+		long qnum = 0;
+		for (Question q: list) {
+			if (q.getqNumber() > qnum) qnum = q.getqNumber();
+		}
+		return 0;
+	}
+
+	@Override
+	public void btnSave() {
+		// TODO Auto-generated method stub
+
+	} 
 
 }
