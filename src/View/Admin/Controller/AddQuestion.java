@@ -152,63 +152,41 @@ public class AddQuestion {
     QuestionStrength qStrength;
     ArrayList<QuestionTag> tags;
     Team team;
+   
+    
+
+
+    @FXML // This method is called by the FXMLLoader when initialization is complete
+    void initialize() {
+        getQuestionStrength();
+        getTeam();
+        getTag();
+        SetButtonToFalse();
+
+        //get qnum
+    	qNum = mng.getNextQuestionNum();
+    	txtQuestion1.setText(qNum + "");
+        
+    	// ans1//
+        group1.getToggles().add(TrueBu);
+        group1.getToggles().add(FalseBu);
+        // ans2//
+        group2.getToggles().add(TrueBu2);
+        group2.getToggles().add(FalseBu2);
+        // ans3//
+        group3.getToggles().add(TrueBu3);
+        group3.getToggles().add(FalseBu3);
+        // ans4//
+        group4.getToggles().add(TrueBu4);
+        group4.getToggles().add(FalseBu4);
+        
+        errorLabelControl(null, false);
+    }
     
     
     
+    //============================================= ACTION EVENTS ==============================================
     
-  /*  @FXML
-    void CangeTrueBu(MouseEvent event) {
-    	TrueBu.setSelected(true);
-    	FalseBu.setSelected(false);
-    }
-
-    @FXML
-    void ChangeFalseBu(MouseEvent event) {
-    	TrueBu.setSelected(false);
-    	FalseBu.setSelected(true);
-    }*/
-
-   /* @FXML
-    void ChangeFalseBu2(MouseEvent event) {
-    	TrueBu2.setSelected(false);
-    	FalseBu2.setSelected(true);
-    }
-
-    @FXML
-    void ChangeFalseBu3(MouseEvent event) {
-    	TrueBu3.setSelected(false);
-    	FalseBu3.setSelected(true);
-    }
-
-    @FXML
-    void ChangeFalseBu4(MouseEvent event) {
-    	TrueBu4.setSelected(false);
-    	FalseBu4.setSelected(true);
-    }
-
-    @FXML
-    void ChangeTrueBu2(MouseEvent event) {
-    	TrueBu2.setSelected(true);
-    	FalseBu2.setSelected(false);
-    }
-
-    @FXML
-    void ChangeTrueBu3(MouseEvent event) {
-    	TrueBu3.setSelected(true);
-    	FalseBu3.setSelected(false);
-    }
-
-    @FXML
-    void ChangeTrueBu4(MouseEvent event) {
-    	TrueBu4.setSelected(true);
-    	FalseBu4.setSelected(false);
-    }*/
-
-    @FXML
-    void CheckDiffAndSetAns(MouseEvent event) {
-
-    }
-
     @FXML
     void ChooseDiff(ActionEvent event) {
 //    	if (DiffComboox.getSelectionModel().getSelectedIndex() == 0){
@@ -253,38 +231,6 @@ public class AddQuestion {
     	}
     }
     
-
-
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-        getQuestionStrength();
-        getTeam();
-        getTag();
-        SetButtonToFalse();
-
-        //get qnum
-    	qNum = mng.getNextQuestionNum();
-    	txtQuestion1.setText(qNum + "");
-        
-    	// ans1//
-        group1.getToggles().add(TrueBu);
-        group1.getToggles().add(FalseBu);
-        // ans2//
-        group2.getToggles().add(TrueBu2);
-        group2.getToggles().add(FalseBu2);
-        // ans3//
-        group3.getToggles().add(TrueBu3);
-        group3.getToggles().add(FalseBu3);
-        // ans4//
-        group4.getToggles().add(TrueBu4);
-        group4.getToggles().add(FalseBu4);
-        
-        errorLabelControl(null, false);
-    }
-    
-    
-    
-    //====================================================methods============================//
     
     private void getQuestionStrength()
     {
@@ -324,12 +270,18 @@ public class AddQuestion {
     	team = TeamComboBox.getSelectionModel().getSelectedItem();
     }
     
-
-
+    //========================================= FORM CONTROLS =================================================
     
     @FXML
     void AddQuestion(ActionEvent event) {
     	if (!event.getSource().equals(save)) return;
+    	//reset errors
+    	setAnsBGC("white");
+    	setQquestionBGC("white");
+    	setTagsBGC("white");
+    	setDiffBGC("white");
+    	setTeamBGC("white");
+    	
     	//get field values
     	a1 = TrueBu.isSelected();
     	a2 = TrueBu2.isSelected();
@@ -341,8 +293,8 @@ public class AddQuestion {
     	ans4 = txtanswer4.getText();
     	question = txtQuestion.getText();
     	ArrayList<Answer> ans = new ArrayList<Answer>();
-
     	
+    	txtanswer1.setStyle("-fx-background-color: white;"); // change backgroud in runtime
     	
     	int numOfAnswers = 0,numOftrues=0;
     	if (ans1 != null && ans1.length() > 1) {
@@ -372,22 +324,27 @@ public class AddQuestion {
     	
     	if (numOfAnswers < 2 && numOftrues < 1 ){
     		errorLabelControl("Qustion must contain at least 2 posible answers and 1 true", true);
+    		setAnsBGC("red");
     		return;
     	}
     	else if (question == null || question.length() < 5){
     		errorLabelControl("Qustion must have more than 5 letters", true);
+    		setQquestionBGC("red");
     		return;
     	}
     	else if (tags == null || tags.size() < 1){
     		errorLabelControl("You must add at least one tag", true);
+    		setTagsBGC("red");
     		return;
     	}
     	else if (team == null){
     		errorLabelControl("You must select team", true);
+    		setTeamBGC("red");
     		return;
     	}
     	else if (qStrength == null){
     		errorLabelControl("You must select quetion difficulty", true);
+    		setDiffBGC("red");
     	}
     	errorLabelControl(null, false);
     	
@@ -412,6 +369,35 @@ public class AddQuestion {
     		System.out.println(msg);
     	}
     }
+    
+    //========================================== CSS ===========================================================
+    
+    /**
+     * CSS change
+     */
+    private void setAnsBGC(String color) {
+    	txtanswer1.setStyle("-fx-background-color:" + color +";");
+    	txtanswer2.setStyle("-fx-background-color:" + color +";");
+    	txtanswer3.setStyle("-fx-background-color:" + color +";");
+    	txtanswer4.setStyle("-fx-background-color:" + color +";");
+    }
+    
+    private void setQquestionBGC(String color) {
+    	txtQuestion.setStyle("-fx-background-color:" + color +";");
+    }
+    
+    private void setTagsBGC(String color) {
+    	List2.setStyle("-fx-background-color:" + color +";");
+    }
+    
+    private void setTeamBGC(String color) {
+    	TeamComboBox.setStyle("-fx-background-color:" + color +";");
+    }
+    
+    private void setDiffBGC(String color) {
+    	DiffComboox.setStyle("-fx-background-color:" + color +";");
+    }
+    
     
     
     
