@@ -54,7 +54,8 @@ public class Game implements Serializable {
 	 * Build current game - happens after START GAME is clicked
 	 */
 	public void build(List<Player> playerList) {
-
+		
+		System.out.println(playerList);
 		/**
 		 * Build players
 		 */

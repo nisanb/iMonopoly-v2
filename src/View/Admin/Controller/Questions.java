@@ -18,6 +18,7 @@ import Entity.Question;
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
 import Utils.Window;
+import View.IManagement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -33,6 +34,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 public class Questions {
+	
+	private IManagement mng = iWindow.getManagement();
 	
 	Question question;
 
@@ -134,6 +137,10 @@ public class Questions {
     
     @FXML
     private ComboBox<Integer> NumQuestionCombo;
+    
+    //local variable//
+    
+    long qnum;
     
 
     @FXML // fx:id="AnchoarPane"
@@ -319,14 +326,20 @@ public class Questions {
   @FXML
   void DeleteQuestion(ActionEvent event) {
 	  
-	  Map<QuestionStrength, List<Question>> questions = MonDB.getInstance().getGameQuestions();
-  	for (Map.Entry<QuestionStrength, List<Question>> list: questions.entrySet()){
-  		for (Question q:list.getValue()){
-  			System.out.println(NumQuestionCombo.getSelectionModel().getSelectedItem());
-  			
-  		}
-  		
-  	}
+	  qnum=NumQuestionCombo.getSelectionModel().getSelectedItem();
+	  
+	  {
+			Map<QuestionStrength, List<Question>> questions = MonDB.getInstance().getGameQuestions();
+	    	for (Map.Entry<QuestionStrength, List<Question>> list: questions.entrySet()){
+	    		for (Question q:list.getValue()){
+	    			if(q.getqNumber()==qnum)
+	    			{
+	    				mng.removeQuestion(q);
+	    				break;
+	    			}
+	    		}
+	  }
+  }
   }
   
   

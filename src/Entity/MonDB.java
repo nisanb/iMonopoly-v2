@@ -242,16 +242,21 @@ public class MonDB implements Serializable {
 	 * @return true of removed
 	 */
 	public boolean deleteQuestion(Question q) {
+		
+		System.out.println(q);
 		if (this.gameQuestions == null)
 			return false;
-		if (this.gameQuestions.get(q) == null)
+		
+		if (this.gameQuestions.get(q) == null){
 			return false;
-
+		}
+		
 		// get the correct list
 		int indexToDelete = this.gameQuestions.get(q.getqStrength()).indexOf(q);
 
 		// if object was found delete it, save the new json, and return true
 		if (indexToDelete > 0) {
+
 			this.gameQuestions.get(q.getqStrength()).remove(indexToDelete);
 			JSON.getInstance().saveQuestions(this.gameQuestions);
 			return true;
@@ -364,6 +369,7 @@ public class MonDB implements Serializable {
 	}
 	
 	public void buildGame(List<String> playerList){
+		
 		List<Player> newPlayerList = new ArrayList<>();
 		Color[] clist = {Color.GREEN, Color.BLUE, Color.YELLOW, Color.RED};
 		int i=0;

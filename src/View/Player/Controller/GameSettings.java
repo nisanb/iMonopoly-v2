@@ -304,8 +304,12 @@ public class GameSettings {
 				txt2Err.setVisible(false);
 			}
 			else{
+				
+			
 			
 			mng.build(playerList);
+			
+			
 			iWindow.swap(Window.Game_UI);
 			}
 		}
