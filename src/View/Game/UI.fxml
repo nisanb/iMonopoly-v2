@@ -16,7 +16,6 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Game.Controller.UI">
    <children>
-      <Button fx:id="main" layoutX="139.0" layoutY="598.0" mnemonicParsing="false" onMouseClicked="#menuButton" prefHeight="77.0" prefWidth="132.0" text="main menu" />
       <ImageView fitHeight="691.0" fitWidth="1229.0" layoutX="51.0" layoutY="39.0">
          <image>
             <Image url="@../../Resources/PSD/Board-1366-768.jpg" />
@@ -988,39 +987,39 @@
                <children>
                   <Label fx:id="lblMoney2" layoutX="7.0" layoutY="2.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Money:" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="lblStrikes2" layoutX="7.0" layoutY="26.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Strikes:" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="moneyPlayer2" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="strikesPlayer2" layoutX="91.0" layoutY="26.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="0" textAlignment="JUSTIFY" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="lblValue2" layoutX="7.0" layoutY="50.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Value:" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="valuePlayer2" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
             <Label fx:id="txtPlayer2Name" layoutX="91.0" layoutY="14.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: transparent" text="Green" textAlignment="CENTER" textFill="#04ff00">
                <font>
-                  <Font name="Cooper Black" size="20.0" />
+                  <Font name="Calibri Bold" size="22.0" />
                </font>
             </Label>
          </children>
@@ -1029,7 +1028,7 @@
          <children>
             <Label fx:id="txtPlayer4Name" layoutX="91.0" layoutY="14.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: transparent" text="Red" textAlignment="CENTER" textFill="RED">
                <font>
-                  <Font name="Cooper Black" size="20.0" />
+                  <Font name="Calibri Bold" size="22.0" />
                </font>
             </Label>
             <ImageView fx:id="playerRedStats" fitHeight="80.0" fitWidth="67.0" layoutX="8.0" layoutY="20.0">
@@ -1041,32 +1040,32 @@
                <children>
                   <Label fx:id="lblMoney4" layoutX="7.0" layoutY="2.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Money:" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="lblStrikes4" layoutX="7.0" layoutY="26.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Strikes:" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="moneyPlayer4" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="strikesPlayer4" layoutX="91.0" layoutY="26.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="0" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="lblValue4" layoutX="7.0" layoutY="50.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Value:" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="valuePlayer4" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                </children>
@@ -1079,32 +1078,32 @@
                <children>
                   <Label fx:id="lblMoney1" layoutX="7.0" layoutY="2.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Money:" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="lblStrikes1" layoutX="7.0" layoutY="26.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Strikes:" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="moneyPlayer1" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="strikesPlayer1" layoutX="91.0" layoutY="26.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="lblValue1" layoutX="7.0" layoutY="50.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Value:" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="valuePlayer1" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                </children>
@@ -1116,7 +1115,7 @@
             </ImageView>
             <Label fx:id="txtPlayer1Name" layoutX="91.0" layoutY="14.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: transparent;" text="Blue" textAlignment="CENTER" textFill="#0055ff">
                <font>
-                  <Font name="Cooper Black" size="20.0" />
+                  <Font name="Calibri Bold" size="22.0" />
                </font>
             </Label>
          </children>
@@ -1127,32 +1126,32 @@
                <children>
                   <Label fx:id="lblMoney3" layoutX="7.0" layoutY="2.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Money:" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="lblStrikes3" layoutX="7.0" layoutY="26.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Strikes:" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="moneyPlayer3" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="strikesPlayer3" layoutX="91.0" layoutY="26.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="0" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="lblValue3" layoutX="9.0" layoutY="50.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Value:" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="valuePlayer3" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                </children>
@@ -1164,19 +1163,19 @@
             </ImageView>
             <Label fx:id="txtPlayer3Name" layoutX="91.0" layoutY="14.0" prefHeight="25.0" prefWidth="191.0" style="-fx-background-color: transparent" text="Yellow" textAlignment="CENTER" textFill="#e4ff00">
                <font>
-                  <Font name="Cooper Black" size="20.0" />
+                  <Font name="Calibri Bold" size="22.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
       <Label fx:id="round" layoutX="930.0" layoutY="325.0" prefHeight="25.0" prefWidth="51.0" style="-fx-background-color: transparent;" text="1" textFill="WHITE">
          <font>
-            <Font name="Cooper Black" size="16.0" />
+            <Font name="Calibri Bold " size="16.0" />
          </font>
       </Label>
       <Label fx:id="lblRound" layoutX="850.0" layoutY="325.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="Round :" textFill="WHITE">
          <font>
-            <Font name="Cooper Black" size="16.0" />
+            <Font name="Calibri Bold" size="16.0" />
          </font>
       </Label>
       <Pane fx:id="rollDicePane" layoutX="71.0" layoutY="500.0" prefHeight="222.0" prefWidth="242.0">
@@ -1217,7 +1216,7 @@
             </Pane>
             <Button fx:id="btnRollDice" layoutX="39.0" layoutY="7.0" mnemonicParsing="false" onMouseClicked="#rollDice" prefWidth="164.0" style="-fx-background-color: red;" text="Roll Dice" textFill="WHITE">
                <font>
-                  <Font name="Cooper Black" size="20.0" />
+                  <Font name="Calibri Bold" size="20.0" />
                </font>
             </Button>
             <Pane fx:id="cube1Pane" layoutX="35.0" layoutY="62.0" prefHeight="77.0" prefWidth="76.0">
@@ -1256,28 +1255,28 @@
             </Pane>
          </children>
       </Pane>
-      <AnchorPane fx:id="inBoardMenu" layoutX="685.0" layoutY="350.0" prefHeight="240.0" prefWidth="470.0">
+      <AnchorPane fx:id="inBoardMenu" layoutX="690.0" layoutY="350.0" prefHeight="240.0" prefWidth="470.0">
          <children>
-            <Pane fx:id="inBoardWhitePane" opacity="0.51" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: white;" />
-            <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.51" pannable="true" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;">
+            <Pane fx:id="inBoardWhitePane" opacity="0.3" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: white;" />
+            <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.3" pannable="true" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;">
                <content>
-                  <TextArea fx:id="gameLogs" editable="false" prefHeight="258.0" prefWidth="470.0" style="-fx-border-color: black;" wrapText="true">
+                  <TextArea fx:id="gameLogs" opacity="0.3" prefHeight="258.0" prefWidth="470.0" style="-fx-border-color: black;" wrapText="true">
                      <font>
-                        <Font name="Cooper Black" size="14.0" />
+                        <Font name="Calibri Bold" size="14.0" />
                      </font>
                   </TextArea>
                </content>
             </ScrollPane>
-            <Pane fx:id="txtAnswerPane" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: transparent;" visible="false">
+            <Pane fx:id="txtAnswerPane" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: transparent;">
                <children>
                   <Label fx:id="playerXIsAnswering" layoutX="10.0" prefHeight="25.0" prefWidth="323.0" text="Player 2 is answering question :">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="theQuestion" layoutX="10.0" layoutY="40.0" prefHeight="25.0" prefWidth="323.0" text="Question: What is the meaning of agile?">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Pane fx:id="txtAnswerPane2" layoutX="238.0" layoutY="88.0" prefHeight="55.0" prefWidth="225.0" style="-fx-border-color: green;" />
@@ -1286,93 +1285,101 @@
                   <Pane fx:id="txtAnswerPane3" layoutX="8.0" layoutY="148.0" prefHeight="55.0" prefWidth="225.0" style="-fx-border-color: green;" />
                   <TextArea fx:id="txtAnsw1" editable="false" layoutX="10.0" layoutY="90.0" onMouseClicked="#answer1" onMousePressed="#answer1" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="1. Answer 1" wrapText="true">
                      <font>
-                        <Font name="Cooper Black" size="12.0" />
+                        <Font name="Calibri Bold" size="12.0" />
                      </font>
                   </TextArea>
                   <TextArea fx:id="txtAnsw2" editable="false" layoutX="240.0" layoutY="90.0" onMouseClicked="#answer2" onMousePressed="#answer2" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="2. Answer 2" wrapText="true">
                      <font>
-                        <Font name="Cooper Black" size="12.0" />
+                        <Font name="Calibri Bold" size="12.0" />
                      </font>
                   </TextArea>
                   <TextArea fx:id="txtAnsw3" editable="false" layoutX="10.0" layoutY="150.0" onMouseClicked="#answer3" onMousePressed="#answer3" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="1. Answer 1&#10;" wrapText="true">
                      <font>
-                        <Font name="Cooper Black" size="12.0" />
+                        <Font name="Calibri Bold" size="12.0" />
                      </font>
                   </TextArea>
                   <TextArea fx:id="txtAnsw4" editable="false" layoutX="240.0" layoutY="150.0" onMouseClicked="#answer4" onMousePressed="#answer4" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="2. Answer 2" wrapText="true">
                      <font>
-                        <Font name="Cooper Black" size="12.0" />
+                        <Font name="Calibri Bold" size="12.0" />
                      </font>
                   </TextArea>
                   <Button fx:id="btnSendAnswers" layoutX="167.0" layoutY="213.0" mnemonicParsing="false" onMouseClicked="#sendAnswerBtn" prefHeight="0.0" prefWidth="136.0" style="-fx-background-color: black;" text="Send Answer">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Button>
                </children>
             </Pane>
-            <Pane fx:id="buyRentPane" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: transparent;" visible="false">
+            <Pane fx:id="buyRentPane" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: transparent;">
                <children>
                   <Label fx:id="playerXRentOrBuy" layoutX="10.0" opacity="0.7" prefHeight="25.0" prefWidth="323.0" text="Player 2, you got full price on &quot;Apple&quot;">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="txtBuyPrice" layoutX="10.0" layoutY="40.0" opacity="0.7" pickOnBounds="false" prefHeight="50.0" prefWidth="448.0" text="Would you like to buy &quot;Apple&quot; for 150,000$ ?">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <Label fx:id="txtRentPrice" layoutX="10.0" layoutY="70.0" opacity="0.7" pickOnBounds="false" prefHeight="50.0" prefWidth="448.0" text="Would you like to rent &quot;Apple&quot; for 1,999$ ?">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="sellTradePane" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: transparent;" visible="false">
+            <Pane fx:id="sellTradePane" layoutY="11.0" prefHeight="229.0" prefWidth="470.0" style="-fx-background-color: transparent;" visible="false">
                <children>
+                  <Label fx:id="txtPropertyValue" layoutX="323.0" layoutY="35.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font>
+                  </Label>
                   <Label fx:id="playerXSellOrTrade" layoutX="10.0" opacity="0.7" prefHeight="25.0" prefWidth="323.0" text="Player 2, here all your properties :">
                      <font>
-                        <Font name="Cooper Black" size="16.0" />
+                        <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
                   <ListView layoutX="15.0" layoutY="35.0" prefHeight="166.0" prefWidth="200.0" />
-                  <ListView layoutX="321.0" layoutY="35.0" prefHeight="166.0" prefWidth="136.0" />
+                  <Label fx:id="lblSellValue" layoutX="243.0" layoutY="35.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Value:" textFill="WHITE">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children></AnchorPane>
-      <Button fx:id="btnBuyProperty" layoutX="372.0" layoutY="81.0" mnemonicParsing="false" onAction="#btnBuyProperty" style="-fx-background-color: blue;" text="Buy Property" textFill="WHITE">
+      <Button fx:id="btnBuyProperty" layoutX="372.0" layoutY="81.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnBuyProperty" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: blue;" text="Buy Property" textFill="WHITE">
          <font>
-            <Font name="Cooper Black" size="20.0" />
+            <Font name="Calibri Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnSellProperty" layoutX="372.0" layoutY="142.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Sell Property" textFill="WHITE">
+      <Button fx:id="btnSellProperty" layoutX="372.0" layoutY="142.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnSellProperty" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: blue;" text="Sell Property" textFill="WHITE">
          <font>
-            <Font name="Cooper Black" size="20.0" />
+            <Font name="Calibri Bold" size="20.0" />
          </font>
       </Button>
       <Button fx:id="buttonQuitGame" layoutX="375.0" layoutY="652.0" mnemonicParsing="false" onMouseClicked="#menuButton" prefWidth="164.0" style="-fx-background-color: red;" text="Quit Game" textFill="WHITE">
          <font>
-            <Font name="Cooper Black" size="20.0" />
+            <Font name="Calibri Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnOfferTrade" layoutX="372.0" layoutY="203.0" mnemonicParsing="false" style="-fx-background-color: blue;" text="Offer A Trade" textFill="WHITE">
+      <Button fx:id="btnOfferTrade" layoutX="372.0" layoutY="203.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnOfferAtTade" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: blue;" text="Offer A Trade" textFill="WHITE">
          <font>
-            <Font name="Cooper Black" size="20.0" />
+            <Font name="Calibri Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnPayRent" layoutX="372.0" layoutY="264.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: blue;" text="Pay Rent" textFill="WHITE">
+      <Button fx:id="btnPayRent" layoutX="372.0" layoutY="264.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnPayRent" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: blue;" text="Pay Rent" textFill="WHITE">
          <font>
-            <Font name="Cooper Black" size="20.0" />
+            <Font name="Calibri Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnFinishTurn" layoutX="372.0" layoutY="330.0" mnemonicParsing="false" onAction="#btnFinishTurn" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: black;" text="Finish Turn" textFill="WHITE">
+      <Button fx:id="btnFinishTurn" layoutX="372.0" layoutY="330.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnFinishTurn" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: black;" text="Finish Turn" textFill="WHITE">
          <font>
-            <Font name="Cooper Black" size="20.0" />
+            <Font name="Calibri Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnTest" layoutX="413.0" layoutY="473.0" mnemonicParsing="false" onMouseClicked="#btnTest" text="Button" />
       <Pane fx:id="pane9" layoutX="674.0" layoutY="656.0" prefHeight="66.0" prefWidth="51.0">
          <children>
             <ImageView fx:id="player1_9" fitHeight="30.0" fitWidth="20.0" style="-fx-opacity: 90%;">
@@ -1397,5 +1404,6 @@
             </ImageView>
          </children>
       </Pane>
+      <Button fx:id="btnTest" layoutX="409.0" layoutY="702.0" mnemonicParsing="false" onMouseClicked="#btnTest" text="Button" />
    </children>
 </AnchorPane>

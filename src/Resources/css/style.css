@@ -110,3 +110,13 @@ ComboBox
 	-fx-text-fill: RED;
 }
 
+#playerXRentOrBuy{
+	-fx-text-fill: black;
+}
+#txtBuyPrice{
+	-fx-text-fill: black;
+}
+#txtRentPrice{
+	-fx-text-fill: black;
+}
+

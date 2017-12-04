@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+import java.util.function.IntBinaryOperator;
 
 import Controller.Logger;
 import Controller.iWindow;
@@ -24,9 +25,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -47,6 +51,8 @@ public class UI implements UIInterface{
 	public static final int[] playersStatsY={60,150,240,330};
 
 	public static final IGameEngine ge = iWindow.getGameEngine();
+	
+	
 	
 	@FXML
 	private ImageView player1_0= new ImageView();
@@ -659,7 +665,7 @@ public class UI implements UIInterface{
 	    private TextArea txtAnsw4;
 	    
 	    @FXML
-	    private Button btnOfferTrade;
+	    private Button btnOfferTrade = new Button();
 	    
 	    @FXML
 	    private Label round = new Label();
@@ -671,10 +677,10 @@ public class UI implements UIInterface{
 	    private Label theQuestion= new Label();
 	    
 	    @FXML
-	    private Button btnPayRent;
+	    private Button btnPayRent= new Button();
 	    
 	    @FXML
-	    private Button btnFinishTurn;
+	    private Button btnFinishTurn = new Button();
 
 	    @FXML
 	    private Pane paneCurrentTurnPlayer1= new Pane();
@@ -749,7 +755,7 @@ public class UI implements UIInterface{
 	    private Label txtRentPrice; // Value injected by FXMLLoader
 
 	    @FXML // fx:id="sellTradePane"
-	    private Pane sellTradePane; // Value injected by FXMLLoader
+	    private Pane sellTradePane = new Pane(); // Value injected by FXMLLoader
 	    
 	    @FXML 
 	    private Pane inBoardWhitePane; // Value injected by FXMLLoader
@@ -781,8 +787,9 @@ public class UI implements UIInterface{
 	    Label playersStrikes[]={strikesPlayer1,strikesPlayer2,strikesPlayer3,strikesPlayer4};
 	    Label playersCash[]={moneyPlayer1,moneyPlayer2,moneyPlayer3,moneyPlayer4};
 	    Label playersValue[]={valuePlayer1,valuePlayer2,valuePlayer3,valuePlayer4};
+	    Pane inBoardPanes[] = {txtAnswerPane, buyRentPane, sellTradePane};
 	    @FXML
-	    private Button btnTest;
+	    private Button btnTest = new Button();
 	    
 	   
 	public UI() {
@@ -848,6 +855,8 @@ public class UI implements UIInterface{
         		roll2[i].setVisible(false);
         	}	
 	}
+    
+    
  
 	/*
     @FXML
@@ -882,17 +891,16 @@ public class UI implements UIInterface{
 
 	@Override
 	public void movePlayer(String player, int tileFrom, int tileTo) {
-		//the player's order in the game
 		int playerPosition= playersList.indexOf(player);
-//		System.out.println("tile from "+ tileFrom);
-//		System.out.println("tile to "+ tileTo);
 		players[tileFrom][playerPosition].setVisible(false);
 		players[tileTo][playerPosition].setVisible(true);
 		
 	}
 	@FXML
     void btnTest(MouseEvent event) {
-		
+	gameLogScrollPane.setVisible(!gameLogScrollPane.isVisible());
+	questionsPane.setVisible(!questionsPane.isVisible());
+	txtAnswerPane.setVisible(!txtAnswerPane.isVisible());
 		
 	}
 
@@ -923,15 +931,6 @@ public class UI implements UIInterface{
 
 	@Override
 	public void displayQuestion(Question question, String player) {
-	//	Pane[] answersP = {txtAnswerPane1, txtAnswerPane2, txtAnswerPane3, txtAnswerPane4};
-		//TextArea[] answers = {txtAnsw1,txtAnsw2,txtAnsw3,txtAnsw4};
-		/*
-		for (int i=0; i<answers.length; i++){
-			System.out.println("wtf?");
-			answers[i].setText(question.getqAnswers().get(0)+"");
-			answersP[i].setVisible(false);
-		}
-		*/
 		gameLogScrollPane.setVisible(false);
 		questionsPane.setVisible(true);
 		playerXIsAnswering.setText(player + " is answering question :");
@@ -956,8 +955,7 @@ public class UI implements UIInterface{
 				System.out.println("want to add glow");
 				addGlow(i+1);
 			}
-			//else
-				//removeGlow(i);
+			
 		}
 	}
 
@@ -967,9 +965,6 @@ public class UI implements UIInterface{
 	public void gameLog(String message) {
 		gameLogs.setText(message+"\n"+gameLogs.getText());
 		gameLogDisplay(true);
-		
-		
-		
 	}
 
 	@Override
@@ -984,14 +979,15 @@ public class UI implements UIInterface{
     @FXML
     void sendAnswerBtn(MouseEvent event) {
     	List<Integer> answers = new ArrayList<Integer>();
-    	if (txtAnsw1.isVisible())
+    	if (txtAnswerPane1.isVisible())
     		answers.add(1);
-    	if (txtAnsw2.isVisible())
+    	if (txtAnswerPane2.isVisible())
     		answers.add(2);
-    	if (txtAnsw3.isVisible())
+    	if (txtAnswerPane3.isVisible())
     		answers.add(3);
-    	if (txtAnsw4.isVisible())
+    	if (txtAnswerPane4.isVisible())
     		answers.add(4);
+    	System.out.println(answers+" are the answers");
     	//ge.AnswerQuestion(answers);
     }
 
@@ -1023,10 +1019,10 @@ public class UI implements UIInterface{
     
 	@Override
 	public void BuildBoard() {	
-
 		txtPlayer1Name.setText(playersList.get(0));
 		txtPlayer2Name.setText(playersList.get(1));
-		
+		setInMenuPanesInVisible();
+		gameLogDisplay(true);
 		player3Container.setVisible(false);
 		player4Container.setVisible(false);
 		players[0][3].setVisible(false);
@@ -1036,16 +1032,11 @@ public class UI implements UIInterface{
 			player3Container.setVisible(true);
 			players[0][2].setVisible(true);
 		}
-		if (playersList.size()==4) {
+		if (playersList.size()>3) {
 			txtPlayer4Name.setText(playersList.get(3));
 			player4Container.setVisible(true);
 			players[0][3].setVisible(true);
 		}
-		txtAnswerPane1.setVisible(false);
-		txtAnswerPane2.setVisible(false);
-		txtAnswerPane3.setVisible(false);
-		txtAnswerPane4.setVisible(false);
-		
 	}
 
 	@Override
@@ -1080,13 +1071,7 @@ public class UI implements UIInterface{
 			Integer assetsAmount) {
 		int pos=playersList.indexOf(nickname);
 		System.out.println(pos+ " pos");
-/*		
-		System.out.println("Updating player "+nickname+" ("+pos+")");
-		playersCash[pos].setText(cash+"");
-		playersStrikes[pos].setText(strikes+"");
-		playersValue[pos].setText(assetsWorth+ "(amount: "+assetsAmount+")");
-		
-		*/
+
 
 		switch (pos){
 			case (0):{
@@ -1318,309 +1303,12 @@ public class UI implements UIInterface{
     	 for (int i=1; i<40; i++)
     		 for (int j=0; j<4; j++)
     			 players[i][j].setVisible(false);
-    	 System.out.println("visible? "+ players[8][0].isVisible());
-
-    	 
+    	 System.out.println("visible? "+ players[8][0].isVisible()); 
     }
-    
-    
+ 
     @FXML
     void initialize() {
     	  _instance = this;
-
-
-    	    assert main != null : "fx:id=\"main\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane0 != null : "fx:id=\"pane0\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_0 != null : "fx:id=\"player1_0\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_0 != null : "fx:id=\"player2_0\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_0 != null : "fx:id=\"player3_0\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_0 != null : "fx:id=\"player4_0\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane1 != null : "fx:id=\"pane1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_1 != null : "fx:id=\"player1_1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_1 != null : "fx:id=\"player2_1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_1 != null : "fx:id=\"player3_1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_1 != null : "fx:id=\"player4_1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane2 != null : "fx:id=\"pane2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_2 != null : "fx:id=\"player1_2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_2 != null : "fx:id=\"player2_2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_2 != null : "fx:id=\"player3_2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_2 != null : "fx:id=\"player4_2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane3 != null : "fx:id=\"pane3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_3 != null : "fx:id=\"player1_3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_3 != null : "fx:id=\"player2_3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_3 != null : "fx:id=\"player3_3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_3 != null : "fx:id=\"player4_3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane4 != null : "fx:id=\"pane4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_4 != null : "fx:id=\"player1_4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_4 != null : "fx:id=\"player2_4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_4 != null : "fx:id=\"player3_4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_4 != null : "fx:id=\"player4_4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane5 != null : "fx:id=\"pane5\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_5 != null : "fx:id=\"player1_5\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_5 != null : "fx:id=\"player2_5\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_5 != null : "fx:id=\"player3_5\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_5 != null : "fx:id=\"player4_5\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane6 != null : "fx:id=\"pane6\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_6 != null : "fx:id=\"player1_6\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_6 != null : "fx:id=\"player2_6\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_6 != null : "fx:id=\"player3_6\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_6 != null : "fx:id=\"player4_6\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane7 != null : "fx:id=\"pane7\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_7 != null : "fx:id=\"player1_7\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_7 != null : "fx:id=\"player2_7\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_7 != null : "fx:id=\"player3_7\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_7 != null : "fx:id=\"player4_7\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane8 != null : "fx:id=\"pane8\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_8 != null : "fx:id=\"player1_8\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_8 != null : "fx:id=\"player2_8\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_8 != null : "fx:id=\"player3_8\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_8 != null : "fx:id=\"player4_8\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane10 != null : "fx:id=\"pane10\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_10 != null : "fx:id=\"player1_10\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_10 != null : "fx:id=\"player2_10\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_10 != null : "fx:id=\"player3_10\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_10 != null : "fx:id=\"player4_10\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane11 != null : "fx:id=\"pane11\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_11 != null : "fx:id=\"player1_11\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_11 != null : "fx:id=\"player2_11\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_11 != null : "fx:id=\"player3_11\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_11 != null : "fx:id=\"player4_11\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane12 != null : "fx:id=\"pane12\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_12 != null : "fx:id=\"player1_12\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_12 != null : "fx:id=\"player2_12\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_12 != null : "fx:id=\"player3_12\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_12 != null : "fx:id=\"player4_12\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane13 != null : "fx:id=\"pane13\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_13 != null : "fx:id=\"player1_13\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_13 != null : "fx:id=\"player2_13\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_13 != null : "fx:id=\"player3_13\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_13 != null : "fx:id=\"player4_13\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane14 != null : "fx:id=\"pane14\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_14 != null : "fx:id=\"player1_14\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_14 != null : "fx:id=\"player2_14\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_14 != null : "fx:id=\"player3_14\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_14 != null : "fx:id=\"player4_14\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane15 != null : "fx:id=\"pane15\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_15 != null : "fx:id=\"player1_15\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_15 != null : "fx:id=\"player2_15\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_15 != null : "fx:id=\"player3_15\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_15 != null : "fx:id=\"player4_15\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane16 != null : "fx:id=\"pane16\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_16 != null : "fx:id=\"player1_16\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_16 != null : "fx:id=\"player2_16\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_16 != null : "fx:id=\"player3_16\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_16 != null : "fx:id=\"player4_16\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane17 != null : "fx:id=\"pane17\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_17 != null : "fx:id=\"player1_17\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_17 != null : "fx:id=\"player2_17\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_17 != null : "fx:id=\"player3_17\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_17 != null : "fx:id=\"player4_17\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane18 != null : "fx:id=\"pane18\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_18 != null : "fx:id=\"player1_18\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_18 != null : "fx:id=\"player2_18\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_18 != null : "fx:id=\"player3_18\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_18 != null : "fx:id=\"player4_18\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane19 != null : "fx:id=\"pane19\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_19 != null : "fx:id=\"player1_19\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_19 != null : "fx:id=\"player2_19\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_19 != null : "fx:id=\"player3_19\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_19 != null : "fx:id=\"player4_19\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane30 != null : "fx:id=\"pane30\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_30 != null : "fx:id=\"player1_30\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_30 != null : "fx:id=\"player2_30\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_30 != null : "fx:id=\"player3_30\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_30 != null : "fx:id=\"player4_30\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane29 != null : "fx:id=\"pane29\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_29 != null : "fx:id=\"player1_29\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_29 != null : "fx:id=\"player2_29\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_29 != null : "fx:id=\"player3_29\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_29 != null : "fx:id=\"player4_29\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane28 != null : "fx:id=\"pane28\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_28 != null : "fx:id=\"player1_28\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_28 != null : "fx:id=\"player2_28\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_28 != null : "fx:id=\"player3_28\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_28 != null : "fx:id=\"player4_28\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane27 != null : "fx:id=\"pane27\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_27 != null : "fx:id=\"player1_27\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_27 != null : "fx:id=\"player2_27\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_27 != null : "fx:id=\"player3_27\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_27 != null : "fx:id=\"player4_27\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane26 != null : "fx:id=\"pane26\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_26 != null : "fx:id=\"player1_26\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_26 != null : "fx:id=\"player2_26\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_26 != null : "fx:id=\"player3_26\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_26 != null : "fx:id=\"player4_26\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane25 != null : "fx:id=\"pane25\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_25 != null : "fx:id=\"player1_25\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_25 != null : "fx:id=\"player2_25\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_25 != null : "fx:id=\"player3_25\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_25 != null : "fx:id=\"player4_25\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane24 != null : "fx:id=\"pane24\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_24 != null : "fx:id=\"player1_24\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_24 != null : "fx:id=\"player2_24\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_24 != null : "fx:id=\"player3_24\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_24 != null : "fx:id=\"player4_24\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane23 != null : "fx:id=\"pane23\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_23 != null : "fx:id=\"player1_23\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_23 != null : "fx:id=\"player2_23\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_23 != null : "fx:id=\"player3_23\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_23 != null : "fx:id=\"player4_23\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane22 != null : "fx:id=\"pane22\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_22 != null : "fx:id=\"player1_22\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_22 != null : "fx:id=\"player2_22\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_22 != null : "fx:id=\"player3_22\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_22 != null : "fx:id=\"player4_22\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane21 != null : "fx:id=\"pane21\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_21 != null : "fx:id=\"player1_21\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_21 != null : "fx:id=\"player2_21\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_21 != null : "fx:id=\"player3_21\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_21 != null : "fx:id=\"player4_21\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane20 != null : "fx:id=\"pane20\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_20 != null : "fx:id=\"player1_20\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_20 != null : "fx:id=\"player2_20\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_20 != null : "fx:id=\"player3_20\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_20 != null : "fx:id=\"player4_20\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane39 != null : "fx:id=\"pane39\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_39 != null : "fx:id=\"player1_39\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_39 != null : "fx:id=\"player2_39\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_39 != null : "fx:id=\"player3_39\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_39 != null : "fx:id=\"player4_39\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane38 != null : "fx:id=\"pane38\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_38 != null : "fx:id=\"player1_38\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_38 != null : "fx:id=\"player2_38\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_38 != null : "fx:id=\"player3_38\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_38 != null : "fx:id=\"player4_38\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane37 != null : "fx:id=\"pane37\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_37 != null : "fx:id=\"player1_37\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_37 != null : "fx:id=\"player2_37\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_37 != null : "fx:id=\"player3_37\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_37 != null : "fx:id=\"player4_37\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane36 != null : "fx:id=\"pane36\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_36 != null : "fx:id=\"player1_36\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_36 != null : "fx:id=\"player2_36\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_36 != null : "fx:id=\"player3_36\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_36 != null : "fx:id=\"player4_36\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane35 != null : "fx:id=\"pane35\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_35 != null : "fx:id=\"player1_35\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_35 != null : "fx:id=\"player2_35\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_35 != null : "fx:id=\"player3_35\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_35 != null : "fx:id=\"player4_35\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane34 != null : "fx:id=\"pane34\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_34 != null : "fx:id=\"player1_34\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_34 != null : "fx:id=\"player2_34\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_34 != null : "fx:id=\"player3_34\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_34 != null : "fx:id=\"player4_34\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane33 != null : "fx:id=\"pane33\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_33 != null : "fx:id=\"player1_33\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_33 != null : "fx:id=\"player2_33\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_33 != null : "fx:id=\"player3_33\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_33 != null : "fx:id=\"player4_33\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane32 != null : "fx:id=\"pane32\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_32 != null : "fx:id=\"player1_32\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_32 != null : "fx:id=\"player2_32\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_32 != null : "fx:id=\"player3_32\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_32 != null : "fx:id=\"player4_32\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane31 != null : "fx:id=\"pane31\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_31 != null : "fx:id=\"player1_31\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_31 != null : "fx:id=\"player2_31\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_31 != null : "fx:id=\"player3_31\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_31 != null : "fx:id=\"player4_31\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3Container != null : "fx:id=\"player3Container\" was not injected: check your FXML file 'UI.fxml'.";
-            assert playerGreenStats != null : "fx:id=\"playerGreenStats\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3StatsPane != null : "fx:id=\"player3StatsPane\" was not injected: check your FXML file 'UI.fxml'.";
-            assert lblMoney3 != null : "fx:id=\"lblMoney3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert lblStrikes3 != null : "fx:id=\"lblStrikes3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert moneyPlayer3 != null : "fx:id=\"moneyPlayer3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert strikesPlayer3 != null : "fx:id=\"strikesPlayer3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert lblValue3 != null : "fx:id=\"lblValue3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert valuePlayer3 != null : "fx:id=\"valuePlayer3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert paneCurrentTurnPlayer3 != null : "fx:id=\"paneCurrentTurnPlayer3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4Container != null : "fx:id=\"player4Container\" was not injected: check your FXML file 'UI.fxml'.";
-            assert playerRedStats != null : "fx:id=\"playerRedStats\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4StatsPane != null : "fx:id=\"player4StatsPane\" was not injected: check your FXML file 'UI.fxml'.";
-            assert lblMoney4 != null : "fx:id=\"lblMoney4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert lblStrikes4 != null : "fx:id=\"lblStrikes4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert moneyPlayer4 != null : "fx:id=\"moneyPlayer4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert strikesPlayer4 != null : "fx:id=\"strikesPlayer4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert lblValue4 != null : "fx:id=\"lblValue4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert valuePlayer4 != null : "fx:id=\"valuePlayer4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert paneCurrentTurnPlayer4 != null : "fx:id=\"paneCurrentTurnPlayer4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1Container != null : "fx:id=\"player1Container\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1StatsPane != null : "fx:id=\"player1StatsPane\" was not injected: check your FXML file 'UI.fxml'.";
-            assert lblMoney1 != null : "fx:id=\"lblMoney1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert lblStrikes1 != null : "fx:id=\"lblStrikes1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert moneyPlayer1 != null : "fx:id=\"moneyPlayer1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert strikesPlayer1 != null : "fx:id=\"strikesPlayer1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert lblValue1 != null : "fx:id=\"lblValue1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert valuePlayer1 != null : "fx:id=\"valuePlayer1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert paneCurrentTurnPlayer1 != null : "fx:id=\"paneCurrentTurnPlayer1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert playerBlueStats != null : "fx:id=\"playerBlueStats\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2Container != null : "fx:id=\"player2Container\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2StatsPane != null : "fx:id=\"player2StatsPane\" was not injected: check your FXML file 'UI.fxml'.";
-            assert lblMoney2 != null : "fx:id=\"lblMoney2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert lblStrikes2 != null : "fx:id=\"lblStrikes2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert moneyPlayer2 != null : "fx:id=\"moneyPlayer2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert strikesPlayer2 != null : "fx:id=\"strikesPlayer2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert lblValue2 != null : "fx:id=\"lblValue2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert valuePlayer2 != null : "fx:id=\"valuePlayer2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert paneCurrentTurnPlayer2 != null : "fx:id=\"paneCurrentTurnPlayer2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert playerYellowStats != null : "fx:id=\"playerYellowStats\" was not injected: check your FXML file 'UI.fxml'.";
-            assert lblRound != null : "fx:id=\"lblRound\" was not injected: check your FXML file 'UI.fxml'.";
-            assert round != null : "fx:id=\"round\" was not injected: check your FXML file 'UI.fxml'.";
-            assert rollDicePane != null : "fx:id=\"rollDicePane\" was not injected: check your FXML file 'UI.fxml'.";
-            assert cube2pane != null : "fx:id=\"cube2pane\" was not injected: check your FXML file 'UI.fxml'.";
-            assert roll2_1 != null : "fx:id=\"roll2_1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert roll2_2 != null : "fx:id=\"roll2_2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert roll2_3 != null : "fx:id=\"roll2_3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert roll2_4 != null : "fx:id=\"roll2_4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert roll2_5 != null : "fx:id=\"roll2_5\" was not injected: check your FXML file 'UI.fxml'.";
-            assert roll2_6 != null : "fx:id=\"roll2_6\" was not injected: check your FXML file 'UI.fxml'.";
-            assert btnRollDice != null : "fx:id=\"btnRollDice\" was not injected: check your FXML file 'UI.fxml'.";
-            assert cube1Pane != null : "fx:id=\"cube1Pane\" was not injected: check your FXML file 'UI.fxml'.";
-            assert roll1_1 != null : "fx:id=\"roll1_1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert roll1_2 != null : "fx:id=\"roll1_2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert roll1_3 != null : "fx:id=\"roll1_3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert roll1_4 != null : "fx:id=\"roll1_4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert roll1_5 != null : "fx:id=\"roll1_5\" was not injected: check your FXML file 'UI.fxml'.";
-            assert roll1_6 != null : "fx:id=\"roll1_6\" was not injected: check your FXML file 'UI.fxml'.";
-            assert inBoardMenu != null : "fx:id=\"inBoardMenu\" was not injected: check your FXML file 'UI.fxml'.";
-            assert inBoardWhitePane != null : "fx:id=\"inBoardWhitePane\" was not injected: check your FXML file 'UI.fxml'.";
-            assert gameLogScrollPane != null : "fx:id=\"gameLogScrollPane\" was not injected: check your FXML file 'UI.fxml'.";
-            assert gameLogs != null : "fx:id=\"gameLogs\" was not injected: check your FXML file 'UI.fxml'.";
-            assert txtAnswerPane != null : "fx:id=\"txtAnswerPane\" was not injected: check your FXML file 'UI.fxml'.";
-            assert playerXIsAnswering != null : "fx:id=\"playerXIsAnswering\" was not injected: check your FXML file 'UI.fxml'.";
-            assert theQuestion != null : "fx:id=\"theQuestion\" was not injected: check your FXML file 'UI.fxml'.";
-            assert txtAnsw1 != null : "fx:id=\"txtAnsw1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert txtAnsw2 != null : "fx:id=\"txtAnsw2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert txtAnsw3 != null : "fx:id=\"txtAnsw3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert txtAnsw4 != null : "fx:id=\"txtAnsw4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert txtAnswerPane2 != null : "fx:id=\"txtAnswerPane2\" was not injected: check your FXML file 'UI.fxml'.";
-            assert txtAnswerPane1 != null : "fx:id=\"txtAnswerPane1\" was not injected: check your FXML file 'UI.fxml'.";
-            assert txtAnswerPane4 != null : "fx:id=\"txtAnswerPane4\" was not injected: check your FXML file 'UI.fxml'.";
-            assert txtAnswerPane3 != null : "fx:id=\"txtAnswerPane3\" was not injected: check your FXML file 'UI.fxml'.";
-            assert buyRentPane != null : "fx:id=\"buyRentPane\" was not injected: check your FXML file 'UI.fxml'.";
-            assert playerXRentOrBuy != null : "fx:id=\"playerXRentOrBuy\" was not injected: check your FXML file 'UI.fxml'.";
-            assert txtBuyPrice != null : "fx:id=\"txtBuyPrice\" was not injected: check your FXML file 'UI.fxml'.";
-            assert txtRentPrice != null : "fx:id=\"txtRentPrice\" was not injected: check your FXML file 'UI.fxml'.";
-            assert sellTradePane != null : "fx:id=\"sellTradePane\" was not injected: check your FXML file 'UI.fxml'.";
-            assert playerXSellOrTrade != null : "fx:id=\"playerXSellOrTrade\" was not injected: check your FXML file 'UI.fxml'.";
-            assert btnBuyProperty != null : "fx:id=\"btnBuyProperty\" was not injected: check your FXML file 'UI.fxml'.";
-            assert btnSellProperty != null : "fx:id=\"btnSellProperty\" was not injected: check your FXML file 'UI.fxml'.";
-            assert buttonQuitGame != null : "fx:id=\"buttonQuitGame\" was not injected: check your FXML file 'UI.fxml'.";
-            assert btnOfferTrade != null : "fx:id=\"btnOfferTrade\" was not injected: check your FXML file 'UI.fxml'.";
-            assert btnPayRent != null : "fx:id=\"btnPayRent\" was not injected: check your FXML file 'UI.fxml'.";
-            assert btnFinishTurn != null : "fx:id=\"btnFinishTurn\" was not injected: check your FXML file 'UI.fxml'.";
-            assert btnTest != null : "fx:id=\"btnTest\" was not injected: check your FXML file 'UI.fxml'.";
-            assert pane9 != null : "fx:id=\"pane9\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player1_9 != null : "fx:id=\"player1_9\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player2_9 != null : "fx:id=\"player2_9\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player3_9 != null : "fx:id=\"player3_9\" was not injected: check your FXML file 'UI.fxml'.";
-            assert player4_9 != null : "fx:id=\"player4_9\" was not injected: check your FXML file 'UI.fxml'.";
-            assert txtPlayer2Name != null : "fx:id=\"txtPlayer2Name\" was not injected: check your FXML file 'UI.fxml'.";
-            assert txtPlayer1Name != null : "fx:id=\"txtPlayer2Name\" was not injected: check your FXML file 'UI.fxml'.";
-            assert txtPlayer3Name != null : "fx:id=\"txtPlayer2Name\" was not injected: check your FXML file 'UI.fxml'.";
-            assert txtPlayer4Name != null : "fx:id=\"txtPlayer2Name\" was not injected: check your FXML file 'UI.fxml'.";
-          
           ge.setUI(this);
         initializeTiles();
         initializeDicesFirstTime();
@@ -1628,45 +1316,36 @@ public class UI implements UIInterface{
     }
     
     private void addGlow(int playerNum){
-    //	for (int i=0; i<playersName.length; i++)
-    		//playersName[i].setEffect(null);
     	int depth = 120;//Setting the uniform variable for the glow width and height
     	javafx.scene.paint.Color red = null;
-    	red = new javafx.scene.paint.Color(1, 1, 0, 0);
+    	red = new javafx.scene.paint.Color(1, 0, 0, 1);
+    	Effect glow = new Glow(1);
     	DropShadow borderGlow= new DropShadow();
     	borderGlow.setOffsetY(0f);
     	borderGlow.setOffsetX(0f);
     	borderGlow.setColor(red);
     	borderGlow.setWidth(depth);
     	borderGlow.setHeight(depth);
-    	
-    //	txtPlayer1Name=new Label(playersList.get(0)); //Apply the borderGlow effect to the JavaFX node
-    	//txtPlayer2Name=new Label(playersList.get(1)); //Apply the borderGlow effect to the JavaFX node
-    //	if (playersList.size()>2)
-    	//	txtPlayer3Name=new Label(playersList.get(2)); //Apply the borderGlow effect to the JavaFX node
-    //	if (playersList.size()>3)
-    	//	txtPlayer4Name=new Label(playersList.get(3));
-    	txtPlayer1Name.setEffect(new DropShadow()); //Apply the borderGlow effect to the JavaFX node
-    	txtPlayer2Name.setEffect(new DropShadow()); //Apply the borderGlow effect to the JavaFX node
-    	txtPlayer3Name.setEffect(new DropShadow()); //Apply the borderGlow effect to the JavaFX node
-    	txtPlayer4Name.setEffect(new DropShadow());
+    	txtPlayer1Name.setEffect(new Glow(0)); //Apply the borderGlow effect to the JavaFX node
+    	txtPlayer2Name.setEffect(new Glow(0)); //Apply the borderGlow effect to the JavaFX node
+    	txtPlayer3Name.setEffect(new Glow(0)); //Apply the borderGlow effect to the JavaFX node
+    	txtPlayer4Name.setEffect(new Glow(0));
     	switch (playerNum){
-    		case (1): {txtPlayer1Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+    		case (1): {txtPlayer1Name.setEffect(glow); //Apply the borderGlow effect to the JavaFX node
+    
     			break;
     		}
-    		case (2): {txtPlayer2Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+    		case (2): {txtPlayer2Name.setEffect(glow); //Apply the borderGlow effect to the JavaFX node
     			break;
     		
     		}
-    		case (3):{ txtPlayer3Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+    		case (3):{ txtPlayer3Name.setEffect(glow); //Apply the borderGlow effect to the JavaFX node
     			break;
     		}
-    		case (4): {txtPlayer4Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+    		case (4): {txtPlayer4Name.setEffect(glow); //Apply the borderGlow effect to the JavaFX node
     			break;
     		}
     	}
-    	
-
     }
 
 
@@ -1687,21 +1366,102 @@ public class UI implements UIInterface{
 	
 	@FXML
     void btnFinishTurn(ActionEvent event) {
+		setInMenuPanesInVisible();
+		gameLogScrollPane.setVisible(true);
 		ge.btnFinishTurn();
+		
 	}
 	@FXML
     void btnBuyProperty(ActionEvent event) {
-		System.out.println("cliked");
+		setInMenuPanesInVisible();
+		buyRentPane.setVisible(true);
 		ge.btnBuyProperty();
 	}
-
-
-		
-
-
-
-
-
 	
-
+	void setInMenuPanesInVisible(){
+		txtAnswerPane.setVisible(false);
+		buyRentPane.setVisible(false);
+		gameLogScrollPane.setVisible(false);
+		sellTradePane.setVisible(false);
+	}
+	 @FXML
+	 void btnOfferAtTade(ActionEvent event) {
+		 setInMenuPanesInVisible();
+		 sellTradePane.setVisible(true);
+	    }
+	 @FXML
+	 void btnPayRent(ActionEvent event) {
+		 setInMenuPanesInVisible();
+		 btnPayRent.setVisible(true);
+	    }
+	 @FXML
+	  void btnSellProperty(ActionEvent event) {
+		 setInMenuPanesInVisible();
+		 sellTradePane.setVisible(true);
+	    }
+	 
+	public void landOnEmptyPropertyButtonsDisplay(){
+		 allowPurchase(true);
+		 allowSellProperty(false);
+		 allowRent(false);
+		 allowFinishTurn(true);
+		 allowRollDice(false);
+	 }
+	public void landOnOwnerPropertyButtonsDisplay(){
+		 allowPurchase(true);
+		 allowSellProperty(false);
+		 allowFinishTurn(false);
+		 allowRent(false);
+		 allowRollDice(false);
+	 }
+	public void landOnQuestionMarkButtonsDisplay(){
+		 allowPurchase(false);
+		 allowSellProperty(false);
+		 allowFinishTurn(false);
+		 allowRent(false);
+		 allowRollDice(false);
+	 }
+	public void beforeRollDiceButtonsDisplay(){
+		 allowFinishTurn(false);
+		 allowPurchase(false);
+		 allowRent(false);
+		 allowSellProperty(true);
+		 allowRollDice(true);
+	 }
+	public void landOnLuckyTileButtonsDisplay(){
+		 allowPurchase(false);
+		 allowSellProperty(false);
+		 allowFinishTurn(false);
+		 allowRent(false);
+		 allowRollDice(false);
+	 }
+	public void finishedATileButtonsDisplay(){
+		 allowPurchase(false);
+		 allowSellProperty(false);
+		 allowFinishTurn(true);
+		 allowRent(false);
+		 allowRollDice(false);
+	 }
+	public void landOnAJailButtonsDisplay(){
+		 allowPurchase(false);
+		 allowSellProperty(false);
+		 allowFinishTurn(true);
+		 allowRent(false);
+		 allowRollDice(false);
+	 }
+	public void landOnAGoTileButtonsDisplay(){
+		 allowPurchase(false);
+		 allowSellProperty(false);
+		 allowFinishTurn(true);
+		 allowRent(false);
+		 allowRollDice(false);
+	 }
+	
+	public void landOnHisOwnPropertyButtonsDisplay(){
+		 allowPurchase(false);
+		 allowSellProperty(false);
+		 allowFinishTurn(true);
+		 allowRent(false);
+		 allowRollDice(false);
+	}
 }
