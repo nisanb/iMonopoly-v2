@@ -77,16 +77,15 @@ public class Login {
     	if(frmNickname.getText().isEmpty())
     	{
     		namelabel.setVisible(true);
+    		setUserBGC("red");
     	}
     	else
     	{
     	mng.login(frmNickname.getText());
+    	setUserBGC("white");
     	iWindow.swap(Window.Player_Menu);
     	}
-    	
-
-    	
-    	
+    	  	
     	
     }
     
@@ -95,24 +94,22 @@ public class Login {
 
     @FXML
     void initialize() {
-        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Login.fxml'.";
-        assert frmNickname != null : "fx:id=\"frmNickname\" was not injected: check your FXML file 'Login.fxml'.";
-        assert btnLogin != null : "fx:id=\"btnLogin\" was not injected: check your FXML file 'Login.fxml'.";
-        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Login.fxml'.";
         namelabel.setVisible(false);
         
- 
-        
-        
-        
-        
-        
-        
-        
+
     }
     
     @FXML
     void openAdmin(ActionEvent event) {
     	iWindow.swap(Window.Admin_Login);
     }
+    
+    
+    
+    //============================================= CSS ========================================================
+    private void setUserBGC(String color) {
+    	frmNickname.setStyle("-fx-background-color:" + color +";");
+    }
+    
+    
 }
