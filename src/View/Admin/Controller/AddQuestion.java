@@ -138,7 +138,7 @@ public class AddQuestion {
     @FXML
     private ComboBox<Team> TeamComboBox;
     
-    @FXML Label lblError;
+    @FXML private Label lblError;
     
     
     //local variables
@@ -351,8 +351,8 @@ public class AddQuestion {
     	team = TeamComboBox.getSelectionModel().getSelectedItem();
     }
     
-    
-    
+
+
     
     @FXML
     void AddQuestion(ActionEvent event) {
@@ -399,7 +399,7 @@ public class AddQuestion {
     	else if (qStrength == null){
     		errorLabelControl("You must select quetion difficulty", true);
     	}
-    	
+    	System.out.println("akjfafkjadfgadjf");
     	errorLabelControl(null, false);
     	
     	qNum = mng.getNextQuestionNum();
