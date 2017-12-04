@@ -315,6 +315,21 @@ public class Questions {
   }
    }
 
+  	
+  @FXML
+  void DeleteQuestion(ActionEvent event) {
+	  
+	  Map<QuestionStrength, List<Question>> questions = MonDB.getInstance().getGameQuestions();
+  	for (Map.Entry<QuestionStrength, List<Question>> list: questions.entrySet()){
+  		for (Question q:list.getValue()){
+  			System.out.println(NumQuestionCombo.getSelectionModel().getSelectedItem());
+  			
+  		}
+  		
+  	}
+  }
+  
+  
   private void GetAndSend(QuestionStrength x)
   {
 	   	Map<QuestionStrength, List<Question>> questions = MonDB.getInstance().getGameQuestions();

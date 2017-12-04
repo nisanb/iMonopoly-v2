@@ -19,7 +19,7 @@ public class Question {
 	private String team;
 	private List<QuestionTag> tags;
 	
-	protected Question(long qNumber, QuestionStrength qStrength, String qQuestion, boolean isMultiple, 
+	public Question(long qNumber, QuestionStrength qStrength, String qQuestion, boolean isMultiple, 
 			List<Answer> qAnswers, String team, List<QuestionTag> tags) {
 		super();
 		this.qNumber = qNumber;

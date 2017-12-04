@@ -149,7 +149,7 @@
             <Button fx:id="save" mnemonicParsing="false" prefHeight="30.0" prefWidth="123.0" text="Save" />
             <Button mnemonicParsing="false" onAction="#openEditQuestion" prefHeight="30.0" prefWidth="123.0" text="Edit" />
             <Button fx:id="AddQuest" mnemonicParsing="false" onAction="#OpenAddQuestion" prefHeight="30.0" prefWidth="123.0" text="Add Question" />
-            <Button fx:id="edit" mnemonicParsing="false" prefHeight="30.0" prefWidth="123.0" text="Delete" />
+            <Button fx:id="Delete" mnemonicParsing="false" onAction="#DeleteQuestion" prefHeight="30.0" prefWidth="123.0" text="Delete" />
             <Button mnemonicParsing="false" onAction="#back" prefHeight="30.0" prefWidth="123.0" text="Back" />
          </children>
       </HBox>

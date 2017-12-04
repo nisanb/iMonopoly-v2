@@ -94,9 +94,8 @@ public class Management implements IManagement{
 	@Override
 	public boolean addQuestion(Question q) {
 		return MonDB.getInstance().addQuesiton(q);
-
 	}
-
+	
 	@Override
 	public boolean removeQuestion(Question q) {
 		return MonDB.getInstance().deleteQuestion(q);
@@ -120,5 +119,16 @@ public class Management implements IManagement{
 		MonDB.exportData();
 	}
 
+@Override
+public long getNextQuestionNum() {
+	// TODO Auto-generated method stub
+	return 0;
+}
+
+@Override
+public void btnSave() {
+	// TODO Auto-generated method stub
+	
+} 
 
 }

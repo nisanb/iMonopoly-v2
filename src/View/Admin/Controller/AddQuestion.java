@@ -6,13 +6,17 @@ package View.Admin.Controller;
 
 import java.awt.List;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import Controller.iWindow;
+import Entity.Answer;
+import Entity.Question;
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
 import Utils.Team;
 import Utils.Window;
+import View.IManagement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,6 +31,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class AddQuestion {
+	
+	private IManagement mng = iWindow.getManagement();
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -120,7 +126,25 @@ public class AddQuestion {
 
     @FXML
     private ComboBox<Team> TeamComboBox;
-
+    
+    @FXML Label lblError;
+    
+    
+    //local variables
+    String ans1;
+    String ans2;
+    String ans3;
+    String ans4;
+    boolean a1, a2, a3, a4;
+    String question;
+    long qNum;
+    QuestionStrength qStrength;
+    ArrayList<QuestionTag> tags;
+    Team team;
+    
+    
+    
+    
     @FXML
     void CangeTrueBu(MouseEvent event) {
     	TrueBu.setSelected(true);
@@ -176,7 +200,11 @@ public class AddQuestion {
 
     @FXML
     void ChooseDiff(ActionEvent event) {
-
+    	if (DiffComboox.getSelectionModel().getSelectedIndex() == 0){
+    		qStrength = null;
+    		return;
+    	}
+    	qStrength = DiffComboox.getSelectionModel().getSelectedItem();
     }
 
     @FXML
@@ -187,6 +215,11 @@ public class AddQuestion {
     	}
     	List1.getItems().add(List2.getSelectionModel().getSelectedItem());
     	List2.getItems().remove(List2.getSelectionModel().getSelectedIndex());
+    	tags = new ArrayList<QuestionTag>();
+    	for (QuestionTag t:List2.getSelectionModel().getSelectedItems()){
+    		tags.add(t);
+    	}
+    	
     }
 
     @FXML
@@ -281,6 +314,78 @@ public class AddQuestion {
     	FalseBu4.setSelected(true);
     }
     
-
+    @FXML
+    private void setTeam(ActionEvent e){
+    	if (TeamComboBox.getSelectionModel().getSelectedIndex() == 0){
+    		team = null;
+    		return;
+    	}
+    	
+    	team = TeamComboBox.getSelectionModel().getSelectedItem();
+    }
+    
+    
+    
+    
+    // Add toggle/ group//
+    
+    @FXML
+    private void AddQuestion(ActionEvent event) {
+    	if (!event.getSource().equals(save)) return;
+    	int numOfAnswers = 0;
+    	if (ans1 != null) numOfAnswers++;
+    	if (ans2 != null) numOfAnswers++;
+    	if (ans3 != null) numOfAnswers++;
+    	if (ans4 != null) numOfAnswers++;
+    	
+    	
+    	if (numOfAnswers < 2 /*and at least one ans is true*/){
+    		errorLabelControl("Qustion must contain at least 2 posible answers", true);
+    		return;
+    	}
+    	else if (question == null || question.length() < 5){
+    		errorLabelControl("Qustion must have more than 5 letters", true);
+    		return;
+    	}
+    	else if (tags.size() < 1){
+    		errorLabelControl("You must add at least one tag", true);
+    		return;
+    	}
+    	else if (team == null){
+    		errorLabelControl("You must select team", true);
+    		return;
+    	}
+    	else if (qStrength == null){
+    		errorLabelControl("You must select quetion difficulty", true);
+    	}
+    	
+    	errorLabelControl(null, false);
+    	
+    	qNum = mng.getNextQuestionNum();
+    	ArrayList<Answer> ans = new ArrayList<Answer>();
+    	//add answers to list if not null
+    	
+    	Question q = new Question(qNum, qStrength, ans1, a1, null, ans1, null);
+    	mng.addQuestion(q);
+    	
+    }   
+    
+    
+    /**
+     * This method controls the error label
+     * @param msg - message to present
+     * @param visiblity - show or not show the label
+     */
+    private void errorLabelControl(String msg, boolean visiblity) {
+    	this.lblError.setVisible(visiblity);
+    	if (msg == null) {
+    		this.lblError.setText(" ");
+    	}
+    	else {
+    		this.lblError.setText("Error: " + msg);
+    	}
+    }
+    
+    
     
 }
