@@ -143,9 +143,9 @@ public class Questions {
 	private ComboBox<Integer> NumQuestionCombo;
 
 	//local variables
-	long qnum;
-	QuestionStrength curerntChosenSterngth;
-	int indexToRemoveFromCombo;
+	long _qnum = -1;
+	QuestionStrength _curerntChosenSterngth;
+	int _indexToRemoveFromCombo;
 
 
 	@FXML // fx:id="AnchoarPane"
@@ -169,10 +169,10 @@ public class Questions {
 	@FXML
 	void ChooseDiff(ActionEvent event) // do more Efficient//
 	{
-		curerntChosenSterngth = DiffComboox.getSelectionModel().getSelectedItem();
-		System.out.println(curerntChosenSterngth);
+		_curerntChosenSterngth = DiffComboox.getSelectionModel().getSelectedItem();
+		System.out.println(_curerntChosenSterngth);
 
-		GetAndSend(curerntChosenSterngth);
+		GetAndSend(_curerntChosenSterngth);
 	}
 
 	@FXML
@@ -264,8 +264,8 @@ public class Questions {
 	void NumByDiff(ActionEvent event) {
 		if (NumQuestionCombo.getSelectionModel().getSelectedItem() == null) return;
 		System.out.println((long)NumQuestionCombo.getSelectionModel().getSelectedItem());
-		qnum = (long)NumQuestionCombo.getSelectionModel().getSelectedItem();
-		indexToRemoveFromCombo = NumQuestionCombo.getSelectionModel().getSelectedIndex();
+		_qnum = (long)NumQuestionCombo.getSelectionModel().getSelectedItem();
+		_indexToRemoveFromCombo = NumQuestionCombo.getSelectionModel().getSelectedIndex();
 		
 
 		Map<QuestionStrength, List<Question>> questions = mng.getQuestionMap();
@@ -295,6 +295,19 @@ public class Questions {
 
 	@FXML
 	void DeleteQuestion(ActionEvent event) {
+		setDiffBGC("white");
+		setQnumBGC("white");
+		
+		if (_curerntChosenSterngth == null) {
+			setDiffBGC("red");
+			return;
+		}
+		else if (_qnum < 0) {
+			setQnumBGC("red");
+			return;
+		}
+		
+		
     	Alert alert = new Alert(AlertType.CONFIRMATION);
     	alert.setTitle("Remove Question Confirmation");
     	alert.setHeaderText("You are about to remove a question. \n"
@@ -306,12 +319,15 @@ public class Questions {
     	
     	if (result.get() == ButtonType.OK){
     		Question q = null;
-    		int index = mng.getQuestions().indexOf(new Question(qnum));
+    		int index = mng.getQuestions().indexOf(new Question(_qnum));
     		System.err.println("index = " + index);
 
     		if (index > -1) q = mng.getQuestions().get(index);
     		if (mng.removeQuestion(q)) {
-    			NumQuestionCombo.getItems().remove(indexToRemoveFromCombo);
+    			NumQuestionCombo.getItems().remove(_indexToRemoveFromCombo);
+    			setDiffBGC("white");
+    			setQnumBGC("white");
+    			_qnum = -1;
     		}
     	} else 
     		
@@ -351,7 +367,8 @@ public class Questions {
 		FalseBu4.setVisible(true);
 
 		List1.getItems().clear();
-
+		_qnum = -1;
+		
 		List <Question> list = mng.getQuestionsByDifficulty(diff);
 		for (Question q:list){
 			NumQuestionCombo.getItems().add((int) q.getqNumber());
@@ -363,7 +380,7 @@ public class Questions {
 	private void SetAnswer (Integer num)
 	{
 		Question q = null;
-		List<Question> list = mng.getQuestionsByDifficulty(curerntChosenSterngth);
+		List<Question> list = mng.getQuestionsByDifficulty(_curerntChosenSterngth);
 		int index = list.indexOf(new Question(num));
 		if (index > -1) q  = list.get(index);
 
@@ -472,6 +489,17 @@ public class Questions {
 			}
 		}
 	}
+	
+	
+	
+	//=================================================== CSS ================================================
+    private void setDiffBGC(String color) {
+    	DiffComboox.setStyle("-fx-background-color:" + color +";");
+    }
+    
+    private void setQnumBGC(String color) {
+    	NumQuestionCombo.setStyle("-fx-background-color:" + color +";");
+    }
 
 
 }

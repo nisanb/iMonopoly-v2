@@ -250,10 +250,13 @@ public class MonDB implements Serializable {
 		if (this.gameQuestions.get(q.getqStrength()) == null){
 			return false;
 		}
-		
+
 		// get the correct list
 		int indexToDelete = this.gameQuestions.get(q.getqStrength()).indexOf(q);
-
+		
+		
+		
+		
 		// if object was found delete it, save the new json, and return true
 		if (indexToDelete > -1) {
 
@@ -276,10 +279,10 @@ public class MonDB implements Serializable {
 			this.gameQuestions = new HashMap<QuestionStrength, List<Question>>();
 		if (this.gameQuestions.get(q.getqStrength()) == null)
 			this.gameQuestions.put(q.getqStrength(), new ArrayList<Question>());
-
+		
 		// add the new question to the correct list and save the json
 		if (this.gameQuestions.get(q.getqStrength()).add(q)) {
-			JSON.getInstance().saveQuestions(this.gameQuestions);
+			JSON.getInstance().saveQuestions(this.gameQuestions);		
 			return true;
 		}
 

@@ -109,11 +109,11 @@ public class JSON {
 		}
 
 //		//print questions
-		for (List<Question> q:questions.values()) {
-			for (Question temp:q) {
-				System.out.println(temp);
-			}
-		}
+//		for (List<Question> q:questions.values()) {
+//			for (Question temp:q) {
+//				System.out.println(temp);
+//			}
+//		}
 //		
 //		Logger.log("Questions JSON was imported");
 		
@@ -133,11 +133,12 @@ public class JSON {
 		
 		//go over all questions and add every question to json file
 		for (Map.Entry<QuestionStrength, List<Question>> list:questions.entrySet()) {
-			JSONObject jo = new JSONObject();
-			if (list.getValue()==null) continue;
+			if (list.getValue() == null) continue;
+			
+			//get each question from the list
 			for (Question q:list.getValue()) {
-				
-				JSONArray ans = new JSONArray();		
+				JSONObject jo = new JSONObject();
+				JSONArray ans = new JSONArray();
 				//get questions properties from object to json objects and arrays
 				for (Answer a: q.getqAnswers()) {
 					JSONObject tmp = new JSONObject();	
@@ -165,7 +166,7 @@ public class JSON {
 				
 				//add the object to json array
 				JSONquestions.add(jo);
-				//System.err.println(JSONquestions.toJSONString());
+				//System.err.println(JSONquestions.toString());
 				
 			}
 			
