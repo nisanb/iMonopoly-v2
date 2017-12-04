@@ -96,4 +96,17 @@ ComboBox
 {
 	-fx-text-fill: red;
 }
+#txtPlayer1Name{
+	-fx-text-fill: #0055ff;
+}
+#txtPlayer2Name{
+	-fx-text-fill: #04ff00;
+}
+
+#txtPlayer3Name{
+	-fx-text-fill: #e4ff00;
+}
+#txtPlayer4Name{
+	-fx-text-fill: RED;
+}
 

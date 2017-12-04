@@ -952,11 +952,16 @@ public class UI implements UIInterface{
 		System.out.println("want to add glow");
 		for (int i=0; i<playersList.size(); i++){
 			if (playersList.get(i).equals(nickname)){
+				System.out.println(i);
 				System.out.println("want to add glow");
-				addGlow(i);
-			}				
+				addGlow(i+1);
+			}
+			//else
+				//removeGlow(i);
 		}
 	}
+
+
 
 	@Override
 	public void gameLog(String message) {
@@ -1625,23 +1630,40 @@ public class UI implements UIInterface{
     private void addGlow(int playerNum){
     //	for (int i=0; i<playersName.length; i++)
     		//playersName[i].setEffect(null);
-    	int depth = 70;//Setting the uniform variable for the glow width and height
-    	System.out.println("212");
+    	int depth = 120;//Setting the uniform variable for the glow width and height
+    	javafx.scene.paint.Color red = null;
+    	red = new javafx.scene.paint.Color(1, 1, 0, 0);
     	DropShadow borderGlow= new DropShadow();
     	borderGlow.setOffsetY(0f);
     	borderGlow.setOffsetX(0f);
-    	//borderGlow.setColor(Color.RED);
+    	borderGlow.setColor(red);
     	borderGlow.setWidth(depth);
     	borderGlow.setHeight(depth);
-    	txtPlayer1Name.setEffect(null); //Apply the borderGlow effect to the JavaFX node
-    	txtPlayer2Name.setEffect(null); //Apply the borderGlow effect to the JavaFX node
-    	txtPlayer3Name.setEffect(null); //Apply the borderGlow effect to the JavaFX node
-    	txtPlayer4Name.setEffect(null);
+    	
+    //	txtPlayer1Name=new Label(playersList.get(0)); //Apply the borderGlow effect to the JavaFX node
+    	//txtPlayer2Name=new Label(playersList.get(1)); //Apply the borderGlow effect to the JavaFX node
+    //	if (playersList.size()>2)
+    	//	txtPlayer3Name=new Label(playersList.get(2)); //Apply the borderGlow effect to the JavaFX node
+    //	if (playersList.size()>3)
+    	//	txtPlayer4Name=new Label(playersList.get(3));
+    	txtPlayer1Name.setEffect(new DropShadow()); //Apply the borderGlow effect to the JavaFX node
+    	txtPlayer2Name.setEffect(new DropShadow()); //Apply the borderGlow effect to the JavaFX node
+    	txtPlayer3Name.setEffect(new DropShadow()); //Apply the borderGlow effect to the JavaFX node
+    	txtPlayer4Name.setEffect(new DropShadow());
     	switch (playerNum){
-    		case (1): txtPlayer1Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
-    		case (2): txtPlayer2Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
-    		case (3): txtPlayer3Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
-    		case (4): txtPlayer4Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+    		case (1): {txtPlayer1Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+    			break;
+    		}
+    		case (2): {txtPlayer2Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+    			break;
+    		
+    		}
+    		case (3):{ txtPlayer3Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+    			break;
+    		}
+    		case (4): {txtPlayer4Name.setEffect(borderGlow); //Apply the borderGlow effect to the JavaFX node
+    			break;
+    		}
     	}
     	
 
