@@ -247,7 +247,7 @@ public class MonDB implements Serializable {
 		if (this.gameQuestions == null)
 			return false;
 		
-		if (this.gameQuestions.get(q) == null){
+		if (this.gameQuestions.get(q.getqStrength()) == null){
 			return false;
 		}
 		
