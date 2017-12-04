@@ -148,7 +148,7 @@ public class AddQuestion {
     String ans4;
     boolean a1, a2, a3, a4;
     String question;
-    long qNum;
+    long qNum=10;
     QuestionStrength qStrength;
     ArrayList<QuestionTag> tags;
     Team team;
@@ -354,20 +354,34 @@ public class AddQuestion {
     
     
     
-    // Add toggle/ group//
-    
     @FXML
-    private void AddQuestion(ActionEvent event) {
+    void AddQuestion(ActionEvent event) {
+    	System.out.println("1");
     	if (!event.getSource().equals(save)) return;
-    	int numOfAnswers = 0;
-    	if (ans1 != null) numOfAnswers++;
-    	if (ans2 != null) numOfAnswers++;
-    	if (ans3 != null) numOfAnswers++;
-    	if (ans4 != null) numOfAnswers++;
+    	int numOfAnswers = 0,numOftrues=0;
+    	if (ans1 != null) {
+    		numOfAnswers++;
+    		if (TrueBu.isSelected()) numOftrues++;
+    	}
+    	if (ans2 != null){
+    		numOfAnswers++;
+    		if (TrueBu2.isSelected()) numOftrues++;
+    		
+    	}
+    	if (ans3 != null){
+    		numOfAnswers++;
+    		if (TrueBu3.isSelected()) numOftrues++;
+    	}
+    	if (ans4 != null){
+    		numOfAnswers++;
+    		if (TrueBu4.isSelected()) numOftrues++;
+    	}
     	
     	
-    	if (numOfAnswers < 2 /*and at least one ans is true*/){
-    		errorLabelControl("Qustion must contain at least 2 posible answers", true);
+    	
+    	
+    	if (numOfAnswers < 2 && numOftrues < 1 ){
+    		errorLabelControl("Qustion must contain at least 2 posible answers and 1 true", true);
     		return;
     	}
     	else if (question == null || question.length() < 5){
@@ -392,10 +406,13 @@ public class AddQuestion {
     	ArrayList<Answer> ans = new ArrayList<Answer>();
     	//add answers to list if not null
     	
-    	Question q = new Question(qNum, qStrength, ans1, a1, null, ans1, null);
+    	Question q = new Question(qNum, qStrength, ans1, a1, ans, ans1, tags);
+    	System.out.println(q.toString());
     	mng.addQuestion(q);
-    	
-    }   
+    }
+
+
+
     
     
     /**

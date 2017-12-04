@@ -18,7 +18,7 @@
             <Image url="@../../Resources/whites-bg-img.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="650.0" fitWidth="801.0" >
+      <ImageView fitHeight="650.0" fitWidth="801.0">
          <image>
             <Image url="@../../Resources/ManagementGUI_nowhitebg.png" />
          </image>
@@ -28,7 +28,7 @@
             <Image url="@../resources/sound_on.png" />
          </image>
       </ImageView>
-      <Button fx:id="save" layoutX="236.0" layoutY="583.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" text="Save" />
+      <Button fx:id="save" layoutX="236.0" layoutY="583.0" mnemonicParsing="false" onAction="#AddQuestion" prefHeight="27.0" prefWidth="140.0" text="Save" />
       <Button layoutX="407.0" layoutY="583.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="140.0" text="Back" />
       <ImageView fitHeight="48.0" fitWidth="56.0" layoutX="357.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -40,7 +40,7 @@
             <Image url="@../../Resources/whites-bg-img.png" />
          </image>
       </ImageView>
-      <RadioButton fx:id="TrueBu" layoutX="562.0" layoutY="440.0" mnemonicParsing="false"  text="True">
+      <RadioButton fx:id="TrueBu" layoutX="562.0" layoutY="440.0" mnemonicParsing="false" text="True">
          <font>
             <Font size="14.0" />
          </font>
@@ -50,22 +50,22 @@
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="TrueBu3" layoutX="562.0" layoutY="511.0" mnemonicParsing="false"  text="True">
+      <RadioButton fx:id="TrueBu3" layoutX="562.0" layoutY="511.0" mnemonicParsing="false" text="True">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="FalseBu3" layoutX="619.0" layoutY="510.0" mnemonicParsing="false"  text="False">
+      <RadioButton fx:id="FalseBu3" layoutX="619.0" layoutY="510.0" mnemonicParsing="false" text="False">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="FalseBu4" layoutX="619.0" layoutY="544.0" mnemonicParsing="false"  text="False">
+      <RadioButton fx:id="FalseBu4" layoutX="619.0" layoutY="544.0" mnemonicParsing="false" text="False">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="TrueBu4" layoutX="562.0" layoutY="544.0" mnemonicParsing="false"  text="True">
+      <RadioButton fx:id="TrueBu4" layoutX="562.0" layoutY="544.0" mnemonicParsing="false" text="True">
          <font>
             <Font size="14.0" />
          </font>
@@ -138,12 +138,12 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <RadioButton fx:id="TrueBu2" layoutX="562.0" layoutY="474.0" mnemonicParsing="false"  text="True">
+      <RadioButton fx:id="TrueBu2" layoutX="562.0" layoutY="474.0" mnemonicParsing="false" text="True">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="FalseBu2" layoutX="619.0" layoutY="472.0" mnemonicParsing="false"  text="False">
+      <RadioButton fx:id="FalseBu2" layoutX="619.0" layoutY="472.0" mnemonicParsing="false" text="False">
          <font>
             <Font size="14.0" />
          </font>
