@@ -148,7 +148,7 @@ public class AddQuestion {
     String ans4;
     boolean a1, a2, a3, a4;
     String question;
-    long qNum=10;
+    long qNum;
     QuestionStrength qStrength;
     ArrayList<QuestionTag> tags;
     Team team;
@@ -211,10 +211,10 @@ public class AddQuestion {
 
     @FXML
     void ChooseDiff(ActionEvent event) {
-    	if (DiffComboox.getSelectionModel().getSelectedIndex() == 0){
-    		qStrength = null;
-    		return;
-    	}
+//    	if (DiffComboox.getSelectionModel().getSelectedIndex() == 0){
+//    		qStrength = null;
+//    		return;
+//    	}
     	qStrength = DiffComboox.getSelectionModel().getSelectedItem();
     }
 
@@ -226,10 +226,6 @@ public class AddQuestion {
     	}
     	List1.getItems().add(List2.getSelectionModel().getSelectedItem());
     	List2.getItems().remove(List2.getSelectionModel().getSelectedIndex());
-    	tags = new ArrayList<QuestionTag>();
-    	for (QuestionTag t:List2.getSelectionModel().getSelectedItems()){
-    		tags.add(t);
-    	}
     	
     }
 
@@ -251,63 +247,39 @@ public class AddQuestion {
     	}
     	List2.getItems().add(List1.getSelectionModel().getSelectedItem());
     	List1.getItems().remove(List1.getSelectionModel().getSelectedIndex());
+    	tags = new ArrayList<QuestionTag>();
+    	for (QuestionTag t:List2.getItems()){
+    		tags.add(t);
+    	}
     }
     
 
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert save != null : "fx:id=\"save\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert TrueBu != null : "fx:id=\"TrueBu\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert FalseBu != null : "fx:id=\"FalseBu\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert TrueBu3 != null : "fx:id=\"TrueBu3\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert FalseBu3 != null : "fx:id=\"FalseBu3\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert FalseBu4 != null : "fx:id=\"FalseBu4\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert TrueBu4 != null : "fx:id=\"TrueBu4\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert txtanswer4 != null : "fx:id=\"txtanswer4\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert txtanswer3 != null : "fx:id=\"txtanswer3\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert txtanswer2 != null : "fx:id=\"txtanswer2\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert txtanswer1 != null : "fx:id=\"txtanswer1\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert txtQuestion != null : "fx:id=\"txtQuestion\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert List2 != null : "fx:id=\"List2\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert RightImg != null : "fx:id=\"RightImg\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert LeftImg != null : "fx:id=\"LeftImg\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert List1 != null : "fx:id=\"List1\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert DiffComboox != null : "fx:id=\"DiffComboox\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert managequestion != null : "fx:id=\"managequestion\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert diff != null : "fx:id=\"diff\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert TagCombo != null : "fx:id=\"TagCombo\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert Answer1 != null : "fx:id=\"Answer1\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert answer2 != null : "fx:id=\"answer2\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert answer3 != null : "fx:id=\"answer3\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert answer4 != null : "fx:id=\"answer4\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert TrueBu2 != null : "fx:id=\"TrueBu2\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert FalseBu2 != null : "fx:id=\"FalseBu2\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-        assert txtQuestion1 != null : "fx:id=\"txtQuestion1\" was not injected: check your FXML file 'AddQuestion.fxml'.";
-       
         getQuestionStrength();
         getTeam();
         getTag();
         SetButtonToFalse();
-    
+
+        //get qnum
+    	qNum = mng.getNextQuestionNum();
+    	txtQuestion1.setText(qNum + "");
         
-        
-        
-        // ans1//
+    	// ans1//
         group1.getToggles().add(TrueBu);
         group1.getToggles().add(FalseBu);
-     // ans2//
+        // ans2//
         group2.getToggles().add(TrueBu2);
         group2.getToggles().add(FalseBu2);
-     // ans3//
+        // ans3//
         group3.getToggles().add(TrueBu3);
         group3.getToggles().add(FalseBu3);
-     // ans4//
+        // ans4//
         group4.getToggles().add(TrueBu4);
         group4.getToggles().add(FalseBu4);
         
-        
+        errorLabelControl(null, false);
     }
     
     
@@ -341,12 +313,13 @@ public class AddQuestion {
     	FalseBu4.setSelected(true);
     }
     
+    
     @FXML
     private void setTeam(ActionEvent e){
-    	if (TeamComboBox.getSelectionModel().getSelectedIndex() == 0){
-    		team = null;
-    		return;
-    	}
+//    	if (TeamComboBox.getSelectionModel().getSelectedIndex() == 0){
+//    		team = null;
+//    		return;
+//    	}
     	
     	team = TeamComboBox.getSelectionModel().getSelectedItem();
     }
@@ -356,28 +329,45 @@ public class AddQuestion {
     
     @FXML
     void AddQuestion(ActionEvent event) {
-    	System.out.println("1");
     	if (!event.getSource().equals(save)) return;
+    	//get field values
+    	a1 = TrueBu.isSelected();
+    	a2 = TrueBu2.isSelected();
+    	a3 = TrueBu3.isSelected();
+    	a4 = TrueBu4.isSelected();
+    	ans1 = txtanswer1.getText();
+    	ans2 = txtanswer2.getText();
+    	ans3 = txtanswer3.getText();
+    	ans4 = txtanswer4.getText();
+    	question = txtQuestion.getText();
+    	ArrayList<Answer> ans = new ArrayList<Answer>();
+
+    	
+    	
     	int numOfAnswers = 0,numOftrues=0;
-    	if (ans1 != null) {
+    	if (ans1 != null && ans1.length() > 1) {
     		numOfAnswers++;
+    		ans.add(new Answer(ans1, a1));
     		if (TrueBu.isSelected()) numOftrues++;
     	}
-    	if (ans2 != null){
+    	if (ans2 != null && ans2.length() > 1){
     		numOfAnswers++;
-    		if (TrueBu2.isSelected()) numOftrues++;
-    		
+    		ans.add(new Answer(ans2, a2));
+    		if (TrueBu2.isSelected()) numOftrues++;  		
     	}
-    	if (ans3 != null){
+    	if (ans3 != null && ans3.length() > 1){
     		numOfAnswers++;
+    		ans.add(new Answer(ans3, a3));
     		if (TrueBu3.isSelected()) numOftrues++;
     	}
-    	if (ans4 != null){
+    	if (ans4 != null && ans4.length() > 1){
     		numOfAnswers++;
+    		ans.add(new Answer(ans4, a4));
     		if (TrueBu4.isSelected()) numOftrues++;
     	}
-    	
-    	
+
+    	boolean isMultiple = false;
+    	if (numOftrues > 1) isMultiple = true;
     	
     	
     	if (numOfAnswers < 2 && numOftrues < 1 ){
@@ -388,7 +378,7 @@ public class AddQuestion {
     		errorLabelControl("Qustion must have more than 5 letters", true);
     		return;
     	}
-    	else if (tags.size() < 1){
+    	else if (tags == null || tags.size() < 1){
     		errorLabelControl("You must add at least one tag", true);
     		return;
     	}
@@ -399,21 +389,13 @@ public class AddQuestion {
     	else if (qStrength == null){
     		errorLabelControl("You must select quetion difficulty", true);
     	}
-    	System.out.println("akjfafkjadfgadjf");
     	errorLabelControl(null, false);
     	
-    	qNum = mng.getNextQuestionNum();
-    	ArrayList<Answer> ans = new ArrayList<Answer>();
-    	//add answers to list if not null
     	
-    	Question q = new Question(qNum, qStrength, ans1, a1, ans, ans1, tags);
-    	System.out.println(q.toString());
+    	Question q = new Question(qNum, qStrength, question, isMultiple , ans, team.toString(), tags);
     	mng.addQuestion(q);
     }
 
-
-
-    
     
     /**
      * This method controls the error label
@@ -427,6 +409,7 @@ public class AddQuestion {
     	}
     	else {
     		this.lblError.setText("Error: " + msg);
+    		System.out.println(msg);
     	}
     }
     

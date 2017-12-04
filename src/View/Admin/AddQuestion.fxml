@@ -87,7 +87,7 @@
          </image>
       </ImageView>
       <ListView fx:id="List1" layoutX="250.0" layoutY="265.0" opacity="0.71" prefHeight="117.0" prefWidth="171.0" />
-      <ComboBox fx:id="DiffComboox" layoutX="250.0" layoutY="159.0" onAction="#ChooseDiff" onMouseClicked="#CheckDiffAndSetAns" opacity="0.71" prefHeight="25.0" prefWidth="392.0" />
+      <ComboBox fx:id="DiffComboox" layoutX="250.0" layoutY="159.0" onAction="#ChooseDiff" onMouseClicked="#CheckDiffAndSetAns" opacity="0.71" prefHeight="25.0" prefWidth="392.0" promptText="Select Difficulty" />
       <Label fx:id="diff" layoutX="146.0" layoutY="168.0" text="Difficulty:">
          <font>
             <Font name="System Bold" size="14.0" />
@@ -143,8 +143,8 @@
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <TextField fx:id="txtQuestion1" layoutX="250.0" layoutY="196.0" opacity="0.71" prefHeight="25.0" prefWidth="392.0" />
-      <ComboBox fx:id="TeamComboBox" layoutX="250.0" layoutY="232.0" onMouseClicked="#CheckDiffAndSetAns" opacity="0.71" prefHeight="25.0" prefWidth="392.0" />
-      <Label fx:id="lblError" layoutX="135.0" layoutY="556.0" prefHeight="17.0" prefWidth="152.0" text="There is a problem mother fuckers" />
+      <TextField fx:id="txtQuestion1" editable="false" layoutX="250.0" layoutY="196.0" opacity="0.71" prefHeight="25.0" prefWidth="392.0" />
+      <ComboBox fx:id="TeamComboBox" layoutX="250.0" layoutY="232.0" onAction="#setTeam" onMouseClicked="#CheckDiffAndSetAns" opacity="0.71" prefHeight="25.0" prefWidth="392.0" promptText="Select Team" />
+      <Label fx:id="lblError" layoutX="145.0" layoutY="554.0" prefHeight="18.0" prefWidth="540.0" text="There is a problem mother fuckers" textFill="RED" />
    </children>
 </AnchorPane>

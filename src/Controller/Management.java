@@ -127,7 +127,7 @@ public class Management implements IManagement{
 		for (Question q: list) {
 			if (q.getqNumber() > qnum) qnum = q.getqNumber();
 		}
-		return 0;
+		return qnum+1;
 	}
 
 	@Override

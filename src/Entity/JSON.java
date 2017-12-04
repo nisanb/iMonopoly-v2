@@ -75,7 +75,7 @@ public class JSON {
 				
 				for (int i = 0; i < tagsArray.size(); i++) {
 					String str = tagsArray.get(i).toString();
-					tags.add(QuestionTag.valueOf(str));
+					//tags.add(QuestionTag.valueOf(str));
 					//System.err.println(QuestionTag.valueOf(str));
 				}
 				
