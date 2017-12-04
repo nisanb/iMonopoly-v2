@@ -326,7 +326,7 @@ public class AddQuestion {
     	if (numOftrues > 1) isMultiple = true;
     	
     	
-    	if (numOfAnswers < 2 && numOftrues < 1 ){
+    	if (numOfAnswers < 2 || numOftrues < 1 ){
     		errorLabelControl("Qustion must contain at least 2 posible answers and 1 true", true);
     		setAnsBGC("red");
     		return;
@@ -355,7 +355,8 @@ public class AddQuestion {
     	
     	
     	Question q = new Question(qNum, qStrength, question, isMultiple , ans, team.toString(), tags);
-    	mng.addQuestion(q);
+    	if (mng.addQuestion(q))
+    		iWindow.swap(Window.Admin_AddQuesion);
     }
 
     
