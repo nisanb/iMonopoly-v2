@@ -41,6 +41,11 @@ public class Management implements IManagement{
 	public List<Question> getQuestionsByDifficulty(QuestionStrength qs) {
 		return _db.getGameQuestions().get(qs);
 	}
+	
+	@Override
+	public Map<QuestionStrength, List<Question>> getQuestionMap() {
+		return _db.getGameQuestions();
+	}
 
 	public String getLoggedPlayer() {
 		return MonDB.getInstance().getCurrentUser().getNickName();
@@ -98,6 +103,7 @@ public class Management implements IManagement{
 
 	@Override
 	public boolean removeQuestion(Question q) {
+		System.out.println("Management: " + q);
 		return MonDB.getInstance().deleteQuestion(q);
 
 	}

@@ -255,7 +255,7 @@ public class MonDB implements Serializable {
 		int indexToDelete = this.gameQuestions.get(q.getqStrength()).indexOf(q);
 
 		// if object was found delete it, save the new json, and return true
-		if (indexToDelete > 0) {
+		if (indexToDelete > -1) {
 
 			this.gameQuestions.get(q.getqStrength()).remove(indexToDelete);
 			JSON.getInstance().saveQuestions(this.gameQuestions);

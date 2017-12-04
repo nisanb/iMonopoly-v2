@@ -35,7 +35,7 @@ public interface IManagement {
 	public boolean updateQuestion(Question qBefore, Question qAfter);	
 	public List<Question> getQuestions();								 //get all questions as list
 	public List<Question> getQuestionsByDifficulty(QuestionStrength qs); //get all question in given difficulty
-	
+	public Map<QuestionStrength, List<Question>> getQuestionMap();		 //get all question as map
 	
 	
 
