@@ -152,9 +152,7 @@ public class AddQuestion {
     QuestionStrength qStrength;
     ArrayList<QuestionTag> tags;
     Team team;
-   
     
-
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -186,7 +184,12 @@ public class AddQuestion {
     
     
     //============================================= ACTION EVENTS ==============================================
-    
+
+    @FXML
+    void CheckDiffAndSetAns(MouseEvent event) {
+
+    }
+
     @FXML
     void ChooseDiff(ActionEvent event) {
 //    	if (DiffComboox.getSelectionModel().getSelectedIndex() == 0){
@@ -230,6 +233,7 @@ public class AddQuestion {
     		tags.add(t);
     	}
     }
+    
     
     
     private void getQuestionStrength()
@@ -345,6 +349,7 @@ public class AddQuestion {
     	else if (qStrength == null){
     		errorLabelControl("You must select quetion difficulty", true);
     		setDiffBGC("red");
+    		return;
     	}
     	errorLabelControl(null, false);
     	
