@@ -1316,33 +1316,44 @@ public class UI implements UIInterface{
     }
     
     private void addGlow(int playerNum){
-    	int depth = 120;//Setting the uniform variable for the glow width and height
-    	javafx.scene.paint.Color red = null;
-    	red = new javafx.scene.paint.Color(1, 0, 0, 1);
-    	Effect glow = new Glow(1);
-    	DropShadow borderGlow= new DropShadow();
-    	borderGlow.setOffsetY(0f);
-    	borderGlow.setOffsetX(0f);
-    	borderGlow.setColor(red);
-    	borderGlow.setWidth(depth);
-    	borderGlow.setHeight(depth);
-    	txtPlayer1Name.setEffect(new Glow(0)); //Apply the borderGlow effect to the JavaFX node
-    	txtPlayer2Name.setEffect(new Glow(0)); //Apply the borderGlow effect to the JavaFX node
-    	txtPlayer3Name.setEffect(new Glow(0)); //Apply the borderGlow effect to the JavaFX node
-    	txtPlayer4Name.setEffect(new Glow(0));
+    	Effect glowTxt = new Glow(1);
+    	Effect glowChar = new Glow(0.5);
+    	Effect noGlow= new Glow(0);
+    	//disable all glows
+    	txtPlayer1Name.setEffect(noGlow); //Apply the borderGlow effect to the JavaFX node
+    	txtPlayer2Name.setEffect(noGlow); //Apply the borderGlow effect to the JavaFX node
+    	txtPlayer3Name.setEffect(noGlow); //Apply the borderGlow effect to the JavaFX node
+    	txtPlayer4Name.setEffect(noGlow);
+    	player1StatsPane.setEffect(noGlow);
+		playerBlueStats.setEffect(noGlow);
+		player2StatsPane.setEffect(noGlow);
+		playerGreenStats.setEffect(noGlow);
+		player3StatsPane.setEffect(noGlow);
+		playerYellowStats.setEffect(noGlow);
+		player4StatsPane.setEffect(noGlow);
+		playerRedStats.setEffect(noGlow);
+    	
     	switch (playerNum){
-    		case (1): {txtPlayer1Name.setEffect(glow); //Apply the borderGlow effect to the JavaFX node
+    		case (1): {txtPlayer1Name.setEffect(glowTxt); //Apply the borderGlow effect to the JavaFX node
+    			player1StatsPane.setEffect(glowTxt);
+    			playerBlueStats.setEffect(glowChar);
     
     			break;
     		}
-    		case (2): {txtPlayer2Name.setEffect(glow); //Apply the borderGlow effect to the JavaFX node
+    		case (2): {txtPlayer2Name.setEffect(glowTxt); //Apply the borderGlow effect to the JavaFX node
+    		player2StatsPane.setEffect(glowTxt);
+			playerGreenStats.setEffect(glowChar);
     			break;
     		
     		}
-    		case (3):{ txtPlayer3Name.setEffect(glow); //Apply the borderGlow effect to the JavaFX node
+    		case (3):{ txtPlayer3Name.setEffect(glowTxt); //Apply the borderGlow effect to the JavaFX node
+    		player3StatsPane.setEffect(glowTxt);
+			playerYellowStats.setEffect(glowChar);
     			break;
     		}
-    		case (4): {txtPlayer4Name.setEffect(glow); //Apply the borderGlow effect to the JavaFX node
+    		case (4): {txtPlayer4Name.setEffect(glowTxt); //Apply the borderGlow effect to the JavaFX node
+    		player4StatsPane.setEffect(glowTxt);
+			playerRedStats.setEffect(glowChar);
     			break;
     		}
     	}

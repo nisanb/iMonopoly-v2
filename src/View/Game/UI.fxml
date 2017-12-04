@@ -1257,10 +1257,10 @@
       </Pane>
       <AnchorPane fx:id="inBoardMenu" layoutX="690.0" layoutY="350.0" prefHeight="240.0" prefWidth="470.0">
          <children>
-            <Pane fx:id="inBoardWhitePane" opacity="0.3" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: white;" />
-            <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.3" pannable="true" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;">
+            <Pane fx:id="inBoardWhitePane" opacity="0.4" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: white;" />
+            <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.5" pannable="true" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;">
                <content>
-                  <TextArea fx:id="gameLogs" opacity="0.3" prefHeight="258.0" prefWidth="470.0" style="-fx-border-color: black;" wrapText="true">
+                  <TextArea fx:id="gameLogs" editable="false" opacity="0.32" prefHeight="258.0" prefWidth="470.0" style="-fx-border-color: black;" wrapText="true">
                      <font>
                         <Font name="Calibri Bold" size="14.0" />
                      </font>
