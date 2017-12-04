@@ -27,10 +27,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 
 public class AddQuestion {
+	
+	// For radio button//
+	ToggleGroup group1 =new ToggleGroup();
+	ToggleGroup group2 =new ToggleGroup();
+	ToggleGroup group3 =new ToggleGroup();
+	ToggleGroup group4 =new ToggleGroup();
+	
+
 	
 	private IManagement mng = iWindow.getManagement();
 
@@ -145,7 +156,7 @@ public class AddQuestion {
     
     
     
-    @FXML
+  /*  @FXML
     void CangeTrueBu(MouseEvent event) {
     	TrueBu.setSelected(true);
     	FalseBu.setSelected(false);
@@ -155,9 +166,9 @@ public class AddQuestion {
     void ChangeFalseBu(MouseEvent event) {
     	TrueBu.setSelected(false);
     	FalseBu.setSelected(true);
-    }
+    }*/
 
-    @FXML
+   /* @FXML
     void ChangeFalseBu2(MouseEvent event) {
     	TrueBu2.setSelected(false);
     	FalseBu2.setSelected(true);
@@ -191,7 +202,7 @@ public class AddQuestion {
     void ChangeTrueBu4(MouseEvent event) {
     	TrueBu4.setSelected(true);
     	FalseBu4.setSelected(false);
-    }
+    }*/
 
     @FXML
     void CheckDiffAndSetAns(MouseEvent event) {
@@ -279,6 +290,22 @@ public class AddQuestion {
         getTeam();
         getTag();
         SetButtonToFalse();
+    
+        
+        
+        
+        // ans1//
+        group1.getToggles().add(TrueBu);
+        group1.getToggles().add(FalseBu);
+     // ans2//
+        group2.getToggles().add(TrueBu2);
+        group2.getToggles().add(FalseBu2);
+     // ans3//
+        group3.getToggles().add(TrueBu3);
+        group3.getToggles().add(FalseBu3);
+     // ans4//
+        group4.getToggles().add(TrueBu4);
+        group4.getToggles().add(FalseBu4);
         
         
     }
