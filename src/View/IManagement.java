@@ -45,7 +45,6 @@ public interface IManagement {
 	/**
 	 * Methods to control params in sysParam view
 	 */
-	public Map<Param, Object> getSavedParams();				//return game params
 	public Object getParam(Param p);						//get specific param by name
 	public void setParam(Param p, Object value);			//set value of param
 	public void resetParamsToDefault();						//call to reset all params

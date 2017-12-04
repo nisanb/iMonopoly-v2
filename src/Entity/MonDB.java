@@ -155,6 +155,10 @@ public class MonDB implements Serializable {
 		Logger.log("Finished initiating system params");
 	}
 
+	/**
+	 * Seraialize all relevant data
+	 * @return
+	 */
 	private static MonDB importData() {
 		try {
 			String fileName = "MonDB.cer";
@@ -170,6 +174,9 @@ public class MonDB implements Serializable {
 		}
 	}
 
+	/**
+	 * Deserialize data
+	 */
 	public static void exportData() {
 		try {
 			String fileName = "MonDB.cer";
@@ -187,7 +194,6 @@ public class MonDB implements Serializable {
 
 	/**
 	 * Randomly generate a question by question strength
-	 * 
 	 * @param str
 	 * @return
 	 */
@@ -222,13 +228,17 @@ public class MonDB implements Serializable {
 		// TODO Auto-generated method stub
 		DBParams.put(p, value);
 	}
-
+	
+	/**
+	 * This method calls to reset all params method
+	 */
 	public void resetParamsToDefault() {
 		Logger.log("Resetting params to default..");
 		initParams();
 		Logger.log("Finished resetting params");
 	}
-
+	
+	
 	public static void main() {
 		MonDB d = new MonDB();
 		d.initTiles();
@@ -236,7 +246,6 @@ public class MonDB implements Serializable {
 
 	/**
 	 * This method removes specific question from map and json
-	 * 
 	 * @param question
 	 *            q
 	 * @return true of removed
@@ -269,7 +278,6 @@ public class MonDB implements Serializable {
 
 	/**
 	 * This method adds new question to the map and saves it to json
-	 * 
 	 * @param q
 	 * @return
 	 */
@@ -291,10 +299,9 @@ public class MonDB implements Serializable {
 
 	/**
 	 * Update question by deleting it and add the new one
-	 * 
 	 * @param qBefore
 	 * @param qAfter
-	 * @return
+	 * @return true if succefull
 	 */
 	public boolean updateQuestion(Question qBefore, Question qAfter) {
 		if (deleteQuestion(qBefore))
@@ -306,7 +313,6 @@ public class MonDB implements Serializable {
 
 	/**
 	 * This method returns the question map as list
-	 * 
 	 * @return
 	 */
 	public List<Question> getQuestionsAsList() {
@@ -321,10 +327,8 @@ public class MonDB implements Serializable {
 	}
 
 	/**
-	 * This method gets a list of questions and sets it as the game question
-	 * list
-	 * 
-	 * @param list
+	 * This method gets a list of questions and sets it as the game question list
+	 * @param list of questions
 	 */
 	public void setQuestionList(List<Question> list) {
 		Map<QuestionStrength, List<Question>> toSet = new HashMap<QuestionStrength, List<Question>>();
@@ -345,7 +349,6 @@ public class MonDB implements Serializable {
 
 	/**
 	 * Logs in the user to the system
-	 * 
 	 * @param nickname
 	 */
 	public String login(String nickname) {
@@ -361,6 +364,11 @@ public class MonDB implements Serializable {
 		this.tileSet = tileSet;
 	}
 
+	/**
+	 * This method checks if user is already exists in system
+	 * @param nickname
+	 * @return player name
+	 */
 	public String verifyPlayer(String nickname) {
 		if(playerData == null)
 			playerData = new ArrayList<>();
@@ -371,6 +379,10 @@ public class MonDB implements Serializable {
 		return playerData.get(playerData.indexOf(new User(nickname))).getNickName();
 	}
 	
+	/**
+	 * This method builds a new game 
+	 * @param playerList - players in the game
+	 */
 	public void buildGame(List<String> playerList){
 		
 		List<Player> newPlayerList = new ArrayList<>();

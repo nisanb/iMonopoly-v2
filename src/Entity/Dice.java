@@ -11,7 +11,9 @@ public class Dice {
 		roll();
 	}
 	
-	
+	/**
+	 * set numers of dice
+	 */
 	public void roll(){
 		Random r = new Random();
 		dice1 = r.nextInt(6)+1;
