@@ -125,6 +125,31 @@ public class GameSettings {
 		iWindow.swap(Window.Player_Menu);
 	}
 
+	@FXML // This method is called by the FXMLLoader when initialization is
+	void initialize() {
+		nickNamesValid.setVisible(false);
+		txtfields.add(txt2);
+		txtfields.add(txt3);
+		txtfields.add(txt4);
+		
+		valid.setVisible(false);
+		
+		txt3.setVisible(false);
+		label3.setVisible(false);
+		txt4.setVisible(false);
+		label4.setVisible(false);
+
+		img3.setVisible(false);
+		img4.setVisible(false);
+
+		txt2Err.setVisible(false);
+
+		txt1.setText(mng.getLoggedPlayer());
+		txt1.setDisable(true);	
+	}
+	
+	
+	
 	// For generic checks
 	private List<TextField> txtfields = new ArrayList<>();
 		
@@ -155,7 +180,7 @@ public class GameSettings {
 			label3.setVisible(false);
 			img3.setVisible(false);
 		
-
+			
 			txt4.setVisible(false);
 			label4.setVisible(false);
 			img4.setVisible(false);
@@ -200,7 +225,6 @@ public class GameSettings {
 			txt4.clear();
 			txt2.clear();
 		
-
 			txt2.setVisible(true);
 			label2.setVisible(true);
 			img2.setVisible(true);
@@ -287,6 +311,9 @@ public class GameSettings {
 			if (!box.getText().isEmpty()) {
 				playerList.add(box.getText());
 			}
+			else {
+				settxtBGC(box, "red");
+			}
 		}
 
 		if (playerList.size() != res) {
@@ -294,8 +321,8 @@ public class GameSettings {
 			valid.setVisible(true);
 			txt2Err.setVisible(true);
 			
-			
-		} else {
+		} 
+		else {
 			
 			if(duplicates(playerList))
 			{
@@ -304,77 +331,34 @@ public class GameSettings {
 				txt2Err.setVisible(false);
 			}
 			else{
-				
-			
-			
 			mng.build(playerList);
-			
-			
 			iWindow.swap(Window.Game_UI);
 			}
 		}
 	}
 
-	@FXML // This method is called by the FXMLLoader when initialization is
-			// complete
-	void initialize() {
-		assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Check.fxml'.";
-		assert slide1 != null : "fx:id=\"slide1\" was not injected: check your FXML file 'Check.fxml'.";
-		assert label1 != null : "fx:id=\"label1\" was not injected: check your FXML file 'Check.fxml'.";
-		assert img1 != null : "fx:id=\"img1\" was not injected: check your FXML file 'Check.fxml'.";
-		assert img11 != null : "fx:id=\"img11\" was not injected: check your FXML file 'Check.fxml'.";
-		assert txt1 != null : "fx:id=\"txt1\" was not injected: check your FXML file 'Check.fxml'.";
-		assert label3 != null : "fx:id=\"label3\" was not injected: check your FXML file 'Check.fxml'.";
-		assert img3 != null : "fx:id=\"img3\" was not injected: check your FXML file 'Check.fxml'.";
-		assert txt3 != null : "fx:id=\"txt3\" was not injected: check your FXML file 'Check.fxml'.";
-		assert label2 != null : "fx:id=\"label2\" was not injected: check your FXML file 'Check.fxml'.";
-		assert img2 != null : "fx:id=\"img2\" was not injected: check your FXML file 'Check.fxml'.";
-		assert txt2 != null : "fx:id=\"txt2\" was not injected: check your FXML file 'Check.fxml'.";
-		assert label4 != null : "fx:id=\"label4\" was not injected: check your FXML file 'Check.fxml'.";
-		assert img4 != null : "fx:id=\"img4\" was not injected: check your FXML file 'Check.fxml'.";
-		assert txt4 != null : "fx:id=\"txt4\" was not injected: check your FXML file 'Check.fxml'.";
-		nickNamesValid.setVisible(false);
-		txtfields.add(txt2);
-		txtfields.add(txt3);
-		txtfields.add(txt4);
-		
-		valid.setVisible(false);
-		
-		txt3.setVisible(false);
-		label3.setVisible(false);
-		txt4.setVisible(false);
-		label4.setVisible(false);
 
-		img3.setVisible(false);
-		img4.setVisible(false);
-
-		txt2Err.setVisible(false);
-		
-		
-
-		
-
-		txt1.setText(mng.getLoggedPlayer());
-		txt1.setDisable(true);
-		
-		
-		
-	}
     
 	
 	//========================================methods=======================================================//
 	
 	private boolean duplicates(final List<String> playerList)
-	{	
-		
+	{		
 		Set<String> dup=new HashSet<String>();
 		for(String i:playerList)
 		{
 			if(dup.contains(i))	return true;
 			dup.add(i);
 		}
-		return false;	
+		return false;
 	}
+	
+	
+	//============================================== CSS ==========================================================
+	
+    private void settxtBGC(TextField tf, String color) {
+    	tf.setStyle("-fx-background-color:" + color +";");
+    }
 	
 	
 
