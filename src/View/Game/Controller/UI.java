@@ -1073,7 +1073,6 @@ public class UI implements UIInterface{
 	@Override
 	public void updatePlayerProperties(String nickname, Integer cash, Integer strikes, Integer assetsWorth,
 			Integer assetsAmount) {
-		System.out.println(nickname+" "+ cash+ " "+ strikes + " "+assetsWorth+ " "+assetsAmount);
 		int pos=playersList.indexOf(nickname);
 		System.out.println(pos+ " pos");
 /*		
@@ -1086,28 +1085,28 @@ public class UI implements UIInterface{
 
 		switch (pos){
 			case (0):{
-				moneyPlayer1.setText(cash+"");
+				moneyPlayer1.setText(cash+"$");
 				strikesPlayer1.setText(strikes+"");
 				String temp=assetsWorth+"(#"+assetsAmount+")";
-				valuePlayer1.setText(temp);
+				valuePlayer1.setText(assetsWorth+"$"+ " (#"+assetsAmount+")");
 				break;
 			}
 			case (1):{
-				moneyPlayer2.setText(cash+"");
+				moneyPlayer2.setText(cash+"$");
 				strikesPlayer2.setText(strikes+"");
-				valuePlayer2.setText(assetsWorth+ "(amount: "+assetsAmount+")");
+				valuePlayer2.setText(assetsWorth+"$"+ " (#"+assetsAmount+")");
 				break;
 			}
 			case (2):{
-				moneyPlayer3.setText(cash+"");
+				moneyPlayer3.setText(cash+"$");
 				strikesPlayer3.setText(strikes+"");
-				valuePlayer3.setText(assetsWorth+ "(amount: "+assetsAmount+")");
+				valuePlayer3.setText(assetsWorth+"$"+ " (#"+assetsAmount+")");
 				break;
 			}
 			case (3):{
-				moneyPlayer4.setText(cash+"");
+				moneyPlayer4.setText(cash+"$");
 				strikesPlayer4.setText(strikes+"");
-				valuePlayer4.setText(assetsWorth+ "(amount: "+assetsAmount+")");
+				valuePlayer4.setText(assetsWorth+"$"+ " (#"+assetsAmount+")");
 				break;
 			}
 			
@@ -1658,7 +1657,7 @@ public class UI implements UIInterface{
 
 	@Override
 	public void allowSellProperty(Boolean allow) {
-		// TODO Auto-generated method stub
+		btnSellProperty.setDisable(!allow);
 
 
 		
@@ -1670,6 +1669,7 @@ public class UI implements UIInterface{
 	}
 	@FXML
     void btnBuyProperty(ActionEvent event) {
+		System.out.println("cliked");
 		ge.btnBuyProperty();
 	}
 
