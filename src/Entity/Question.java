@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import Utils.Team;
 
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
@@ -16,11 +17,11 @@ public class Question {
 	private String qQuestion;
 	private boolean isMultipleChoise;
 	private List<Answer> qAnswers;
-	private String team;
+	private Team team;
 	private List<QuestionTag> tags;
 	
 	public Question(long qNumber, QuestionStrength qStrength, String qQuestion, boolean isMultiple, 
-			List<Answer> qAnswers, String team, List<QuestionTag> tags) {
+			List<Answer> qAnswers, Team team, List<QuestionTag> tags) {
 		super();
 		this.qNumber = qNumber;
 		this.qStrength = qStrength;
@@ -37,11 +38,11 @@ public class Question {
 	}
 	
 	
-	public String getTeam() {
+	public Team getTeam() {
 		return team;
 	}
 
-	protected void setTeam(String team) {
+	protected void setTeam(Team team) {
 		this.team = team;
 	}
 

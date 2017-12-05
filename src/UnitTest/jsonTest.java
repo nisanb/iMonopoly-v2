@@ -19,7 +19,7 @@ public class jsonTest {
 	@Test
 	public void test() {
 		Map<QuestionStrength, List<Question>> list = JSON.getInstance().loadQuestions();
-		JSON.getInstance().saveQuestions(list);
+		//JSON.getInstance().saveQuestions(list);
 		
 		//System.out.println(Param.valueOf(Param.MAX_ROUNDS.toString()));
 		

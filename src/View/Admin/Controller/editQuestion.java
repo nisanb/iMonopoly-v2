@@ -218,7 +218,7 @@ public class editQuestion {
     				Integer Selected=NumQuestionCombo.getSelectionModel().getSelectedItem() ;
     				if(q.getqNumber()==Selected){
     					txtQuestion.setText(q.getqQuestion());
-    					txtQuestion1.setText(q.getTeam());
+//    					team.setText(q.getTeam());
     					//Get the question tags
     					List1.getItems().clear();
         				List1.getItems().addAll(q.getTags());

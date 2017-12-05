@@ -142,16 +142,16 @@ public class AddQuestion {
     
     
     //local variables
-    String ans1;
-    String ans2;
-    String ans3;
-    String ans4;
-    boolean a1, a2, a3, a4;
-    String question;
-    long qNum;
-    QuestionStrength qStrength;
-    ArrayList<QuestionTag> tags;
-    Team team;
+    private String ans1;
+    private String ans2;
+    private String ans3;
+    private String ans4;
+    private boolean a1, a2, a3, a4;
+    private String question;
+    private long qNum;
+    private QuestionStrength qStrength;
+    private ArrayList<QuestionTag> tags;
+    private Team team;
     
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -354,7 +354,7 @@ public class AddQuestion {
     	errorLabelControl(null, false);
     	
     	
-    	Question q = new Question(qNum, qStrength, question, isMultiple , ans, team.toString(), tags);
+    	Question q = new Question(qNum, qStrength, question, isMultiple , ans, team, tags);
     	if (mng.addQuestion(q))
     		iWindow.swap(Window.Admin_AddQuesion);
     }

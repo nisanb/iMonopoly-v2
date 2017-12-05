@@ -7,17 +7,14 @@ package View.Admin.Controller;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.jar.Attributes.Name;
-
 import Controller.iWindow;
 import Entity.Answer;
-import Entity.MonDB;
 import Entity.Question;
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
+import Utils.Team;
 import Utils.Window;
 import View.IManagement;
 import javafx.collections.FXCollections;
@@ -32,6 +29,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -39,10 +37,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class Questions {
 
-	private IManagement mng = iWindow.getManagement();
-
-	Question question;
-
+	
 	@FXML // ResourceBundle that was given to the FXMLLoader
 	private ResourceBundle resources;
 
@@ -108,6 +103,9 @@ public class Questions {
 
 	@FXML // fx:id="DiffComboox"
 	private ComboBox<QuestionStrength> DiffComboox; // Value injected by FXMLLoader
+	
+	@FXML
+	private ComboBox<Team> comboTeams; //TODO
 
 	@FXML // fx:id="managequestion"
 	private Label managequestion; // Value injected by FXMLLoader
@@ -141,24 +139,71 @@ public class Questions {
 
 	@FXML
 	private ComboBox<Integer> NumQuestionCombo;
+	
+	@FXML
+	private Label lblError;
 
-	//local variables
-	long _qnum = -1;
-	QuestionStrength _curerntChosenSterngth;
-	int _indexToRemoveFromCombo;
+	ToggleGroup group1 =new ToggleGroup();
+	ToggleGroup group2 =new ToggleGroup();
+	ToggleGroup group3 =new ToggleGroup();
+	ToggleGroup group4 =new ToggleGroup();
+	
+	
+	//========================================== CALASS VARIABLES ===========================================
+	private long _qnum = -1;
+	private QuestionStrength _curerntChosenSterngth;
+	private int _indexToRemoveFromCombo;
+	private boolean inEditMode = false;
+	private String _ans1;
+	private String _ans2;
+	private String _ans3;
+	private String _ans4;
+	private String _ques;
+	private boolean _a1, _a2, _a3, _a4;
+	private ArrayList<QuestionTag> _tags;
+	private Team _team;
+	
+    private IManagement _mng = iWindow.getManagement();
+    private Question _question;
 
-
+    
 	@FXML // fx:id="AnchoarPane"
 	private AnchorPane AnchoarPane; // Value injected by FXMLLoader
 
+	
+	@FXML // This method is called by the FXMLLoader when initialization is complete
+	void initialize() {
+		ObservableList<QuestionStrength> list2=FXCollections.observableArrayList(QuestionStrength.values());
+		DiffComboox.setItems(list2);
+		
+		comboTeams = new ComboBox<Team>();
+		comboTeams.setEditable(true);
+        ObservableList<Team> list4 = FXCollections.observableArrayList(Team.values());
+        comboTeams.setItems(list4);
+		System.out.println(list4);
+		
+    	// ans1//
+        group1.getToggles().add(TrueBu);
+        group1.getToggles().add(FalseBu);
+        // ans2//
+        group2.getToggles().add(TrueBu2);
+        group2.getToggles().add(FalseBu2);
+        // ans3//
+        group3.getToggles().add(TrueBu3);
+        group3.getToggles().add(FalseBu3);
+        // ans4//
+        group4.getToggles().add(TrueBu4);
+        group4.getToggles().add(FalseBu4);
+        
+
+        
+	}
+	
+	//========================================== ACTION EVENTS ===============================================
+	
 	@FXML
 	void CheckDiffAndSetAns(MouseEvent event) {
 
-	}
-
-	@FXML
-	void openEditQuestion(ActionEvent event) {
-		iWindow.swap(Window.Admin_editQuestion);
 	}
 
 	@FXML
@@ -170,7 +215,7 @@ public class Questions {
 	void ChooseDiff(ActionEvent event) // do more Efficient//
 	{
 		_curerntChosenSterngth = DiffComboox.getSelectionModel().getSelectedItem();
-		System.out.println(_curerntChosenSterngth);
+//		System.out.println(_curerntChosenSterngth);
 
 		GetAndSend(_curerntChosenSterngth);
 	}
@@ -195,103 +240,55 @@ public class Questions {
 
 	}
 
-	@FXML
-	void moveTag(MouseEvent event) {
-		if(List1.getSelectionModel().isEmpty())
-		{	
-			return ;
-		}
-		List2.getItems().add(List1.getSelectionModel().getSelectedItem());
-		List1.getItems().remove(List1.getSelectionModel().getSelectedIndex());
-	}
+    @FXML
+    void moveTag(MouseEvent event) {
+    	if(List1.getSelectionModel().isEmpty())
+    	{	
+    		return ;
+    	}
+    	List2.getItems().add(List1.getSelectionModel().getSelectedItem());
+    	List1.getItems().remove(List1.getSelectionModel().getSelectedIndex());
+    	_tags = new ArrayList<QuestionTag>();
+    	for (QuestionTag t:List2.getItems()){
+    		_tags.add(t);
+    	}
+    }
+	
 
+    @FXML
+    void NumByDiff(ActionEvent event) {
+    	if (NumQuestionCombo.getSelectionModel().getSelectedItem() == null) return;
+    	System.out.println((long)NumQuestionCombo.getSelectionModel().getSelectedItem());
+    	_qnum = (long)NumQuestionCombo.getSelectionModel().getSelectedItem();
+    	_indexToRemoveFromCombo = NumQuestionCombo.getSelectionModel().getSelectedIndex();
 
-	@FXML // This method is called by the FXMLLoader when initialization is complete
-	void initialize() {
-		DiffComboox.setItems(list2);
-	}
+    	List<Question> list = _mng.getQuestionsByDifficulty(_curerntChosenSterngth);
+    	for (Question q:list){
+    		if (NumQuestionCombo.getSelectionModel().getSelectedItem()!=null){
+    			Integer Selected = NumQuestionCombo.getSelectionModel().getSelectedItem();
+    			if(q.getqNumber() == Selected){
+    				_question = q;
+    				txtQuestion.setText(q.getqQuestion());
+    				txtQuestion1.setText(q.getTeam().toString());
+    				//Get the question tags
+    				List1.getItems().clear();
+    				List2.getItems().clear();
+    				List2.getItems().addAll(q.getTags());
+    				List1.getItems().addAll(QuestionTag.values());
+    				List1.getItems().removeAll(q.getTags());
+    				_tags = new ArrayList<QuestionTag>(q.getTags());
+    				_team = q.getTeam();
+    				SetAnswer(Selected);
+    			}
 
-	@FXML
-	void CangeTrueBu(MouseEvent event) {
-		FalseBu.setSelected(false);
-		TrueBu.setSelected(true);
-	}
-
-	@FXML
-	void ChangeFalseBu(MouseEvent event) {
-		TrueBu.setSelected(false);
-		FalseBu.setSelected(true);
-	}
-
-	@FXML
-	void ChangeTrueBu2(MouseEvent event) {
-		FalseBu2.setSelected(false);
-		TrueBu2.setSelected(true);
-	}
-
-	@FXML
-	void ChangeFalseBu2(MouseEvent event) {
-		TrueBu2.setSelected(false);
-		FalseBu2.setSelected(true);
-	}
-
-	@FXML
-	void ChangeFalseBu3(MouseEvent event) {
-		TrueBu3.setSelected(false);
-		FalseBu3.setSelected(true);
-	}
-
-	@FXML
-	void ChangeTrueBu3(MouseEvent event) {
-		FalseBu3.setSelected(false);
-		TrueBu3.setSelected(true);
-	}
-	@FXML
-	void ChangeFalseBu4(MouseEvent event) {
-		TrueBu4.setSelected(false);
-		FalseBu4.setSelected(true);
-	}
-
-	@FXML
-	void ChangeTrueBu4(MouseEvent event) {
-		FalseBu4.setSelected(false);
-		TrueBu4.setSelected(true);
-	}
-
-	ObservableList<QuestionStrength> list2=FXCollections.observableArrayList(QuestionStrength.values());
-
-	@FXML
-	void NumByDiff(ActionEvent event) {
-		if (NumQuestionCombo.getSelectionModel().getSelectedItem() == null) return;
-		System.out.println((long)NumQuestionCombo.getSelectionModel().getSelectedItem());
-		_qnum = (long)NumQuestionCombo.getSelectionModel().getSelectedItem();
-		_indexToRemoveFromCombo = NumQuestionCombo.getSelectionModel().getSelectedIndex();
-		
-
-		Map<QuestionStrength, List<Question>> questions = mng.getQuestionMap();
-		for (Map.Entry<QuestionStrength, List<Question>> list: questions.entrySet()){
-			for (Question q:list.getValue()){
-				if (NumQuestionCombo.getSelectionModel().getSelectedItem()!=null){
-					Integer Selected = NumQuestionCombo.getSelectionModel().getSelectedItem();
-					if(q.getqNumber() == Selected){
-						txtQuestion.setText(q.getqQuestion());
-						txtQuestion1.setText(q.getTeam());
-						//Get the question tags
-						List1.getItems().clear();
-						List1.getItems().addAll(q.getTags());
-						SetAnswer(Selected);
-					}
-
-				}
-			}
-		}
-
-
-	}
+    		}
+    	}
+    }
 
 
 
-	//=====================================  METHODS ============================================
+
+	//===============================================  METHODS ============================================
 
 	@FXML
 	void DeleteQuestion(ActionEvent event) {
@@ -319,11 +316,11 @@ public class Questions {
     	
     	if (result.get() == ButtonType.OK){
     		Question q = null;
-    		int index = mng.getQuestions().indexOf(new Question(_qnum));
+    		int index = _mng.getQuestions().indexOf(new Question(_qnum));
     		System.err.println("index = " + index);
 
-    		if (index > -1) q = mng.getQuestions().get(index);
-    		if (mng.removeQuestion(q)) {
+    		if (index > -1) q = _mng.getQuestions().get(index);
+    		if (_mng.removeQuestion(q)) {
     			NumQuestionCombo.getItems().remove(_indexToRemoveFromCombo);
     			setDiffBGC("white");
     			setQnumBGC("white");
@@ -369,7 +366,7 @@ public class Questions {
 		List1.getItems().clear();
 		_qnum = -1;
 		
-		List <Question> list = mng.getQuestionsByDifficulty(diff);
+		List <Question> list = _mng.getQuestionsByDifficulty(diff);
 		for (Question q:list){
 			NumQuestionCombo.getItems().add((int) q.getqNumber());
 		}
@@ -380,7 +377,7 @@ public class Questions {
 	private void SetAnswer (Integer num)
 	{
 		Question q = null;
-		List<Question> list = mng.getQuestionsByDifficulty(_curerntChosenSterngth);
+		List<Question> list = _mng.getQuestionsByDifficulty(_curerntChosenSterngth);
 		int index = list.indexOf(new Question(num));
 		if (index > -1) q  = list.get(index);
 
@@ -491,8 +488,189 @@ public class Questions {
 	}
 	
 	
+//	@FXML
+//	void setTeam(ActionEvent e) {
+//		if (e.getSource().equals(comboTeams)) {
+//			_team = comboTeams.getSelectionModel().getSelectedItem();
+//		}
+//	}
 	
-	//=================================================== CSS ================================================
+    //========================================= EDIT FORM CONTROL ==============================================
+	
+	@FXML
+	void openEditQuestion(ActionEvent event) {
+		setDiffBGC("white");
+		setQnumBGC("white");
+		
+		if (_curerntChosenSterngth == null) {
+			setDiffBGC("red");
+			return;
+		}
+		else if (_qnum < 0) {
+			setQnumBGC("red");
+			return;
+		}
+		
+		inEditMode = true;
+		
+		//set fields to editable
+		txtanswer1.setEditable(true);
+		txtanswer2.setEditable(true);
+		txtanswer3.setEditable(true);
+		txtanswer4.setEditable(true);
+		txtQuestion1.setEditable(true);
+		txtQuestion1.setDisable(false);
+		DiffComboox.setEditable(false);
+		NumQuestionCombo.setEditable(false);
+		DiffComboox.setDisable(true);
+		NumQuestionCombo.setDisable(true);
+		TrueBu.setDisable(false);
+		TrueBu2.setDisable(false);
+		TrueBu3.setDisable(false);
+		TrueBu4.setDisable(false);
+		FalseBu.setDisable(false);
+		FalseBu2.setDisable(false);
+		FalseBu3.setDisable(false);
+		FalseBu4.setDisable(false);
+		List1.setDisable(false);
+		List2.setDisable(false);
+		List1.setEditable(true);
+		List2.setEditable(true);
+		
+		
+		//iWindow.swap(Window.Admin_editQuestion);
+	}
+	
+	
+    @FXML
+    void saveClicked (ActionEvent event) {
+    	if (!event.getSource().equals(save)) return;
+    	if (!inEditMode) return;
+    	//reset errors
+    	setAnsBGC("white");
+    	setQquestionBGC("white");
+    	setTagsBGC("white");
+    	setDiffBGC("white");
+    	setTeamBGC("white");
+    	
+    	//get field values
+    	_a1 = TrueBu.isSelected();
+    	_a2 = TrueBu2.isSelected();
+    	_a3 = TrueBu3.isSelected();
+    	_a4 = TrueBu4.isSelected();
+    	_ans1 = txtanswer1.getText();
+    	_ans2 = txtanswer2.getText();
+    	_ans3 = txtanswer3.getText();
+    	_ans4 = txtanswer4.getText();
+    	_ques = txtQuestion.getText();
+    	ArrayList<Answer> ans = new ArrayList<Answer>();
+    	
+    	txtanswer1.setStyle("-fx-background-color: white;"); // change backgroud in runtime
+    	
+    	//check annser validity
+    	int numOfAnswers = 0,numOftrues=0;
+    	if (_ans1 != null && _ans1.length() > 1) {
+    		numOfAnswers++;
+    		ans.add(new Answer(_ans1, _a1));
+    		if (TrueBu.isSelected()) numOftrues++;
+    	}
+    	if (_ans2 != null && _ans2.length() > 1){
+    		numOfAnswers++;
+    		ans.add(new Answer(_ans2, _a2));
+    		if (TrueBu2.isSelected()) numOftrues++;  		
+    	}
+    	if (_ans3 != null && _ans3.length() > 1){
+    		numOfAnswers++;
+    		ans.add(new Answer(_ans3, _a3));
+    		if (TrueBu3.isSelected()) numOftrues++;
+    	}
+    	if (_ans4 != null && _ans4.length() > 1){
+    		numOfAnswers++;
+    		ans.add(new Answer(_ans4, _a4));
+    		if (TrueBu4.isSelected()) numOftrues++;
+    	}
+
+    	boolean isMultiple = false;
+    	if (numOftrues > 1) isMultiple = true;
+    	
+    	//check all fields are filled properly
+    	if (numOfAnswers < 2 || numOftrues < 1 ){
+    		errorLabelControl("Qustion must contain at least 2 posible answers and 1 true", true);
+    		setAnsBGC("red");
+    		return;
+    	}
+    	else if (_ques == null || _ques.length() < 1){
+    		errorLabelControl("Qustion must have more than 5 letters", true);
+    		setQquestionBGC("red");
+    		return;
+    	}
+    	else if (_tags == null || _tags.size() < 1){
+    		errorLabelControl("You must add at least one tag", true);
+    		setTagsBGC("red");
+    		return;
+    	}
+    	else if (_team == null){
+    		errorLabelControl("You must select team", true);
+    		setTeamBGC("red");
+    		return;
+    	}
+    	else if (_curerntChosenSterngth == null){
+    		errorLabelControl("You must select quetion difficulty", true);
+    		setDiffBGC("red");
+    		return;
+    	}
+    	errorLabelControl(null, false);
+    	
+    	//set the updated question ans switch the old one with the new one
+    	Question q = new Question(_qnum, _curerntChosenSterngth, _ques, isMultiple , ans, _team, _tags);
+    	if (_mng.updateQuestion(_question, q)){
+    		System.err.println(q);
+    		//	iWindow.swap(Window.Admin_Questions); //TODO unComment
+    	}
+    }
+
+    
+    /**
+     * This method controls the error label
+     * @param msg - message to present
+     * @param visiblity - show or not show the label
+     */
+    private void errorLabelControl(String msg, boolean visiblity) {
+    	this.lblError.setVisible(visiblity);
+    	if (msg == null) {
+    		this.lblError.setText(" ");
+    	}
+    	else {
+    		this.lblError.setText("Error: " + msg);
+    		System.out.println(msg);
+    	}
+    }
+    
+    //========================================== CSS ===========================================================
+    
+    /**
+     * CSS change
+     */
+    private void setAnsBGC(String color) {
+    	txtanswer1.setStyle("-fx-background-color:" + color +";");
+    	txtanswer2.setStyle("-fx-background-color:" + color +";");
+    	txtanswer3.setStyle("-fx-background-color:" + color +";");
+    	txtanswer4.setStyle("-fx-background-color:" + color +";");
+    }
+    
+    private void setQquestionBGC(String color) {
+    	txtQuestion.setStyle("-fx-background-color:" + color +";");
+    }
+    
+    private void setTagsBGC(String color) {
+    	List2.setStyle("-fx-background-color:" + color +";");
+    }
+    
+    private void setTeamBGC(String color) {
+    	//TeamComboBox.setStyle("-fx-background-color:" + color +";");
+    	// TODO
+    }
+    
     private void setDiffBGC(String color) {
     	DiffComboox.setStyle("-fx-background-color:" + color +";");
     }
@@ -500,6 +678,10 @@ public class Questions {
     private void setQnumBGC(String color) {
     	NumQuestionCombo.setStyle("-fx-background-color:" + color +";");
     }
+    
+    
+
+    
 
 
 }

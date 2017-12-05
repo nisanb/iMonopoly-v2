@@ -18,6 +18,7 @@ import org.json.simple.parser.JSONParser;
 
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
+import Utils.Team;
 
 public class JSON {
 	private static JSON json;
@@ -75,7 +76,7 @@ public class JSON {
 				
 				for (int i = 0; i < tagsArray.size(); i++) {
 					String str = tagsArray.get(i).toString();
-					//tags.add(QuestionTag.valueOf(str));
+					tags.add(QuestionTag.valueOf(str));
 					//System.err.println(QuestionTag.valueOf(str));
 				}
 				
@@ -87,8 +88,8 @@ public class JSON {
 											  getQuestionStrength((long)q.get("difficulty")),
 											  (String)q.get("text"),
 											  (boolean)q.get("isMultipleChoice"),
-											  answers, 
-											  (String)q.get("team"),
+											  answers,
+											  (Team)Team.valueOf((String)q.get("team")),
 											  tags);
 				
 				//Add the question to question map
@@ -108,13 +109,13 @@ public class JSON {
 			
 		}
 
-//		//print questions
+		//print questions
 //		for (List<Question> q:questions.values()) {
 //			for (Question temp:q) {
 //				System.out.println(temp);
 //			}
 //		}
-//		
+		
 //		Logger.log("Questions JSON was imported");
 		
 		return questions;
@@ -152,6 +153,7 @@ public class JSON {
 				JSONArray tags = new JSONArray();
 				for (QuestionTag t : q.getTags()) {
 					tags.add(t.getName());
+					System.err.println(t.getName());
 				}
 				
 
