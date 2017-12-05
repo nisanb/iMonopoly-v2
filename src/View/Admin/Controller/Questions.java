@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import com.sun.javafx.css.Combinator;
+
 import Controller.iWindow;
 import Entity.Answer;
 import Entity.Question;
@@ -85,9 +88,6 @@ public class Questions {
 
 	@FXML // fx:id="txtQuestion"
 	private TextField txtQuestion; // Value injected by FXMLLoader
-
-	@FXML // fx:id="txtQuestion1"
-	private TextField txtQuestion1; // Value injected by FXMLLoader
 
 	@FXML // fx:id="List2"
 	private ListView<QuestionTag> List2; // Value injected by FXMLLoader
@@ -175,12 +175,10 @@ public class Questions {
 	void initialize() {
 		ObservableList<QuestionStrength> list2=FXCollections.observableArrayList(QuestionStrength.values());
 		DiffComboox.setItems(list2);
-		
-		comboTeams = new ComboBox<Team>();
-		comboTeams.setEditable(true);
+				
         ObservableList<Team> list4 = FXCollections.observableArrayList(Team.values());
         comboTeams.setItems(list4);
-		System.out.println(list4);
+        comboTeams.setDisable(true);
 		
     	// ans1//
         group1.getToggles().add(TrueBu);
@@ -269,7 +267,6 @@ public class Questions {
     			if(q.getqNumber() == Selected){
     				_question = q;
     				txtQuestion.setText(q.getqQuestion());
-    				txtQuestion1.setText(q.getTeam().toString());
     				//Get the question tags
     				List1.getItems().clear();
     				List2.getItems().clear();
@@ -278,6 +275,7 @@ public class Questions {
     				List1.getItems().removeAll(q.getTags());
     				_tags = new ArrayList<QuestionTag>(q.getTags());
     				_team = q.getTeam();
+    				comboTeams.setValue(q.getTeam());
     				SetAnswer(Selected);
     			}
 
@@ -338,7 +336,7 @@ public class Questions {
 	private void GetAndSend(QuestionStrength diff)
 	{
 		NumQuestionCombo.getItems().clear();
-		txtQuestion1.clear();
+		comboTeams.setDisable(true);
 		txtQuestion.clear();
 		txtanswer1.clear();
 		txtanswer2.clear();
@@ -518,8 +516,7 @@ public class Questions {
 		txtanswer2.setEditable(true);
 		txtanswer3.setEditable(true);
 		txtanswer4.setEditable(true);
-		txtQuestion1.setEditable(true);
-		txtQuestion1.setDisable(false);
+		comboTeams.setDisable(false);
 		DiffComboox.setEditable(false);
 		NumQuestionCombo.setEditable(false);
 		DiffComboox.setDisable(true);
@@ -539,6 +536,15 @@ public class Questions {
 		
 		
 		//iWindow.swap(Window.Admin_editQuestion);
+	}
+	
+	
+	@FXML
+	void selectTeam(ActionEvent e) {
+		if (!inEditMode) return;
+		if (e.getSource().equals(comboTeams)) {
+			_team = comboTeams.getSelectionModel().getSelectedItem();
+		}
 	}
 	
 	
@@ -624,8 +630,8 @@ public class Questions {
     	//set the updated question ans switch the old one with the new one
     	Question q = new Question(_qnum, _curerntChosenSterngth, _ques, isMultiple , ans, _team, _tags);
     	if (_mng.updateQuestion(_question, q)){
-    		System.err.println(q);
-    		//	iWindow.swap(Window.Admin_Questions); //TODO unComment
+    		//System.err.println(q);
+    		iWindow.swap(Window.Admin_Questions); //TODO unComment
     	}
     }
 

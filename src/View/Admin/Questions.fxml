@@ -148,7 +148,6 @@
          </children>
       </HBox>
       <Label fx:id="lblError" layoutX="146.0" layoutY="554.0" prefHeight="18.0" prefWidth="438.0" text="Label" textFill="#ed0202" />
-      <TextField fx:id="txtQuestion1" editable="false" layoutX="664.0" layoutY="231.0" opacity="0.71" prefHeight="26.0" prefWidth="112.0" />
-      <ComboBox fx:id="comboteams" layoutX="250.0" layoutY="231.0" opacity="0.7" prefHeight="26.0" prefWidth="391.0" promptText="Select Team" />
+      <ComboBox fx:id="comboTeams" disable="true" layoutX="250.0" layoutY="231.0" opacity="0.7" prefHeight="26.0" prefWidth="391.0" promptText="Select Team" />
    </children>
 </AnchorPane>
