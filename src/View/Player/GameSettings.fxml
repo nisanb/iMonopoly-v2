@@ -32,7 +32,7 @@
       <ButtonBar layoutX="33.0" layoutY="182.0" prefHeight="40.0" prefWidth="200.0" />
       <Button layoutX="64.0" layoutY="516.0" mnemonicParsing="false" onAction="#openBoard" prefHeight="27.0" prefWidth="140.0" text="Save" />
       <Button layoutX="585.0" layoutY="516.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="140.0" text="Back" />
-      <SubScene height="195.0" layoutX="161.0" layoutY="149.0" opacity="0.07" width="419.0">
+      <SubScene height="167.0" layoutX="164.0" layoutY="149.0" opacity="0.07" width="416.0">
         <root>
           <Region />
         </root>
@@ -100,47 +100,41 @@
                </input>
             </BoxBlur>
          </effect></Slider>
-      <Label fx:id="lblNumOFRounds" layoutX="247.0" layoutY="375.0" text="Num Of Rounds:">
+      <Label fx:id="lblNumOFRounds" layoutX="240.0" layoutY="347.0" text="Num Of Rounds:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="247.0" layoutY="413.0" text="An Initial Sum Of Money:">
+      <Label layoutX="240.0" layoutY="385.0" text="An Initial Sum Of Money:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="247.0" layoutY="447.0" text="To Go BankRupt:">
+      <Label layoutX="240.0" layoutY="419.0" text="To Go BankRupt:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="247.0" layoutY="482.0" text="Payment Release From Jail:">
+      <Label layoutX="240.0" layoutY="454.0" text="Payment Release From Jail:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="313.0" layoutY="342.0" prefHeight="20.0" prefWidth="200.0" text="Edit Gmae Parameters">
+      <Label layoutX="306.0" layoutY="314.0" prefHeight="20.0" prefWidth="200.0" text="Edit Gmae Parameters">
          <font>
             <Font name="System Bold Italic" size="17.0" />
          </font>
       </Label>
-		<Spinner fx:id="txtNumOfRounds" amountToStepBy="1" editable="true" initialValue="50" layoutX="428.0" layoutY="373.0" max="100" min="0" opacity="0.7" />
-        <Spinner fx:id="txtInitialSumOFMoney" amountToStepBy="50000" editable="true" initialValue="100000" layoutX="428.0" layoutY="410.0" max="1000000" min="0" opacity="0.7" />
+		<Spinner fx:id="txtNumOfRounds" amountToStepBy="1" editable="true" initialValue="50" layoutX="421.0" layoutY="345.0" max="100" min="0" opacity="0.7" />
+        <Spinner fx:id="txtInitialSumOFMoney" amountToStepBy="50000" editable="true" initialValue="100000" layoutX="421.0" layoutY="382.0" max="1000000" min="0" opacity="0.7" />
 
       
-             <Spinner fx:id="txtBankrupt" amountToStepBy="50000" editable="true" initialValue="-100000" layoutX="428.0" layoutY="445.0" max="0" min="-1000000" opacity="0.7" />
+             <Spinner fx:id="txtBankrupt" amountToStepBy="50000" editable="true" initialValue="-100000" layoutX="421.0" layoutY="417.0" max="0" min="-1000000" opacity="0.7" />
        
-            <Spinner fx:id="txtPaymentRelaseFromJail" amountToStepBy="50000" editable="true" initialValue="100000" layoutX="428.0" layoutY="482.0" max="1000000" min="0" opacity="0.7" />
-      <TextField fx:id="valid" layoutX="287.0" layoutY="308.0" opacity="0.49" prefHeight="25.0" prefWidth="193.0" />
-      <Label fx:id="txt2Err" layoutX="302.0" layoutY="301.0" prefHeight="40.0" prefWidth="200.0" text="Fields cannot be empty">
+            <Spinner fx:id="txtPaymentRelaseFromJail" amountToStepBy="50000" editable="true" initialValue="100000" layoutX="421.0" layoutY="454.0" max="1000000" min="0" opacity="0.7" />
+      <Label fx:id="txt2Err" layoutX="64.0" layoutY="482.0" prefHeight="40.0" prefWidth="504.0" text="Fields cannot be empty">
          <font>
             <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="nickNamesValid" layoutX="291.0" layoutY="311.0" text="nickNames Must Be Diffrent">
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
          </font>
       </Label>
  

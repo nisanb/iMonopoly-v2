@@ -49,8 +49,7 @@ public class GameSettings {
 	@FXML
 	private Label txt2Err;
 	
-    @FXML // fx:id="valid"
-    private TextField valid; // Value injected by FXMLLoader
+  
 
 
 
@@ -116,23 +115,24 @@ public class GameSettings {
 	    private Spinner<Integer> txtPaymentRelaseFromJail; // Value injected by FXMLLoader
 	    
 
-	    @FXML // fx:id="nickNamesValid"
-	    private Label nickNamesValid; // Value injected by FXMLLoader
+
 	
 // back to previous form//
 	@FXML
 	void back(ActionEvent event) {
 		iWindow.swap(Window.Player_Menu);
 	}
+	
+	
 
 	@FXML // This method is called by the FXMLLoader when initialization is
 	void initialize() {
-		nickNamesValid.setVisible(false);
+	/*	nickNamesValid.setVisible(false);*/
 		txtfields.add(txt2);
 		txtfields.add(txt3);
 		txtfields.add(txt4);
 		
-		valid.setVisible(false);
+
 		
 		txt3.setVisible(false);
 		label3.setVisible(false);
@@ -142,10 +142,12 @@ public class GameSettings {
 		img3.setVisible(false);
 		img4.setVisible(false);
 
-		txt2Err.setVisible(false);
+		/*txt2Err.setVisible(false);*/
 
 		txt1.setText(mng.getLoggedPlayer());
 		txt1.setDisable(true);	
+		
+		errorLabelControl(null, false);
 	}
 	
 	
@@ -157,9 +159,9 @@ public class GameSettings {
 	void check1(MouseEvent event) {
 
 		Integer res = Integer.valueOf((int) slide1.getValue());
-		valid.setVisible(false);
+
 		txt2Err.setVisible(false);
-		nickNamesValid.setVisible(false);
+	/*	nickNamesValid.setVisible(false);*/
 		
 		switch (res) {
 
@@ -174,7 +176,7 @@ public class GameSettings {
 			label2.setVisible(true);
 			img2.setVisible(true);
 			txt2Err.setVisible(false);
-			nickNamesValid.setVisible(false);
+			/*nickNamesValid.setVisible(false);*/
 
 			txt3.setVisible(false);
 			label3.setVisible(false);
@@ -194,7 +196,7 @@ public class GameSettings {
 			
 			txt2Err.setVisible(false);
 		
-			nickNamesValid.setVisible(false);
+			/*nickNamesValid.setVisible(false);*/
 			txt2.clear();
 			txt4.clear();
 
@@ -214,7 +216,7 @@ public class GameSettings {
 
 		case 4:
 			txt1.setVisible(true);
-			nickNamesValid.setVisible(false);
+			/*nickNamesValid.setVisible(false);*/
 
 			label1.setVisible(true);
 			img1.setVisible(true);
@@ -318,17 +320,16 @@ public class GameSettings {
 
 		if (playerList.size() != res) {
 			// There is a problem//
-			valid.setVisible(true);
-			txt2Err.setVisible(true);
+		
+			errorLabelControl("You must fill  the empty fields ", true);
 			
 		} 
 		else {
 			
 			if(duplicates(playerList))
 			{
-				valid.setVisible(true);
-				nickNamesValid.setVisible(true);
-				txt2Err.setVisible(false);
+				errorLabelControl("Unable to register with the same nickname", true);
+				
 			}
 			else{
 			mng.build(playerList);
@@ -352,6 +353,17 @@ public class GameSettings {
 		}
 		return false;
 	}
+	
+    private void errorLabelControl(String msg, boolean visiblity) {
+    	this.txt2Err.setVisible(visiblity);
+    	if (msg == null) {
+    		this.txt2Err.setText(" ");
+    	}
+    	else {
+    		this.txt2Err.setText("Error: " + msg);
+    		System.out.println(msg);
+    	}
+    }
 	
 	
 	//============================================== CSS ==========================================================
