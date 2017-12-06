@@ -105,7 +105,7 @@ public class Questions {
 	private ComboBox<QuestionStrength> DiffComboox; // Value injected by FXMLLoader
 	
 	@FXML
-	private ComboBox<Team> comboTeams; //TODO
+	private ComboBox<Team> comboTeams;
 
 	@FXML // fx:id="managequestion"
 	private Label managequestion; // Value injected by FXMLLoader
@@ -256,7 +256,7 @@ public class Questions {
     @FXML
     void NumByDiff(ActionEvent event) {
     	if (NumQuestionCombo.getSelectionModel().getSelectedItem() == null) return;
-    	System.out.println((long)NumQuestionCombo.getSelectionModel().getSelectedItem());
+    	//System.out.println((long)NumQuestionCombo.getSelectionModel().getSelectedItem());
     	_qnum = (long)NumQuestionCombo.getSelectionModel().getSelectedItem();
     	_indexToRemoveFromCombo = NumQuestionCombo.getSelectionModel().getSelectedIndex();
 
@@ -490,7 +490,7 @@ public class Questions {
 	void setTeam(ActionEvent e) {
 		if (e.getSource().equals(comboTeams)) {
 			_team = comboTeams.getSelectionModel().getSelectedItem();
-			System.out.println(_team);
+			//System.out.println(_team);
 		}
 	}
 	
@@ -574,7 +574,7 @@ public class Questions {
     	
     	txtanswer1.setStyle("-fx-background-color: white;"); // change backgroud in runtime
     	
-    	//check annser validity
+    	//check anwser validity
     	int numOfAnswers = 0,numOftrues=0;
     	if (_ans1 != null && _ans1.length() > 1) {
     		numOfAnswers++;
@@ -628,13 +628,12 @@ public class Questions {
     	}
     	errorLabelControl(null, false);
     	
-    	System.err.println(_team);
     	
     	//set the updated question ans switch the old one with the new one
     	Question q = new Question(_qnum, _curerntChosenSterngth, _ques, isMultiple , ans, _team, _tags);
     	if (_mng.updateQuestion(_question, q)){
-    		System.err.println(q);
-    		iWindow.swap(Window.Admin_Questions); //TODO unComment
+    		//System.err.println(q);
+    		iWindow.swap(Window.Admin_Questions); 
     	}
     }
 
