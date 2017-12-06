@@ -486,12 +486,13 @@ public class Questions {
 	}
 	
 	
-//	@FXML
-//	void setTeam(ActionEvent e) {
-//		if (e.getSource().equals(comboTeams)) {
-//			_team = comboTeams.getSelectionModel().getSelectedItem();
-//		}
-//	}
+	@FXML
+	void setTeam(ActionEvent e) {
+		if (e.getSource().equals(comboTeams)) {
+			_team = comboTeams.getSelectionModel().getSelectedItem();
+			System.out.println(_team);
+		}
+	}
 	
     //========================================= EDIT FORM CONTROL ==============================================
 	
@@ -627,10 +628,12 @@ public class Questions {
     	}
     	errorLabelControl(null, false);
     	
+    	System.err.println(_team);
+    	
     	//set the updated question ans switch the old one with the new one
     	Question q = new Question(_qnum, _curerntChosenSterngth, _ques, isMultiple , ans, _team, _tags);
     	if (_mng.updateQuestion(_question, q)){
-    		//System.err.println(q);
+    		System.err.println(q);
     		iWindow.swap(Window.Admin_Questions); //TODO unComment
     	}
     }

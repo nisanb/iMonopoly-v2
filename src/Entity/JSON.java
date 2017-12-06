@@ -153,7 +153,7 @@ public class JSON {
 				JSONArray tags = new JSONArray();
 				for (QuestionTag t : q.getTags()) {
 					tags.add(t.getName());
-					System.err.println(t.getName());
+					//System.err.println(t.getName().getClass().toString());
 				}
 				
 
@@ -162,7 +162,7 @@ public class JSON {
 				jo.put("text", q.getqQuestion());
 				jo.put("difficulty", getQuestionStrengthAsLong(q.getqStrength()));
 				jo.put("isMultipleChoice", q.isMultipleChoise());
-				jo.put("team", q.getTeam());
+				jo.put("team", q.getTeam().toString());
 				jo.put("tags", tags);
 				jo.put("answers", ans);
 				
