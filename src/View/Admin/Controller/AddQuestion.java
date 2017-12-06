@@ -35,6 +35,8 @@ import javafx.scene.layout.VBox;
 
 public class AddQuestion {
 	
+	//======================================== FX COMPONENTS ================================================
+	
 	// For radio button//
 	ToggleGroup group1 =new ToggleGroup();
 	ToggleGroup group2 =new ToggleGroup();
@@ -199,6 +201,10 @@ public class AddQuestion {
     	qStrength = DiffComboox.getSelectionModel().getSelectedItem();
     }
 
+    /**
+     * Move the tags selected back
+     * @param event
+     */
     @FXML
     void FromList2ToList1(MouseEvent event) {
     	if(List2.getSelectionModel().isEmpty())
@@ -220,6 +226,10 @@ public class AddQuestion {
 
     }
 
+    /**
+     * Move the tags between lists
+     * @param event
+     */
     @FXML
     void moveTag(MouseEvent event) {
     	if(List1.getSelectionModel().isEmpty())
@@ -235,19 +245,27 @@ public class AddQuestion {
     }
     
     
-    
+    /**
+     * Get the question avalible diff
+     */
     private void getQuestionStrength()
     {
     	 ObservableList<QuestionStrength> list2=FXCollections.observableArrayList(QuestionStrength.values());
     	 DiffComboox.setItems(list2);
     }
     
+    /**
+     * Import the avaiable teams to combobox
+     */
     private void getTeam()
     {
    	 ObservableList<Team> list3=FXCollections.observableArrayList(Team.values());
    	 TeamComboBox.setItems(list3);
     }
     
+    /**
+     * Get the chosen tags for the quesiton
+     */
     private void getTag()
     {
       	 ObservableList<QuestionTag> list4=FXCollections.observableArrayList(QuestionTag.values());
@@ -255,6 +273,9 @@ public class AddQuestion {
       
     }
     
+    /**
+     * Reset all groups to be set to falses
+     */
     private void SetButtonToFalse()
     {
     	FalseBu.setSelected(true);
@@ -264,6 +285,10 @@ public class AddQuestion {
     }
     
     
+    /**
+     * Set the team for the new Question
+     * @param e
+     */
     @FXML
     private void setTeam(ActionEvent e){
 //    	if (TeamComboBox.getSelectionModel().getSelectedIndex() == 0){
@@ -275,7 +300,10 @@ public class AddQuestion {
     }
     
     //========================================= FORM CONTROLS =================================================
-    
+    /**
+     * This method verifies user input validity and creates new question to be added
+     * @param event
+     */
     @FXML
     void AddQuestion(ActionEvent event) {
     	if (!event.getSource().equals(save)) return;

@@ -40,6 +40,7 @@ import javafx.scene.layout.AnchorPane;
 
 public class Questions {
 
+	//========================================== FX COMPONENTS ================================================
 	
 	@FXML // ResourceBundle that was given to the FXMLLoader
 	private ResourceBundle resources;
@@ -332,7 +333,10 @@ public class Questions {
 		
 	}
 
-
+	/**
+	 * Gets the full question object from user 
+	 * @param diff
+	 */
 	private void GetAndSend(QuestionStrength diff)
 	{
 		NumQuestionCombo.getItems().clear();
@@ -396,7 +400,10 @@ public class Questions {
 		}
 	}
 
-
+	/**
+	 * set the radio buttons to be the same as question's
+	 * @param a
+	 */
 	private void CheckIsTrue(List<Answer> a)
 	{
 		List<Answer> name=a;
@@ -485,7 +492,10 @@ public class Questions {
 		}
 	}
 	
-	
+	/**
+	 * Get the team from user input
+	 * @param e
+	 */
 	@FXML
 	void setTeam(ActionEvent e) {
 		if (e.getSource().equals(comboTeams)) {
@@ -495,7 +505,10 @@ public class Questions {
 	}
 	
     //========================================= EDIT FORM CONTROL ==============================================
-	
+	/**
+	 * Set the chosen question to be editable
+	 * @param event
+	 */
 	@FXML
 	void openEditQuestion(ActionEvent event) {
 		setDiffBGC("white");
@@ -548,7 +561,10 @@ public class Questions {
 		}
 	}
 	
-	
+	/**
+	 * Thin method verifies all user inputs and builds the new question to replace with old one
+	 * @param event
+	 */
     @FXML
     void saveClicked (ActionEvent event) {
     	if (!event.getSource().equals(save)) return;
@@ -687,24 +703,6 @@ public class Questions {
     	NumQuestionCombo.setStyle("-fx-background-color:" + color +";");
     }
     
-    
-
-    
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
