@@ -88,7 +88,7 @@ public class Statistics {
     			
     	piechart.setData(list);
     	piechart.setLegendVisible(true);
-    	piechart.setPrefHeight(12);
+    	piechart.setPrefHeight(15);
     	players.setText(_mng.getListOfPlayers().size()+ "");
     	questions.setText(_mng.getQuestions().size() + "");;
     	gamesPlayed.setText(_mng.getGameData().size() + " ");
@@ -114,17 +114,6 @@ public class Statistics {
 
     }
     
-    @FXML
-    public void btn(ActionEvent event)
-    {
-    	ObservableList <Data> list=FXCollections.observableArrayList(
-    			new PieChart.Data("worng", 22),
-    			new PieChart.Data("easy", 10),
-    			new PieChart.Data("hard", 5),
-    			new PieChart.Data("meduim", 5)
-    			);
-    	piechart.setData(list);
-    }
     
     
     //============================================== CSS ===================================================

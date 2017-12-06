@@ -6,6 +6,9 @@ package View.Admin.Controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -176,8 +179,16 @@ public class Questions {
 	void initialize() {
 		ObservableList<QuestionStrength> list2=FXCollections.observableArrayList(QuestionStrength.values());
 		DiffComboox.setItems(list2);
-				
+		
         ObservableList<Team> list4 = FXCollections.observableArrayList(Team.values());
+        //sort list
+        Collections.sort(list4, new Comparator<Team>() {
+			@Override
+			public int compare(Team t1, Team t2) {
+				return t1.toString().compareTo(t2.toString());
+			}
+		});
+        
         comboTeams.setItems(list4);
         comboTeams.setDisable(true);
 		

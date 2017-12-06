@@ -7,6 +7,8 @@ package View.Admin.Controller;
 import java.awt.List;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 import Controller.iWindow;
@@ -256,6 +258,13 @@ public class AddQuestion {
     private void getTeam()
     {
    	 ObservableList<Team> list3=FXCollections.observableArrayList(Team.values());
+     //sort list
+     Collections.sort(list3, new Comparator<Team>() {
+			@Override
+			public int compare(Team t1, Team t2) {
+				return t1.toString().compareTo(t2.toString());
+			}
+		});
    	 TeamComboBox.setItems(list3);
     }
     

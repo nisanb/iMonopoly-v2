@@ -52,7 +52,6 @@
          </font>
       </Label>
       <PieChart fx:id="piechart" layoutX="464.0" layoutY="214.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.9" prefHeight="209.0" prefWidth="272.0" title="Question Distribution" AnchorPane.bottomAnchor="176.39999999999998" AnchorPane.leftAnchor="464.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="214.0" />
-      <Button layoutX="524.0" layoutY="425.0" mnemonicParsing="false" onAction="#btn" prefHeight="25.0" prefWidth="114.0" text="Load Chart" />
       <Button layoutX="616.0" layoutY="518.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="120.0" text="Back" />
       <TextField fx:id="players" disable="true" editable="false" layoutX="290.0" layoutY="230.0" opacity="0.7">
          <font>
