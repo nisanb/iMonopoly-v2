@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import Entity.Answer;
+import Entity.Game;
 import Entity.Player;
 import Entity.Question;
+import Entity.User;
 import Utils.QuestionStrength;
 import View.Admin.Controller.SysParam;
 import javafx.scene.control.Spinner;
@@ -40,7 +42,7 @@ public interface IManagement {
 	
 
 	
-	//================================== SYSTEM PARAMS ==============================================
+	//================================== SYSTEM PARAMS AND DATA ==============================================
 	
 	/**
 	 * Methods to control params in sysParam view
@@ -48,6 +50,8 @@ public interface IManagement {
 	public Object getParam(Param p);						//get specific param by name
 	public void setParam(Param p, Object value);			//set value of param
 	public void resetParamsToDefault();						//call to reset all params
+	public Map<Integer, Game> getGameData();				//get all game history data
+	public List<User> getListOfPlayers();
 	
 	/**
 	 * This button allows the user to change the game settings

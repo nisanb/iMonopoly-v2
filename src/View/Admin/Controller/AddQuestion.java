@@ -42,10 +42,6 @@ public class AddQuestion {
 	ToggleGroup group2 =new ToggleGroup();
 	ToggleGroup group3 =new ToggleGroup();
 	ToggleGroup group4 =new ToggleGroup();
-	
-
-	
-	private IManagement mng = iWindow.getManagement();
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -154,7 +150,7 @@ public class AddQuestion {
     private QuestionStrength qStrength;
     private ArrayList<QuestionTag> tags;
     private Team team;
-    
+	private IManagement mng = iWindow.getManagement();
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {

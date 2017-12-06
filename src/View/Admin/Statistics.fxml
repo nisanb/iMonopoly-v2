@@ -21,49 +21,62 @@
             <Image url="@../resources/sound_on.png" />
          </image>
       </ImageView>
-      <Label layoutX="269.0" layoutY="142.0" prefHeight="81.0" prefWidth="272.0" text="Admin Statistics" textFill="#da0b0b">
-         <font>
-            <Font size="36.0" />
-         </font>
-      </Label>
-      <Label fx:id="Players" layoutX="156.0" layoutY="222.0" text="# Players:">
+      <Label fx:id="lblPlayers" layoutX="155.0" layoutY="233.0" text="# Players:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="Questions" layoutX="156.0" layoutY="258.0" text="#Questions:">
+      <Label fx:id="lblQuestions" layoutX="155.0" layoutY="266.0" text="#Questions:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="easy" layoutX="156.0" layoutY="296.0" text="Easy:">
+      <Label fx:id="lblEasy" layoutX="156.0" layoutY="299.0" text="Easy:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="Hard" layoutX="154.0" layoutY="380.0" text="Hard:">
+      <Label fx:id="lblHard" layoutX="155.0" layoutY="367.0" text="Hard:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="Games_Played" layoutX="156.0" layoutY="418.0" text="#Games played:">
+      <Label fx:id="lblGamesPlayed" layoutX="154.0" layoutY="402.0" text="#Games played:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="medium" layoutX="156.0" layoutY="334.0" text="Medium:">
+      <Label fx:id="lblMedium" layoutX="154.0" layoutY="333.0" text="Medium:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <PieChart fx:id="piechart" layoutX="457.0" layoutY="197.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.91" prefHeight="150.0" prefWidth="168.0" />
-      <Button layoutX="508.0" layoutY="349.0" mnemonicParsing="false" onAction="#btn" prefHeight="25.0" prefWidth="114.0" text="Load Chart" />
+      <PieChart fx:id="piechart" layoutX="464.0" layoutY="214.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.9" prefHeight="209.0" prefWidth="272.0" title="Question Distribution" AnchorPane.bottomAnchor="176.39999999999998" AnchorPane.leftAnchor="464.0" AnchorPane.rightAnchor="64.0" AnchorPane.topAnchor="214.0" />
+      <Button layoutX="524.0" layoutY="425.0" mnemonicParsing="false" onAction="#btn" prefHeight="25.0" prefWidth="114.0" text="Load Chart" />
       <Button layoutX="616.0" layoutY="518.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="120.0" text="Back" />
-      <TextField layoutX="290.0" layoutY="223.0" opacity="0.71" />
-      <TextField layoutX="290.0" layoutY="259.0" opacity="0.71" />
-      <TextField layoutX="290.0" layoutY="297.0" opacity="0.71" />
-      <TextField layoutX="290.0" layoutY="335.0" opacity="0.71" />
-      <TextField layoutX="290.0" layoutY="381.0" opacity="0.71" />
-      <TextField layoutX="290.0" layoutY="419.0" opacity="0.71" />
+      <TextField fx:id="players" disable="true" editable="false" layoutX="290.0" layoutY="230.0" opacity="0.7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></TextField>
+      <TextField fx:id="questions" disable="true" editable="false" layoutX="290.0" layoutY="264.0" opacity="0.7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></TextField>
+      <TextField fx:id="easy" disable="true" editable="false" layoutX="290.0" layoutY="297.0" opacity="0.7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></TextField>
+      <TextField fx:id="medium" disable="true" editable="false" layoutX="290.0" layoutY="331.0" opacity="0.7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></TextField>
+      <TextField fx:id="hard" disable="true" editable="false" layoutX="290.0" layoutY="364.0" opacity="0.7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></TextField>
+      <TextField fx:id="gamesPlayed" disable="true" editable="false" layoutX="290.0" layoutY="399.0" opacity="0.7">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font></TextField>
    </children>
 </AnchorPane>

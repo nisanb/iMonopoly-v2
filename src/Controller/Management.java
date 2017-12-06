@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import Entity.Answer;
+import Entity.Game;
 import Entity.MonDB;
 import Entity.Player;
 import Entity.Question;
@@ -40,7 +41,7 @@ public class Management implements IManagement{
 	@Override
 	public List<Question> getQuestions() {
 		List<Question> toReturn = new ArrayList<Question>();
-		for(List<Question> ql : MonDB.getInstance().getGameQuestions().values())
+		for(List<Question> ql : _db.getGameQuestions().values())
 			toReturn.addAll(ql);
 		return toReturn;
 	}
@@ -66,7 +67,7 @@ public class Management implements IManagement{
 	 * get the logged user as string
 	 */
 	public String getLoggedPlayer() {
-		return MonDB.getInstance().getCurrentUser().getNickName();
+		return _db.getCurrentUser().getNickName();
 	}
 	
 	/**
@@ -128,7 +129,7 @@ public class Management implements IManagement{
 	 */
 	@Override
 	public boolean addQuestion(Question q) {
-		return MonDB.getInstance().addQuesiton(q);
+		return _db.addQuesiton(q);
 	}
 
 	/**
@@ -138,7 +139,7 @@ public class Management implements IManagement{
 	@Override
 	public boolean removeQuestion(Question q) {
 		System.out.println("Management: " + q);
-		return MonDB.getInstance().deleteQuestion(q);
+		return _db.deleteQuestion(q);
 
 	}
 
@@ -147,7 +148,7 @@ public class Management implements IManagement{
 	 */
 	@Override
 	public boolean updateQuestion(Question qBefore, Question qAfter) {
-		return MonDB.getInstance().updateQuestion(qBefore, qAfter);
+		return _db.updateQuestion(qBefore, qAfter);
 	}
 
 	
@@ -159,7 +160,7 @@ public class Management implements IManagement{
 	}
 
 	public void exportDB(){
-		MonDB.exportData();
+		_db.exportData();
 	}
 
 	/**
@@ -179,6 +180,16 @@ public class Management implements IManagement{
 	public void btnSave() {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Map<Integer, Game> getGameData() {
+		return _db.getGameData();
+	}
+
+	@Override
+	public List<User> getListOfPlayers() {
+		return _db.getPlayerData();
 	} 
 
 }
