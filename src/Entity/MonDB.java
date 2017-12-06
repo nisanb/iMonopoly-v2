@@ -38,6 +38,9 @@ public class MonDB implements Serializable {
 	transient private Map<QuestionStrength, List<Question>> gameQuestions;
 	private Map<Integer, Game> gameData;
 
+	/**
+	 * Constructor
+	 */
 	private MonDB() {
 		Data = this;
 		playerData = new ArrayList<>();
@@ -50,6 +53,8 @@ public class MonDB implements Serializable {
 		currentGame = null;
 	}
 
+	//========================================== BOARD =======================================================
+	
 	/**
 	 * Initiation of tile list
 	 */
@@ -57,7 +62,7 @@ public class MonDB implements Serializable {
 
 		Logger.log("Initiating Game Board Tiles..");
 
-		// Starting Tile
+		// Initialise all tiles
 		tileSet.add(new StartTile(0, "Starting Point"));
 		tileSet.add(new PropertyTile(1, "uTorrent", QuestionStrength.MEDIUM));
 		tileSet.add(new QMTile(2, "Question Mark"));
@@ -102,6 +107,8 @@ public class MonDB implements Serializable {
 		Logger.log("Finished initiating tiles");
 	}
 
+	//========================================== SETTERS & GETTERS =============================================
+
 	public static MonDB getData() {
 		return Data;
 	}
@@ -140,6 +147,74 @@ public class MonDB implements Serializable {
 		}
 		return Data;
 	}
+	
+
+	/**
+	 * Randomly generate a question by question strength
+	 * @param str
+	 * @return
+	 */
+	public Question getRandomQuestion(QuestionStrength str) {
+		List<Question> qlist = gameQuestions.get(str);
+		Random r = new Random();
+
+		return qlist.get(r.nextInt(qlist.size()));
+	}
+
+	public Map<Integer, Game> getGameData() {
+		return gameData;
+	}
+
+	protected void setGameData(HashMap<Integer, Game> gameData) {
+		this.gameData = gameData;
+	}
+
+	public List<User> getPlayerData() {
+		return Collections.unmodifiableList(playerData);
+	}
+
+	public void setPlayerData(List<User> playerData) {
+		this.playerData = playerData;
+	}
+
+	public Object getParam(Param p) {
+		return DBParams.get(p);
+	}
+
+	public void setParam(Param p, Object value) {
+		// TODO Auto-generated method stub
+		DBParams.put(p, value);
+	}
+	
+	public User getCurrentUser() {
+		return currentUser;
+	}
+
+	public void setCurrentUser(User currentPlayer) {
+		this.currentUser = currentPlayer;
+	}
+
+	/**
+	 * Logs in the user to the system
+	 * @param nickname
+	 */
+	public String login(String nickname) {
+		setCurrentUser(new User(verifyPlayer(nickname)));
+		return nickname;
+	}
+
+	public List<Tilable> getTileSet() {
+		return tileSet;
+	}
+
+	protected void setTileSet(List<Tilable> tileSet) {
+		this.tileSet = tileSet;
+	}
+	
+	
+	
+	//============================================ INIT AND DATA ============================================
+	
 
 	/**
 	 * This will initiate the first params to the system. DO NOT CHANGE
@@ -192,42 +267,6 @@ public class MonDB implements Serializable {
 		}
 	}
 
-	/**
-	 * Randomly generate a question by question strength
-	 * @param str
-	 * @return
-	 */
-	public Question getRandomQuestion(QuestionStrength str) {
-		List<Question> qlist = gameQuestions.get(str);
-		Random r = new Random();
-
-		return qlist.get(r.nextInt(qlist.size()));
-	}
-
-	public Map<Integer, Game> getGameData() {
-		return gameData;
-	}
-
-	protected void setGameData(HashMap<Integer, Game> gameData) {
-		this.gameData = gameData;
-	}
-
-	public List<User> getPlayerData() {
-		return Collections.unmodifiableList(playerData);
-	}
-
-	public void setPlayerData(List<User> playerData) {
-		this.playerData = playerData;
-	}
-
-	public Object getParam(Param p) {
-		return DBParams.get(p);
-	}
-
-	public void setParam(Param p, Object value) {
-		// TODO Auto-generated method stub
-		DBParams.put(p, value);
-	}
 	
 	/**
 	 * This method calls to reset all params method
@@ -244,6 +283,46 @@ public class MonDB implements Serializable {
 		d.initTiles();
 	}
 
+	// ======================================= GAME & PLAYER CONTROL =========================================
+	
+
+	/**
+	 * This method checks if user is already exists in system
+	 * @param nickname
+	 * @return player name
+	 */
+	public String verifyPlayer(String nickname) {
+		if(playerData == null)
+			playerData = new ArrayList<>();
+		if (!playerData.contains(nickname)) {
+			playerData.add(new User(nickname, PlayerAuth.PLAYER));
+		}
+
+		return playerData.get(playerData.indexOf(new User(nickname))).getNickName();
+	}
+	
+	/**
+	 * This method builds a new game 
+	 * @param playerList - players in the game
+	 */
+	public void buildGame(List<String> playerList){
+		
+		List<Player> newPlayerList = new ArrayList<>();
+		Color[] clist = {Color.GREEN, Color.BLUE, Color.YELLOW, Color.RED};
+		int i=0;
+		currentGame = new Game();
+		for(String s : playerList){
+			newPlayerList.add(new Player(MonDB.getInstance().login(s), (Integer)Param.get(Param.STARTING_CASH), clist[i++]));
+		}
+		
+		currentGame.build(newPlayerList);
+	}
+	
+	
+	
+	//========================================= QUSESTIONS CONTROL ============================================
+
+	
 	/**
 	 * This method removes specific question from map and json
 	 * @param question
@@ -336,62 +415,4 @@ public class MonDB implements Serializable {
 
 		this.gameQuestions = toSet;
 	}
-
-	public User getCurrentUser() {
-		return currentUser;
-	}
-
-	public void setCurrentUser(User currentPlayer) {
-		this.currentUser = currentPlayer;
-	}
-
-	/**
-	 * Logs in the user to the system
-	 * @param nickname
-	 */
-	public String login(String nickname) {
-		setCurrentUser(new User(verifyPlayer(nickname)));
-		return nickname;
-	}
-
-	public List<Tilable> getTileSet() {
-		return tileSet;
-	}
-
-	protected void setTileSet(List<Tilable> tileSet) {
-		this.tileSet = tileSet;
-	}
-
-	/**
-	 * This method checks if user is already exists in system
-	 * @param nickname
-	 * @return player name
-	 */
-	public String verifyPlayer(String nickname) {
-		if(playerData == null)
-			playerData = new ArrayList<>();
-		if (!playerData.contains(nickname)) {
-			playerData.add(new User(nickname, PlayerAuth.PLAYER));
-		}
-
-		return playerData.get(playerData.indexOf(new User(nickname))).getNickName();
-	}
-	
-	/**
-	 * This method builds a new game 
-	 * @param playerList - players in the game
-	 */
-	public void buildGame(List<String> playerList){
-		
-		List<Player> newPlayerList = new ArrayList<>();
-		Color[] clist = {Color.GREEN, Color.BLUE, Color.YELLOW, Color.RED};
-		int i=0;
-		currentGame = new Game();
-		for(String s : playerList){
-			newPlayerList.add(new Player(MonDB.getInstance().login(s), (Integer)Param.get(Param.STARTING_CASH), clist[i++]));
-		}
-		
-		currentGame.build(newPlayerList);
-	}
-
 }
