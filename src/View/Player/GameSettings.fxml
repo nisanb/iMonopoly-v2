@@ -37,7 +37,7 @@
           <Region />
         </root>
       </SubScene>
-      <Label fx:id="label1" layoutX="206.0" layoutY="194.0" onDragDetected="#hidelabel1" text="Player1">
+      <Label fx:id="label1" layoutX="206.0" layoutY="194.0" text="Player1">
          <font>
             <Font size="14.0" />
          </font>
@@ -47,8 +47,8 @@
             <Image url="@../../resources/9.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txt1" layoutX="177.0" layoutY="275.0" onAction="#hidetextfield1" opacity="0.7" prefHeight="25.0" prefWidth="91.0" promptText="Nickname" />
-      <Label fx:id="label3" layoutX="400.0" layoutY="193.0" onDragDetected="#hidelabel3" text="Player3">
+      <TextField fx:id="txt1" layoutX="177.0" layoutY="275.0" opacity="0.7" prefHeight="25.0" prefWidth="91.0" promptText="Nickname" />
+      <Label fx:id="label3" layoutX="400.0" layoutY="193.0" text="Player3">
          <font>
             <Font size="14.0" />
          </font>
@@ -58,8 +58,8 @@
             <Image url="@../../resources/8.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txt3" layoutX="376.0" layoutY="275.0" onAction="#hidetextfield3" opacity="0.7" prefHeight="25.0" prefWidth="91.0" promptText="Nickname" />
-      <Label fx:id="label2" layoutX="303.0" layoutY="194.0" onDragDetected="#hidelabel2" text="Player2">
+      <TextField fx:id="txt3" layoutX="376.0" layoutY="275.0" opacity="0.7" prefHeight="25.0" prefWidth="91.0" promptText="Nickname" />
+      <Label fx:id="label2" layoutX="303.0" layoutY="194.0" text="Player2">
          <font>
             <Font size="14.0" />
          </font>
@@ -69,8 +69,8 @@
             <Image url="@../../resources/7.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txt2" layoutX="276.0" layoutY="275.0" onAction="#hidetextfield2" opacity="0.7" prefHeight="25.0" prefWidth="91.0" promptText="Nickname" />
-      <Label fx:id="label4" layoutX="502.0" layoutY="194.0" onDragDetected="#hidelabel4" text="Player4">
+      <TextField fx:id="txt2" layoutX="276.0" layoutY="275.0" opacity="0.7" prefHeight="25.0" prefWidth="91.0" promptText="Nickname" />
+      <Label fx:id="label4" layoutX="502.0" layoutY="194.0" text="Player4">
          <font>
             <Font size="14.0" />
          </font>
@@ -85,7 +85,7 @@
             <Region />
          </root>
       </SubScene>
-      <TextField fx:id="txt4" layoutX="476.0" layoutY="275.0" onAction="#hidetextfield4" opacity="0.7" prefHeight="25.0" prefWidth="91.0" promptText="Nickname" />
+      <TextField fx:id="txt4" layoutX="476.0" layoutY="275.0" opacity="0.7" prefHeight="25.0" prefWidth="91.0" promptText="Nickname" />
       <Slider fx:id="slide1" blockIncrement="1.0" layoutX="222.0" layoutY="163.0" majorTickUnit="1.0" max="4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" min="2.0" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="0" onMouseClicked="#check1" pickOnBounds="false" prefHeight="25.0" prefWidth="329.0" showTickLabels="true" showTickMarks="true">
          <opaqueInsets>
             <Insets bottom="12.0" />
