@@ -41,7 +41,7 @@ import javafx.scene.input.SwipeEvent;
 
 public class GameSettings {
 
-	private IManagement mng = iWindow.getManagement();
+	private IManagement _mng = iWindow.getManagement();
 
 	@FXML // ResourceBundle that was given to the FXMLLoader
 	private ResourceBundle resources;
@@ -49,9 +49,6 @@ public class GameSettings {
 	@FXML
 	private Label txt2Err;
 	
-  
-
-
 
 
 	@FXML // URL location of the FXML file that was given to the FXMLLoader
@@ -144,8 +141,13 @@ public class GameSettings {
 
 		/*txt2Err.setVisible(false);*/
 
-		txt1.setText(mng.getLoggedPlayer());
-		txt1.setDisable(true);	
+		txt1.setText(_mng.getLoggedPlayer());
+		txt1.setDisable(true);
+		
+		txtBankrupt.getValueFactory().setValue((Integer) _mng.getParam(Param.BANKRUPTCY));;
+		txtInitialSumOFMoney.getValueFactory().setValue((Integer) _mng.getParam(Param.STARTING_CASH));
+		txtNumOfRounds.getValueFactory().setValue((Integer) _mng.getParam(Param.MAX_ROUNDS));;
+		txtPaymentRelaseFromJail.getValueFactory().setValue((Integer) _mng.getParam(Param.RELEASE_FROM_JAIL));
 		
 		errorLabelControl(null, false);
 	}
@@ -306,7 +308,7 @@ public class GameSettings {
 		List<String> playerList = new ArrayList<String>();
 		// Add first player which is logged in
 
-		playerList.add(mng.getLoggedPlayer());
+		playerList.add(_mng.getLoggedPlayer());
 
 		// Add second player - MUST
 		for (TextField box : txtfields) {
@@ -332,7 +334,7 @@ public class GameSettings {
 				
 			}
 			else{
-			mng.build(playerList);
+			_mng.build(playerList);
 			iWindow.swap(Window.Game_UI);
 			}
 		}
