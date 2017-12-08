@@ -241,7 +241,9 @@ public class MonDB implements Serializable {
 			ObjectInputStream objInput = new ObjectInputStream(input);
 			MonDB Data = (MonDB) objInput.readObject();
 			Logger.log("Successfully imported Data.cer");
+			Data.gameQuestions = JSON.getInstance().loadQuestions();
 			objInput.close();
+			
 			return Data;
 		} catch (Exception e) {
 			Logger.log("Failed to import database");
@@ -295,7 +297,9 @@ public class MonDB implements Serializable {
 		if(playerData == null)
 			playerData = new ArrayList<>();
 		if (!playerData.contains(nickname)) {
+			Logger.log("Added player " + nickname + " to database.");
 			playerData.add(new User(nickname, PlayerAuth.PLAYER));
+			exportData();
 		}
 
 		return playerData.get(playerData.indexOf(new User(nickname))).getNickName();
