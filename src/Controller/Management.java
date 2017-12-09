@@ -203,7 +203,7 @@ public class Management implements IManagement{
 		
 		for (Game game:games.values()) {
 			Player winner = game.getPlayers().get(0);
-			List<Player> losers = game.getLosers();
+			List<Player> losers = game.getGamePlayers();
 			
 			//add the winner to lead board
 			if (!leadboard.contains(winner)) {
@@ -251,7 +251,7 @@ public class Management implements IManagement{
 		
 		//count game and wins
 		for (Game game:games.values()) {
-			if (game.getLosers().contains(player)) player.setGames(player.getGames()+1);
+			if (game.getGamePlayers().contains(player)) player.setGames(player.getGames()+1);
 			else if (game.getPlayers().contains(player)) player.setWins(player.getWins()+1);
 			else continue;
 			
