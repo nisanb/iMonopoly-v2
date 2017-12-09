@@ -15,6 +15,7 @@ import java.util.Map;
 import java.util.Random;
 
 import Controller.Logger;
+import Utils.NamedColor;
 import Utils.Param;
 import Utils.PlayerAuth;
 import Utils.QuestionStrength;
@@ -27,6 +28,12 @@ public class MonDB implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static MonDB Data;
 	private Map<Param, Object> DBParams;
+	
+	/*
+	 * Tmp params - params only valid for current game
+	 */
+	private transient Map<Param, Object> tmpParams;
+	
 	transient private Game currentGame;
 	transient private User currentUser;
 	private List<Tilable> tileSet;
@@ -44,6 +51,7 @@ public class MonDB implements Serializable {
 	private MonDB() {
 		Data = this;
 		playerData = new ArrayList<>();
+		tmpParams = new HashMap<>();
 		this.gameQuestions = JSON.getInstance().loadQuestions();
 		tileSet = new LinkedList<>();
 		gameData = new HashMap<>();
@@ -178,12 +186,16 @@ public class MonDB implements Serializable {
 	}
 
 	public Object getParam(Param p) {
-		return DBParams.get(p);
+		return tmpParams.containsKey(p) ? tmpParams.get(p) : DBParams.get(p);
 	}
 
 	public void setParam(Param p, Object value) {
 		// TODO Auto-generated method stub
 		DBParams.put(p, value);
+	}
+	
+	public void setTmpParam(Param p, Object value) {
+		tmpParams.put(p, value);
 	}
 	
 	public User getCurrentUser() {
@@ -242,6 +254,7 @@ public class MonDB implements Serializable {
 			MonDB Data = (MonDB) objInput.readObject();
 			Logger.log("Successfully imported Data.cer");
 			Data.gameQuestions = JSON.getInstance().loadQuestions();
+			Data.tmpParams = new HashMap<>();
 			objInput.close();
 			
 			return Data;
@@ -309,16 +322,24 @@ public class MonDB implements Serializable {
 	 * This method builds a new game 
 	 * @param playerList - players in the game
 	 */
-	public void buildGame(List<String> playerList){
+	public void buildGame(List<String> playerList, Map<Param, Object> paramList){
 		
+		//Set temporary game params
+		for(Map.Entry<Param, Object> entry : paramList.entrySet()){
+			Logger.log("Temporary param was set for current game: " + entry.getKey() + " - " + entry.getValue());
+			setTmpParam(entry.getKey(), entry.getValue());
+		}
+		
+		//Sets the current game players randomly
 		List<Player> newPlayerList = new ArrayList<>();
-		Color[] clist = {Color.GREEN, Color.BLUE, Color.YELLOW, Color.RED};
+		NamedColor[] clist = {NamedColor.BLUE, NamedColor.GREEN, NamedColor.YELLOW, NamedColor.RED};
 		int i=0;
 		currentGame = new Game();
 		for(String s : playerList){
+			Logger.log("Adding player " + s + " with color " + clist[i]);
 			newPlayerList.add(new Player(MonDB.getInstance().login(s), (Integer)Param.get(Param.STARTING_CASH), clist[i++]));
 		}
-		
+	
 		currentGame.build(newPlayerList);
 	}
 	
@@ -419,4 +440,7 @@ public class MonDB implements Serializable {
 
 		this.gameQuestions = toSet;
 	}
+	
+	
+	
 }

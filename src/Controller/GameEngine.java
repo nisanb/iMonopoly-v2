@@ -18,7 +18,7 @@ public class GameEngine implements IGameEngine {
 	private UI ui;
 	private static GameEngine _instance = null;
 	private Game _game;
-
+	
 	private GameEngine() {
 		_game = MonDB.getInstance().getCurrentGame();
 	}
@@ -29,9 +29,14 @@ public class GameEngine implements IGameEngine {
 		return _instance;
 	}
 
-	public void setUI(UI ui) {
+	public void build(UI ui) {
 		this.ui = ui;
-		ui.build(_game.getPlayerList());
+		ui.build(_game.getGamePlayers());
+		int i=0;
+		for(Player p : _game.getGamePlayers()){
+			updatePlayerProperties(p);
+		}
+		ui.updateCurrentPlayer(currentPlayer().toString());
 	}
 
 	/**
@@ -231,12 +236,6 @@ public class GameEngine implements IGameEngine {
 			currentLocation++;
 
 			currentPlayer().getCurrentTile().preVisit(currentPlayer());
-
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 
 			
 			if(currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)){

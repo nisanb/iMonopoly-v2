@@ -24,6 +24,7 @@ public class Game implements Serializable {
 	private List<Tilable> _gameTiles;
 	private LinkedList<Player> _playList;
 	private List<Player> _gamePlayers;
+
 	/**
 	 * Current
 	 */
@@ -54,7 +55,7 @@ public class Game implements Serializable {
 	 * Build current game - happens after START GAME is clicked
 	 */
 	public void build(List<Player> playerList) {
-		
+
 		System.out.println(playerList);
 		/**
 		 * Build players
@@ -134,7 +135,6 @@ public class Game implements Serializable {
 	protected void setCurrentLoggedUser(User currentLoggedUser) {
 		_currentLoggedUser = currentLoggedUser;
 	}
-	
 
 	/**
 	 * This method checks if the conditions to end game have reached
@@ -204,21 +204,25 @@ public class Game implements Serializable {
 	public Player getCurrentPlayer() {
 		return _playList.peekFirst();
 	}
-	
-	public List<String> getPlayerList(){
+
+	public List<String> getPlayerList() {
 		List<String> newList = new ArrayList<String>();
-		for(Player p : _playList)
+		for (Player p : _playList)
 			newList.add(p.getNickName());
-		
+
 		return newList;
 	}
-	
-	public List<Player> getPlayers(){
+
+	public List<Player> getPlayers() {
 		return this._playList;
 	}
-	
-	public List<Player> getLosers(){
-		return this._gamePlayers;
+
+	public LinkedList<Player> getPlayList() {
+		return _playList;
+	}
+
+	public List<Player> getGamePlayers() {
+		return _gamePlayers;
 	}
 
 }

@@ -42,7 +42,7 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="img1" fitHeight="60.0" fitWidth="46.0" layoutX="203.0" layoutY="222.0">
+      <ImageView fx:id="img2" fitHeight="60.0" fitWidth="46.0" layoutX="305.0" layoutY="223.0">
          <image>
             <Image url="@../../resources/9.png" />
          </image>
@@ -53,29 +53,29 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="img3" fitHeight="60.0" fitWidth="46.0" layoutX="399.0" layoutY="222.0">
+      <ImageView fx:id="img3" fitHeight="60.0" fitWidth="46.0" layoutX="401.0" layoutY="222.0">
          <image>
             <Image url="@../../resources/8.png" />
          </image>
       </ImageView>
+      <TextField fx:id="txt2" layoutX="278.0" layoutY="286.0" opacity="0.7" prefHeight="25.0" prefWidth="91.0" promptText="Nickname" />
       <TextField fx:id="txt3" layoutX="378.0" layoutY="286.0" opacity="0.7" prefHeight="25.0" prefWidth="91.0" promptText="Nickname" />
       <Label fx:id="label2" layoutX="305.0" layoutY="205.0" text="Player2">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="img2" fitHeight="60.0" fitWidth="46.0" layoutX="301.0" layoutY="223.0">
+      <ImageView fx:id="img1" fitHeight="60.0" fitWidth="46.0" layoutX="206.0" layoutY="222.0">
          <image>
             <Image url="@../../resources/7.png" />
          </image>
       </ImageView>
-      <TextField fx:id="txt2" layoutX="278.0" layoutY="286.0" opacity="0.7" prefHeight="25.0" prefWidth="91.0" promptText="Nickname" />
       <Label fx:id="label4" layoutX="504.0" layoutY="205.0" text="Player4">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <ImageView fx:id="img4" fitHeight="60.0" fitWidth="46.0" layoutX="500.0" layoutY="223.0">
+      <ImageView fx:id="img4" fitHeight="60.0" fitWidth="46.0" layoutX="501.0" layoutY="223.0">
          <image>
             <Image url="@../../resources/10.png" />
          </image>

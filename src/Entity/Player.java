@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import Controller.Logger;
+import Utils.NamedColor;
 import Utils.PlayerAuth;
 import Utils.PlayerState;
 import javafx.beans.value.ObservableValue;
@@ -18,20 +19,19 @@ public class Player extends User implements Comparable<Player> {
 
 	private Integer _cash;
 	private Integer _strikesNum;
-	private Color _playerColor;
+	private NamedColor _playerColor;
 	private Map<Question, Boolean> _userAnswers;
 	private List<PropertyTile> _propertyList;
 	private Tilable _currentTile;
 	private PlayerState _state;
 	private transient Integer games = 0, wins = 0;
 	
-	
 	/**
 	 * Player Constructor
 	 * @param nickname
 	 * @param cash
 	 */
-	public Player(String nickname, Integer cash, Color playerColor) {
+	public Player(String nickname, Integer cash, NamedColor playerColor) {
 		super(nickname, PlayerAuth.PLAYER);
 		_propertyList = new ArrayList<>();
 		_userAnswers = new HashMap<>();
@@ -122,11 +122,11 @@ public class Player extends User implements Comparable<Player> {
 		return amount >= _cash;
 	}
 
-	public Color getPlayerColor() {
+	public NamedColor getPlayerColor() {
 		return _playerColor;
 	}
 
-	public void setPlayerColor(Color playerColor) {
+	public void setPlayerColor(NamedColor playerColor) {
 		_playerColor = playerColor;
 	}
 

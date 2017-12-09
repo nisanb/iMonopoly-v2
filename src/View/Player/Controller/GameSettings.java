@@ -6,10 +6,14 @@ package View.Player.Controller;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
+
+import org.omg.Dynamic.Parameter;
 
 import Controller.iWindow;
 import Utils.Param;
@@ -27,7 +31,8 @@ import javafx.scene.input.SwipeEvent;
 
 public class GameSettings {
 
-	//========================================== FX COMPONENTS ================================================
+	// ========================================== FX COMPONENTS
+	// ================================================
 
 	@FXML // ResourceBundle that was given to the FXMLLoader
 	private ResourceBundle resources;
@@ -87,18 +92,18 @@ public class GameSettings {
 	private Spinner<Integer> txtNumOfRounds; // Value injected by FXMLLoader
 
 	@FXML // fx:id="txtInitialSumOFMoney"
-	private Spinner<Integer> txtInitialSumOFMoney; // Value injected by FXMLLoader
+	private Spinner<Integer> txtInitialSumOFMoney; // Value injected by
+													// FXMLLoader
 
 	@FXML // fx:id="txtBankrupt"
 	private Spinner<Integer> txtBankrupt; // Value injected by FXMLLoader
 
 	@FXML // fx:id="txtPaymentRelaseFromJail"
-	private Spinner<Integer> txtPaymentRelaseFromJail; // Value injected by FXMLLoader
+	private Spinner<Integer> txtPaymentRelaseFromJail; // Value injected by
+														// FXMLLoader
 
-
-	//LOCAL VARIABLES
+	// LOCAL VARIABLES
 	private IManagement _mng = iWindow.getManagement();
-	
 
 	// For generic checks
 	private List<TextField> txtfields = new ArrayList<>();
@@ -108,13 +113,13 @@ public class GameSettings {
 	 */
 	@FXML
 	void initialize() {
-		
-		//nickNamesValid.setVisible(false);
+
+		// nickNamesValid.setVisible(false);
 		txtfields.add(txt2);
 		txtfields.add(txt3);
 		txtfields.add(txt4);
 
-		//reset visibility
+		// reset visibility
 		txt3.setVisible(false);
 		label3.setVisible(false);
 		txt4.setVisible(false);
@@ -122,24 +127,28 @@ public class GameSettings {
 		img3.setVisible(false);
 		img4.setVisible(false);
 
-		//auto set logged in user
+		// auto set logged in user
 		txt1.setText(_mng.getLoggedPlayer());
 		txt1.setDisable(true);
 
-		//get game params
-		txtBankrupt.getValueFactory().setValue((Integer) _mng.getParam(Param.BANKRUPTCY));;
+		// get game params
+		txtBankrupt.getValueFactory().setValue((Integer) _mng.getParam(Param.BANKRUPTCY));
+		;
 		txtInitialSumOFMoney.getValueFactory().setValue((Integer) _mng.getParam(Param.STARTING_CASH));
-		txtNumOfRounds.getValueFactory().setValue((Integer) _mng.getParam(Param.MAX_ROUNDS));;
+		txtNumOfRounds.getValueFactory().setValue((Integer) _mng.getParam(Param.MAX_ROUNDS));
+		;
 		txtPaymentRelaseFromJail.getValueFactory().setValue((Integer) _mng.getParam(Param.RELEASE_FROM_JAIL));
 
-		//reset errors
+		// reset errors
 		errorLabelControl(null, false);
 	}
 
-	//====================================== ACTION EVENTS ====================================================
+	// ====================================== ACTION EVENTS
+	// ====================================================
 
 	/**
 	 * This method send the user back to pervious form
+	 * 
 	 * @param event
 	 */
 	@FXML
@@ -147,14 +156,14 @@ public class GameSettings {
 		iWindow.swap(Window.Player_Menu);
 	}
 
-
 	@FXML
 	void check1(MouseEvent event) {
 
 		Integer res = Integer.valueOf((int) slide1.getValue());
 		txt2Err.setVisible(false);
-		
-		//this condition gets how many users are going to participate in the game and get input accordingly
+
+		// this condition gets how many users are going to participate in the
+		// game and get input accordingly
 		switch (res) {
 
 		case 2:
@@ -168,12 +177,11 @@ public class GameSettings {
 			label2.setVisible(true);
 			img2.setVisible(true);
 			txt2Err.setVisible(false);
-			/*nickNamesValid.setVisible(false);*/
+			/* nickNamesValid.setVisible(false); */
 
 			txt3.setVisible(false);
 			label3.setVisible(false);
 			img3.setVisible(false);
-
 
 			txt4.setVisible(false);
 			label4.setVisible(false);
@@ -188,10 +196,9 @@ public class GameSettings {
 
 			txt2Err.setVisible(false);
 
-			/*nickNamesValid.setVisible(false);*/
+			/* nickNamesValid.setVisible(false); */
 			txt2.clear();
 			txt4.clear();
-
 
 			txt2.setVisible(true);
 			label2.setVisible(true);
@@ -208,7 +215,7 @@ public class GameSettings {
 
 		case 4:
 			txt1.setVisible(true);
-			/*nickNamesValid.setVisible(false);*/
+			/* nickNamesValid.setVisible(false); */
 
 			label1.setVisible(true);
 			img1.setVisible(true);
@@ -235,74 +242,74 @@ public class GameSettings {
 
 	}
 
-
 	@FXML
 	void doSwapMusic(MouseEvent event) {
 
 	}
 
-
-
 	/**
-	 * This methods opens the game boared with user's input
+	 * This methods opens the game boared with user's input Setting the game
+	 * temporary params and starts build process
+	 * 
 	 * @param event
 	 */
 	@FXML
 	void openBoard(ActionEvent event) {
 
+		// Get number of players for this game
 		Integer res = Integer.valueOf((int) slide1.getValue());
 
+		// Sets the temporary game params
+		Map<Param, Object> paramList = new HashMap<>();
+		paramList.put(Param.MAX_ROUNDS, txtNumOfRounds.getValue());
+		paramList.put(Param.STARTING_CASH, txtInitialSumOFMoney.getValue());
+		paramList.put(Param.BANKRUPTCY, txtBankrupt.getValue());
+		paramList.put(Param.RELEASE_FROM_JAIL, txtPaymentRelaseFromJail.getValue());
+
+		/*
+		 * Sets players to connect game
+		 */
 		List<String> playerList = new ArrayList<String>();
 		// Add first player which is logged in
-
 		playerList.add(_mng.getLoggedPlayer());
-
 		// Add second player - MUST
 		for (TextField box : txtfields) {
 			if (!box.getText().isEmpty()) {
 				playerList.add(box.getText());
-			}
-			else {
+			} else {
 				settxtBGC(box, "red");
 			}
 		}
-
 		if (playerList.size() != res) {
 			// There is a problem//
-
-			errorLabelControl("You must fill  the empty fields ", true);
-
-		} 
-		else {
-
-			if(duplicates(playerList))
-			{
-				errorLabelControl("Unable to register with the same nickname", true);
-
-			}
-			else{
-				_mng.build(playerList);
-				iWindow.swap(Window.Game_UI);
-			}
+			errorLabelControl("You must fill the empty fields ", true);
+			return;
 		}
+
+		if (duplicates(playerList)) {
+			errorLabelControl("Unable to register with the same nickname", true);
+			return;
+		}
+
+		_mng.build(playerList, paramList);
+		iWindow.swap(Window.Game_UI);
 	}
 
-
-
-
-	//============================================== METHODS =================================================//
+	// ============================================== METHODS
+	// =================================================//
 
 	/**
-	 * This helper method prevent from user to set more than one player with the same name
+	 * This helper method prevent from user to set more than one player with the
+	 * same name
+	 * 
 	 * @param playerList
 	 * @return
 	 */
-	private boolean duplicates(final List<String> playerList)
-	{		
-		Set<String> dup=new HashSet<String>();
-		for(String i:playerList)
-		{
-			if(dup.contains(i))	return true;
+	private boolean duplicates(final List<String> playerList) {
+		Set<String> dup = new HashSet<String>();
+		for (String i : playerList) {
+			if (dup.contains(i))
+				return true;
 			dup.add(i);
 		}
 		return false;
@@ -310,27 +317,27 @@ public class GameSettings {
 
 	/**
 	 * This method controls the error message label
-	 * @param msg to present to user
-	 * @param visiblity of the label
+	 * 
+	 * @param msg
+	 *            to present to user
+	 * @param visiblity
+	 *            of the label
 	 */
 	private void errorLabelControl(String msg, boolean visiblity) {
 		this.txt2Err.setVisible(visiblity);
 		if (msg == null) {
 			this.txt2Err.setText(" ");
-		}
-		else {
+		} else {
 			this.txt2Err.setText("Error: " + msg);
 			System.out.println(msg);
 		}
 	}
 
-
-	//============================================== CSS ======================================================
+	// ============================================== CSS
+	// ======================================================
 
 	private void settxtBGC(TextField tf, String color) {
-		tf.setStyle("-fx-background-color:" + color +";");
+		tf.setStyle("-fx-background-color:" + color + ";");
 	}
-
-
 
 }

@@ -9,7 +9,7 @@ public interface IGameEngine {
 	 * Sets the Game UI Object
 	 * DO NOT TOUCH
 	 */
-	public void setUI(UI ui);
+	public void build(UI ui);
 	
 	/**
 	 * Button Clicked methods sent from UI

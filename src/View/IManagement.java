@@ -21,9 +21,9 @@ public interface IManagement {
 	public String GetLoginUser(String UserNickName);	//logged user by nick name
 	public void login(String nickname);					//WTF
 	
-	public void build(List<String> playerList);			//builds a game with given players
 	public List<Player> getLeadBoard();
 	public Player getPlayerData();
+	public void build(List<String> playerList, Map<Param, Object> paramList);			//builds a game with given players
 
 	
 	// =================================== 	QUESTIONS ==============================================

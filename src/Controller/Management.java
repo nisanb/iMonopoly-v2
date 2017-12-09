@@ -93,8 +93,8 @@ public class Management implements IManagement{
 	/**
 	 * calls to build game method
 	 */
-	public void build(List<String> playerList){
-		_db.buildGame(playerList);
+	public void build(List<String> playerList, Map<Param, Object> paramList){
+		_db.buildGame(playerList, paramList);
 	}
 
 	@Override

@@ -2,7 +2,9 @@ package View.Game.Controller;
 
 import java.util.List;
 
+import Entity.Player;
 import Entity.Question;
+import Utils.NamedColor;
 
 public interface UIInterface {
 
@@ -94,8 +96,6 @@ public interface UIInterface {
 	 * Build the game board and send the player list to initialize
 	 * @param playerList
 	 */
-	public void build(List<String> playerList);
-	
+	public void build(List<Player> playerList);
 
-	
 }
