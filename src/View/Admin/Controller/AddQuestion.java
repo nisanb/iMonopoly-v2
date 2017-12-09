@@ -4,7 +4,6 @@
 
 package View.Admin.Controller;
 
-import java.awt.List;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,11 +28,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 
 public class AddQuestion {
 	

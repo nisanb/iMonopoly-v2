@@ -5,7 +5,6 @@
 package View.Admin.Controller;
 
 import java.net.URL;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 import Controller.iWindow;

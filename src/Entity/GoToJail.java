@@ -1,7 +1,6 @@
 package Entity;
 
 import Controller.Logger;
-import Controller.Music;
 import Controller.iWindow;
 import Utils.TileType;
 

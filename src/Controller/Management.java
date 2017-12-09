@@ -3,19 +3,13 @@ package Controller;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeSet;
-
 import Entity.*;
 import Utils.Param;
 import Utils.PlayerAuth;
 import Utils.QuestionStrength;
 import View.IManagement;
-import View.Admin.Controller.SysParam;
 import javafx.scene.control.Spinner;
 
 /**
