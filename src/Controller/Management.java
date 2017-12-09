@@ -1,16 +1,16 @@
 package Controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
-import Entity.Answer;
-import Entity.Game;
-import Entity.MonDB;
-import Entity.Player;
-import Entity.Question;
-import Entity.User;
+import Entity.*;
 import Utils.Param;
 import Utils.PlayerAuth;
 import Utils.QuestionStrength;
@@ -176,11 +176,6 @@ public class Management implements IManagement{
 		return qnum+1;
 	}
 
-	@Override
-	public void btnSave() {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public Map<Integer, Game> getGameData() {
@@ -191,5 +186,68 @@ public class Management implements IManagement{
 	public List<User> getListOfPlayers() {
 		return _db.getPlayerData();
 	} 
+	
+	
+	
+	
+	//=========================================== QUERIES ===============================================
+	/**
+	 * This method get all params required to create the lead board
+	 * @return all required data for lead board
+	 */
+	public List<Player> getLeadBoard() {
+		
+		//calculate the statistics values
+		Map<Integer, Game> games = _db.getGameData();
+		List<Player> leadboard = new ArrayList<Player>();
+		
+		for (Game game:games.values()) {
+			Player winner = game.getPlayers().get(0);
+			List<Player> losers = game.getLosers();
+			
+			//add the winner to lead board
+			if (!leadboard.contains(winner)) {
+				winner.setGames(1);
+				winner.setWins(1);
+				leadboard.add(winner);
+			}
+			else {
+				int index = leadboard.indexOf(winner);
+				leadboard.get(index).setGames(leadboard.get(index).getGames()+1);
+			}
+			
+			//add the losers to lead board
+			for (Player p:losers) {
+				if (!leadboard.contains(p)) {
+					p.setGames(1);
+					p.setWins(0);
+				}
+				else {
+					int index = leadboard.indexOf(p);
+					leadboard.get(index).setGames(leadboard.get(index).getGames()+1);
+				}
+			}				
+		}
+		
+		
+		Collections.sort(leadboard, new Comparator<Player>() {
+
+			@Override
+			public int compare(Player p1, Player p2) {
+				return p1.getWins().compareTo(p2.getWins());
+			}
+		});
+		
+		return leadboard;
+	}
+	
+	
+	/**
+	 * This method gets all required data fot player statistics
+	 */
+	public void getPlayerData() {
+		
+	}
+	
 
 }

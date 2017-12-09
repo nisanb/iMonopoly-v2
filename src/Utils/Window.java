@@ -13,6 +13,7 @@ public enum Window {
 	Player_Statistics("Player/Statistics"),
 	Player_GameSettings("Player/GameSettings"),
 	Rules_Window("Player/Rules"),
+	Player_LeadBoard("Player/Leadboard"),
 	
 	
 	/**

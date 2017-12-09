@@ -3,15 +3,12 @@ package View;
 import java.util.List;
 import java.util.Map;
 
-import Entity.Answer;
-import Entity.Game;
-import Entity.Player;
-import Entity.Question;
-import Entity.User;
+import Entity.*;
 import Utils.QuestionStrength;
 import View.Admin.Controller.SysParam;
 import javafx.scene.control.Spinner;
 import Utils.Param;
+import Controller.Management;
 
 public interface IManagement {
 	
@@ -25,6 +22,7 @@ public interface IManagement {
 	public void login(String nickname);					//WTF
 	
 	public void build(List<String> playerList);			//builds a game with given players
+	public List<Player> getLeadBoard();
 
 	
 	// =================================== 	QUESTIONS ==============================================
@@ -59,8 +57,6 @@ public interface IManagement {
 	public void btnSave(List<Player>a,Spinner NumOfRounds,Spinner InitialSumOFMoney,Spinner Bankrupt,Spinner PaymentRelaseFromJail );
 		
 	public void exportDB();
-
-	void btnSave();
 	
 	public long getNextQuestionNum();
 	

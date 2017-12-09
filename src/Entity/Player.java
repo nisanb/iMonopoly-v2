@@ -22,6 +22,7 @@ public class Player extends User implements Comparable<Player> {
 	private List<PropertyTile> _propertyList;
 	private Tilable _currentTile;
 	private PlayerState _state;
+	private transient Integer games = 0, wins = 0;
 	/**
 	 * Player Constructor
 	 * 
@@ -148,4 +149,29 @@ public class Player extends User implements Comparable<Player> {
 		pt.setCurrentOwner(null);
 		return "Player "+toString()+" has sold "+pt+" for $"+pt.getSellPrice();
 	}
+
+	
+	
+	
+	//=================================== Setters & Getters for statistics ==================================
+	
+	
+	public Integer getGames() {
+		return games;
+	}
+
+	public void setGames(Integer games) {
+		this.games = games;
+	}
+
+	public Integer getWins() {
+		return wins;
+	}
+
+	public void setWins(Integer wins) {
+		this.wins = wins;
+	}
+	
+	
+	
 }
