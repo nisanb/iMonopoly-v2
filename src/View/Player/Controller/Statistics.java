@@ -39,7 +39,6 @@ public class Statistics {
 	//========================================= FX COMPONENTS ==================================================
     @FXML
     private ResourceBundle resources;
-    
 
     @FXML
     private TextField txtTotalGames;
@@ -57,8 +56,7 @@ public class Statistics {
     private TextField txtTotalAnswers;
 
     @FXML
-    private TextField txtTotalQuestions;
-    
+    private TextField txtTotalQuestions;  
 
     @FXML
     private URL location;
@@ -108,7 +106,7 @@ public class Statistics {
     
     @FXML
     void initialize() {
-    	
+    	//add data to pie
     	Player player = _mng.getPlayerData();
         ObservableList <Data> list=FXCollections.observableArrayList(
     			new PieChart.Data("Wins", player.getWins()),
@@ -118,6 +116,7 @@ public class Statistics {
     	piechart.setLegendVisible(true);
     	piechart.setPrefHeight(15);
    
+    	//add data to fields
     	txtTotalAnswers.setText(player.getCorrectAnswers() +"");
     	txtTotalGames.setText(player.getGames() +"");
     	txtTotalQuestions.setText(player.getTotalAnswers() +"");
