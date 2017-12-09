@@ -23,6 +23,7 @@ public interface IManagement {
 	
 	public void build(List<String> playerList);			//builds a game with given players
 	public List<Player> getLeadBoard();
+	public Player getPlayerData();
 
 	
 	// =================================== 	QUESTIONS ==============================================

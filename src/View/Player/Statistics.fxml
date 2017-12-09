@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="600.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Player.Controller.Statistics">
    <children>
-      <ImageView onDragDetected="#btn" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <ImageView pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../../resources/ManagementGUI.png" />
          </image>
@@ -26,7 +26,7 @@
             <Font size="25.0" />
          </font>
       </Label>
-      <Label layoutX="145.0" layoutY="222.0" text="Games Played:">
+      <Label layoutX="145.0" layoutY="225.0" text="Games Played:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -51,13 +51,18 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Button layoutX="503.0" layoutY="322.0" mnemonicParsing="false" onAction="#btn" text="Load Chart" />
       <Button layoutX="594.0" layoutY="517.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="140.0" text="Back" />
-      <TextField layoutX="264.0" layoutY="220.0" opacity="0.71" />
-      <TextField layoutX="264.0" layoutY="259.0" opacity="0.71" />
-      <TextField layoutX="264.0" layoutY="297.0" opacity="0.71" />
-      <TextField layoutX="264.0" layoutY="334.0" opacity="0.71" />
-      <TextField layoutX="264.0" layoutY="371.0" opacity="0.71" />
-      <PieChart fx:id="piechart" layoutX="433.0" layoutY="187.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="126.0" prefWidth="177.0" />
+      <TextField fx:id="txtTotalGames" layoutX="264.0" layoutY="220.0" opacity="0.71" />
+      <TextField fx:id="txtTotalStrikes" layoutX="264.0" layoutY="259.0" opacity="0.71" />
+      <TextField fx:id="txtTotalWins" layoutX="264.0" layoutY="297.0" opacity="0.71" />
+      <TextField fx:id="txtWinLossRatio" layoutX="264.0" layoutY="334.0" opacity="0.71" />
+      <TextField fx:id="txtTotalAnswers" layoutX="264.0" layoutY="371.0" opacity="0.71" />
+      <PieChart fx:id="piechart" layoutX="439.0" layoutY="200.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="219.0" prefWidth="294.0" />
+      <Label layoutX="145.0" layoutY="411.0" text="Total Questions:">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtTotalQuestions" layoutX="264.0" layoutY="408.0" opacity="0.71" />
    </children>
 </AnchorPane>

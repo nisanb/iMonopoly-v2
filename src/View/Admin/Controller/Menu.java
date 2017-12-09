@@ -70,7 +70,8 @@ public class Menu {
     }
     
 
-    
-    
-  
+    @FXML
+    void leadboardClicked(ActionEvent e) {
+    	iWindow.swap(Window.Player_LeadBoard);
+    }
 }

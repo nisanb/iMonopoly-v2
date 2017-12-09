@@ -10,6 +10,7 @@ import java.util.Map;
 import Controller.Logger;
 import Utils.PlayerAuth;
 import Utils.PlayerState;
+import javafx.beans.value.ObservableValue;
 
 public class Player extends User implements Comparable<Player> {
 
@@ -23,9 +24,10 @@ public class Player extends User implements Comparable<Player> {
 	private Tilable _currentTile;
 	private PlayerState _state;
 	private transient Integer games = 0, wins = 0;
+	
+	
 	/**
 	 * Player Constructor
-	 * 
 	 * @param nickname
 	 * @param cash
 	 */
@@ -39,6 +41,10 @@ public class Player extends User implements Comparable<Player> {
 		_playerColor = playerColor;
 		_state = PlayerState.WAITING;
 
+	}
+
+	public Player(String nickname) {
+		super(nickname, PlayerAuth.PLAYER);
 	}
 	
 	public PlayerState getState(){

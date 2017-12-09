@@ -245,8 +245,19 @@ public class Management implements IManagement{
 	/**
 	 * This method gets all required data fot player statistics
 	 */
-	public void getPlayerData() {
+	public Player getPlayerData() {
+		Player player = new Player (_db.getCurrentUser().getNickName());
+		Map<Integer, Game> games = _db.getGameData();
 		
+		//count game and wins
+		for (Game game:games.values()) {
+			if (game.getLosers().contains(player)) player.setGames(player.getGames()+1);
+			else if (game.getPlayers().contains(player)) player.setWins(player.getWins()+1);
+			else continue;
+			
+		}	
+		
+		return player;
 	}
 	
 
