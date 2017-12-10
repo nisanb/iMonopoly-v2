@@ -336,7 +336,7 @@ public class MonDB implements Serializable {
 		currentGame = new Game();
 		for(String s : playerList){
 			Logger.log("Adding player " + s + " with color " + clist[i]);
-			newPlayerList.add(new Player(MonDB.getInstance().login(s), (Integer)Param.get(Param.STARTING_CASH), clist[i++]));
+			newPlayerList.add(new Player(MonDB.getInstance().login(s), 999999999, clist[i++]));
 		}
 	
 		currentGame.build(newPlayerList);

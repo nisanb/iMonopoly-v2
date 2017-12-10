@@ -18,7 +18,7 @@ public class GameEngine implements IGameEngine {
 	private UI ui;
 	private static GameEngine _instance = null;
 	private Game _game;
-	
+
 	/**
 	 * Private constructor
 	 */
@@ -28,6 +28,7 @@ public class GameEngine implements IGameEngine {
 
 	/**
 	 * Singleton instance
+	 * 
 	 * @return
 	 */
 	public static GameEngine getInstance() {
@@ -37,18 +38,17 @@ public class GameEngine implements IGameEngine {
 	}
 
 	/**
-	 * build Method
-	 * Initiates only once from callback of UI.java initialize
+	 * build Method Initiates only once from callback of UI.java initialize
 	 */
 	public void build(UI ui) {
 		this.ui = ui;
 		ui.build(_game.getGamePlayers());
 		ui.gameLog("A new game has been initiated.");
-		for(Player p : _game.getGamePlayers()){
-			ui.gameLog("Player "+p+" has joined the game.");
+		for (Player p : _game.getGamePlayers()) {
+			ui.gameLog("Player " + p + " has joined the game.");
 			updatePlayerProperties(p);
 		}
-		
+
 		btnNextTurn();
 	}
 
@@ -78,13 +78,13 @@ public class GameEngine implements IGameEngine {
 	public void btnBuyProperty() {
 		disableAll();
 		PropertyTile pt = (PropertyTile) currentPlayer().getCurrentTile();
-		pt.purchaseProperty(currentPlayer());
-
+		if (pt.purchaseProperty(currentPlayer()))
+			updatePlayerProperties(currentPlayer());
+		ui.allowFinishTurn(true);
 	}
 
 	/**
-	 * Once pay rent is clicked in the UI
-	 * Initiate pay rent methodology
+	 * Once pay rent is clicked in the UI Initiate pay rent methodology
 	 */
 	@Override
 	public void btnPayRent() {
@@ -113,32 +113,32 @@ public class GameEngine implements IGameEngine {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	/**
 	 * Forward a message to the game log
 	 */
-	public void gameLog(String str){
+	public void gameLog(String str) {
 		ui.gameLog(str);
 	}
-	
+
 	/**
 	 * Order a player to proceed to jail
 	 */
 	@Override
 	public void goToJail() {
-		
-		//Activate siren sound
-		Music.getInstance().play("siren.wav");
-		
-		ui.gameLog("Player "+currentPlayer()+" is being taken to jail!");
 
-		//Set new player state
+		// Activate siren sound
+		Music.getInstance().play("siren.wav");
+
+		ui.gameLog("Player " + currentPlayer() + " is being taken to jail!");
+
+		// Set new player state
 		currentPlayer().setState(PlayerState.JAILED);
-		
-		//Take player to jail
+
+		// Take player to jail
 		goToTile(10);
 	}
-	
+
 	/**
 	 * When a game is finished, initiate a finish game sequence
 	 */
@@ -179,45 +179,51 @@ public class GameEngine implements IGameEngine {
 		System.out.println(currentPlayer().getCurrentTile());
 
 		Integer moveToTile = (dice.getSum() + currentPlayer().getCurrentTile().getTileNumber()) % 40;
-		
+
 		Task<Void> task = new Task<Void>() {
 
-		     @Override protected Void call() throws Exception {
+			@Override
+			protected Void call() throws Exception {
 
-
-		             Platform.runLater(new Runnable() {
-		                 @Override public void run() {
-		                	 goToTile(moveToTile);
-		     				updatePlayerProperties(currentPlayer());
-		     				currentPlayer().setState(PlayerState.WAITING);
-		                 }
-		             });
-		         return null;
-		     }
-		 };
-		 task.run();
-		 while(currentPlayer().getState() == PlayerState.MOVING){
-			
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						goToTile(moveToTile);
+						updatePlayerProperties(currentPlayer());
+						currentPlayer().setState(PlayerState.WAITING);
+					}
+				});
+				return null;
+			}
+		};
+		task.run();
+		while (currentPlayer().getState() == PlayerState.MOVING) {
+			try {
+				Thread.sleep(1);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		while(task.isRunning()){}
-		if(currentPlayer().getCurrentTile().getTileType() == TileType.Property)
+		while (task.isRunning()) {
+		}
+		if (currentPlayer().getCurrentTile().getTileType() == TileType.Property)
 			ui.allowPurchase(true);
-		else{
-			System.err.println("NOT A PROPERTY TILE");
-		}
+
 		ui.allowFinishTurn(true);
 
 	}
-	
+
 	/**
-	 * Once answer question is clicked - check the answers according to the question given
+	 * Once answer question is clicked - check the answers according to the
+	 * question given
 	 */
 	@Override
 	public void AnswerQuestion(int answerNum) {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	/**
 	 * Once finish turn is clicked - forward a call to the next players' turn
 	 */
@@ -240,6 +246,7 @@ public class GameEngine implements IGameEngine {
 
 	/**
 	 * Return the current player whos turn his
+	 * 
 	 * @return
 	 */
 	private Player currentPlayer() {
@@ -248,48 +255,48 @@ public class GameEngine implements IGameEngine {
 
 	/**
 	 * Launch a call to ui - update players' properties displayed in the UI
+	 * 
 	 * @param player
 	 */
 	private void updatePlayerProperties(Player player) {
-		ui.updatePlayerProperties(player.getNickName(),
-				player.getCash(), 
-				player.getStrikesNum(),
-				player.getTotalAssetsWorth(),
-				player.getTotalAssets());
+		ui.updatePlayerProperties(player.getNickName(), player.getCash(), player.getStrikesNum(),
+				player.getTotalAssetsWorth(), player.getTotalAssets());
 	}
 
 	/**
 	 * Private method to initiate a call for a player movment in-tile
+	 * 
 	 * @param tileNo
 	 */
-	private void goToTile(Integer tileNo){
+	private void goToTile(Integer tileNo) {
 		Integer currentLocation = currentPlayer().getCurrentTile().getTileNumber();
-		System.out.println("New Thread - moving player "+currentPlayer()+" from tile "+currentLocation+" to tile "+tileNo);
 		while (currentLocation != tileNo) {
 			currentPlayer().getCurrentTile().postVisit(currentPlayer());
-			
+
 			currentLocation %= 40;
-			Integer nextLocation = (currentLocation+1)%40;
-			
+			Integer nextLocation = (currentLocation + 1) % 40;
+
 			ui.movePlayer(currentPlayer().getNickName(), currentLocation, nextLocation);
 			currentPlayer().setCurrentTile(_game.getTile(nextLocation));
 			currentLocation++;
 
 			currentPlayer().getCurrentTile().preVisit(currentPlayer());
 
-			
-			if(currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)){
-				//Player passed by start point
-				ui.gameLog("Player "+currentPlayer()+" has passed by Starting Point (0) and received "+Param.get(Param.START_TILE_VISIT));
+			if (currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)) {
+				// Player passed by start point
+				ui.gameLog("Player " + currentPlayer() + " has passed by Starting Point (0) and received "
+						+ Param.get(Param.START_TILE_VISIT));
 			}
 		}
-		ui.gameLog("Player "+currentPlayer()+" has arrived to "+currentPlayer().getCurrentTile()+" ("+currentPlayer().getCurrentTile().getTileNumber()+")");
+		ui.gameLog("Player " + currentPlayer() + " has arrived to " + currentPlayer().getCurrentTile() + " ("
+				+ currentPlayer().getCurrentTile().getTileNumber() + ")");
 		currentPlayer().getCurrentTile().visit(currentPlayer());
-		if(currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)){
-			//Player passed by start point
-			ui.gameLog("Player "+currentPlayer()+" has arrived to Starting Point (0) and received "+Param.get(Param.START_TILE_VISIT));
+		if (currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)) {
+			// Player passed by start point
+			ui.gameLog("Player " + currentPlayer() + " has arrived to Starting Point (0) and received "
+					+ Param.get(Param.START_TILE_VISIT));
 		}
 
 	}
-		
+
 }

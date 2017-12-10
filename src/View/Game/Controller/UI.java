@@ -499,7 +499,6 @@ public class UI implements UIInterface {
 
 	@Override
 	public void movePlayer(String player, int tileFrom, int tileTo) {
-		gameLog("Moving player " + player + " from " + tileFrom + " to " + tileTo);
 		PlayerUI pUI = playerList.get(player);
 
 		// FadeTransition ft = new FadeTransition(Duration.millis(1000),

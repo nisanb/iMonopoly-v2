@@ -15,6 +15,7 @@ import java.util.Set;
 
 import org.omg.Dynamic.Parameter;
 
+import Controller.Logger;
 import Controller.iWindow;
 import Utils.Param;
 import Utils.Window;
@@ -132,10 +133,9 @@ public class GameSettings {
 
 		// get game params
 		txtBankrupt.getValueFactory().setValue((Integer) _mng.getParam(Param.BANKRUPTCY));
-		;
+		Logger.log("Aquired param money: "+_mng.getParam(Param.STARTING_CASH));
 		txtInitialSumOFMoney.getValueFactory().setValue((Integer) _mng.getParam(Param.STARTING_CASH));
 		txtNumOfRounds.getValueFactory().setValue((Integer) _mng.getParam(Param.MAX_ROUNDS));
-		;
 		txtPaymentRelaseFromJail.getValueFactory().setValue((Integer) _mng.getParam(Param.RELEASE_FROM_JAIL));
 
 		// reset errors
