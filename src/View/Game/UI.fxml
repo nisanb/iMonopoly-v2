@@ -48,12 +48,12 @@
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblValue2" layoutX="7.0" layoutY="50.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Value:" textFill="WHITE">
+                  <Label fx:id="lblValue2" layoutX="7.0" layoutY="50.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: transparent" text="Net Worth:" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="valuePlayer2" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="valuePlayer2" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="98.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
@@ -101,12 +101,12 @@
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblValue4" layoutX="7.0" layoutY="50.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Value:" textFill="WHITE">
+                  <Label fx:id="lblValue4" layoutX="7.0" layoutY="50.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: transparent" text="Net Worth:" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="valuePlayer4" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="valuePlayer4" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
@@ -139,12 +139,12 @@
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblValue1" layoutX="7.0" layoutY="50.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Value:" textFill="WHITE">
+                  <Label fx:id="lblValue1" layoutX="7.0" layoutY="50.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: transparent" text="Net Worth:" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="valuePlayer1" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="valuePlayer1" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
@@ -187,12 +187,12 @@
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblValue3" layoutX="9.0" layoutY="50.0" prefHeight="25.0" prefWidth="67.0" style="-fx-background-color: transparent" text="Value:" textFill="WHITE">
+                  <Label fx:id="lblValue3" layoutX="9.0" layoutY="50.0" prefHeight="25.0" prefWidth="83.0" style="-fx-background-color: transparent" text="Net Worth:" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="valuePlayer3" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="90.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="valuePlayer3" layoutX="91.0" layoutY="50.0" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: transparent" text="1" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>

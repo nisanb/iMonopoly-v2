@@ -53,10 +53,24 @@ public class PlayerUI {
 			this.playerContainer.setVisible(true);
 		}
 		
+		/**
+		 * Partial constructor for comparision
+		 * @param playerName
+		 */
 		public PlayerUI(String playerName){
 			this.pName=playerName;	
 		}
+
+		public void updateData(Integer cash, Integer strikes, Integer assetsWorth, Integer assetsAmount){
+			pMoney.setText("$"+cash);
+			pStrikes.setText(strikes.toString());
+			pValue.setText("$"+assetsWorth);
+		}
 		
+		/**
+		 * Set the glow of the player pane
+		 * @param glow true/false
+		 */
 		public void glow(Boolean glow){
 			Double glowDouble = glow?1.0:0.0;
 			this.playerContainer.setEffect(new Glow(glowDouble==1.0?0.5:glowDouble));

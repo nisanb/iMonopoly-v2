@@ -7,7 +7,7 @@ import Controller.Logger;
 import Controller.iWindow;
 import Entity.Player;
 import Entity.Question;
-import Utils.TileList;
+import Utils.SpecialList;
 import Utils.Window;
 import View.IGameEngine;
 import javafx.animation.FadeTransition;
@@ -36,8 +36,6 @@ public class UI implements UIInterface {
 
 	List<String> playersList = new ArrayList<>();
 
-	ImageView playerPics[] = new ImageView[playersList.size()];
-	ImageView[][] players = new ImageView[40][4];
 	ImageView[] roll1 = new ImageView[6];
 	ImageView[] roll2 = new ImageView[6];
 
@@ -46,7 +44,7 @@ public class UI implements UIInterface {
 
 	public static final IGameEngine ge = iWindow.getGameEngine();
 
-	List<PlayerUI> playerList;
+	SpecialList<PlayerUI> playerList;
 
 	@FXML
 	private Button button1 = new Button();
@@ -418,7 +416,7 @@ public class UI implements UIInterface {
 	@FXML
 	private FlowPane tile39;
 
-	private TileList<FlowPane> _tiles;
+	private SpecialList<FlowPane> _tiles;
 
 	AnchorPane _playersAnchorPanes[];
 	Label _playersNames[];
@@ -502,7 +500,7 @@ public class UI implements UIInterface {
 	@Override
 	public void movePlayer(String player, int tileFrom, int tileTo) {
 		gameLog("Moving player " + player + " from " + tileFrom + " to " + tileTo);
-		PlayerUI pUI = playerList.get(playerList.indexOf(new PlayerUI(player)));
+		PlayerUI pUI = playerList.get(player);
 
 		// FadeTransition ft = new FadeTransition(Duration.millis(1000),
 		// _tiles.get(tileFrom).getChildren().get(_tiles.get(tileFrom).getChildren().indexOf(pUI.get_small())));
@@ -568,17 +566,13 @@ public class UI implements UIInterface {
 
 	}
 	
-	public PlayerUI getPlayer(String nickname){
-		return playerList.get(playerList.indexOf(new PlayerUI(nickname)));
-	}
-
 	@Override
 	public void updateCurrentPlayer(String nickname) {
 		Logger.log("Adding glow to player " + nickname);
 		for(PlayerUI p : playerList)
 			p.glow(false);
 		
-		getPlayer(nickname).glow(true);
+		playerList.get(nickname).glow(true);
 	}
 
 	@Override
@@ -699,38 +693,7 @@ public class UI implements UIInterface {
 	@Override
 	public void updatePlayerProperties(String nickname, Integer cash, Integer strikes, Integer assetsWorth,
 			Integer assetsAmount) {
-		int pos = playersList.indexOf(nickname);
-		System.out.println(pos + " pos");
-
-		switch (pos) {
-		case (0): {
-			moneyPlayer1.setText(cash + "$");
-			strikesPlayer1.setText(strikes + "");
-			String temp = assetsWorth + "(#" + assetsAmount + ")";
-			valuePlayer1.setText(assetsWorth + "$" + " (#" + assetsAmount + ")");
-			break;
-		}
-		case (1): {
-			moneyPlayer2.setText(cash + "$");
-			strikesPlayer2.setText(strikes + "");
-			valuePlayer2.setText(assetsWorth + "$" + " (#" + assetsAmount + ")");
-			break;
-		}
-		case (2): {
-			moneyPlayer3.setText(cash + "$");
-			strikesPlayer3.setText(strikes + "");
-			valuePlayer3.setText(assetsWorth + "$" + " (#" + assetsAmount + ")");
-			break;
-		}
-		case (3): {
-			moneyPlayer4.setText(cash + "$");
-			strikesPlayer4.setText(strikes + "");
-			valuePlayer4.setText(assetsWorth + "$" + " (#" + assetsAmount + ")");
-			break;
-		}
-
-		}
-
+		playerList.get(nickname).updateData(cash, strikes, assetsWorth, assetsAmount);
 	}
 
 	@Override
@@ -772,7 +735,7 @@ public class UI implements UIInterface {
 	@FXML
 	void initialize() {
 		_instance = this;
-		playerList = new ArrayList<>();
+		playerList = new SpecialList<>();
 
 		/**
 		 * Sets the content panes and labels according to player numbers
@@ -792,7 +755,7 @@ public class UI implements UIInterface {
 		 * Build game tiles
 		 */
 
-		_tiles = new TileList<FlowPane>();
+		_tiles = new SpecialList<FlowPane>();
 		_tiles.addItem(tile00).addItem(tile01).addItem(tile02).addItem(tile03).addItem(tile04).addItem(tile05)
 				.addItem(tile06).addItem(tile07).addItem(tile08).addItem(tile09).addItem(tile10).addItem(tile11)
 				.addItem(tile12).addItem(tile13).addItem(tile14).addItem(tile15).addItem(tile16).addItem(tile17)
