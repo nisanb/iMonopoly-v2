@@ -198,7 +198,7 @@ public class Game implements Serializable {
 	public Player nextPlayer() {
 		Player nextPlayer = _playList.removeFirst();
 		_playList.addLast(nextPlayer);
-		return nextPlayer;
+		return _playList.peekFirst();
 	}
 
 	public Player getCurrentPlayer() {

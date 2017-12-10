@@ -32,11 +32,13 @@ public class GameEngine implements IGameEngine {
 	public void build(UI ui) {
 		this.ui = ui;
 		ui.build(_game.getGamePlayers());
-		int i=0;
+		ui.gameLog("A new game has been initiated.");
 		for(Player p : _game.getGamePlayers()){
+			ui.gameLog("Player "+p+" has joined the game.");
 			updatePlayerProperties(p);
 		}
-		ui.updateCurrentPlayer(currentPlayer().toString());
+		
+		btnNextTurn();
 	}
 
 	/**
@@ -208,6 +210,8 @@ public class GameEngine implements IGameEngine {
 		ui.allowPurchase(false);
 		ui.allowRent(false);
 		ui.allowRollDice(false);
+		ui.allowFinishTurn(false);
+		ui.allowSellProperty(false);
 	}
 
 	private Player currentPlayer() {

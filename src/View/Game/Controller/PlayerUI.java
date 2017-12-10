@@ -59,9 +59,7 @@ public class PlayerUI {
 		
 		public void glow(Boolean glow){
 			Double glowDouble = glow?1.0:0.0;
-			this.pNickname.setEffect(new Glow(glowDouble));
-			this._big.setEffect(new Glow(glowDouble==1.0?0.5:glowDouble));
-			this._small.setEffect(new Glow(glowDouble==1.0?0.5:glowDouble));
+			this.playerContainer.setEffect(new Glow(glowDouble==1.0?0.5:glowDouble));
 		}
 
 		/**

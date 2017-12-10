@@ -531,8 +531,6 @@ public class UI implements UIInterface {
 	@Override
 	public void allowPurchase(Boolean allow) {
 		btnBuyProperty.setDisable(!allow);
-		System.err.println("Purchase Button: " + allow);
-
 	}
 
 	@Override
@@ -586,15 +584,21 @@ public class UI implements UIInterface {
 	@Override
 	public void gameLog(String message) {
 		gameLogs.setText(message + "\n" + gameLogs.getText());
-		gameLogDisplay(true);
+		gameLogDisplay();
 	}
 
 	@Override
-	public void gameLogDisplay(Boolean display) {
-		questionsPane.setVisible(!display);
-		questionsPaneContainer.setVisible(!display);
-		gameLogScrollPane.setVisible(display);
+	public void gameLogDisplay() {
+		disableAllPanes();
+		gameLogScrollPane.setVisible(true);
 
+	}
+	
+	private void disableAllPanes(){
+		buyRentPane.setVisible(false);
+		questionsPaneContainer.setVisible(false);
+		gameLogScrollPane.setVisible(false);
+		txtAnswerPane.setVisible(false);
 	}
 
 	@FXML
