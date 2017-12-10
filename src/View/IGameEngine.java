@@ -35,49 +35,6 @@ public interface IGameEngine {
 	public void gameLog(String str);
 	
 	/**
-	 * player lands on a go tile
-	 */
-	public void landOnAGoTileButtonsDisplay();
-	
-	/**
-	 *  player landing on a jail tile
-	 */
-	public void landOnAJailButtonsDisplay();
-	/**
-	 * player finished with his turn after landing on a tile/jail/etc
-	 */
-	public void finishedATileButtonsDisplay();
-	/**
-	 * player lands on a lucky tile
-	 */
-	public void landOnLuckyTileButtonsDisplay();
-	/**
-	 * player start his turn
-	 */
-	public void beforeRollDiceButtonsDisplay();
-	/**
-	 * player lands on a question mark tile
-	 */
-	public void landOnQuestionMarkButtonsDisplay();
-	/**
-	 * player lands on a propery that someone else own
-	 */
-	public void landOnOwnerPropertyButtonsDisplay();
-	
-	/**
-	 * player lands on a property that no one own
-	 */
-	public void landOnEmptyPropertyButtonsDisplay();
-	
-	/**
-	 * player lands on a property that he owns
-	 */
-	public void landOnHisOwnPropertyButtonsDisplay();
-	
-	
-	
-	
-	/**
 	 * 
 	 * @param answerNum 1/2/3/4 -- not 0
 	 */

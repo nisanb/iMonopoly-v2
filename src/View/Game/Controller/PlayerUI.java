@@ -54,7 +54,7 @@ public class PlayerUI {
 		}
 		
 		public PlayerUI(String playerName){
-			this.pName=playerName;
+			this.pName=playerName;	
 		}
 		
 		public void glow(Boolean glow){

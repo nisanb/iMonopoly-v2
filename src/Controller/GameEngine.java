@@ -19,16 +19,27 @@ public class GameEngine implements IGameEngine {
 	private static GameEngine _instance = null;
 	private Game _game;
 	
+	/**
+	 * Private constructor
+	 */
 	private GameEngine() {
 		_game = MonDB.getInstance().getCurrentGame();
 	}
 
+	/**
+	 * Singleton instance
+	 * @return
+	 */
 	public static GameEngine getInstance() {
 		if (_instance == null)
 			_instance = new GameEngine();
 		return _instance;
 	}
 
+	/**
+	 * build Method
+	 * Initiates only once from callback of UI.java initialize
+	 */
 	public void build(UI ui) {
 		this.ui = ui;
 		ui.build(_game.getGamePlayers());
@@ -60,6 +71,9 @@ public class GameEngine implements IGameEngine {
 
 	}
 
+	/**
+	 * Once buy property button is clicked - initiate buy property methodology
+	 */
 	@Override
 	public void btnBuyProperty() {
 		disableAll();
@@ -69,7 +83,8 @@ public class GameEngine implements IGameEngine {
 	}
 
 	/**
-	 * Player clicked pay rent
+	 * Once pay rent is clicked in the UI
+	 * Initiate pay rent methodology
 	 */
 	@Override
 	public void btnPayRent() {
@@ -82,7 +97,7 @@ public class GameEngine implements IGameEngine {
 	}
 
 	/**
-	 * Allow a player to sell his property
+	 * Once sell property is clicked, initiate sell property methodology
 	 */
 	@Override
 	public void btnSellProperty() {
@@ -90,6 +105,9 @@ public class GameEngine implements IGameEngine {
 		ui.gameLog(currentPlayer().sellProperty());
 	}
 
+	/**
+	 * Once offer trade button is clicked, initiate trade methodology
+	 */
 	@Override
 	public void btnOfferTrade() {
 		// TODO Auto-generated method stub
@@ -122,7 +140,7 @@ public class GameEngine implements IGameEngine {
 	}
 	
 	/**
-	 * When a game is finished, initiate a finish game sequance
+	 * When a game is finished, initiate a finish game sequence
 	 */
 	@Override
 	public void btnQuitGame() {
@@ -190,13 +208,19 @@ public class GameEngine implements IGameEngine {
 		ui.allowFinishTurn(true);
 
 	}
-
+	
+	/**
+	 * Once answer question is clicked - check the answers according to the question given
+	 */
 	@Override
 	public void AnswerQuestion(int answerNum) {
 		// TODO Auto-generated method stub
 
 	}
 	
+	/**
+	 * Once finish turn is clicked - forward a call to the next players' turn
+	 */
 	@Override
 	public void btnFinishTurn() {
 		// TODO Auto-generated method stub
@@ -214,10 +238,18 @@ public class GameEngine implements IGameEngine {
 		ui.allowSellProperty(false);
 	}
 
+	/**
+	 * Return the current player whos turn his
+	 * @return
+	 */
 	private Player currentPlayer() {
 		return _game.getCurrentPlayer();
 	}
 
+	/**
+	 * Launch a call to ui - update players' properties displayed in the UI
+	 * @param player
+	 */
 	private void updatePlayerProperties(Player player) {
 		ui.updatePlayerProperties(player.getNickName(),
 				player.getCash(), 
@@ -226,6 +258,10 @@ public class GameEngine implements IGameEngine {
 				player.getTotalAssets());
 	}
 
+	/**
+	 * Private method to initiate a call for a player movment in-tile
+	 * @param tileNo
+	 */
 	private void goToTile(Integer tileNo){
 		Integer currentLocation = currentPlayer().getCurrentTile().getTileNumber();
 		System.out.println("New Thread - moving player "+currentPlayer()+" from tile "+currentLocation+" to tile "+tileNo);
@@ -255,60 +291,5 @@ public class GameEngine implements IGameEngine {
 		}
 
 	}
-
-	@Override
-	public void landOnAGoTileButtonsDisplay() {
-		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void landOnAJailButtonsDisplay() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void finishedATileButtonsDisplay() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void landOnLuckyTileButtonsDisplay() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void beforeRollDiceButtonsDisplay() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void landOnQuestionMarkButtonsDisplay() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void landOnOwnerPropertyButtonsDisplay() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void landOnEmptyPropertyButtonsDisplay() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void landOnHisOwnPropertyButtonsDisplay() {
-		// TODO Auto-generated method stub
-		
-	}
-
-
 }
