@@ -1,19 +1,24 @@
 package Entity;
 
+import Controller.GameEngine;
 import Controller.Logger;
-import Controller.iWindow;
+import Controller.Music;
 import Utils.TileType;
 
 public class GoToJail extends Tile   {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	public GoToJail(Integer tileNumber, String tileName) {
 		super(tileNumber, tileName, TileType.GoToJail);
 	}
 	
-	
-	//TODO - Take player to jail
 	public void go(Player currentPlayer){
-		iWindow.getGameEngine().goToJail();
+		Music.getInstance().play("siren.wav");
+		GameEngine.getInstance().moveTo(10);
 	}
 	
 	@Override

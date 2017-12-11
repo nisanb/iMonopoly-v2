@@ -5,6 +5,7 @@ import Entity.Game;
 import Entity.MonDB;
 import Entity.Player;
 import Entity.PropertyTile;
+import Entity.Question;
 import Utils.Param;
 import Utils.PlayerState;
 import Utils.TileType;
@@ -77,6 +78,8 @@ public class GameEngine implements IGameEngine {
 	@Override
 	public void btnBuyProperty() {
 		disableAll();
+		Question generatedQuestion = MonDB.getInstance().getRandomQuestion(((PropertyTile)currentPlayer().getCurrentTile()).getPropertyStrength());
+		ui.displayQuestion(generatedQuestion, currentPlayer().toString());
 		PropertyTile pt = (PropertyTile) currentPlayer().getCurrentTile();
 		if (pt.purchaseProperty(currentPlayer()))
 			updatePlayerProperties(currentPlayer());
@@ -122,24 +125,6 @@ public class GameEngine implements IGameEngine {
 	}
 
 	/**
-	 * Order a player to proceed to jail
-	 */
-	@Override
-	public void goToJail() {
-
-		// Activate siren sound
-		Music.getInstance().play("siren.wav");
-
-		ui.gameLog("Player " + currentPlayer() + " is being taken to jail!");
-
-		// Set new player state
-		currentPlayer().setState(PlayerState.JAILED);
-
-		// Take player to jail
-		goToTile(10);
-	}
-
-	/**
 	 * When a game is finished, initiate a finish game sequence
 	 */
 	@Override
@@ -179,39 +164,8 @@ public class GameEngine implements IGameEngine {
 		System.out.println(currentPlayer().getCurrentTile());
 
 		Integer moveToTile = (dice.getSum() + currentPlayer().getCurrentTile().getTileNumber()) % 40;
-
-		Task<Void> task = new Task<Void>() {
-
-			@Override
-			protected Void call() throws Exception {
-
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						goToTile(moveToTile);
-						updatePlayerProperties(currentPlayer());
-						currentPlayer().setState(PlayerState.WAITING);
-					}
-				});
-				return null;
-			}
-		};
-		task.run();
-		while (currentPlayer().getState() == PlayerState.MOVING) {
-			try {
-				Thread.sleep(1);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		while (task.isRunning()) {
-		}
-		if (currentPlayer().getCurrentTile().getTileType() == TileType.Property)
-			ui.allowPurchase(true);
-
+		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), moveToTile);
 		ui.allowFinishTurn(true);
-
 	}
 
 	/**
@@ -243,7 +197,11 @@ public class GameEngine implements IGameEngine {
 		ui.allowFinishTurn(false);
 		ui.allowSellProperty(false);
 	}
-
+	
+	@Override
+	public void moveTo(Integer tileTo){
+		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), tileTo);
+	}
 	/**
 	 * Return the current player whos turn his
 	 * 
@@ -264,39 +222,28 @@ public class GameEngine implements IGameEngine {
 	}
 
 	/**
-	 * Private method to initiate a call for a player movment in-tile
-	 * 
-	 * @param tileNo
+	 * Occures when player is hovering for the first time on a tile
 	 */
-	private void goToTile(Integer tileNo) {
-		Integer currentLocation = currentPlayer().getCurrentTile().getTileNumber();
-		while (currentLocation != tileNo) {
-			currentPlayer().getCurrentTile().postVisit(currentPlayer());
-
-			currentLocation %= 40;
-			Integer nextLocation = (currentLocation + 1) % 40;
-
-			ui.movePlayer(currentPlayer().getNickName(), currentLocation, nextLocation);
-			currentPlayer().setCurrentTile(_game.getTile(nextLocation));
-			currentLocation++;
-
-			currentPlayer().getCurrentTile().preVisit(currentPlayer());
-
-			if (currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)) {
-				// Player passed by start point
-				ui.gameLog("Player " + currentPlayer() + " has passed by Starting Point (0) and received "
-						+ Param.get(Param.START_TILE_VISIT));
-			}
-		}
-		ui.gameLog("Player " + currentPlayer() + " has arrived to " + currentPlayer().getCurrentTile() + " ("
-				+ currentPlayer().getCurrentTile().getTileNumber() + ")");
+	@Override
+	public void preVisit(Integer tileNumber){
+		currentPlayer().setCurrentTile(_game.getTile(tileNumber));
+		currentPlayer().getCurrentTile().preVisit(currentPlayer());
+	}
+	
+	/**
+	 * Occures when a player is arriving to a specific tile number
+	 */
+	@Override
+	public void Visit(Integer tileNumber) {
 		currentPlayer().getCurrentTile().visit(currentPlayer());
-		if (currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)) {
-			// Player passed by start point
-			ui.gameLog("Player " + currentPlayer() + " has arrived to Starting Point (0) and received "
-					+ Param.get(Param.START_TILE_VISIT));
-		}
-
+	}
+	
+	/**
+	 * Occures when a player is leaving a specific tile
+	 */
+	@Override
+	public void postVisit(Integer tileNumber) {
+		currentPlayer().getCurrentTile().postVisit(currentPlayer());
 	}
 
 }

@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 public class PlayerUI {
 		private Integer pID;
 		private String pName;
-		private ImageView _small, _big;
+		private ImageView _recent, _big;
 		private NamedColor playerColor;
 		
 		//UI Container
@@ -46,11 +46,21 @@ public class PlayerUI {
 			this.pValue.setText("$0");
 			
 			//Set images
-			_small = new ImageView(new Image("/Resources/PSD/Players/"+playerColor+".png"));
-			_small.setFitHeight(30);
-			_small.setFitWidth(20);
 			_big.setImage(new Image("/Resources/PSD/Players/"+playerColor+".png"));
 			this.playerContainer.setVisible(true);
+		}
+		
+		public ImageView getRecentImage(){
+			return _recent;
+		}
+		
+		public ImageView getNewImage(){
+			ImageView img = new ImageView(new Image("/Resources/PSD/Players/"+playerColor+".png"));
+			img.setFitHeight(30);
+			img.setFitWidth(20);
+			_recent = img;
+			_recent.setOpacity(0.0);
+			return img;
 		}
 		
 		/**
@@ -102,20 +112,6 @@ public class PlayerUI {
 		 */
 		public void setpName(String pName) {
 			this.pName = pName;
-		}
-
-		/**
-		 * @return the _small
-		 */
-		public ImageView get_small() {
-			return _small;
-		}
-
-		/**
-		 * @param _small the _small to set
-		 */
-		public void set_small(ImageView _small) {
-			this._small = _small;
 		}
 
 		/**

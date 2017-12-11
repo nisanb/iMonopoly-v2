@@ -1,5 +1,6 @@
 package Controller;
 
+import Entity.MonDB;
 import Utils.Window;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -15,7 +16,12 @@ public class Monopoly extends Application {
 
 		// Initiate Monopoly
 		Logger.log("Initializing Monopoly");
-		iWindow.swap(primaryStage, Window.Login);
+		/**
+		 * Override
+		 */
+		MonDB.getInstance().login("nisan");
+		iWindow.swap(primaryStage, Window.Player_GameSettings);
+		//iWindow.swap(primaryStage, Window.Login);
 		gameMusic.play("theme.mp3");
 		gameMusic.changeVolume("theme.mp3", 3.0);
 	}

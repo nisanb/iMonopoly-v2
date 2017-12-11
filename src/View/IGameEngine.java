@@ -24,11 +24,6 @@ public interface IGameEngine {
 	public void btnFinishTurn();
 	
 	/**
-	 * Take a player to jail
-	 */
-	public void goToJail();
-	
-	/**
 	 * Forward a string to the game log in the UI
 	 * @param str
 	 */
@@ -39,8 +34,15 @@ public interface IGameEngine {
 	 * @param answerNum 1/2/3/4 -- not 0
 	 */
 	public void AnswerQuestion(int answerNum);
-	
-	
+
+	/**
+	 * Tile previsit, postvisit and visit
+	 * @param tileNumber
+	 */
+	void preVisit(Integer tileNumber);
+	void Visit(Integer tileNumber);
+	void postVisit(Integer tileNumber);
+	void moveTo(Integer tileTo);
 	
 
 }

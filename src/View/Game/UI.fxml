@@ -323,25 +323,25 @@
                      </font>
                   </Label>
                   <Pane fx:id="txtAnswerPane2" layoutX="238.0" layoutY="88.0" prefHeight="55.0" prefWidth="225.0" style="-fx-border-color: green;" />
-                  <Pane fx:id="txtAnswerPane1" layoutX="8.0" layoutY="88.0" prefHeight="55.0" prefWidth="225.0" style="-fx-border-color: green;" />
+                  <Pane fx:id="txtAnswerPane1" layoutX="8.0" layoutY="88.0" prefHeight="55.0" prefWidth="225.0" style="-fx-border-color: green; -fx-background-color: transparent;" />
                   <Pane fx:id="txtAnswerPane4" layoutX="238.0" layoutY="148.0" prefHeight="55.0" prefWidth="225.0" style="-fx-border-color: green;" />
                   <Pane fx:id="txtAnswerPane3" layoutX="8.0" layoutY="148.0" prefHeight="55.0" prefWidth="225.0" style="-fx-border-color: green;" />
-                  <TextArea fx:id="txtAnsw1" editable="false" layoutX="10.0" layoutY="90.0" onMouseClicked="#answer1" onMousePressed="#answer1" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="1. Answer 1" wrapText="true">
+                  <TextArea fx:id="txtAnsw1" editable="false" layoutX="10.0" layoutY="90.0" onMouseClicked="#answer1" onMousePressed="#answer1" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: transparent;" text="1. Answer 1" wrapText="true">
                      <font>
                         <Font name="Calibri Bold" size="12.0" />
                      </font>
                   </TextArea>
-                  <TextArea fx:id="txtAnsw2" editable="false" layoutX="240.0" layoutY="90.0" onMouseClicked="#answer2" onMousePressed="#answer2" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="2. Answer 2" wrapText="true">
+                  <TextArea fx:id="txtAnsw2" editable="false" layoutX="240.0" layoutY="90.0" onMouseClicked="#answer2" onMousePressed="#answer2" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: transparent;" text="2. Answer 2" wrapText="true">
                      <font>
                         <Font name="Calibri Bold" size="12.0" />
                      </font>
                   </TextArea>
-                  <TextArea fx:id="txtAnsw3" editable="false" layoutX="10.0" layoutY="150.0" onMouseClicked="#answer3" onMousePressed="#answer3" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="1. Answer 1&#10;" wrapText="true">
+                  <TextArea fx:id="txtAnsw3" editable="false" layoutX="10.0" layoutY="150.0" onMouseClicked="#answer3" onMousePressed="#answer3" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: transparent;" text="1. Answer 1&#10;" wrapText="true">
                      <font>
                         <Font name="Calibri Bold" size="12.0" />
                      </font>
                   </TextArea>
-                  <TextArea fx:id="txtAnsw4" editable="false" layoutX="240.0" layoutY="150.0" onMouseClicked="#answer4" onMousePressed="#answer4" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: white;" text="2. Answer 2" wrapText="true">
+                  <TextArea fx:id="txtAnsw4" editable="false" layoutX="240.0" layoutY="150.0" onMouseClicked="#answer4" onMousePressed="#answer4" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: transparent;" text="2. Answer 2" wrapText="true">
                      <font>
                         <Font name="Calibri Bold" size="12.0" />
                      </font>
@@ -353,7 +353,7 @@
                   </Button>
                </children>
             </Pane>
-            <Pane fx:id="buyRentPane" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: transparent;">
+            <Pane fx:id="buyRentPane" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: transparent;" visible="false">
                <children>
                   <Label fx:id="playerXRentOrBuy" layoutX="10.0" opacity="0.7" prefHeight="25.0" prefWidth="323.0" text="Player 2, you got full price on &quot;Apple&quot;">
                      <font>

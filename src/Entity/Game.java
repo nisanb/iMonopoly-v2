@@ -182,7 +182,6 @@ public class Game implements Serializable {
 		try {
 			return _gameTiles.get(tileNumber);
 		} catch (Exception e) {
-
 			return null;
 		}
 	}

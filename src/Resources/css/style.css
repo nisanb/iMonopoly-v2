@@ -24,8 +24,6 @@ Button:hover{
     -fx-background-insets: 0;
     -fx-text-fill: #2196f3;
     -fx-background-color: white;
-    -fx-border-color:#2196f3;
-    -fx-border-width:3;
     
 }
 

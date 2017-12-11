@@ -11,6 +11,9 @@ import Utils.SpecialList;
 import Utils.Window;
 import View.IGameEngine;
 import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +25,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -500,22 +504,78 @@ public class UI implements UIInterface {
 	@Override
 	public void movePlayer(String player, int tileFrom, int tileTo) {
 		PlayerUI pUI = playerList.get(player);
+	
 
-		// FadeTransition ft = new FadeTransition(Duration.millis(1000),
-		// _tiles.get(tileFrom).getChildren().get(_tiles.get(tileFrom).getChildren().indexOf(pUI.get_small())));
-		FadeTransition ft = new FadeTransition(Duration.millis(250), pUI.get_small());
-		ft.setFromValue(1.0);
-		ft.setToValue(0.0);
-		ft.play();
 		
-		_tiles.get(tileFrom).getChildren().remove(pUI.get_small());
-		_tiles.get(tileTo).getChildren().add(pUI.get_small());
-		ft = new FadeTransition(Duration.millis(250), pUI.get_small());
-		ft.setFromValue(0.0);
-		ft.setToValue(1.0);
-		ft.play();
-		
+		while (tileFrom != tileTo) {
+			final Integer tmpFrom = tileFrom;	
+			//Initiate a post visit from the current tile of current player before leaving
+			ge.postVisit(tileFrom);
 
+			tileFrom %= 40;
+			Integer nextLocation = (tileFrom + 1) % 40;
+		
+			
+			
+			/**
+			 * Remove old image
+			 */
+			ImageView tmpRecent = pUI.getRecentImage();
+			_tiles.get(nextLocation).getChildren().add(pUI.getNewImage());
+			
+			//Move the player
+			/**
+			 * Add new image
+			 */
+			Timeline tl = new Timeline();
+			KeyValue transparent = new KeyValue(pUI.getRecentImage().opacityProperty(), 0.0);
+			KeyValue opaque = new KeyValue(pUI.getRecentImage().opacityProperty(), 1.0);
+			KeyFrame startFadeIn = new KeyFrame(Duration.ZERO, transparent);
+			KeyFrame endFadeIn = new KeyFrame(Duration.millis(500), opaque);
+			tl.getKeyFrames().addAll(startFadeIn, endFadeIn);
+			tl.play();
+		tl.setOnFinished(e->{
+			Timeline tl2 = new Timeline();
+			KeyValue from = new KeyValue(tmpRecent.opacityProperty(), 0.7);
+			KeyValue to = new KeyValue(tmpRecent.opacityProperty(), 0.0);
+			KeyFrame startFadeOut = new KeyFrame(Duration.ZERO, from);
+			KeyFrame finishFadeOut = new KeyFrame(Duration.millis(250), to);
+			tl2.getKeyFrames().addAll(startFadeOut, finishFadeOut);
+			tl2.play();
+			tl2.setOnFinished(c->{
+				_tiles.get(tmpFrom).getChildren().remove(tmpRecent);
+				pUI.getRecentImage().setOpacity(1.0);
+			});
+			
+		});
+			
+		
+			
+			
+			/*// FadeTransition ft = new FadeTransition(Duration.millis(1000),
+			// 
+			FadeTransition ft = new FadeTransition(Duration.millis(250), pUI.get_small());
+			ft.setFromValue(1.0);
+			ft.setToValue(0.0);
+			ft.play();
+			
+			_tiles.get(tileFrom).getChildren().remove(pUI.get_small());
+			_tiles.get(nextLocation).getChildren().add(pUI.get_small());
+			ft = new FadeTransition(Duration.millis(250), pUI.get_small());
+			ft.setFromValue(0.0);
+			ft.setToValue(1.0);
+			ft.play();
+*/
+			
+			
+			//Initiate previsit
+			ge.preVisit(nextLocation);
+			tileFrom = nextLocation;
+		}
+		
+		//Visit - happens when player arrives to the final tile
+		ge.Visit(tileTo);
+		
 	}
 
 	@FXML
@@ -772,48 +832,6 @@ public class UI implements UIInterface {
 		BuildBoard();
 	}
 
-	private void addGlow(int playerNum) {
-		Logger.log("Attempting to add glow to player #" + playerNum);
-		Effect glowTxt = new Glow(1);
-		Effect glowChar = new Glow(0.5);
-		Effect noGlow = new Glow(0);
-
-		/*
-		 * for(Label l : _playerNames) l.setEffect(noGlow); for(ImageView l :
-		 * playerImages) l.setEffect(noGlow);
-		 * 
-		 * _playerNames[playerNum].setEffect(glowTxt);
-		 * playerImages[playerNum].setEffect(glowChar);
-		 */
-		/*
-		 * player1StatsPane.setEffect(noGlow);
-		 * playerBlueStats.setEffect(noGlow);
-		 * player2StatsPane.setEffect(noGlow);
-		 * playerGreenStats.setEffect(noGlow);
-		 * player3StatsPane.setEffect(noGlow);
-		 * playerYellowStats.setEffect(noGlow);
-		 * player4StatsPane.setEffect(noGlow); playerRedStats.setEffect(noGlow);
-		 * 
-		 * switch (playerNum){ case (1): {txtPlayer1Name.setEffect(glowTxt);
-		 * //Apply the borderGlow effect to the JavaFX node
-		 * player1StatsPane.setEffect(glowTxt);
-		 * playerBlueStats.setEffect(glowChar);
-		 * 
-		 * break; } case (2): {txtPlayer2Name.setEffect(glowTxt); //Apply the
-		 * borderGlow effect to the JavaFX node
-		 * player2StatsPane.setEffect(glowTxt);
-		 * playerGreenStats.setEffect(glowChar); break;
-		 * 
-		 * } case (3):{ txtPlayer3Name.setEffect(glowTxt); //Apply the
-		 * borderGlow effect to the JavaFX node
-		 * player3StatsPane.setEffect(glowTxt);
-		 * playerYellowStats.setEffect(glowChar); break; } case (4):
-		 * {txtPlayer4Name.setEffect(glowTxt); //Apply the borderGlow effect to
-		 * the JavaFX node player4StatsPane.setEffect(glowTxt);
-		 * playerRedStats.setEffect(glowChar); break; } }
-		 */
-	}
-
 	@Override
 	public void build(List<Player> playerList) {
 		// Activate containers and player data according to the players given
@@ -824,7 +842,8 @@ public class UI implements UIInterface {
 					_playersCash[i], _playersStrikes[i], _playersValue[i], _playersNames[i], _playersImages[i]);
 			i++;
 			this.playerList.add(newPlayer);
-			_tiles.get(0).getChildren().add(newPlayer.get_small());
+			_tiles.get(0).getChildren().add(newPlayer.getNewImage());
+			newPlayer.getRecentImage().setOpacity(1.0);
 		}
 
 		// this.playersList.addAll(playerList);
