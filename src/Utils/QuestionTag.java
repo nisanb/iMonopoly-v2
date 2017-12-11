@@ -6,7 +6,7 @@ public enum QuestionTag {
 	TDD ("TDD"), 
 	ConfigurationManagement ("Configuration Management"),
 	SoftwareArchitecture("Software Architecture"),
-	SOAnCloud ("SOA and Cloud"),
+	SOAandCloud ("SOA and Cloud"),
 	DesignPatterns ("Design Patterns"),
 	SoftwareTesting ("Software Testing"),
 	Maintenance ("Maintenance"),
@@ -29,6 +29,16 @@ public enum QuestionTag {
 	public String toString() {
 		// TODO Auto-generated method stub
 		return this.getName();
+	}
+	
+	public static QuestionTag getValueOf(String str) {
+		String[] withoutSpace = str.split(" ");
+		str = "";
+		for (int i = 0; i < withoutSpace.length; i++) {
+			str += withoutSpace[i];
+		}
+		
+		return valueOf(str);
 	}
 	
 }
