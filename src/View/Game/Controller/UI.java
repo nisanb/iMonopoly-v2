@@ -1,6 +1,8 @@
 package View.Game.Controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import Controller.Logger;
@@ -9,6 +11,7 @@ import Entity.Answer;
 import Entity.Player;
 import Entity.Question;
 import Utils.NamedColor;
+import Utils.QuestionTag;
 import Utils.SpecialList;
 import Utils.Window;
 import View.IGameEngine;
@@ -16,15 +19,21 @@ import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
@@ -34,7 +43,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 import javafx.util.Duration;
+import javafx.util.StringConverter;
 
 public class UI implements UIInterface {
 
@@ -60,7 +71,10 @@ public class UI implements UIInterface {
 
 	@FXML
 	private Button main = new Button();
-
+	
+	@FXML
+    private Label qmPlayerText;
+	 
 	@FXML
 	private ImageView imgPlayer1 = new ImageView();
 	@FXML
@@ -73,6 +87,15 @@ public class UI implements UIInterface {
 	@FXML
 	private Pane player1StatsPane = new Pane();
 
+	@FXML
+    private Pane qmPane;
+	
+	@FXML
+    private ListView<QuestionTag> qmSelectTag;
+	
+	@FXML
+    private Button btnQMShow;
+	
 	@FXML
 	private Label lblMoney1 = new Label();
 
@@ -655,6 +678,7 @@ public class UI implements UIInterface {
 	}
 	
 	private void disableAllPanes(){
+		qmPane.setVisible(false);
 		buyRentPane.setVisible(false);
 		questionsPaneContainer.setVisible(false);
 		gameLogScrollPane.setVisible(false);
@@ -883,6 +907,11 @@ public class UI implements UIInterface {
 		buyRentPane.setVisible(true);
 		ge.btnBuyProperty();
 	}
+	
+	@FXML
+	void btnQMShow(ActionEvent event) {
+		ge.btnQMShow(qmSelectTag.getSelectionModel().getSelectedItem());
+	}
 
 	void setInMenuPanesInVisible() {
 		txtAnswerPane.setVisible(false);
@@ -919,4 +948,19 @@ public class UI implements UIInterface {
 		round.setText(roundNumber.toString());
 	}
 	
+	@Override
+	public void displayQMList(String currentPlayer){
+		disableAllPanes();
+		qmPlayerText.setText(currentPlayer+", please choose a tag from the list below.");
+		qmPane.setVisible(true);
+		List<QuestionTag> qtList = new ArrayList<QuestionTag>();
+		qtList.addAll(Arrays.asList(QuestionTag.values()));
+		
+		ObservableList<QuestionTag> obs = FXCollections.observableArrayList(qtList);
+
+		qmSelectTag.setItems(obs);
+		
+
+	}
+
 }

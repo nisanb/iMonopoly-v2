@@ -3,6 +3,9 @@ package Controller;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
+import java.util.Stack;
+import java.util.TreeMap;
 
 import Entity.Dice;
 import Entity.Game;
@@ -13,6 +16,7 @@ import Entity.Question;
 import Utils.Param;
 import Utils.PlayerState;
 import Utils.QuestionStrength;
+import Utils.QuestionTag;
 import Utils.TileType;
 import View.IGameEngine;
 import View.Game.Controller.UI;
@@ -29,12 +33,17 @@ public class GameEngine implements IGameEngine {
 	 * GameEngine Private Variable for game play
 	 */
 	private Question currentQuestion = null;
+	private Stack<Question> questionStack = null;
+	private Boolean cycleThroughPlayers = false;
+	private Map<Player, Boolean> playerAnswers;
 	
 	/**
 	 * Private constructor
 	 */
 	private GameEngine() {
 		_game = MonDB.getInstance().getCurrentGame();
+		questionStack = new Stack<>();
+		playerAnswers = new TreeMap<>();
 	}
 
 	/**
@@ -83,15 +92,36 @@ public class GameEngine implements IGameEngine {
 	}
 
 	/**
+	 * Once a question tag was chosen - display the questions
+	 */
+	@Override
+	public void btnQMShow(QuestionTag qt) {
+		if (qt == null)
+			return;
+		ui.gameLog("Player " + currentPlayer() + " selected Question Tag: " + qt);
+		Logger.log("Will not generate " + _game.getGamePlayers().size() + " questions for the players.");
+		Question generatedQuestion = MonDB.getInstance().getRandomQuestion(qt);
+
+		// Fill the stack with amount of questions == game players
+		for (int i = 0; i < _game.getGamePlayers().size(); i++)
+			questionStack.push(generatedQuestion);
+
+		cycleThroughPlayers = true;
+		currentQuestion = questionStack.pop();
+		ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
+
+	}
+
+	/**
 	 * Once buy property button is clicked - initiate buy property methodology
 	 */
 	@Override
 	public void btnBuyProperty() {
 		disableAll();
-		
-		if(currentPlayer().getState() == PlayerState.ANSWERED_FOR_PURCHASE){
+
+		if (currentPlayer().getState() == PlayerState.ANSWERED_FOR_PURCHASE) {
 			PropertyTile pt = (PropertyTile) currentPlayer().getCurrentTile();
-			if (pt.purchaseProperty(currentPlayer())){
+			if (pt.purchaseProperty(currentPlayer())) {
 				updatePlayerProperties(currentPlayer());
 				ui.markTile(currentPlayer().getCurrentTile().getTileNumber(), currentPlayer().getPlayerColor());
 			}
@@ -100,11 +130,11 @@ public class GameEngine implements IGameEngine {
 			currentPlayer().setState(PlayerState.WAITING);
 			return;
 		}
-		
+
 		currentPlayer().setState(PlayerState.WANTS_TO_PURCHASE);
-		QuestionStrength qs = ((PropertyTile)currentPlayer().getCurrentTile()).getPropertyStrength();
+		QuestionStrength qs = ((PropertyTile) currentPlayer().getCurrentTile()).getPropertyStrength();
 		displayQuestion(qs);
-		
+
 		ui.allowFinishTurn(true);
 	}
 
@@ -184,7 +214,6 @@ public class GameEngine implements IGameEngine {
 			}
 		}
 
-
 		Integer moveToTile = (dice.getSum() + currentPlayer().getCurrentTile().getTileNumber()) % 40;
 		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), moveToTile);
 		ui.allowFinishTurn(true);
@@ -196,28 +225,65 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void AnswerQuestion(List<Integer> answers) {
-		if(currentPlayer().getState() == PlayerState.WANTS_TO_PURCHASE){
-			if(currentQuestion.checkCorrect(answers)){
-				//Give discount
-				showInfo(currentPlayer()+" You have answered correct!\n"
-						+ "You received a discount of " + displayPrice(currentPlayer().getCurrentProperty().getBuyPrice()-currentPlayer().getCurrentProperty().getBuyPriceDiscount()) + "\n"
-								+ "You may now purchase this property for " + displayPrice(currentPlayer().getCurrentProperty().getBuyPriceDiscount())
-						+"\n Click on \"Buy Property\" button in order to purchase\n or \"Finish Turn\" to skip your turn.");
-				
+		if (currentPlayer().getState() == PlayerState.WANTS_TO_PURCHASE) {
+			if (currentQuestion.checkCorrect(answers)) {
+				// Give discount
+				showInfo(currentPlayer() + " You have answered correct!\n" + "You received a discount of "
+						+ displayPrice(currentPlayer().getCurrentProperty().getBuyPrice()
+								- currentPlayer().getCurrentProperty().getBuyPriceDiscount())
+						+ "\n" + "You may now purchase this property for "
+						+ displayPrice(currentPlayer().getCurrentProperty().getBuyPriceDiscount())
+						+ "\n Click on \"Buy Property\" button in order to purchase\n or \"Finish Turn\" to skip your turn.");
+
 				Music.getInstance().play("correct.mp3");
-			}
-			else{
+			} else {
 				currentPlayer().addStrike();
-				//Display original price
-				showInfo(currentPlayer()+" You have failed to answer.\nYou may still purchase this property at original price of: "+displayPrice(currentPlayer().getCurrentProperty().getBuyPrice())
-						+"\n Click on \"Buy Property\" button in order to purchase\n or \"Finish Turn\" to skip your turn.");
+				// Display original price
+				showInfo(currentPlayer()
+						+ " You have failed to answer.\nYou may still purchase this property at original price of: "
+						+ displayPrice(currentPlayer().getCurrentProperty().getBuyPrice())
+						+ "\n Click on \"Buy Property\" button in order to purchase\n or \"Finish Turn\" to skip your turn.");
 				Music.getInstance().play("wrong.mp3");
 			}
+
+			currentPlayer().setState(PlayerState.ANSWERED_FOR_PURCHASE);
+			updatePlayerProperties(currentPlayer());
+			ui.allowPurchase(true);
+		}
+
+		if (cycleThroughPlayers) {
+			if (!questionStack.isEmpty()) {
+				Logger.log("Transferring question to the next player..");
+				Logger.log("Player " + currentPlayer()+" answered " + currentQuestion.checkCorrect(answers));	
+				playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers));
+				// This means we need to let the next player answer the same
+				// question
+				currentQuestion = questionStack.pop();
+				ui.displayQuestion(currentQuestion, _game.nextPlayer().getNickName());
+				
+				ui.updateCurrentPlayer(currentPlayer().getNickName());
+				return;
+			}
+			
+			//Analyze last answer
+			Logger.log("Player " + currentPlayer()+" answered " + currentQuestion.checkCorrect(answers));
+			playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers));
+			
+			//Everyone finished..
+			cycleThroughPlayers = false;
+			
+			//Analyze Results
+			String results = "";
+			for(Map.Entry<Player, Boolean> entry : playerAnswers.entrySet())
+				results += "Player "  + entry.getKey() + ": " + entry.getValue()+"\n";
+			Logger.log("Answers Size: " + playerAnswers.size());
+			ui.showPlayInformation("Everyone finished answering..\nPlayers Result: \n\n" + results);
+			ui.updateCurrentPlayer(_game.nextPlayer().getNickName());
+			
+			playerAnswers.clear();
+			currentQuestion = null;
 			
 		}
-		currentPlayer().setState(PlayerState.ANSWERED_FOR_PURCHASE);
-		updatePlayerProperties(currentPlayer());
-		ui.allowPurchase(true);
 
 	}
 
@@ -227,26 +293,26 @@ public class GameEngine implements IGameEngine {
 	@Override
 	public void btnFinishTurn() {
 		// TODO Auto-generated method stub
-		if(currentPlayer().getState() != PlayerState.JAILED)
+		if (currentPlayer().getState() != PlayerState.JAILED)
 			currentPlayer().setState(PlayerState.WAITING);
 		ui.updateRounds(_game.nextRound());
 		btnNextTurn();
-		
+
 	}
 
 	/**
 	 * Display information for player on screen
+	 * 
 	 * @param txt
 	 */
-	public void showInfo(String txt){
+	public void showInfo(String txt) {
 		ui.showPlayInformation(txt);
 	}
-	
+
 	/**
 	 * Private Methods
 	 */
-	
-	
+
 	/**
 	 * Disable all in-game buttons
 	 */
@@ -257,11 +323,12 @@ public class GameEngine implements IGameEngine {
 		ui.allowFinishTurn(false);
 		ui.allowSellProperty(false);
 	}
-	
+
 	@Override
-	public void moveTo(Integer tileTo){
+	public void moveTo(Integer tileTo) {
 		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), tileTo);
 	}
+
 	/**
 	 * Return the current player whos turn his
 	 * 
@@ -285,25 +352,25 @@ public class GameEngine implements IGameEngine {
 	 * Occures when player is hovering for the first time on a tile
 	 */
 	@Override
-	public void preVisit(Integer tileNumber){
+	public void preVisit(Integer tileNumber) {
 		currentPlayer().setCurrentTile(_game.getTile(tileNumber));
 		currentPlayer().getCurrentTile().preVisit(currentPlayer());
 	}
-	
+
 	/**
 	 * Occures when a player is arriving to a specific tile number
 	 */
 	@Override
 	public void Visit(Integer tileNumber) {
 		currentPlayer().getCurrentTile().visit(currentPlayer());
-		if(currentPlayer().getCurrentTile().getTileType() == TileType.Property){
-			PropertyTile pt = (PropertyTile)currentPlayer().getCurrentTile();
+		if (currentPlayer().getCurrentTile().getTileType() == TileType.Property) {
+			PropertyTile pt = (PropertyTile) currentPlayer().getCurrentTile();
 			ui.allowPurchase(true);
-			if(pt.isOwned())
+			if (pt.isOwned())
 				ui.allowRent(true);
 		}
 	}
-	
+
 	/**
 	 * Occures when a player is leaving a specific tile
 	 */
@@ -316,17 +383,21 @@ public class GameEngine implements IGameEngine {
 	 * Will display a question for the current player in-game
 	 */
 	@Override
-	public void displayQuestion(QuestionStrength qs){
-		ui.gameLog("New "+qs+" question generated for player " + currentPlayer());
+	public void displayQuestion(QuestionStrength qs) {
+		ui.gameLog("New " + qs + " question generated for player " + currentPlayer());
 		currentQuestion = MonDB.getInstance().getRandomQuestion(qs);
 		ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
 	}
-	
+
 	/**
 	 * Returns a string that represent a price
 	 */
 	@Override
-	public String displayPrice(Integer price){
-		return "$"+NumberFormat.getNumberInstance(Locale.US).format(price);
+	public String displayPrice(Integer price) {
+		return "$" + NumberFormat.getNumberInstance(Locale.US).format(price);
+	}
+
+	public void displayQMTile() {
+		ui.displayQMList(currentPlayer().getNickName());
 	}
 }

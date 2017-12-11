@@ -114,4 +114,10 @@ public interface UIInterface {
 	 * Update the current game round
 	 */
 	public void updateRounds(Integer roundNumber);
+
+	/**
+	 * Will display the QM Choices for question tags
+	 * @param currentPlayer
+	 */
+	void displayQMList(String currentPlayer);
 }

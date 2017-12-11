@@ -300,7 +300,7 @@
       </Pane>
       <AnchorPane fx:id="inBoardMenu" layoutX="690.0" layoutY="350.0" prefHeight="240.0" prefWidth="470.0">
          <children>
-            <Pane fx:id="inBoardWhitePane" opacity="0.4" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: white;" />
+            <Pane fx:id="inBoardWhitePane" opacity="0.4" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: white;" visible="false" />
             <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.5" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;">
                <content>
                   <TextArea fx:id="gameLogs" editable="false" opacity="0.32" prefHeight="258.0" prefWidth="470.0" style="-fx-border-color: black;" wrapText="true">
@@ -380,6 +380,17 @@
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="qmPane" layoutX="10.0" layoutY="21.0" prefHeight="229.0" prefWidth="470.0" style="-fx-background-color: transparent;">
+               <children>
+                  <Label fx:id="qmPlayerText" layoutX="10.0" opacity="0.7" prefHeight="25.0" prefWidth="323.0" text="Player 2, here all your properties :">
+                     <font>
+                        <Font name="Calibri Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <ListView fx:id="qmSelectTag" layoutX="15.0" layoutY="35.0" prefHeight="166.0" prefWidth="200.0" styleClass="mylistview" />
+                  <Button fx:id="btnQMShow" layoutX="251.0" layoutY="176.0" mnemonicParsing="false" onAction="#btnQMShow" prefHeight="25.0" prefWidth="164.0" text="Generate Question" />
                </children>
             </Pane>
          </children></AnchorPane>

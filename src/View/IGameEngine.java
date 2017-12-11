@@ -3,6 +3,7 @@ package View;
 import java.util.List;
 
 import Utils.QuestionStrength;
+import Utils.QuestionTag;
 import View.Game.Controller.UI;
 
 public interface IGameEngine {
@@ -25,6 +26,7 @@ public interface IGameEngine {
 	public void btnQuitGame();
 	public void btnRollDice();
 	public void btnFinishTurn();
+	public void btnQMShow(QuestionTag qt);
 	
 	/**
 	 * Forward a string to the game log in the UI

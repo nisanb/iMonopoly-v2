@@ -18,6 +18,7 @@ import Utils.NamedColor;
 import Utils.Param;
 import Utils.PlayerAuth;
 import Utils.QuestionStrength;
+import Utils.QuestionTag;
 
 public class MonDB implements Serializable {
 
@@ -166,6 +167,29 @@ public class MonDB implements Serializable {
 		Random r = new Random();
 
 		return qlist.get(r.nextInt(qlist.size()));
+	}
+
+	/**
+	 * Randomly generate a question by question tag
+	 * @param str
+	 * @return
+	 */
+	public Question getRandomQuestion(QuestionTag tag) {
+		List<Question> toBeGenerated = new ArrayList<Question>();
+		for(List<Question> allQList : gameQuestions.values())
+			for(Question q : allQList)
+				if(q.getTags().contains(tag))
+					toBeGenerated.add(q);
+		
+		if(toBeGenerated.isEmpty()){
+			Logger.log("Could not display questions to that tag.");
+			Logger.log("Generating a random question..");
+			return getRandomQuestion(QuestionStrength.HARD);
+		}else{
+		
+		Random r = new Random();
+		return toBeGenerated.get(r.nextInt(toBeGenerated.size()));}
+		
 	}
 
 	public Map<Integer, Game> getGameData() {
