@@ -63,8 +63,7 @@ public class Leadboard {
     	tableView.getColumns().add(name);
     	
     	System.out.println(data.toString());
-    	*/
-    	
+    	*/    	
     }
     
     

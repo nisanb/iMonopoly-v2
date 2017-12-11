@@ -35,6 +35,7 @@ public class JSON {
 	}
 	
 
+	
 	/**
 	 * Will read questions from JSON File
 	 * @return TODO: READ QUESTIONS FROM JSON
@@ -96,11 +97,11 @@ public class JSON {
 				if (!questions.containsKey(toAdd.getqStrength())) {
 					questions.put(toAdd.getqStrength(), new ArrayList<Question>());
 					questions.get(toAdd.getqStrength()).add(toAdd);
-					//System.out.println(questions.get(toAdd.getqStrength()).get(0).toString());
+					System.out.println(toAdd.toString());
 				}
 				else {
 					questions.get(toAdd.getqStrength()).add(toAdd);
-					//System.out.println(toAdd.toString());
+					System.out.println(toAdd.toString());
 				}
 			}
 			
@@ -116,7 +117,6 @@ public class JSON {
 //			}
 //		}
 		
-//		Logger.log("Questions JSON was imported");
 		
 		return questions;
 	}
