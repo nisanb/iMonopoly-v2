@@ -144,6 +144,12 @@ public class Questions {
 	@FXML
 	private Label lblError;
 
+	private List<RadioButton> trueButtons;
+	private List<RadioButton> falseButtons;
+	private List<TextField> answerList;
+	private List<Label> answerLabels;
+	
+	
 	ToggleGroup group1 =new ToggleGroup();
 	ToggleGroup group2 =new ToggleGroup();
 	ToggleGroup group3 =new ToggleGroup();
@@ -202,8 +208,16 @@ public class Questions {
         group4.getToggles().add(TrueBu4);
         group4.getToggles().add(FalseBu4);
         
-
+        //add answer components to 
+        this.trueButtons = new ArrayList<>();
+        this.falseButtons = new ArrayList<>();
+        this.answerList = new ArrayList<>();
+        this.answerLabels = new ArrayList<>();
         
+        trueButtons.add(TrueBu); trueButtons.add(TrueBu2); trueButtons.add(TrueBu3); trueButtons.add(TrueBu4);
+        falseButtons.add(FalseBu); falseButtons.add(FalseBu2); falseButtons.add(FalseBu3); falseButtons.add(FalseBu4);
+        answerList.add(txtanswer1);answerList.add(txtanswer2); answerList.add(txtanswer3); answerList.add(txtanswer4);
+        answerLabels.add(Answer1); answerLabels.add(answer2); answerLabels.add(answer3); answerLabels.add(answer4);
 	}
 	
 	//========================================== ACTION EVENTS ===============================================
@@ -427,92 +441,26 @@ public class Questions {
 	 * set the radio buttons to be the same as question's
 	 * @param a
 	 */
-	private void CheckIsTrue(List<Answer> a)
-	{
-		List<Answer> name=a;
-		for(int i=name.size()-1;i<name.size();i++)
-		{
-			if(name.size()==2)
-			{
-				answer3.setVisible(false);
-				txtanswer3.setVisible(false);
-				TrueBu3.setVisible(false);
-				FalseBu3.setVisible(false);
-
-				answer4.setVisible(false);
-				txtanswer4.setVisible(false);
-				TrueBu4.setVisible(false);
-				FalseBu4.setVisible(false);
-
-				if(name.get(i-i).getIsTrue(name.get(i-i)))
-				{
-					TrueBu.setSelected(true);
-					FalseBu.setSelected(false);
-				}
-				else
-				{
-					FalseBu.setSelected(true);
-					TrueBu.setSelected(false);
-				}
-
-				if(name.get(i-i+1).getIsTrue(name.get(i-i+1)))
-				{
-					TrueBu2.setSelected(true);
-					FalseBu2.setSelected(false);
-				}
-				else
-				{
-					FalseBu2.setSelected(true);
-					TrueBu2.setSelected(false);
-				}
-			}
-			else
-			{
-				if(name.get(i-i).getIsTrue(name.get(i-i)))
-				{
-					TrueBu.setSelected(true);
-					FalseBu.setSelected(false);
-				}
-				else
-				{
-					FalseBu.setSelected(true);
-					TrueBu.setSelected(false);
-				}
-
-				if(name.get(i-i+1).getIsTrue(name.get(i-i+1)))
-				{
-					TrueBu2.setSelected(true);
-					FalseBu2.setSelected(false);
-				}
-				else
-				{
-					FalseBu2.setSelected(true);
-					TrueBu2.setSelected(false);
-				}
-
-				if(name.get(i-i+2).getIsTrue(name.get(i-i+2)))
-				{
-					TrueBu3.setSelected(true);
-					FalseBu3.setSelected(false);
-				}
-				else
-				{
-					FalseBu3.setSelected(true);
-					TrueBu3.setSelected(false);
-				}
-				if(name.get(i-i+3).getIsTrue(name.get(i-i+3)))
-				{
-					TrueBu4.setSelected(true);
-					FalseBu4.setSelected(false);
-				}
-				else
-				{
-					FalseBu4.setSelected(true);
-					TrueBu4.setSelected(false);
-				}
-
-			}
+	private void CheckIsTrue(List<Answer> a){
+		//disappear all fields
+		for (int i = 0; i < answerList.size(); i++) {
+			this.answerList.get(i).setVisible(false);
+			this.trueButtons.get(i).setVisible(false);
+			this.falseButtons.get(i).setVisible(false);
+			answerLabels.get(i).setVisible(false);
 		}
+		
+		
+		//activate only relevant fields
+		for (int i = 0; i < a.size(); i++) {
+			this.answerList.get(i).setVisible(true);
+			this.trueButtons.get(i).setVisible(true);
+			this.falseButtons.get(i).setVisible(true);
+			this.answerLabels.get(i).setVisible(true);
+		}
+		
+		
+
 	}
 	
 	/**
