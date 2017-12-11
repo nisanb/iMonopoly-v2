@@ -62,7 +62,8 @@ public class Answer {
 
 	@Override
 	public String toString() {
-		return "Answer [text=" + text + ", isTrue=" + isTrue + "]";
+		//return "Answer [text=" + text + ", isTrue=" + isTrue + "]";
+		return text;
 	}
 
 }

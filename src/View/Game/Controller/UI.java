@@ -627,6 +627,7 @@ public class UI implements UIInterface {
 		for(Answer a : question.getqAnswers()){
 			txtAnsw[i].setText(a.toString());
 			answerPanes[i].setVisible(true);
+			i++;
 		}
 
 	}
