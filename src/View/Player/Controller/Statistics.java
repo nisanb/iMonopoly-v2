@@ -85,11 +85,11 @@ public class Statistics {
     	 * MonDB.getInstance().setCurrentGame(new Game());
     	 * MonDB.getInstance().getCurrentGame().setCurrentLoggedUser((new User(frmNickname.getText(), PlayerAuth.PLAYER)));
     	 */
-    	
     	iWindow.swap(Window.Player_Menu);
     }
     
     
+   
     @FXML
     void initialize() {
     	//add data to pie
@@ -114,7 +114,9 @@ public class Statistics {
     }
     
 
-    
+    /*
+     * This method returns to the previous screen
+     */
     public void back(ActionEvent event)
     {
     	iWindow.swap(Window.Player_Menu);

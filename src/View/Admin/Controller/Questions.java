@@ -226,7 +226,10 @@ public class Questions {
 
 		GetAndSend(_curerntChosenSterngth);
 	}
-
+	
+	/*
+	 * This method moves from one list to the list and vice versa.
+	 */
 	@FXML
 	void FromList2ToList1(MouseEvent event) {
 		if(List2.getSelectionModel().isEmpty())
@@ -247,6 +250,9 @@ public class Questions {
 
 	}
 
+		/*
+		 * This method moves from one list to the list and vice versa.
+		 */
     @FXML
     void moveTag(MouseEvent event) {
     	if(List1.getSelectionModel().isEmpty())
@@ -261,7 +267,10 @@ public class Questions {
     	}
     }
 	
-
+    /**
+     * This method displays the numbers of the questions according to the difficulty level
+     * @param event
+     */
     @FXML
     void NumByDiff(ActionEvent event) {
     	if (NumQuestionCombo.getSelectionModel().getSelectedItem() == null) return;
@@ -297,6 +306,10 @@ public class Questions {
 
 	//===============================================  METHODS ============================================
 
+    	/**
+    	 * This method delete questions and displays a message accordingly.
+    	 * @param event
+    	 */
 	@FXML
 	void DeleteQuestion(ActionEvent event) {
 		setDiffBGC("white");
@@ -310,7 +323,6 @@ public class Questions {
 			setQnumBGC("red");
 			return;
 		}
-		
 		
     	Alert alert = new Alert(AlertType.CONFIRMATION);
     	alert.setTitle("Remove Question Confirmation");
@@ -383,7 +395,10 @@ public class Questions {
 
 	}
 
-
+	/*
+	 *  This method accepts a number of questions and put the answers in text boxes
+	 * @param num
+	 */
 	private void SetAnswer (Integer num)
 	{
 		Question q = null;
