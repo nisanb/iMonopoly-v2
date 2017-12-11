@@ -16,6 +16,7 @@ import java.util.Set;
 import org.omg.Dynamic.Parameter;
 
 import Controller.Logger;
+import Controller.Music;
 import Controller.iWindow;
 import Utils.Param;
 import Utils.Window;
@@ -291,6 +292,10 @@ public class GameSettings {
 		}
 
 		_mng.build(playerList, paramList);
+		Music.getInstance().swap("theme.mp3");
+		
+		Music.getInstance().swap("ui_1.mp3");
+		
 		iWindow.swap(Window.Game_UI);
 	}
 

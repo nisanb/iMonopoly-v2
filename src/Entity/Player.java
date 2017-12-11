@@ -119,7 +119,7 @@ public class Player extends User implements Comparable<Player> {
 	}
 
 	public Boolean hasEnough(Integer amount) {
-		return amount >= _cash;
+		return amount < _cash;
 	}
 
 	public NamedColor getPlayerColor() {
@@ -128,6 +128,10 @@ public class Player extends User implements Comparable<Player> {
 
 	public void setPlayerColor(NamedColor playerColor) {
 		_playerColor = playerColor;
+	}
+	
+	public void addStrike(){
+		_strikesNum++;
 	}
 
 	public Integer getTotalAssetsWorth(){
@@ -154,6 +158,10 @@ public class Player extends User implements Comparable<Player> {
 		_propertyList.remove(pt);
 		pt.setCurrentOwner(null);
 		return "Player "+toString()+" has sold "+pt+" for $"+pt.getSellPrice();
+	}
+	
+	public PropertyTile getCurrentProperty(){
+		return (PropertyTile) getCurrentTile();
 	}
 
 	

@@ -97,5 +97,21 @@ public interface UIInterface {
 	 * @param playerList
 	 */
 	public void build(List<Player> playerList);
+	
+	/**
+	 * Display a relevent information to the player
+	 * @param txt
+	 */
+	public void showPlayInformation(String txt);
+	
+	/**
+	 * Marks a tile as purchased by a player color
+	 * @param tileNumber
+	 */
+	public void markTile(Integer tileNumber, NamedColor playerColor);
 
+	/**
+	 * Update the current game round
+	 */
+	public void updateRounds(Integer roundNumber);
 }

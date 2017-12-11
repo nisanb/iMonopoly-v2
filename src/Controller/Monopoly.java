@@ -23,7 +23,7 @@ public class Monopoly extends Application {
 		iWindow.swap(primaryStage, Window.Player_GameSettings);
 		//iWindow.swap(primaryStage, Window.Login);
 		gameMusic.play("theme.mp3");
-		gameMusic.changeVolume("theme.mp3", 3.0);
+		gameMusic.changeVolume("theme.mp3", 5.0);
 	}
 
 	public static void main(String[] args) {

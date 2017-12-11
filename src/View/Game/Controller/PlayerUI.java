@@ -1,5 +1,8 @@
 package View.Game.Controller;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import Utils.NamedColor;
 import Utils.Param;
 import javafx.scene.control.Label;
@@ -72,9 +75,13 @@ public class PlayerUI {
 		}
 
 		public void updateData(Integer cash, Integer strikes, Integer assetsWorth, Integer assetsAmount){
-			pMoney.setText("$"+cash);
+			pMoney.setText(displayPrice(cash));
 			pStrikes.setText(strikes.toString());
-			pValue.setText("$"+assetsWorth);
+			pValue.setText(displayPrice(assetsWorth));
+		}
+		
+		private String displayPrice(Integer price){
+			return "$"+NumberFormat.getNumberInstance(Locale.US).format(price);
 		}
 		
 		/**

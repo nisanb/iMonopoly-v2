@@ -113,12 +113,12 @@ public class Question {
 	 * @return
 	 */
 	
-	public boolean checkCorrect(List<Answer> ans) {
+	public boolean checkCorrect(List<Integer> ans) {
 		if (ans == null) return false;
 		
 		//check if all player's answers are correct - if at least one answer is not correct return false
-		for (Answer a:ans) {
-			if (!qAnswers.get(qAnswers.indexOf(a)).isTrue()) {
+		for (Integer a:ans) {
+			if (!qAnswers.get(a).isTrue()) {
 				return false;
 			}
 		}

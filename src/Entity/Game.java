@@ -46,7 +46,7 @@ public class Game implements Serializable {
 		 * Set Date
 		 */
 		this.setGameDate(new Date());
-		this.setCurrentRound(0);
+		this.setCurrentRound(1);
 		this._gameTiles = new ArrayList<>();
 		this._gameTiles.addAll(MonDB.getInstance().getTileSet());
 	}
@@ -222,6 +222,10 @@ public class Game implements Serializable {
 
 	public List<Player> getGamePlayers() {
 		return _gamePlayers;
+	}
+	
+	public Integer nextRound(){
+		return ++_currentRound;
 	}
 
 }

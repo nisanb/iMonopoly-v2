@@ -301,7 +301,7 @@
       <AnchorPane fx:id="inBoardMenu" layoutX="690.0" layoutY="350.0" prefHeight="240.0" prefWidth="470.0">
          <children>
             <Pane fx:id="inBoardWhitePane" opacity="0.4" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: white;" />
-            <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.5" pannable="true" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;">
+            <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.5" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;">
                <content>
                   <TextArea fx:id="gameLogs" editable="false" opacity="0.32" prefHeight="258.0" prefWidth="470.0" style="-fx-border-color: black;" wrapText="true">
                      <font>
@@ -310,7 +310,7 @@
                   </TextArea>
                </content>
             </ScrollPane>
-            <Pane fx:id="txtAnswerPane" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: transparent;">
+            <Pane fx:id="txtAnswerPane" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: transparent;" visible="false">
                <children>
                   <Label fx:id="playerXIsAnswering" layoutX="10.0" prefHeight="25.0" prefWidth="323.0" text="Player 2 is answering question :">
                      <font>
@@ -355,17 +355,7 @@
             </Pane>
             <Pane fx:id="buyRentPane" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: transparent;" visible="false">
                <children>
-                  <Label fx:id="playerXRentOrBuy" layoutX="10.0" opacity="0.7" prefHeight="25.0" prefWidth="323.0" text="Player 2, you got full price on &quot;Apple&quot;">
-                     <font>
-                        <Font name="Calibri Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="txtBuyPrice" layoutX="10.0" layoutY="40.0" opacity="0.7" pickOnBounds="false" prefHeight="50.0" prefWidth="448.0" text="Would you like to buy &quot;Apple&quot; for 150,000$ ?">
-                     <font>
-                        <Font name="Calibri Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="txtRentPrice" layoutX="10.0" layoutY="70.0" opacity="0.7" pickOnBounds="false" prefHeight="50.0" prefWidth="448.0" text="Would you like to rent &quot;Apple&quot; for 1,999$ ?">
+                  <Label fx:id="playerXRentOrBuy" alignment="TOP_LEFT" layoutX="10.0" opacity="0.7" prefHeight="240.0" prefWidth="452.0" text="Player 2, you got full price on &quot;Apple&quot;">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>

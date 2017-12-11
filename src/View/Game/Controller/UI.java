@@ -5,8 +5,10 @@ import java.util.List;
 
 import Controller.Logger;
 import Controller.iWindow;
+import Entity.Answer;
 import Entity.Player;
 import Entity.Question;
+import Utils.NamedColor;
 import Utils.SpecialList;
 import Utils.Window;
 import View.IGameEngine;
@@ -612,16 +614,20 @@ public class UI implements UIInterface {
 	public void displayQuestion(Question question, String player) {
 		gameLogScrollPane.setVisible(false);
 		questionsPane.setVisible(true);
+		txtAnswerPane.setVisible(true);
+		questionsPaneContainer.setVisible(true);
 		playerXIsAnswering.setText(player + " is answering question :");
 		theQuestion.setText(question.getqQuestion());
-		txtAnsw1.setText(question.getqAnswers().get(0) + "");
-		txtAnsw2.setText(question.getqAnswers().get(1) + "");
-		txtAnsw3.setText(question.getqAnswers().get(2) + "");
-		txtAnsw4.setText(question.getqAnswers().get(3) + "");
-		txtAnswerPane1.setVisible(false);
-		txtAnswerPane2.setVisible(false);
-		txtAnswerPane3.setVisible(false);
-		txtAnswerPane4.setVisible(false);
+		Pane[] answerPanes = {txtAnswerPane1, txtAnswerPane2, txtAnswerPane3, txtAnswerPane4};
+		TextArea[] txtAnsw = {txtAnsw1, txtAnsw2, txtAnsw3, txtAnsw4};
+		int i=0;
+		for(Pane p : answerPanes)
+			p.setVisible(false);
+		
+		for(Answer a : question.getqAnswers()){
+			txtAnsw[i].setText(a.toString());
+			answerPanes[i].setVisible(true);
+		}
 
 	}
 	
@@ -658,15 +664,15 @@ public class UI implements UIInterface {
 	void sendAnswerBtn(MouseEvent event) {
 		List<Integer> answers = new ArrayList<Integer>();
 		if (txtAnswerPane1.isVisible())
-			answers.add(1);
+			answers.add(0);
 		if (txtAnswerPane2.isVisible())
-			answers.add(2);
+			answers.add(1);
 		if (txtAnswerPane3.isVisible())
-			answers.add(3);
+			answers.add(2);
 		if (txtAnswerPane4.isVisible())
-			answers.add(4);
-		System.out.println(answers + " are the answers");
-		// ge.AnswerQuestion(answers);
+			answers.add(3);
+		Logger.log("Sending answers: " + answers + " to GameEngine");
+		ge.AnswerQuestion(answers);
 	}
 
 	@FXML
@@ -761,6 +767,13 @@ public class UI implements UIInterface {
 
 	}
 
+	public void markTile(Integer tileNumber, NamedColor playerColor){
+		_tiles.get(tileNumber).setStyle("-fx-background-color: "+playerColor+"; -fx-opacity: 0.5;");
+		_tiles.get(tileNumber).setEffect(new Glow(1.0));
+		_tiles.get(tileNumber).applyCss();
+		
+	}
+	
 	////////////////////////////////////////////////// initialize
 
 	private void initializeDicesFirstTime() {
@@ -885,86 +898,24 @@ public class UI implements UIInterface {
 
 	@FXML
 	void btnPayRent(ActionEvent event) {
-		setInMenuPanesInVisible();
-		btnPayRent.setVisible(true);
+		ge.btnPayRent();
 	}
 
 	@FXML
 	void btnSellProperty(ActionEvent event) {
-		setInMenuPanesInVisible();
-		sellTradePane.setVisible(true);
+		ge.btnSellProperty();
 	}
 
-	public void landOnEmptyPropertyButtonsDisplay() {
-		allowPurchase(true);
-		allowSellProperty(false);
-		allowRent(false);
-		allowFinishTurn(true);
-		allowRollDice(false);
+	@Override
+	public void showPlayInformation(String txt) {
+		disableAllPanes();
+		buyRentPane.setVisible(true);
+		playerXRentOrBuy.setText(txt);
 	}
 
-	public void landOnOwnerPropertyButtonsDisplay() {
-		allowPurchase(true);
-		allowSellProperty(false);
-		allowFinishTurn(false);
-		allowRent(false);
-		allowRollDice(false);
+	@Override
+	public void updateRounds(Integer roundNumber){
+		round.setText(roundNumber.toString());
 	}
-
-	public void landOnQuestionMarkButtonsDisplay() {
-		allowPurchase(false);
-		allowSellProperty(false);
-		allowFinishTurn(false);
-		allowRent(false);
-		allowRollDice(false);
-	}
-
-	public void beforeRollDiceButtonsDisplay() {
-		allowFinishTurn(false);
-		allowPurchase(false);
-		allowRent(false);
-		allowSellProperty(true);
-		allowRollDice(true);
-	}
-
-	public void landOnLuckyTileButtonsDisplay() {
-		allowPurchase(false);
-		allowSellProperty(false);
-		allowFinishTurn(false);
-		allowRent(false);
-		allowRollDice(false);
-	}
-
-	public void finishedATileButtonsDisplay() {
-		allowPurchase(false);
-		allowSellProperty(false);
-		allowFinishTurn(true);
-		allowRent(false);
-		allowRollDice(false);
-	}
-
-	public void landOnAJailButtonsDisplay() {
-		allowPurchase(false);
-		allowSellProperty(false);
-		allowFinishTurn(true);
-		allowRent(false);
-		allowRollDice(false);
-	}
-
-	public void landOnAGoTileButtonsDisplay() {
-		allowPurchase(false);
-		allowSellProperty(false);
-		allowFinishTurn(true);
-		allowRent(false);
-		allowRollDice(false);
-	}
-
-	public void landOnHisOwnPropertyButtonsDisplay() {
-		allowPurchase(false);
-		allowSellProperty(false);
-		allowFinishTurn(true);
-		allowRent(false);
-		allowRollDice(false);
-	}
-
+	
 }

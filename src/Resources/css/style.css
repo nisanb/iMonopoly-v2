@@ -1,3 +1,7 @@
+.test{
+	-fx-background-color: #2196f3;
+}
+
 Button {
     -fx-background-color: #2196f3;
     -fx-background-radius: 22;

@@ -1,5 +1,8 @@
 package View;
 
+import java.util.List;
+
+import Utils.QuestionStrength;
 import View.Game.Controller.UI;
 
 public interface IGameEngine {
@@ -31,9 +34,9 @@ public interface IGameEngine {
 	
 	/**
 	 * 
-	 * @param answerNum 1/2/3/4 -- not 0
+	 * @param answers 1/2/3/4 -- not 0
 	 */
-	public void AnswerQuestion(int answerNum);
+	public void AnswerQuestion(List<Integer> answers);
 
 	/**
 	 * Tile previsit, postvisit and visit
@@ -44,5 +47,7 @@ public interface IGameEngine {
 	void postVisit(Integer tileNumber);
 	void moveTo(Integer tileTo);
 	
+	public void displayQuestion(QuestionStrength qs);
+	public String displayPrice(Integer price);
 
 }
