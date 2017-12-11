@@ -144,6 +144,7 @@ public class Questions {
 	@FXML
 	private Label lblError;
 
+	//lists of components for generic control
 	private List<RadioButton> trueButtons;
 	private List<RadioButton> falseButtons;
 	private List<TextField> answerList;
@@ -495,30 +496,25 @@ public class Questions {
 		}
 		
 		inEditMode = true;
-		
-		//set fields to editable
-		txtanswer1.setEditable(true);
-		txtanswer2.setEditable(true);
-		txtanswer3.setEditable(true);
-		txtanswer4.setEditable(true);
+
+		//set fields to editable	
+		for (int i = 0; i < answerList.size(); i++) {
+			this.answerList.get(i).setEditable(true);
+			this.trueButtons.get(i).setDisable(false);
+			this.falseButtons.get(i).setDisable(false);
+		}
+
 		comboTeams.setDisable(false);
 		DiffComboox.setEditable(false);
 		NumQuestionCombo.setEditable(false);
 		DiffComboox.setDisable(true);
 		NumQuestionCombo.setDisable(true);
-		TrueBu.setDisable(false);
-		TrueBu2.setDisable(false);
-		TrueBu3.setDisable(false);
-		TrueBu4.setDisable(false);
-		FalseBu.setDisable(false);
-		FalseBu2.setDisable(false);
-		FalseBu3.setDisable(false);
-		FalseBu4.setDisable(false);
+
 		List1.setDisable(false);
 		List2.setDisable(false);
 		List1.setEditable(true);
 		List2.setEditable(true);
-		
+
 		
 		//iWindow.swap(Window.Admin_editQuestion);
 	}
