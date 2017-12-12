@@ -140,7 +140,7 @@ public class PropertyTile extends Tile {
 		newBuyer.deductCash(currentPurchasePrice);
 		newBuyer.addProperty(this);
 		Logger.gameLog("Player " + newBuyer + " purchased property " + this + " for "
-				+ GameEngine.getInstance().displayPrice(currentPurchasePrice));
+				+ GameEngine.getInstance().displayPrice(currentPurchasePrice.doubleValue()));
 		currentPrice = getBuyPrice();
 
 		return true;
@@ -154,7 +154,7 @@ public class PropertyTile extends Tile {
 		return currentOwner != null;
 	}
 
-	public int getBuyPrice() {
+	public Integer getBuyPrice() {
 		return (currentPrice * ((Double) Param.get(Param.BUY_PERCENT)).intValue());
 	}
 
@@ -196,10 +196,10 @@ public class PropertyTile extends Tile {
 		if(isOwned()){
 			txtToDispaly += "This property is currently owned by " + currentOwner + "\n"
 					+ "You can attempt to purchase this property by clicking \"Buy Property\",\n"
-					+ "or pay the rent which is a total of " + GameEngine.getInstance().displayPrice(getRentPrice());
+					+ "or pay the rent which is a total of " + GameEngine.getInstance().displayPrice(getRentPrice().doubleValue());
 			
 		}else{
-			txtToDispaly += "You may purchase this property for a total of " + GameEngine.getInstance().displayPrice(getBuyPrice()) + ".\n"
+			txtToDispaly += "You may purchase this property for a total of " + GameEngine.getInstance().displayPrice(getBuyPrice().doubleValue()) + ".\n"
 					+ "Click on \"Buy Property\" in order to purchase,\n"
 					+ "or \"Finish Turn\" in order to skip your turn.";
 		}

@@ -48,8 +48,8 @@ public interface IGameEngine {
 	void Visit(Integer tileNumber);
 	void postVisit(Integer tileNumber);
 	void moveTo(Integer tileTo);
-	
+
 	public void displayQuestion(QuestionStrength qs);
-	public String displayPrice(Integer price);
+	public String displayPrice(Double price);
 
 }

@@ -10,6 +10,7 @@ import java.util.TreeMap;
 
 import Entity.Dice;
 import Entity.Game;
+import Entity.LuckTile;
 import Entity.MonDB;
 import Entity.Player;
 import Entity.PropertyTile;
@@ -34,7 +35,7 @@ public class GameEngine implements IGameEngine {
 	private Stack<Question> questionStack = null;
 	private Boolean cycleThroughPlayers = false;
 	private Map<Player, Boolean> playerAnswers;
-
+	
 	/**
 	 * Private constructor
 	 */
@@ -109,6 +110,18 @@ public class GameEngine implements IGameEngine {
 		currentQuestion = questionStack.pop();
 		ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
 
+	}
+	
+	public void displayQuestions(List<Question> questionList){
+		for(Question q : questionList)
+			questionStack.push(q);
+		
+		currentPlayer().setState(PlayerState.LUCKY_TILE);
+		//Display the first question for the player
+		currentQuestion = questionStack.pop();
+		
+		ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
+		
 	}
 
 	/**
@@ -215,6 +228,7 @@ public class GameEngine implements IGameEngine {
 		}
 
 		Integer moveToTile = (dice.getSum() + currentPlayer().getCurrentTile().getTileNumber()) % 40;
+		moveToTile = 5;
 		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), moveToTile);
 		ui.allowFinishTurn(true);
 	}
@@ -225,6 +239,21 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void AnswerQuestion(List<Integer> answers) {
+		
+		if(currentPlayer().getState() == PlayerState.LUCKY_TILE){
+			LuckTile lt = ((LuckTile)currentPlayer().getCurrentTile());
+			
+			if(!lt.answered(currentQuestion.checkCorrect(answers))){
+				currentQuestion = questionStack.pop();
+				ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
+			}else{
+				//Result time..
+				lt.checkResults(currentPlayer());
+				updatePlayerProperties(currentPlayer());
+			}
+			
+		}
+		
 		if (currentPlayer().getState() == PlayerState.WANTS_TO_PURCHASE) {
 			if (currentQuestion.checkCorrect(answers)) {
 				// Give discount
@@ -461,11 +490,31 @@ public class GameEngine implements IGameEngine {
 	 * Returns a string that represent a price
 	 */
 	@Override
-	public String displayPrice(Integer price) {
+	public String displayPrice(Double price) {
 		return "$" + NumberFormat.getNumberInstance(Locale.US).format(price);
+	}
+	
+	public String displayPrice(Integer price){
+		return displayPrice(price.doubleValue());
 	}
 
 	public void displayQMTile() {
 		ui.displayQMList(currentPlayer().getNickName());
 	}
+	
+	/**
+	 * Calculates the amount needed to be given to a player when he is right on both questions
+	 * on a lucky tile
+	 * @return
+	 */
+	public Double getLuckyTileAward(){
+		Double value = 100000.0;
+		Double avg = 0.0;
+		for(Player p : _game.getPlayers()){
+			avg += p.getTotalAssetsWorth();
+		}
+		avg /= _game.getPlayers().size();
+		return value + avg;
+	}
+	
 }

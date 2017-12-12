@@ -108,7 +108,7 @@ public class Player extends User implements Comparable<Player> {
 	}
 
 	public void addCash(Object amount) {
-		_cash += Integer.parseInt(amount.toString());
+		_cash += Double.parseDouble(amount.toString());
 		Logger.log("Added $" + amount + " to " + getNickName());
 	}
 
