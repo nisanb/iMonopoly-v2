@@ -20,7 +20,7 @@ public class Monopoly extends Application {
 		 * Override
 		 */
 		//iWindow.swap(primaryStage, Window.Player_GameSettings);
-		//indow.swap(primaryStage, Window.Login);
+		iWindow.swap(primaryStage, Window.Login);
 		gameMusic.play("theme.mp3");
 		gameMusic.changeVolume("theme.mp3", 5.0);
 	}

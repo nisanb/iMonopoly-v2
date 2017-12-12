@@ -23,6 +23,8 @@ import Utils.Team;
 public class JSON {
 	private static JSON json;
 	private static String JsonPath = "/Resources/JSON/save.json";
+	private static int autoQuestionNumber = 1;
+	private static boolean reNumber = false;
 	
 	private JSON () {}
 	
@@ -91,7 +93,10 @@ public class JSON {
 //				System.out.println(q.get("isMultipleChoice").getClass());
 				
 				//build question object and add it to questions map
-				Question toAdd = new Question((long)q.get("id"),
+				long qnum = (long) q.get("id");
+				if (reNumber) {qnum = autoQuestionNumber; autoQuestionNumber ++;} 	//for renumbering (set renumber true)
+				
+				Question toAdd = new Question(qnum,
 											  getQuestionStrength((long)q.get("difficulty")),
 											  (String)q.get("text"),
 											  (boolean)q.get("isMultipleChoice"),
@@ -103,11 +108,11 @@ public class JSON {
 				if (!questions.containsKey(toAdd.getqStrength())) {
 					questions.put(toAdd.getqStrength(), new ArrayList<Question>());
 					questions.get(toAdd.getqStrength()).add(toAdd);
-					System.out.println(toAdd.toString());
+					//System.out.println(toAdd.toString());
 				}
 				else {
 					questions.get(toAdd.getqStrength()).add(toAdd);
-					System.out.println(toAdd.toString());
+					//System.out.println(toAdd.toString());
 				}
 			}
 			
@@ -190,9 +195,7 @@ public class JSON {
 //			Logger.log("Question JSON was saved");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		
-		
+		}		
 	}
 
 
