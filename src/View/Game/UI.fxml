@@ -38,7 +38,7 @@
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="moneyPlayer2" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
+                  <Label fx:id="moneyPlayer2" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
@@ -91,7 +91,7 @@
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="moneyPlayer4" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
+                  <Label fx:id="moneyPlayer4" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
@@ -129,7 +129,7 @@
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="moneyPlayer1" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
+                  <Label fx:id="moneyPlayer1" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="115.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
@@ -177,7 +177,7 @@
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="moneyPlayer3" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
+                  <Label fx:id="moneyPlayer3" layoutX="91.0" layoutY="2.0" prefHeight="25.0" prefWidth="107.0" style="-fx-background-color: transparent" text="100,000$" textFill="WHITE">
                      <font>
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
