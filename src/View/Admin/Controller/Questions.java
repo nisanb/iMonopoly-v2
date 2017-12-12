@@ -460,6 +460,13 @@ public class Questions {
 			this.answerLabels.get(i).setVisible(true);
 		}
 		
+		for (int i = 0; i < a.size(); i++) {
+			if (a.get(i).isTrue())
+				this.trueButtons.get(i).setSelected(true);
+			else
+				this.falseButtons.get(i).setSelected(true);
+		}
+		
 		
 
 	}

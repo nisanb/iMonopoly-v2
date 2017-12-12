@@ -44,7 +44,9 @@ public class Login {
     @FXML
     private Button btnLogin;
     
-
+    @FXML
+    private Button btnExit;
+    
 
 
     @FXML
@@ -79,6 +81,11 @@ public class Login {
     }
     
    
+    @FXML
+    void exitGmae() {
+    	System.out.println("EXIT CLICKED");
+    	System.exit(0);
+    }
     
 
     @FXML
