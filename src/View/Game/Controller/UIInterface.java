@@ -47,7 +47,7 @@ public interface UIInterface {
 	 *  - Assets Amount
 	 * @param player
 	 */
-	public void updatePlayerProperties(String nickname, Integer cash, Integer strikes, Integer assetsWorth, Integer assetsAmount);
+	public void updatePlayerProperties(String nickname, Double cash, Integer strikes, Double assetsWorth, Integer assetsAmount);
 	
 	/**
 	 * Will highlight the current player who is playing

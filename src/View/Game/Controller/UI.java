@@ -573,26 +573,6 @@ public class UI implements UIInterface {
 			});
 			
 		});
-			
-		
-			
-			
-			/*// FadeTransition ft = new FadeTransition(Duration.millis(1000),
-			// 
-			FadeTransition ft = new FadeTransition(Duration.millis(250), pUI.get_small());
-			ft.setFromValue(1.0);
-			ft.setToValue(0.0);
-			ft.play();
-			
-			_tiles.get(tileFrom).getChildren().remove(pUI.get_small());
-			_tiles.get(nextLocation).getChildren().add(pUI.get_small());
-			ft = new FadeTransition(Duration.millis(250), pUI.get_small());
-			ft.setFromValue(0.0);
-			ft.setToValue(1.0);
-			ft.play();
-*/
-			
-			
 			//Initiate previsit
 			ge.preVisit(nextLocation);
 			tileFrom = nextLocation;
@@ -781,7 +761,7 @@ public class UI implements UIInterface {
 	}
 
 	@Override
-	public void updatePlayerProperties(String nickname, Integer cash, Integer strikes, Integer assetsWorth,
+	public void updatePlayerProperties(String nickname, Double cash, Integer strikes, Double assetsWorth,
 			Integer assetsAmount) {
 		playerList.get(nickname).updateData(cash, strikes, assetsWorth, assetsAmount);
 	}

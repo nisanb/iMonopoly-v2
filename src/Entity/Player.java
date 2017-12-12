@@ -17,7 +17,7 @@ public class Player extends User implements Comparable<Player> {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer _cash;
+	private Double _cash;
 	private Integer _strikesNum;
 	private NamedColor _playerColor;
 	private Map<Question, Boolean> _userAnswers;
@@ -31,7 +31,7 @@ public class Player extends User implements Comparable<Player> {
 	 * @param nickname
 	 * @param cash
 	 */
-	public Player(String nickname, Integer cash, NamedColor playerColor) {
+	public Player(String nickname, Double cash, NamedColor playerColor) {
 		super(nickname, PlayerAuth.PLAYER);
 		_propertyList = new ArrayList<>();
 		_userAnswers = new HashMap<>();
@@ -77,11 +77,11 @@ public class Player extends User implements Comparable<Player> {
 		return _propertyList.remove(pro);
 	}
 
-	public Integer getCash() {
+	public Double getCash() {
 		return _cash;
 	}
 
-	protected void setCash(Integer cash) {
+	protected void setCash(Double cash) {
 		_cash = cash;
 	}
 
@@ -134,8 +134,8 @@ public class Player extends User implements Comparable<Player> {
 		_strikesNum++;
 	}
 
-	public Integer getTotalAssetsWorth(){
-		Integer amount = 0;
+	public Double getTotalAssetsWorth(){
+		Double amount = 0.0;
 		for(PropertyTile p : _propertyList)
 			amount+=p.getCurrentPrice();
 		

@@ -133,6 +133,7 @@ public class PropertyTile extends Tile {
 		if (currentOwner != null) {
 			currentOwner.removeProperty(this);
 			currentOwner.addCash(currentPurchasePrice);
+			GameEngine.getInstance().updatePlayerProperties(currentOwner);
 		}
 
 		currentOwner = newBuyer;

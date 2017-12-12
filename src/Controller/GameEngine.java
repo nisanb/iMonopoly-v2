@@ -36,7 +36,7 @@ public class GameEngine implements IGameEngine {
 	private Stack<Question> questionStack = null;
 	private Boolean cycleThroughPlayers = false;
 	private Map<Player, Boolean> playerAnswers;
-	
+
 	/**
 	 * Private constructor
 	 */
@@ -215,6 +215,7 @@ public class GameEngine implements IGameEngine {
 		}
 
 		Integer moveToTile = (dice.getSum() + currentPlayer().getCurrentTile().getTileNumber()) % 40;
+		moveToTile = 6;
 		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), moveToTile);
 		ui.allowFinishTurn(true);
 	}
@@ -247,42 +248,41 @@ public class GameEngine implements IGameEngine {
 			}
 
 			currentPlayer().setState(PlayerState.ANSWERED_FOR_PURCHASE);
-			updatePlayerProperties(currentPlayer());
 			ui.allowPurchase(true);
 		}
 
 		if (cycleThroughPlayers) {
 			if (!questionStack.isEmpty()) {
 				Logger.log("Transferring question to the next player..");
-				Logger.log("Player " + currentPlayer()+" answered " + currentQuestion.checkCorrect(answers));	
+				Logger.log("Player " + currentPlayer() + " answered " + currentQuestion.checkCorrect(answers));
 				playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers));
 				// This means we need to let the next player answer the same
 				// question
 				currentQuestion = questionStack.pop();
 				ui.displayQuestion(currentQuestion, _game.nextPlayer().getNickName());
-				
+
 				ui.updateCurrentPlayer(currentPlayer().getNickName());
 				return;
 			}
-			
-			//Analyze last answer
-			Logger.log("Player " + currentPlayer()+" answered " + currentQuestion.checkCorrect(answers));
+
+			// Analyze last answer
+			Logger.log("Player " + currentPlayer() + " answered " + currentQuestion.checkCorrect(answers));
 			playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers));
-			
-			//Everyone finished..
+
+			// Everyone finished..
 			cycleThroughPlayers = false;
-			
-			//Analyze Results
+
+			// Analyze Results
 			String results = "";
-			for(Map.Entry<Player, Boolean> entry : playerAnswers.entrySet())
-				results += "Player "  + entry.getKey() + ": " + entry.getValue()+"\n";
+			for (Map.Entry<Player, Boolean> entry : playerAnswers.entrySet())
+				results += "Player " + entry.getKey() + ": " + entry.getValue() + "\n";
 			Logger.log("Answers Size: " + playerAnswers.size());
 			ui.showPlayInformation("Everyone finished answering..\nPlayers Result: \n\n" + results);
 			ui.updateCurrentPlayer(_game.nextPlayer().getNickName());
-			
+
 			playerAnswers.clear();
 			currentQuestion = null;
-			
+
 		}
 
 	}
@@ -343,7 +343,7 @@ public class GameEngine implements IGameEngine {
 	 * 
 	 * @param player
 	 */
-	private void updatePlayerProperties(Player player) {
+	public void updatePlayerProperties(Player player) {
 		ui.updatePlayerProperties(player.getNickName(), player.getCash(), player.getStrikesNum(),
 				player.getTotalAssetsWorth(), player.getTotalAssets());
 	}
@@ -365,11 +365,18 @@ public class GameEngine implements IGameEngine {
 		currentPlayer().getCurrentTile().visit(currentPlayer());
 		if (currentPlayer().getCurrentTile().getTileType() == TileType.Property) {
 			PropertyTile pt = (PropertyTile) currentPlayer().getCurrentTile();
-			ui.allowPurchase(true);
-			if (pt.isOwned())
-				ui.allowRent(true);
+			if (!pt.isOwned())
+				ui.allowPurchase(true);
+			else {
+				if (!pt.getCurrentOwner().equals(currentPlayer())){
+					ui.allowPurchase(true);
+					ui.allowRent(true);
+				}
+			}
 		}
+
 	}
+
 
 	/**
 	 * Occures when a player is leaving a specific tile
