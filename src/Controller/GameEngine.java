@@ -1,6 +1,7 @@
 package Controller;
 
 import java.text.NumberFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -40,7 +41,7 @@ public class GameEngine implements IGameEngine {
 	private GameEngine() {
 		_game = MonDB.getInstance().getCurrentGame();
 		questionStack = new Stack<>();
-		playerAnswers = new TreeMap<>();
+		playerAnswers = new HashMap<>();
 	}
 
 	/**
@@ -214,7 +215,6 @@ public class GameEngine implements IGameEngine {
 		}
 
 		Integer moveToTile = (dice.getSum() + currentPlayer().getCurrentTile().getTileNumber()) % 40;
-		moveToTile = 6;
 		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), moveToTile);
 		ui.allowFinishTurn(true);
 	}
@@ -273,12 +273,75 @@ public class GameEngine implements IGameEngine {
 
 			// Analyze Results
 			String results = "";
-			for (Map.Entry<Player, Boolean> entry : playerAnswers.entrySet())
-				results += "Player " + entry.getKey() + ": " + entry.getValue() + "\n";
-			Logger.log("Answers Size: " + playerAnswers.size());
-			ui.showPlayInformation("Everyone finished answering..\nPlayers Result: \n\n" + results);
+
 			ui.updateCurrentPlayer(_game.nextPlayer().getNickName());
 
+			/**
+			 * Analyze the results for question mark
+			 */
+			// If the current player is wrong ->
+			if (!playerAnswers.get(currentPlayer())) {
+				// Fine the player for 50k
+				currentPlayer().deductCash(50000);
+				results += "Player " + currentPlayer() + " was fined for $50,000\n";
+
+				for (Map.Entry<Player, Boolean> entry : playerAnswers.entrySet()) {
+					if (!entry.getValue()) {
+						entry.getKey().addStrike();
+						results += "Player " + entry.getKey() + " was given a strike.\n";
+					}
+				}
+			} else {
+
+				// Current player is right
+
+				Boolean everyoneRight = true;
+				Boolean atleastOne = false;
+				for (Map.Entry<Player, Boolean> entry : playerAnswers.entrySet()) {
+					if (entry.getKey().equals(currentPlayer()))
+						continue;
+					if (!entry.getValue()) {
+						entry.getKey().addStrike();
+						results += "Player " + entry.getKey() + " was given a strike.\n";
+						everyoneRight = false;
+					} else {
+						atleastOne = true;
+					}
+				}
+
+				if (everyoneRight) {
+					// Give 10k to everyone
+					for (Map.Entry<Player, Boolean> entry : playerAnswers.entrySet()) {
+						if (entry.getKey().equals(currentPlayer()))
+							continue;
+						entry.getKey().addCash(10000);
+						results += "Player " + entry.getKey() + " was awarded for $10,000\n";
+					}
+				} else if (atleastOne) {
+					for (Map.Entry<Player, Boolean> entry : playerAnswers.entrySet()) {
+						if (entry.getKey().equals(currentPlayer())) {
+							entry.getKey().addCash(50000);
+							results += "Player " + entry.getKey() + " was awarded with $50,000\n";
+							continue;
+						}
+
+						if (entry.getValue()) {
+							entry.getKey().addCash(75000);
+							results += "Player " + entry.getKey() + " was awarded with $75,000\n";
+						}
+					}
+				} else {
+					// Everyone was wrong
+					currentPlayer().addCash(250000);
+					results += "Player " + currentPlayer() + " was awarded with $250,000\n";
+				}
+
+			}
+
+			ui.showPlayInformation("Everyone finished answering..\nPlayers Result: \n\n" + results);
+
+			for (Player p : playerAnswers.keySet())
+				updatePlayerProperties(p);
 			playerAnswers.clear();
 			currentQuestion = null;
 
@@ -367,7 +430,7 @@ public class GameEngine implements IGameEngine {
 			if (!pt.isOwned())
 				ui.allowPurchase(true);
 			else {
-				if (!pt.getCurrentOwner().equals(currentPlayer())){
+				if (!pt.getCurrentOwner().equals(currentPlayer())) {
 					ui.allowPurchase(true);
 					ui.allowRent(true);
 				}
@@ -375,7 +438,6 @@ public class GameEngine implements IGameEngine {
 		}
 
 	}
-
 
 	/**
 	 * Occures when a player is leaving a specific tile

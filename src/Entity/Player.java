@@ -184,7 +184,11 @@ public class Player extends User implements Comparable<Player> {
 		this.wins = wins;
 	}
 	
-	
+	@Override
+	public boolean equals(Object obj) {
+		System.out.println("TEST: " + this + " - " + obj + " " + super.equals(obj));
+		return super.equals(obj);
+	}
 	
 	
 }
