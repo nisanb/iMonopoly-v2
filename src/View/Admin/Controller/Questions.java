@@ -290,7 +290,7 @@ public class Questions {
     void NumByDiff(ActionEvent event) {
     	if (NumQuestionCombo.getSelectionModel().getSelectedItem() == null) return;
     	//System.out.println((long)NumQuestionCombo.getSelectionModel().getSelectedItem());
-    	_qnum = (long)NumQuestionCombo.getSelectionModel().getSelectedItem();
+    	_qnum = NumQuestionCombo.getSelectionModel().getSelectedItem();
     	_indexToRemoveFromCombo = NumQuestionCombo.getSelectionModel().getSelectedIndex();
 
     	List<Question> list = _mng.getQuestionsByDifficulty(_curerntChosenSterngth);

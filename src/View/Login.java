@@ -9,24 +9,13 @@ import Controller.Logger;
 import Controller.Music;
 import Controller.iWindow;
 import Utils.Window;
-import View.Player.Controller.GameSettings;
-import javafx.animation.ParallelTransition;
-import javafx.animation.PathTransition;
-import javafx.animation.RotateTransition;
-import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.shape.Circle;
-import javafx.util.Duration;
-import javafx.scene.shape.Polyline;
-import javafx.scene.shape.Rectangle;;
+import javafx.scene.input.MouseEvent;;
 
 public class Login {
 

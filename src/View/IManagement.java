@@ -5,10 +5,8 @@ import java.util.Map;
 
 import Entity.*;
 import Utils.QuestionStrength;
-import View.Admin.Controller.SysParam;
 import javafx.scene.control.Spinner;
 import Utils.Param;
-import Controller.Management;
 
 public interface IManagement {
 	

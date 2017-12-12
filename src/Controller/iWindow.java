@@ -65,7 +65,7 @@ public class iWindow {
 		/**
 		 * Fade in the new window
 		 */
-		FadeTransition ft = new FadeTransition(Duration.millis(300), (AnchorPane) root);
+		FadeTransition ft = new FadeTransition(Duration.millis(300), root);
 		ft.setFromValue(0.5);
 		ft.setToValue(1.0);
 		ft.play();

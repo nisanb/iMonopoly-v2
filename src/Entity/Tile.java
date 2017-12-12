@@ -38,6 +38,7 @@ public class Tile implements Tilable, Serializable {
 		_tileName = tileName;
 	}
 
+	@Override
 	public TileType getTileType() {
 		return _tileType;
 	}
@@ -54,6 +55,7 @@ public class Tile implements Tilable, Serializable {
 		_currentPlayers = currentPlayers;
 	}
 
+	@Override
 	public Integer getTileNumber() {
 		return _tileNumber;
 	}

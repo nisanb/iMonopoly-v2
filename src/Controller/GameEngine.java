@@ -13,15 +13,12 @@ import Entity.MonDB;
 import Entity.Player;
 import Entity.PropertyTile;
 import Entity.Question;
-import Utils.Param;
 import Utils.PlayerState;
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
 import Utils.TileType;
 import View.IGameEngine;
 import View.Game.Controller.UI;
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 
 public class GameEngine implements IGameEngine {
 
@@ -60,6 +57,7 @@ public class GameEngine implements IGameEngine {
 	/**
 	 * build Method Initiates only once from callback of UI.java initialize
 	 */
+	@Override
 	public void build(UI ui) {
 		this.ui = ui;
 		ui.build(_game.getGamePlayers());
@@ -173,6 +171,7 @@ public class GameEngine implements IGameEngine {
 	/**
 	 * Forward a message to the game log
 	 */
+	@Override
 	public void gameLog(String str) {
 		ui.gameLog(str);
 	}

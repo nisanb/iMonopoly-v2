@@ -15,7 +15,6 @@ import Utils.QuestionTag;
 import Utils.SpecialList;
 import Utils.Window;
 import View.IGameEngine;
-import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -33,10 +32,12 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+<<<<<<< HEAD
 import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.effect.Effect;
+=======
+>>>>>>> add question to json file
 import javafx.scene.effect.Glow;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -772,6 +773,7 @@ public class UI implements UIInterface {
 
 	}
 
+	@Override
 	public void markTile(Integer tileNumber, NamedColor playerColor){
 		_tiles.get(tileNumber).setStyle("-fx-background-color: "+playerColor+"; -fx-opacity: 0.5;");
 		_tiles.get(tileNumber).setEffect(new Glow(1.0));

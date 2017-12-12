@@ -101,7 +101,7 @@ public class JSON {
 											  (String)q.get("text"),
 											  (boolean)q.get("isMultipleChoice"),
 											  answers,
-											  (Team)Team.valueOf((String)q.get("team")),
+											  Team.valueOf((String)q.get("team")),
 											  tags);
 				
 				//Add the question to question map

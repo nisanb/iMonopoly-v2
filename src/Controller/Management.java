@@ -60,6 +60,7 @@ public class Management implements IManagement{
 	/**
 	 * get the logged user as string
 	 */
+	@Override
 	public String getLoggedPlayer() {
 		return _db.getCurrentUser().getNickName();
 	}
@@ -67,6 +68,7 @@ public class Management implements IManagement{
 	/**
 	 * set logged in user
 	 */
+	@Override
 	public void login(String nickname){
 		_db.login(nickname);
 	}
@@ -75,6 +77,7 @@ public class Management implements IManagement{
 	 * get the logged in user
 	 * @param user's nick name
 	 */
+	@Override
 	public String GetLoginUser(String nickname) {
 
 		User u = new User(nickname, PlayerAuth.PLAYER);
@@ -87,6 +90,7 @@ public class Management implements IManagement{
 	/**
 	 * calls to build game method
 	 */
+	@Override
 	public void build(List<String> playerList, Map<Param, Object> paramList){
 		_db.buildGame(playerList, paramList);
 	}
@@ -153,8 +157,9 @@ public class Management implements IManagement{
 
 	}
 
+	@Override
 	public void exportDB(){
-		_db.exportData();
+		MonDB.exportData();
 	}
 
 	/**
@@ -189,6 +194,7 @@ public class Management implements IManagement{
 	 * This method get all params required to create the lead board
 	 * @return all required data for lead board
 	 */
+	@Override
 	public List<Player> getLeadBoard() {
 		
 		//calculate the statistics values
@@ -239,6 +245,7 @@ public class Management implements IManagement{
 	/**
 	 * This method gets all required data fot player statistics
 	 */
+	@Override
 	public Player getPlayerData() {
 		Player player = new Player (_db.getCurrentUser().getNickName());
 		Map<Integer, Game> games = _db.getGameData();

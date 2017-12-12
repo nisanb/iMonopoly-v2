@@ -9,6 +9,7 @@ public class Monopoly extends Application {
 
 	Music gameMusic = Music.getInstance();
 
+	@Override
 	public void start(Stage primaryStage) throws Exception {
 
 		// Initiate Log File
