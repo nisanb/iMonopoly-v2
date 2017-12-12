@@ -134,6 +134,7 @@ public class GameEngine implements IGameEngine {
 		if (currentPlayer().getState() == PlayerState.ANSWERED_FOR_PURCHASE) {
 			PropertyTile pt = (PropertyTile) currentPlayer().getCurrentTile();
 			if (pt.purchaseProperty(currentPlayer())) {
+				Music.getInstance().play("cash_in.mp3");
 				updatePlayerProperties(currentPlayer());
 				ui.markTile(currentPlayer().getCurrentTile().getTileNumber(), currentPlayer().getPlayerColor());
 			}
@@ -159,6 +160,7 @@ public class GameEngine implements IGameEngine {
 		disableAll();
 		PropertyTile rentTile = (PropertyTile) currentPlayer().getCurrentTile();
 		rentTile.payRent(currentPlayer());
+		Music.getInstance().play("cash_in.mp3");
 		updatePlayerProperties(currentPlayer().getCurrentProperty().getCurrentOwner());
 		updatePlayerProperties(currentPlayer());
 		ui.allowFinishTurn(true);
