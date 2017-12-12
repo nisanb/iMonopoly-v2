@@ -3,6 +3,7 @@ package Entity;
 import Controller.GameEngine;
 import Controller.Logger;
 import Controller.Music;
+import Utils.PlayerState;
 import Utils.TileType;
 
 public class GoToJail extends Tile   {
@@ -18,7 +19,9 @@ public class GoToJail extends Tile   {
 	
 	public void go(Player currentPlayer){
 		Music.getInstance().play("siren.wav");
+		currentPlayer.setState(PlayerState.JAILED);
 		GameEngine.getInstance().moveTo(10);
+		
 	}
 	
 	@Override
