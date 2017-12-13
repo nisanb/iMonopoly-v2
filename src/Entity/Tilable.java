@@ -7,6 +7,7 @@ public interface Tilable {
 	public void visit(Player currentPlayer);
 	public void postVisit(Player currentPlayer);
 	public Integer getTileNumber();
+	@Override
 	public String toString();
 	public TileType getTileType();
 }

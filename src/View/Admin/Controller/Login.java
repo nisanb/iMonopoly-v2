@@ -50,8 +50,6 @@ public class Login {
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'EnterAdmin.fxml'.";
-        assert lblUserLogged != null : "fx:id=\"lblUserLogged\" was not injected: check your FXML file 'EnterAdmin.fxml'.";
         namelabel.setVisible(false);
         namelabel1.setVisible(false);
         
@@ -71,19 +69,23 @@ public class Login {
     	   if(txtUserName.getText().isEmpty())
            {
            	namelabel.setVisible(true);
+           	setUserBGC("red");
            }
     	   else
     	   {
     		   namelabel.setVisible(false);
+    		   setUserBGC("white");
     	   }
 
     	   if(txtPassword.getText().isEmpty())
            {
            	namelabel1.setVisible(true);
+           	setPassBGC("red");
            }
     	   else
     	   {
     		   namelabel1.setVisible(false);
+    		   setPassBGC("white");
     	   }
 
     	   if((!txtUserName.getText().isEmpty())&&(!txtPassword.getText().isEmpty()))
@@ -91,5 +93,17 @@ public class Login {
     		   iWindow.swap(Window.Admin_Menu);
     	   }
     }
-
+    
+    
+    
+    //============================================= CSS ========================================================
+    private void setUserBGC(String color) {
+    	txtUserName.setStyle("-fx-background-color:" + color +";");
+    }
+    
+    private void setPassBGC(String color) {
+    	txtPassword.setStyle("-fx-background-color:" + color +";");
+    }
+    
+    
 }

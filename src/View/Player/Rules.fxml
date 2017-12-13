@@ -16,7 +16,7 @@
          </image>
       </ImageView>
       <Button fx:id="Back" layoutX="592.0" layoutY="506.0" mnemonicParsing="false" onAction="#Back" prefHeight="27.0" prefWidth="140.0" text="Back" />
-      <ScrollPane layoutX="72.0" layoutY="181.0" prefHeight="287.0" prefWidth="672.0">
+      <ScrollPane layoutX="79.0" layoutY="196.0" prefHeight="149.0" prefWidth="661.0">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="658.0" prefWidth="257.0">
                <children>

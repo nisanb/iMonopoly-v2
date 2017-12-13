@@ -18,10 +18,13 @@ import org.json.simple.parser.JSONParser;
 
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
+import Utils.Team;
 
 public class JSON {
 	private static JSON json;
 	private static String JsonPath = "/Resources/JSON/save.json";
+	private static int autoQuestionNumber = 1;
+	private static boolean reNumber = false;
 	
 	private JSON () {}
 	
@@ -34,6 +37,7 @@ public class JSON {
 	}
 	
 
+	
 	/**
 	 * Will read questions from JSON File
 	 * @return TODO: READ QUESTIONS FROM JSON
@@ -75,7 +79,13 @@ public class JSON {
 				
 				for (int i = 0; i < tagsArray.size(); i++) {
 					String str = tagsArray.get(i).toString();
-					tags.add(QuestionTag.valueOf(str));
+					try{
+						tags.add(QuestionTag.getValueOf(str));
+
+					}
+					catch (Exception e){
+						
+					}
 					//System.err.println(QuestionTag.valueOf(str));
 				}
 				
@@ -83,19 +93,22 @@ public class JSON {
 //				System.out.println(q.get("isMultipleChoice").getClass());
 				
 				//build question object and add it to questions map
-				Question toAdd = new Question((long)q.get("id"),
+				long qnum = (long) q.get("id");
+				if (reNumber) {qnum = autoQuestionNumber; autoQuestionNumber ++;} 	//for renumbering (set renumber true)
+				
+				Question toAdd = new Question(qnum,
 											  getQuestionStrength((long)q.get("difficulty")),
 											  (String)q.get("text"),
 											  (boolean)q.get("isMultipleChoice"),
-											  answers, 
-											  (String)q.get("team"),
+											  answers,
+											  Team.valueOf((String)q.get("team")),
 											  tags);
 				
 				//Add the question to question map
 				if (!questions.containsKey(toAdd.getqStrength())) {
 					questions.put(toAdd.getqStrength(), new ArrayList<Question>());
 					questions.get(toAdd.getqStrength()).add(toAdd);
-					//System.out.println(questions.get(toAdd.getqStrength()).get(0).toString());
+					//System.out.println(toAdd.toString());
 				}
 				else {
 					questions.get(toAdd.getqStrength()).add(toAdd);
@@ -108,14 +121,13 @@ public class JSON {
 			
 		}
 
-//		//print questions
-		for (List<Question> q:questions.values()) {
-			for (Question temp:q) {
-				System.out.println(temp);
-			}
-		}
-//		
-//		Logger.log("Questions JSON was imported");
+		//print questions
+//		for (List<Question> q:questions.values()) {
+//			for (Question temp:q) {
+//				System.out.println(temp);
+//			}
+//		}
+		
 		
 		return questions;
 	}
@@ -133,11 +145,12 @@ public class JSON {
 		
 		//go over all questions and add every question to json file
 		for (Map.Entry<QuestionStrength, List<Question>> list:questions.entrySet()) {
-			JSONObject jo = new JSONObject();
-			if (list.getValue()==null) continue;
+			if (list.getValue() == null) continue;
+			
+			//get each question from the list
 			for (Question q:list.getValue()) {
-				
-				JSONArray ans = new JSONArray();		
+				JSONObject jo = new JSONObject();
+				JSONArray ans = new JSONArray();
 				//get questions properties from object to json objects and arrays
 				for (Answer a: q.getqAnswers()) {
 					JSONObject tmp = new JSONObject();	
@@ -151,6 +164,7 @@ public class JSON {
 				JSONArray tags = new JSONArray();
 				for (QuestionTag t : q.getTags()) {
 					tags.add(t.getName());
+					//System.err.println(t.getName().getClass().toString());
 				}
 				
 
@@ -159,13 +173,13 @@ public class JSON {
 				jo.put("text", q.getqQuestion());
 				jo.put("difficulty", getQuestionStrengthAsLong(q.getqStrength()));
 				jo.put("isMultipleChoice", q.isMultipleChoise());
-				jo.put("team", q.getTeam());
+				jo.put("team", q.getTeam().toString());
 				jo.put("tags", tags);
 				jo.put("answers", ans);
 				
 				//add the object to json array
 				JSONquestions.add(jo);
-				//System.err.println(JSONquestions.toJSONString());
+				//System.err.println(JSONquestions.toString());
 				
 			}
 			
@@ -181,9 +195,7 @@ public class JSON {
 //			Logger.log("Question JSON was saved");
 		} catch (IOException e) {
 			e.printStackTrace();
-		}
-		
-		
+		}		
 	}
 
 

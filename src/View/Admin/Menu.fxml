@@ -28,5 +28,6 @@
       <Button layoutX="263.0" layoutY="302.0" mnemonicParsing="false" onAction="#openSystemParameters" prefHeight="27.0" prefWidth="236.0" text="System Parameter" />
       <Button layoutX="263.0" layoutY="349.0" mnemonicParsing="false" onAction="#openAdminStatistics" prefHeight="27.0" prefWidth="236.0" text="Statistics" />
       <Button layoutX="318.0" layoutY="438.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="140.0" text="Back" />
+      <Button fx:id="btnLeadBoard" layoutX="263.0" layoutY="395.0" mnemonicParsing="false" onAction="#leadboardClicked" prefHeight="27.0" prefWidth="236.0" text="Lead Board" />
    </children>
 </AnchorPane>

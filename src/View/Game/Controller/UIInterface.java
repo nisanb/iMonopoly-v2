@@ -2,7 +2,9 @@ package View.Game.Controller;
 
 import java.util.List;
 
+import Entity.Player;
 import Entity.Question;
+import Utils.NamedColor;
 
 public interface UIInterface {
 
@@ -19,6 +21,7 @@ public interface UIInterface {
 	 * if allow==false - hide option
 	 * @param allow
 	 */
+	public void allowTrade(Boolean allow);
 	public void allowPurchase(Boolean allow);
 	public void allowSellProperty(Boolean allow);
 	public void allowRent(Boolean allow);
@@ -45,7 +48,7 @@ public interface UIInterface {
 	 *  - Assets Amount
 	 * @param player
 	 */
-	public void updatePlayerProperties(String nickname, Integer cash, Integer strikes, Integer assetsWorth, Integer assetsAmount);
+	public void updatePlayerProperties(String nickname, Double cash, Integer strikes, Double assetsWorth, Integer assetsAmount);
 	
 	/**
 	 * Will highlight the current player who is playing
@@ -63,7 +66,7 @@ public interface UIInterface {
 	 * Display the history of game log
 	 * @param display
 	 */
-	public void gameLogDisplay(Boolean display);
+	public void gameLogDisplay();
 	
 	public void BuildBoard();
 	/**
@@ -94,8 +97,35 @@ public interface UIInterface {
 	 * Build the game board and send the player list to initialize
 	 * @param playerList
 	 */
-	public void build(List<String> playerList);
+	public void build(List<Player> playerList);
 	
+	/**
+	 * Display a relevent information to the player
+	 * @param txt
+	 */
+	public void showPlayInformation(String txt);
+	
+	/**
+	 * Marks a tile as purchased by a player color
+	 * @param tileNumber
+	 */
+	public void markTile(Integer tileNumber, NamedColor playerColor);
 
+	/**
+	 * Update the current game round
+	 */
+	public void updateRounds(Integer roundNumber);
+
+	/**
+	 * Will display the QM Choices for question tags
+	 * @param currentPlayer
+	 */
+	void displayQMList(String currentPlayer);
+	
+	/**
+	 * Will blink the screen with red&blue colors when a user is going to jail
+	 */
+	public void blinkImage();
+	
 	
 }

@@ -1,5 +1,6 @@
 package Entity;
 
+import Controller.Music;
 import Utils.Param;
 import Utils.TileType;
 
@@ -12,12 +13,17 @@ public class StartTile extends Tile implements Tilable {
 
 	@Override
 	public void preVisit(Player currentPlayer) {
-		// TODO Auto-generated method stub
-		currentPlayer.addCash(Param.get(Param.START_TILE_PASS));
+		if(currentPlayer.isInJail())
+			return;
+		
+		currentPlayer.addCash(Param.get(Param.START_TILE_VISIT));
+		Music.getInstance().play("cash_in.mp3");
 	}
 	@Override
 	public void visit(Player currentPlayer) {
-		// TODO Auto-generated method stub
+		if(currentPlayer.isInJail())
+			return;
+		
 		currentPlayer.addCash(Param.get(Param.START_TILE_VISIT));
 	}
 	@Override

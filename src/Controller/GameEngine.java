@@ -1,12 +1,23 @@
 package Controller;
 
+import java.text.NumberFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Stack;
+import java.util.TreeMap;
+
 import Entity.Dice;
 import Entity.Game;
+import Entity.LuckTile;
 import Entity.MonDB;
 import Entity.Player;
 import Entity.PropertyTile;
-import Utils.Param;
+import Entity.Question;
 import Utils.PlayerState;
+import Utils.QuestionStrength;
+import Utils.QuestionTag;
 import Utils.TileType;
 import View.IGameEngine;
 import View.Game.Controller.UI;
@@ -17,19 +28,48 @@ public class GameEngine implements IGameEngine {
 	private static GameEngine _instance = null;
 	private Game _game;
 
+	/**
+	 * GameEngine Private Variable for game play
+	 */
+	private Question currentQuestion = null;
+	private Stack<Question> questionStack = null;
+	private Boolean cycleThroughPlayers = false;
+	private Map<Player, Boolean> playerAnswers;
+	
+	/**
+	 * Private constructor
+	 */
 	private GameEngine() {
 		_game = MonDB.getInstance().getCurrentGame();
+		questionStack = new Stack<>();
+		playerAnswers = new HashMap<>();
 	}
 
+	/**
+	 * Singleton instance
+	 * 
+	 * @return
+	 */
 	public static GameEngine getInstance() {
 		if (_instance == null)
 			_instance = new GameEngine();
 		return _instance;
 	}
 
-	public void setUI(UI ui) {
+	/**
+	 * build Method Initiates only once from callback of UI.java initialize
+	 */
+	@Override
+	public void build(UI ui) {
 		this.ui = ui;
-		ui.build(_game.getPlayerList());
+		ui.build(_game.getGamePlayers());
+		ui.gameLog("A new game has been initiated.");
+		for (Player p : _game.getGamePlayers()) {
+			ui.gameLog("Player " + p + " has joined the game.");
+			updatePlayerProperties(p);
+		}
+
+		btnNextTurn();
 	}
 
 	/**
@@ -51,27 +91,83 @@ public class GameEngine implements IGameEngine {
 
 	}
 
+	/**
+	 * Once a question tag was chosen - display the questions
+	 */
 	@Override
-	public void btnBuyProperty() {
-		ui.allowPurchase(false);
+	public void btnQMShow(QuestionTag qt) {
+		if (qt == null)
+			return;
+		ui.gameLog("Player " + currentPlayer() + " selected Question Tag: " + qt);
+		Logger.log("Will not generate " + _game.getGamePlayers().size() + " questions for the players.");
+		Question generatedQuestion = MonDB.getInstance().getRandomQuestion(qt);
 
+		// Fill the stack with amount of questions == game players
+		for (int i = 0; i < _game.getGamePlayers().size(); i++)
+			questionStack.push(generatedQuestion);
+
+		cycleThroughPlayers = true;
+		currentQuestion = questionStack.pop();
+		ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
+
+	}
+	
+	public void displayQuestions(List<Question> questionList){
+		for(Question q : questionList)
+			questionStack.push(q);
+		
+		currentPlayer().setState(PlayerState.LUCKY_TILE);
+		//Display the first question for the player
+		currentQuestion = questionStack.pop();
+		
+		ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
+		
 	}
 
 	/**
-	 * Player clicked pay rent
+	 * Once buy property button is clicked - initiate buy property methodology
+	 */
+	@Override
+	public void btnBuyProperty() {
+		disableAll();
+
+		if (currentPlayer().getState() == PlayerState.ANSWERED_FOR_PURCHASE) {
+			PropertyTile pt = (PropertyTile) currentPlayer().getCurrentTile();
+			if (pt.purchaseProperty(currentPlayer())) {
+				Music.getInstance().play("cash_in.mp3");
+				updatePlayerProperties(currentPlayer());
+				ui.markTile(currentPlayer().getCurrentTile().getTileNumber(), currentPlayer().getPlayerColor());
+			}
+			disableAll();
+			ui.allowFinishTurn(true);
+			currentPlayer().setState(PlayerState.WAITING);
+			return;
+		}
+
+		currentPlayer().setState(PlayerState.WANTS_TO_PURCHASE);
+		QuestionStrength qs = ((PropertyTile) currentPlayer().getCurrentTile()).getPropertyStrength();
+		displayQuestion(qs);
+
+		ui.allowFinishTurn(true);
+	}
+
+	/**
+	 * Once pay rent is clicked in the UI Initiate pay rent methodology
 	 */
 	@Override
 	public void btnPayRent() {
 		// Get the tiles' amount of rent
-		ui.allowRent(false);
+		disableAll();
 		PropertyTile rentTile = (PropertyTile) currentPlayer().getCurrentTile();
-		currentPlayer().deductCash(rentTile.getRentPrice());
-		ui.gameLog("Player " + currentPlayer() + " paid $" + rentTile.getRentPrice() + " of rent "
-				+ rentTile.getCurrentOwner());
+		rentTile.payRent(currentPlayer());
+		Music.getInstance().play("cash_in.mp3");
+		updatePlayerProperties(currentPlayer().getCurrentProperty().getCurrentOwner());
+		updatePlayerProperties(currentPlayer());
+		ui.allowFinishTurn(true);
 	}
 
 	/**
-	 * Allow a player to sell his property
+	 * Once sell property is clicked, initiate sell property methodology
 	 */
 	@Override
 	public void btnSellProperty() {
@@ -79,15 +175,30 @@ public class GameEngine implements IGameEngine {
 		ui.gameLog(currentPlayer().sellProperty());
 	}
 
+	/**
+	 * Once offer trade button is clicked, initiate trade methodology
+	 */
 	@Override
 	public void btnOfferTrade() {
 		// TODO Auto-generated method stub
 
 	}
 
+	/**
+	 * Forward a message to the game log
+	 */
+	@Override
+	public void gameLog(String str) {
+		ui.gameLog(str);
+	}
+
+	/**
+	 * When a game is finished, initiate a finish game sequence
+	 */
 	@Override
 	public void btnQuitGame() {
 		// TODO Auto-generated method stub
+		Music.getInstance().swap("ui_1.mp3");
 		ui.finishGame();
 	}
 
@@ -99,6 +210,7 @@ public class GameEngine implements IGameEngine {
 		disableAll();
 		Dice dice = _game.rollDice();
 		ui.allowRollDice(false);
+		ui.allowFinishTurn(false);
 		ui.gameLog("Player " + _game.getCurrentPlayer() + " rolled " + dice.getSum() + " !");
 		ui.changeDice(1, dice.getDice1());
 		ui.changeDice(2, dice.getDice2());
@@ -109,7 +221,7 @@ public class GameEngine implements IGameEngine {
 		if (currentPlayer().isInJail()) {
 			if (dice.getDice1().equals(dice.getDice2())) {
 				ui.gameLog("Player " + currentPlayer() + " rolled a double and is free from jail!");
-				currentPlayer().setIsInJail(false);
+				currentPlayer().setState(PlayerState.WAITING);
 			} else {
 				ui.gameLog("Player " + currentPlayer() + " did not roll a double. Moving on to next turn.");
 				btnNextTurn();
@@ -117,88 +229,294 @@ public class GameEngine implements IGameEngine {
 			}
 		}
 
-		System.out.println(dice.getSum());
-		System.out.println(currentPlayer().getCurrentTile());
-
 		Integer moveToTile = (dice.getSum() + currentPlayer().getCurrentTile().getTileNumber()) % 40;
+		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), moveToTile);
+		ui.allowFinishTurn(true);
+	}
 
-		Thread doChangeLocation = new Thread() {
-			@Override
-			public void run() {
-				Integer currentLocation = currentPlayer().getCurrentTile().getTileNumber();
-				System.out.println("New Thread - moving player "+currentPlayer()+" from tile "+currentLocation+" to tile "+moveToTile);
-				while (currentLocation != moveToTile) {
-					currentPlayer().getCurrentTile().postVisit(currentPlayer());
-					
-					currentLocation %= 40;
-					Integer nextLocation = (currentLocation+1)%40;
-					
-					ui.movePlayer(currentPlayer().getNickName(), currentLocation, nextLocation);
-					currentPlayer().setCurrentTile(_game.getTile(nextLocation));
-					currentLocation++;
-
-					currentPlayer().getCurrentTile().preVisit(currentPlayer());
-
-					try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-
-					
-					if(currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)){
-						//Player passed by start point
-						ui.gameLog("Player "+currentPlayer()+" has passed by Starting Point (0) and received "+Param.get(Param.START_TILE_PASS));
-					}
-				}
-				ui.gameLog("Player "+currentPlayer()+" has arrived to "+currentPlayer().getCurrentTile()+" ("+currentPlayer().getCurrentTile().getTileNumber()+")");
-				currentPlayer().getCurrentTile().visit(currentPlayer());
-				if(currentPlayer().getCurrentTile().getTileType().equals(TileType.StartPoint)){
-					//Player passed by start point
-					ui.gameLog("Player "+currentPlayer()+" has arrived to Starting Point (0) and received "+Param.get(Param.START_TILE_VISIT));
-				}
+	/**
+	 * Once answer question is clicked - check the answers according to the
+	 * question given
+	 */
+	@Override
+	public void AnswerQuestion(List<Integer> answers) {
+		
+		if(currentPlayer().getState() == PlayerState.LUCKY_TILE){
+			LuckTile lt = ((LuckTile)currentPlayer().getCurrentTile());
+			
+			if(!lt.answered(currentQuestion.checkCorrect(answers))){
+				currentQuestion = questionStack.pop();
+				ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
+			}else{
+				//Result time..
+				lt.checkResults(currentPlayer());
 				updatePlayerProperties(currentPlayer());
-				currentPlayer().setState(PlayerState.WAITING);
 			}
-
-		};
-		doChangeLocation.start();
-		while(currentPlayer().getState() == PlayerState.MOVING){
 			
 		}
-		ui.allowFinishTurn(true);
+		
+		if (currentPlayer().getState() == PlayerState.WANTS_TO_PURCHASE) {
+			if (currentQuestion.checkCorrect(answers)) {
+				// Give discount
+				showInfo(currentPlayer() + " You have answered correct!\n" + "You received a discount of "
+						+ displayPrice(currentPlayer().getCurrentProperty().getBuyPrice()
+								- currentPlayer().getCurrentProperty().getBuyPriceDiscount())
+						+ "\n" + "You may now purchase this property for "
+						+ displayPrice(currentPlayer().getCurrentProperty().getBuyPriceDiscount())
+						+ "\n Click on \"Buy Property\" button in order to purchase\n or \"Finish Turn\" to skip your turn.");
+
+				Music.getInstance().play("correct.mp3");
+			} else {
+				currentPlayer().addStrike();
+				// Display original price
+				showInfo(currentPlayer()
+						+ " You have failed to answer.\nYou may still purchase this property at original price of: "
+						+ displayPrice(currentPlayer().getCurrentProperty().getBuyPrice())
+						+ "\n Click on \"Buy Property\" button in order to purchase\n or \"Finish Turn\" to skip your turn.");
+				Music.getInstance().play("wrong.mp3");
+			}
+
+			currentPlayer().setState(PlayerState.ANSWERED_FOR_PURCHASE);
+			ui.allowPurchase(true);
+		}
+
+		if (cycleThroughPlayers) {
+			if (!questionStack.isEmpty()) {
+				Logger.log("Transferring question to the next player..");
+				Logger.log("Player " + currentPlayer() + " answered " + currentQuestion.checkCorrect(answers));
+				playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers));
+				// This means we need to let the next player answer the same
+				// question
+				currentQuestion = questionStack.pop();
+				ui.displayQuestion(currentQuestion, _game.nextPlayer().getNickName());
+
+				ui.updateCurrentPlayer(currentPlayer().getNickName());
+				return;
+			}
+
+			// Analyze last answer
+			Logger.log("Player " + currentPlayer() + " answered " + currentQuestion.checkCorrect(answers));
+			playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers));
+
+			// Everyone finished..
+			cycleThroughPlayers = false;
+
+			// Analyze Results
+			String results = "";
+
+			ui.updateCurrentPlayer(_game.nextPlayer().getNickName());
+
+			/**
+			 * Analyze the results for question mark
+			 */
+			// If the current player is wrong ->
+			if (!playerAnswers.get(currentPlayer())) {
+				// Fine the player for 50k
+				currentPlayer().deductCash(50000);
+				results += "Player " + currentPlayer() + " was fined for $50,000\n";
+
+				for (Map.Entry<Player, Boolean> entry : playerAnswers.entrySet()) {
+					if (!entry.getValue()) {
+						entry.getKey().addStrike();
+						results += "Player " + entry.getKey() + " was given a strike.\n";
+					}
+				}
+			} else {
+
+				// Current player is right
+
+				Boolean everyoneRight = true;
+				Boolean atleastOne = false;
+				for (Map.Entry<Player, Boolean> entry : playerAnswers.entrySet()) {
+					if (entry.getKey().equals(currentPlayer()))
+						continue;
+					if (!entry.getValue()) {
+						entry.getKey().addStrike();
+						results += "Player " + entry.getKey() + " was given a strike.\n";
+						everyoneRight = false;
+					} else {
+						atleastOne = true;
+					}
+				}
+
+				if (everyoneRight) {
+					// Give 10k to everyone
+					for (Map.Entry<Player, Boolean> entry : playerAnswers.entrySet()) {
+						if (entry.getKey().equals(currentPlayer()))
+							continue;
+						entry.getKey().addCash(10000);
+						results += "Player " + entry.getKey() + " was awarded for $10,000\n";
+					}
+				} else if (atleastOne) {
+					for (Map.Entry<Player, Boolean> entry : playerAnswers.entrySet()) {
+						if (entry.getKey().equals(currentPlayer())) {
+							entry.getKey().addCash(50000);
+							results += "Player " + entry.getKey() + " was awarded with $50,000\n";
+							continue;
+						}
+
+						if (entry.getValue()) {
+							entry.getKey().addCash(75000);
+							results += "Player " + entry.getKey() + " was awarded with $75,000\n";
+						}
+					}
+				} else {
+					// Everyone was wrong
+					currentPlayer().addCash(250000);
+					results += "Player " + currentPlayer() + " was awarded with $250,000\n";
+				}
+
+			}
+
+			ui.showPlayInformation("Everyone finished answering..\nPlayers Result: \n\n" + results);
+
+			for (Player p : playerAnswers.keySet())
+				updatePlayerProperties(p);
+			playerAnswers.clear();
+			currentQuestion = null;
+
+		}
 
 	}
 
-	@Override
-	public void AnswerQuestion(int answerNum) {
-		// TODO Auto-generated method stub
-
-	}
-	
+	/**
+	 * Once finish turn is clicked - forward a call to the next players' turn
+	 */
 	@Override
 	public void btnFinishTurn() {
 		// TODO Auto-generated method stub
+		if (currentPlayer().getState() != PlayerState.JAILED)
+			currentPlayer().setState(PlayerState.WAITING);
+		ui.updateRounds(_game.nextRound());
 		btnNextTurn();
+
+	}
+
+	/**
+	 * Display information for player on screen
+	 * 
+	 * @param txt
+	 */
+	public void showInfo(String txt) {
+		ui.showPlayInformation(txt);
 	}
 
 	/**
 	 * Private Methods
 	 */
+
+	/**
+	 * Disable all in-game buttons
+	 */
 	private void disableAll() {
 		ui.allowPurchase(false);
 		ui.allowRent(false);
 		ui.allowRollDice(false);
+		ui.allowFinishTurn(false);
+		ui.allowSellProperty(false);
+		ui.allowTrade(false);
 	}
 
+	@Override
+	public void moveTo(Integer tileTo) {
+		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), tileTo);
+	}
+
+	/**
+	 * Return the current player whos turn his
+	 * 
+	 * @return
+	 */
 	private Player currentPlayer() {
 		return _game.getCurrentPlayer();
 	}
 
-	private void updatePlayerProperties(Player player) {
+	/**
+	 * Launch a call to ui - update players' properties displayed in the UI
+	 * 
+	 * @param player
+	 */
+	public void updatePlayerProperties(Player player) {
 		ui.updatePlayerProperties(player.getNickName(), player.getCash(), player.getStrikesNum(),
 				player.getTotalAssetsWorth(), player.getTotalAssets());
 	}
 
+	/**
+	 * Occures when player is hovering for the first time on a tile
+	 */
+	@Override
+	public void preVisit(Integer tileNumber) {
+		currentPlayer().setCurrentTile(_game.getTile(tileNumber));
+		currentPlayer().getCurrentTile().preVisit(currentPlayer());
+	}
 
+	/**
+	 * Occures when a player is arriving to a specific tile number
+	 */
+	@Override
+	public void Visit(Integer tileNumber) {
+		currentPlayer().getCurrentTile().visit(currentPlayer());
+		if (currentPlayer().getCurrentTile().getTileType() == TileType.Property) {
+			PropertyTile pt = (PropertyTile) currentPlayer().getCurrentTile();
+			if (!pt.isOwned())
+				ui.allowPurchase(true);
+			else {
+				if (!pt.getCurrentOwner().equals(currentPlayer())) {
+					ui.allowPurchase(true);
+					ui.allowRent(true);
+				}
+			}
+		}
+
+	}
+
+	/**
+	 * Occures when a player is leaving a specific tile
+	 */
+	@Override
+	public void postVisit(Integer tileNumber) {
+		currentPlayer().getCurrentTile().postVisit(currentPlayer());
+	}
+
+	/**
+	 * Will display a question for the current player in-game
+	 */
+	@Override
+	public void displayQuestion(QuestionStrength qs) {
+		ui.gameLog("New " + qs + " question generated for player " + currentPlayer());
+		currentQuestion = MonDB.getInstance().getRandomQuestion(qs);
+		ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
+	}
+
+	/**
+	 * Returns a string that represent a price
+	 */
+	@Override
+	public String displayPrice(Double price) {
+		return "$" + NumberFormat.getNumberInstance(Locale.US).format(price);
+	}
+	
+	public String displayPrice(Integer price){
+		return displayPrice(price.doubleValue());
+	}
+
+	public void displayQMTile() {
+		ui.displayQMList(currentPlayer().getNickName());
+	}
+	
+	/**
+	 * Calculates the amount needed to be given to a player when he is right on both questions
+	 * on a lucky tile
+	 * @return
+	 */
+	public Double getLuckyTileAward(){
+		Double value = 100000.0;
+		Double avg = 0.0;
+		for(Player p : _game.getPlayers()){
+			avg += p.getTotalAssetsWorth();
+		}
+		avg /= _game.getPlayers().size();
+		return value + avg;
+	}
+	
 }

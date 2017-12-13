@@ -34,10 +34,7 @@ public class Menu {
 
     }
 
-    @FXML
-    void doLogout(ActionEvent event) {
 
-    }
 
     @FXML
     void doSwapMusic(MouseEvent event) {
@@ -48,19 +45,27 @@ public class Menu {
     void OpenNumOfPlayers(ActionEvent event) {
 
     	iWindow.swap(Window.Player_GameSettings);
-
     }
     
+    /*
+     * This method open Rules Window
+     */
     @FXML
     void openRules(ActionEvent event) {
     	iWindow.swap(Window.Rules_Window);
     }
 
+    /*
+     * * This method open Player Statistics
+     */
     @FXML
     void openStatistics(ActionEvent event) {
     	iWindow.swap(Window.Player_Statistics);
     }
     
+    /*
+     * This method open Game settings screen
+     */
     @FXML
     void openGame(ActionEvent event) {
     	iWindow.swap(Window.Player_GameSettings);
@@ -72,9 +77,12 @@ public class Menu {
         assert lblUserLogged != null : "fx:id=\"lblUserLogged\" was not injected: check your FXML file 'Player_Menu.fxml'.";
 
     }
-    
+    /*
+     * This method returns to the previous screen
+     */
     @FXML
     void back(ActionEvent event) {
     	iWindow.swap(Window.Login);
     }
+
 }

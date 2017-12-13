@@ -9,147 +9,145 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="623.0" maxWidth="801.0" prefHeight="623.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Admin.Controller.Questions">
    <children>
-      <ImageView fitHeight="431.0" fitWidth="614.0" layoutX="77.0" layoutY="149.0" opacity="0.26" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="431.0" fitWidth="614.0" layoutX="77.0" layoutY="152.0" opacity="0.26" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Resources/whites-bg-img.png" />
          </image>
       </ImageView>
-      <ImageView fitHeight="650.0" fitWidth="801.0" onMouseClicked="#ChangeFalseBu2">
+      <ImageView fitHeight="623.0" fitWidth="801.0">
          <image>
             <Image url="@../../Resources/ManagementGUI_nowhitebg.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="btnVolume" fitHeight="25.0" fitWidth="50.0" layoutX="761.0" layoutY="536.0" onMouseClicked="#doSwapMusic" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="39.0" AnchorPane.rightAnchor="14.0">
+      <ImageView fx:id="btnVolume" fitHeight="25.0" fitWidth="50.0" layoutX="720.400000000001" layoutY="577.599999999999" onMouseClicked="#doSwapMusic" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="47.80000000000098" AnchorPane.rightAnchor="31.199999999999022">
          <image>
             <Image url="@../resources/sound_on.png" />
          </image>
       </ImageView>
-      <Button fx:id="save" layoutX="151.0" layoutY="585.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" text="Save" />
-      <Button fx:id="edit" layoutX="316.0" layoutY="585.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="140.0" text="Edit" />
-      <Button layoutX="482.0" layoutY="585.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="140.0" text="Back" />
-      <ImageView fitHeight="48.0" fitWidth="56.0" layoutX="357.0" layoutY="206.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../Resources/arrow_right.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="421.0" fitWidth="598.0" layoutX="86.0" layoutY="153.0" opacity="0.16" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="416.0" fitWidth="752.0" layoutX="86.0" layoutY="155.0" opacity="0.16" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Resources/whites-bg-img.png" />
          </image>
       </ImageView>
-      <RadioButton fx:id="TrueBu" layoutX="529.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#CangeTrueBu" text="True">
+      <RadioButton fx:id="TrueBu" disable="true" layoutX="562.0" layoutY="426.0" mnemonicParsing="false" text="True">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="FalseBu" layoutX="584.0" layoutY="440.0" mnemonicParsing="false" onMouseClicked="#ChangeFalseBu" text="False">
+      <RadioButton fx:id="FalseBu" disable="true" layoutX="619.0" layoutY="426.0" mnemonicParsing="false" selected="true" text="False">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="TrueBu3" layoutX="529.0" layoutY="511.0" mnemonicParsing="false" onMouseClicked="#ChangeTrueBu3" text="True">
+      <RadioButton fx:id="TrueBu3" disable="true" layoutX="562.0" layoutY="497.0" mnemonicParsing="false" text="True">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="FalseBu3" layoutX="584.0" layoutY="510.0" mnemonicParsing="false" onMouseClicked="#ChangeFalseBu3" text="False">
+      <RadioButton fx:id="FalseBu3" disable="true" layoutX="619.0" layoutY="496.0" mnemonicParsing="false" selected="true" text="False">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="FalseBu4" layoutX="584.0" layoutY="544.0" mnemonicParsing="false" onMouseClicked="#ChangeFalseBu4" text="False">
+      <RadioButton fx:id="FalseBu4" disable="true" layoutX="619.0" layoutY="530.0" mnemonicParsing="false" selected="true" text="False">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="TrueBu4" layoutX="529.0" layoutY="544.0" mnemonicParsing="false" onMouseClicked="#ChangeTrueBu4" text="True">
+      <RadioButton fx:id="TrueBu4" disable="true" layoutX="562.0" layoutY="530.0" mnemonicParsing="false" text="True">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <TextField fx:id="txtanswer4" layoutX="250.0" layoutY="541.0" opacity="0.71" prefHeight="25.0" prefWidth="272.0" />
-      <TextField fx:id="txtanswer3" layoutX="250.0" layoutY="507.0" opacity="0.71" prefHeight="25.0" prefWidth="272.0" />
-      <TextField fx:id="txtanswer2" layoutX="250.0" layoutY="471.0" opacity="0.71" prefHeight="25.0" prefWidth="272.0" />
-      <TextField fx:id="txtanswer1" layoutX="250.0" layoutY="436.0" opacity="0.71" prefHeight="25.0" prefWidth="272.0" />
-      <TextField fx:id="txtQuestion" layoutX="250.0" layoutY="402.0" opacity="0.71" prefHeight="25.0" prefWidth="272.0" />
-      <ComboBox fx:id="NumQuestionCombo" layoutX="248.0" layoutY="210.0" onAction="#NumByDiff" opacity="0.71" prefHeight="25.0" prefWidth="272.0" />
-      <TextField fx:id="txtQuestion1" layoutX="248.0" layoutY="246.0" opacity="0.71" prefHeight="25.0" prefWidth="272.0" />
-      <ListView fx:id="List2" layoutX="427.0" layoutY="278.0" opacity="0.71" prefHeight="117.0" prefWidth="93.0" />
-      <ImageView fx:id="RightImg" fitHeight="48.0" fitWidth="50.0" layoutX="360.0" layoutY="289.0" onMouseClicked="#moveTag" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="txtanswer4" editable="false" layoutX="250.0" layoutY="527.0" opacity="0.71" prefHeight="26.0" prefWidth="304.0" />
+      <TextField fx:id="txtanswer3" editable="false" layoutX="250.0" layoutY="493.0" opacity="0.71" prefHeight="26.0" prefWidth="304.0" />
+      <TextField fx:id="txtanswer2" editable="false" layoutX="250.0" layoutY="457.0" opacity="0.71" prefHeight="26.0" prefWidth="304.0" />
+      <TextField fx:id="txtanswer1" editable="false" layoutX="250.0" layoutY="422.0" opacity="0.71" prefHeight="26.0" prefWidth="304.0" />
+      <TextField fx:id="txtQuestion" editable="false" layoutX="250.0" layoutY="388.0" opacity="0.71" prefHeight="26.0" prefWidth="391.0" />
+      <ComboBox fx:id="NumQuestionCombo" layoutX="250.0" layoutY="195.0" onAction="#NumByDiff" opacity="0.71" prefHeight="28.0" prefWidth="391.0" promptText="Select Question" />
+      <ListView fx:id="List2" disable="true" layoutX="470.0" layoutY="265.0" opacity="0.71" prefHeight="117.0" prefWidth="171.0" />
+      <ImageView fx:id="RightImg" fitHeight="48.0" fitWidth="50.0" layoutX="421.0" layoutY="266.0" onMouseClicked="#moveTag" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Resources/512px-Double_angle_right_font_awesome.svg.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="LeftImg" fitHeight="48.0" fitWidth="50.0" layoutX="360.0" layoutY="338.0" onMouseClicked="#FromList2ToList1" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="LeftImg" fitHeight="48.0" fitWidth="50.0" layoutX="415.0" layoutY="323.0" onMouseClicked="#FromList2ToList1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Resources/Double_angle_left_font_awesome.svg.png" />
          </image>
       </ImageView>
-      <ListView fx:id="List1" layoutX="249.0" layoutY="278.0" opacity="0.71" prefHeight="117.0" prefWidth="93.0" />
-      <ComboBox fx:id="DiffComboox" layoutX="250.0" layoutY="173.0" onAction="#ChooseDiff" onMouseClicked="#CheckDiffAndSetAns" opacity="0.71" prefHeight="25.0" prefWidth="272.0" />
-      <Label fx:id="managequestion" layoutX="313.0" layoutY="148.0" text="Manage Question">
-         <font>
-            <Font name="System Bold Italic" size="18.0" />
-         </font>
-      </Label>
-      <Label fx:id="diff" layoutX="146.0" layoutY="182.0" text="Difficulty:">
+      <ListView fx:id="List1" disable="true" layoutX="249.0" layoutY="264.0" opacity="0.71" prefHeight="117.0" prefWidth="171.0" />
+      <ComboBox fx:id="DiffComboox" layoutX="250.0" layoutY="159.0" onAction="#ChooseDiff" onMouseClicked="#CheckDiffAndSetAns" opacity="0.71" prefHeight="28.0" prefWidth="391.0" promptText="Select Difficulty" />
+      <Label fx:id="diff" layoutX="146.0" layoutY="168.0" text="Difficulty:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="TagCombo" layoutX="146.0" layoutY="279.0" text="Tag:">
+      <Label fx:id="TagCombo" layoutX="146.0" layoutY="265.0" text="Tag:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="146.0" layoutY="248.0" prefWidth="64.0" text="Team:">
+      <Label layoutX="146.0" layoutY="234.0" prefWidth="64.0" text="Team:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="141.0" layoutY="212.0" text="Question Num:">
+      <Label layoutX="145.0" layoutY="198.0" text="Question Num:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="146.0" layoutY="404.0" text="Question:">
+      <Label layoutX="146.0" layoutY="390.0" text="Question:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="Answer1" layoutX="146.0" layoutY="439.0" text="Answer 1:">
+      <Label fx:id="Answer1" layoutX="146.0" layoutY="425.0" text="Answer 1:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="answer2" layoutX="146.0" layoutY="473.0" text="Answer 2:">
+      <Label fx:id="answer2" layoutX="146.0" layoutY="459.0" text="Answer 2:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="answer3" layoutX="146.0" layoutY="511.0" text="Answer 3:">
+      <Label fx:id="answer3" layoutX="146.0" layoutY="497.0" text="Answer 3:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="answer4" layoutX="146.0" layoutY="548.0" text="Answer 4:">
+      <Label fx:id="answer4" layoutX="146.0" layoutY="534.0" text="Answer 4:">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <RadioButton fx:id="TrueBu2" layoutX="529.0" layoutY="474.0" mnemonicParsing="false" onMouseClicked="#ChangeTrueBu2" text="True">
+      <RadioButton fx:id="TrueBu2" disable="true" layoutX="562.0" layoutY="460.0" mnemonicParsing="false" text="True">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
-      <RadioButton fx:id="FalseBu2" layoutX="584.0" layoutY="472.0" mnemonicParsing="false" onMouseClicked="#ChangeFalseBu2" text="False">
+      <RadioButton fx:id="FalseBu2" disable="true" layoutX="619.0" layoutY="458.0" mnemonicParsing="false" selected="true" text="False">
          <font>
             <Font size="14.0" />
          </font>
       </RadioButton>
+      <HBox layoutX="86.0" layoutY="577.0" prefHeight="40.0" prefWidth="598.0">
+         <children>
+            <Button fx:id="save" mnemonicParsing="false" onAction="#saveClicked" prefHeight="30.0" prefWidth="123.0" text="Save" />
+            <Button mnemonicParsing="false" onAction="#openEditQuestion" prefHeight="30.0" prefWidth="123.0" text="Edit" />
+            <Button fx:id="AddQuest" mnemonicParsing="false" onAction="#OpenAddQuestion" prefHeight="30.0" prefWidth="123.0" text="Add Question" />
+            <Button fx:id="Delete" mnemonicParsing="false" onAction="#DeleteQuestion" prefHeight="30.0" prefWidth="123.0" text="Delete" />
+            <Button mnemonicParsing="false" onAction="#back" prefHeight="30.0" prefWidth="123.0" text="Back" />
+         </children>
+      </HBox>
+      <Label fx:id="lblError" layoutX="146.0" layoutY="554.0" prefHeight="18.0" prefWidth="438.0" text="Label" textFill="#ed0202" />
+      <ComboBox fx:id="comboTeams" disable="true" layoutX="250.0" layoutY="231.0" onAction="#setTeam" opacity="0.7" prefHeight="26.0" prefWidth="391.0" promptText="Select Team" />
    </children>
 </AnchorPane>

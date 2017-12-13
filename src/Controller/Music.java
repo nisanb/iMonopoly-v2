@@ -53,6 +53,8 @@ public class Music {
 				currentPlayer.pause();
 			}
 
+		} else{
+			play(res);
 		}
 	}
 

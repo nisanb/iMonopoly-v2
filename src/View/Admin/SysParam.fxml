@@ -10,131 +10,139 @@
 
 <AnchorPane maxHeight="602.0" maxWidth="800.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Admin.Controller.SysParam">
    <children>
-      <ImageView fitHeight="611.0" fitWidth="800.0" layoutY="-3.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-3.0">
+      <ImageView fitHeight="611.0" fitWidth="800.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
             <Image url="@../../resources/ManagementGUI.png" />
          </image>
       </ImageView>
-      <Label contentDisplay="TOP" layoutX="303.0" layoutY="138.0" prefHeight="39.0" prefWidth="218.0" text="System Parameters" textAlignment="RIGHT" textFill="#da1111" textOverrun="WORD_ELLIPSIS">
-         <font>
-            <Font size="24.0" />
-         </font></Label>
-      <Label layoutX="83.0" layoutY="222.0" prefHeight="20.0" prefWidth="93.0" text="Rent" textFill="WHITE">
+      <Label layoutX="76.0" layoutY="191.0" prefHeight="20.0" prefWidth="93.0" text="Rent" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="81.0" layoutY="256.0" text="Buy Property" textFill="WHITE">
+      <Label layoutX="76.0" layoutY="225.0" text="Buy Property" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="81.0" layoutY="289.0" prefHeight="20.0" prefWidth="83.0" text="Min Luck" textFill="#f2f2f2">
+      <Label layoutX="75.0" layoutY="291.0" prefHeight="20.0" prefWidth="83.0" text="Min Luck" textFill="#f2f2f2">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="82.0" layoutY="321.0" prefHeight="20.0" prefWidth="83.0" text="Max Luck" textFill="WHITE">
+      <Label layoutX="76.0" layoutY="323.0" prefHeight="20.0" prefWidth="83.0" text="Max Luck" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="81.0" layoutY="357.0" prefHeight="20.0" prefWidth="80.0" text="Only Luck" textFill="WHITE">
+      <Label layoutX="75.0" layoutY="359.0" prefHeight="20.0" prefWidth="110.0" text="Med Luck Fine" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="81.0" layoutY="391.0" prefHeight="20.0" prefWidth="72.0" text="Luck Fine" textFill="WHITE">
+      <Label layoutX="75.0" layoutY="393.0" prefHeight="20.0" prefWidth="110.0" text="Hard Luck Fine" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="81.0" layoutY="424.0" text="Jail Fine" textFill="WHITE">
+      <Label layoutX="74.0" layoutY="260.0" text="Jail Fine" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="390.0" layoutY="189.0" prefHeight="20.0" prefWidth="115.0" text="Cheap Property" textFill="WHITE">
+      <Label layoutX="384.0" layoutY="158.0" prefHeight="20.0" prefWidth="140.0" text="Easy Property Price" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="390.0" layoutY="223.0" prefHeight="20.0" prefWidth="138.0" text="Average Property" textFill="WHITE">
+      <Label layoutX="384.0" layoutY="192.0" prefHeight="20.0" prefWidth="138.0" text="Med Property Price" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="390.0" layoutY="257.0" prefHeight="20.0" prefWidth="138.0" text="Expensive Property" textFill="WHITE">
+      <Label layoutX="384.0" layoutY="226.0" prefHeight="20.0" prefWidth="138.0" text="Hard Property Price" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="390.0" layoutY="292.0" text="Cheap Property Discount" textFill="WHITE">
+      <Label layoutX="384.0" layoutY="261.0" text="Easy Property Discount" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="389.0" layoutY="324.0" text="Average Property Discount" textFill="WHITE">
+      <Label layoutX="383.0" layoutY="293.0" text="Med Property Discount" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="390.0" layoutY="357.0" text="Expensive Propery Discount" textFill="WHITE">
+      <Label layoutX="384.0" layoutY="326.0" text="Hard Propery Discount" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="390.0" layoutY="391.0" text="Max Num Of Rounds" textFill="WHITE">
+      <Label layoutX="384.0" layoutY="360.0" text="Max Num Of Rounds" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label layoutX="390.0" layoutY="422.0" text="Bankruptcy" textFill="WHITE">
+      <Label layoutX="384.0" layoutY="391.0" text="Bankruptcy" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
       <Button id="btnSvae" fx:id="btnSave" layoutX="123.0" layoutY="491.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="33.0" prefWidth="140.0" text="Save" />
       <Button id="btnBack" fx:id="btnBack" layoutX="563.0" layoutY="491.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="34.0" prefWidth="140.0" text="Back" />
-      <Label layoutX="82.0" layoutY="188.0" prefHeight="20.0" prefWidth="83.0" text="Start Money" textFill="WHITE">
+      <Label layoutX="76.0" layoutY="157.0" prefHeight="20.0" prefWidth="83.0" text="Start Money" textFill="WHITE">
 
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
       <Button id="btnRestore" fx:id="btnRestore" layoutX="348.0" layoutY="491.0" mnemonicParsing="false" onAction="#buttonClicked" prefHeight="34.0" prefWidth="140.0" text="Restore Defaults" />
-      <Spinner fx:id="spinStartMoney" amountToStepBy="10000" editable="true" initialValue="100000" layoutX="189.0" layoutY="185.0" max="10000000" min="50000" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Spinner fx:id="spinRent" amountToStepBy="0.01" editable="true" initialValue="0" layoutX="189.0" layoutY="218.0" max="1" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Spinner fx:id="spinBuy" amountToStepBy="0.01" editable="true" initialValue="0" layoutX="189.0" layoutY="252.0" max="1" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Spinner fx:id="spinMinLuck" amountToStepBy="10000" editable="true" initialValue="10000" layoutX="189.0" layoutY="285.0" max="1000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Spinner fx:id="spinMaxLuck" amountToStepBy="1000000" editable="true" initialValue="2000000" layoutX="189.0" layoutY="318.0" max="250000000" min="1000000" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Spinner fx:id="spinOnlyLuck" amountToStepBy="10000" editable="true" initialValue="10000" layoutX="189.0" layoutY="352.0" max="1000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Spinner fx:id="spinLuckFIne" amountToStepBy="10000" editable="true" initialValue="10000" layoutX="189.0" layoutY="385.0" max="1000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Spinner fx:id="spinJailFine" amountToStepBy="10000" editable="true" initialValue="10000" layoutX="189.0" layoutY="418.0" max="1000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Spinner fx:id="spinCheapProperty" amountToStepBy="100000" editable="true" initialValue="500000" layoutX="577.0" layoutY="187.0" max="10000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Spinner fx:id="SpinAverageProperty" amountToStepBy="100000" editable="true" initialValue="500000" layoutX="577.0" layoutY="220.0" max="10000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Spinner fx:id="spinExpensiveProperty" amountToStepBy="100000" editable="true" initialValue="500000" layoutX="577.0" layoutY="254.0" max="10000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Spinner fx:id="spinCheapDisc" amountToStepBy="0.01" editable="true" initialValue="0" layoutX="577.0" layoutY="287.0" max="1" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Spinner fx:id="spinAvgDisc" amountToStepBy="0.01" editable="true" initialValue="0" layoutX="577.0" layoutY="320.0" max="1" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Spinner fx:id="spinExpensiveDisc" amountToStepBy="0.01" editable="true" initialValue="0" layoutX="577.0" layoutY="354.0" max="1" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Spinner fx:id="spinMaxRounds" amountToStepBy="10" editable="true" initialValue="50" layoutX="577.0" layoutY="387.0" max="1000" min="10" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Spinner fx:id="spinBankruptcy" amountToStepBy="10000" editable="true" initialValue="-100000" layoutX="577.0" layoutY="420.0" max="0" min="-10000000" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Label fx:id="lblEmpty1" layoutX="81.0" layoutY="457.0" text="Empty 1" textFill="WHITE">
+      <Spinner fx:id="spinStartMoney" amountToStepBy="10000" editable="true" initialValue="100000" layoutX="195.0" layoutY="154.0" max="999999999" min="50000" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinRent" amountToStepBy="0.01" editable="true" initialValue="0" layoutX="195.0" layoutY="187.0" max="1" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinBuy" amountToStepBy="0.01" editable="true" initialValue="0" layoutX="195.0" layoutY="221.0" max="1" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinMinLuck" amountToStepBy="10000" editable="true" initialValue="10000" layoutX="195.0" layoutY="287.0" max="1000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinMaxLuck" amountToStepBy="1000000" editable="true" initialValue="2000000" layoutX="195.0" layoutY="320.0" max="250000000" min="1000000" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinMedLuckFine" amountToStepBy="10000" editable="true" initialValue="10000" layoutX="195.0" layoutY="354.0" max="1000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinHardLuckFine" amountToStepBy="10000" editable="true" initialValue="10000" layoutX="195.0" layoutY="387.0" max="1000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinJailFine" amountToStepBy="10000" editable="true" initialValue="10000" layoutX="194.0" layoutY="254.0" max="1000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinEasyPrice" amountToStepBy="100000" editable="true" initialValue="500000" layoutX="571.0" layoutY="156.0" max="100000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinMedPrice" amountToStepBy="100000" editable="true" initialValue="500000" layoutX="571.0" layoutY="189.0" max="100000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinHardPrivce" amountToStepBy="100000" editable="true" initialValue="500000" layoutX="571.0" layoutY="223.0" max="100000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinEasyDisc" amountToStepBy="0.01" editable="true" initialValue="0" layoutX="571.0" layoutY="256.0" max="1" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinMedDisc" amountToStepBy="0.01" editable="true" initialValue="0" layoutX="571.0" layoutY="289.0" max="1" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinHardDisc" amountToStepBy="0.01" editable="true" initialValue="0" layoutX="571.0" layoutY="323.0" max="1" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinMaxRounds" amountToStepBy="10" editable="true" initialValue="50" layoutX="571.0" layoutY="356.0" max="1000" min="10" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinBankruptcy" amountToStepBy="10000" editable="true" initialValue="-100000" layoutX="571.0" layoutY="389.0" max="0" min="-10000000" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Label layoutX="75.0" layoutY="426.0" text="QM Player Right" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Spinner fx:id="spinEmpty1" amountToStepBy="100000" editable="true" initialValue="500000" layoutX="189.0" layoutY="451.0" max="10000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
-      <Label fx:id="lblEmpty2" layoutX="390.0" layoutY="456.0" text="Empty 2" textFill="WHITE">
+      <Spinner fx:id="spinQMPlayerRight" amountToStepBy="100000" editable="true" initialValue="500000" layoutX="195.0" layoutY="420.0" max="10000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Label layoutX="384.0" layoutY="425.0" text="QM Wrong Fine" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Spinner fx:id="spinEmpty2" amountToStepBy="100000" editable="true" initialValue="500000" layoutX="577.0" layoutY="453.0" max="10000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Spinner fx:id="spinQMWrongFine" amountToStepBy="100000" editable="true" initialValue="500000" layoutX="571.0" layoutY="422.0" max="10000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
       <Label fx:id="lblError" layoutX="123.0" layoutY="527.0" text="Error: " textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
+      <Label layoutX="75.0" layoutY="460.0" text="QM Others Right" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Spinner fx:id="spinQMOtherRight" amountToStepBy="100000" editable="true" initialValue="500000" layoutX="195.0" layoutY="454.0" max="10000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
+      <Label layoutX="385.0" layoutY="458.0" prefHeight="20.0" prefWidth="154.0" text="QM Only Player Right" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+      <Spinner fx:id="spinQMOnlyPlayerRight" amountToStepBy="100000" editable="true" initialValue="500000" layoutX="572.0" layoutY="455.0" max="10000000" min="0" opacity="0.7" prefHeight="26.0" prefWidth="127.0" />
    </children>
 </AnchorPane>

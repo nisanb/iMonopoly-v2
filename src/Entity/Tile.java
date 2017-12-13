@@ -1,12 +1,17 @@
 package Entity;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
 import Utils.TileType;
 
-public class Tile implements Tilable {
+public class Tile implements Tilable, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer _tileNumber;
 	private String _tileName;
 	private Set<Player> _currentPlayers;
@@ -33,6 +38,7 @@ public class Tile implements Tilable {
 		_tileName = tileName;
 	}
 
+	@Override
 	public TileType getTileType() {
 		return _tileType;
 	}
@@ -49,6 +55,7 @@ public class Tile implements Tilable {
 		_currentPlayers = currentPlayers;
 	}
 
+	@Override
 	public Integer getTileNumber() {
 		return _tileNumber;
 	}

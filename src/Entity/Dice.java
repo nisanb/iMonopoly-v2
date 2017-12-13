@@ -11,7 +11,9 @@ public class Dice {
 		roll();
 	}
 	
-	
+	/**
+	 * set numers of dice
+	 */
 	public void roll(){
 		Random r = new Random();
 		dice1 = r.nextInt(6)+1;
@@ -29,6 +31,7 @@ public class Dice {
 
 
 	public Integer getSum() {
+		//return 30;
 		return dice1+dice2;
 	}
 	

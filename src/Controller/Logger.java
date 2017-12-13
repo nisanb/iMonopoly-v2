@@ -90,6 +90,7 @@ public final class Logger{
 
 	public static void gameLog(String msg) {
 		// TODO Auto-generated method stub
+		iWindow.getGameEngine().gameLog(msg);
 		log(msg);
 		
 	}

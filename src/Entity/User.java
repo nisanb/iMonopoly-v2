@@ -3,6 +3,9 @@ package Entity;
 import java.io.Serializable;
 
 import Utils.PlayerAuth;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+import javafx.beans.value.ObservableValue;
 
 public class User implements Serializable {
 
@@ -12,7 +15,16 @@ public class User implements Serializable {
 	private PlayerAuth playerAuth;
 	private int correctAnswers;
 	private int totalAnswers;
+	private int totalStrikes;
 	
+	public int getTotalStrikes() {
+		return totalStrikes;
+	}
+
+	public void setTotalStrikes(int totalStrikes) {
+		this.totalStrikes = totalStrikes;
+	}
+
 	public User(String nickname){
 		this.nickName = nickname;
 	}
@@ -52,9 +64,7 @@ public class User implements Serializable {
 			return false;
 		return true;
 	}
-	public String getNickName() {
-		return nickName;
-	}
+
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
@@ -78,7 +88,14 @@ public class User implements Serializable {
 	}
 	
 	
+	public String getNickName() {
+		return this.nickName;
+	}
 	
+	public ObservableValue<String> getLeadboardNickName() {
+		StringProperty toReturn = new SimpleStringProperty(nickName);
+		return toReturn;
+	}
 	
 	
 }

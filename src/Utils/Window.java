@@ -13,6 +13,7 @@ public enum Window {
 	Player_Statistics("Player/Statistics"),
 	Player_GameSettings("Player/GameSettings"),
 	Rules_Window("Player/Rules"),
+	Player_LeadBoard("Player/Leadboard"),
 	
 	
 	/**
@@ -23,6 +24,8 @@ public enum Window {
 	Admin_Statistics("Admin/Statistics"),
 	Admin_SysParams("Admin/SysParam"),
 	Admin_Questions("Admin/Questions"),
+	Admin_AddQuesion("Admin/AddQuestion"),
+	Admin_editQuestion("Admin/editQuestion"),
 	
 	/**
 	 * Game

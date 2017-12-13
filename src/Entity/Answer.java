@@ -14,15 +14,15 @@ public class Answer {
 		return text;
 	}
 
-	protected void setText(String text) {
+	public void setText(String text) {
 		this.text = text;
 	}
 
-	protected boolean isTrue() {
+	public boolean isTrue() {
 		return isTrue;
 	}
 
-	protected void setTrue(boolean isTrue) {
+	public void setTrue(boolean isTrue) {
 		this.isTrue = isTrue;
 	}
 	
@@ -62,7 +62,8 @@ public class Answer {
 
 	@Override
 	public String toString() {
-		return "Answer [text=" + text + ", isTrue=" + isTrue + "]";
+		//return "Answer [text=" + text + ", isTrue=" + isTrue + "]";
+		return text;
 	}
 
 }

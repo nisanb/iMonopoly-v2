@@ -1,12 +1,14 @@
 package View.Player.Controller;
 
-import java.net.URL;
 import java.util.ResourceBundle;
+import java.net.URL;
 
 import Controller.Logger;
 import Controller.Music;
 import Controller.iWindow;
+import Entity.Player;
 import Utils.Window;
+import View.IManagement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,12 +20,29 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class Statistics {
 
+public class Statistics {
+	//========================================= FX COMPONENTS ==================================================
     @FXML
     private ResourceBundle resources;
-    
 
+    @FXML
+    private TextField txtTotalGames;
+
+    @FXML
+    private TextField txtTotalStrikes;
+
+    @FXML
+    private TextField txtTotalWins;
+
+    @FXML
+    private TextField txtWinLossRatio;
+
+    @FXML
+    private TextField txtTotalAnswers;
+
+    @FXML
+    private TextField txtTotalQuestions;  
 
     @FXML
     private URL location;
@@ -40,6 +59,12 @@ public class Statistics {
     @FXML
     private PieChart piechart;
 
+    IManagement _mng = iWindow.getManagement();
+    
+    
+    //============================================ METHODS ===================================================
+    
+    
     @FXML
     void MouseEntered(MouseEvent event) {
     	Music.getInstance().play("hover.mp3");
@@ -60,44 +85,38 @@ public class Statistics {
     	 * MonDB.getInstance().setCurrentGame(new Game());
     	 * MonDB.getInstance().getCurrentGame().setCurrentLoggedUser((new User(frmNickname.getText(), PlayerAuth.PLAYER)));
     	 */
-    	
     	iWindow.swap(Window.Player_Menu);
     }
     
     
-
+   
     @FXML
     void initialize() {
-        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Login.fxml'.";
-        assert frmNickname != null : "fx:id=\"frmNickname\" was not injected: check your FXML file 'Login.fxml'.";
-        assert btnLogin != null : "fx:id=\"btnLogin\" was not injected: check your FXML file 'Login.fxml'.";
-        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Login.fxml'.";
+    	//add data to pie
+    	Player player = _mng.getPlayerData();
         ObservableList <Data> list=FXCollections.observableArrayList(
-    			new PieChart.Data("worng", 22),
-    			new PieChart.Data("easy", 10),
-    			new PieChart.Data("hard", 5),
-    			new PieChart.Data("meduim", 5)
+    			new PieChart.Data("Wins", player.getWins()),
+    			new PieChart.Data("Loses", player.getGames() - player.getWins())
     			);
     	piechart.setData(list);
-    	piechart.setLegendVisible(false);
-    	piechart.setPrefHeight(5.5);
+    	piechart.setLegendVisible(true);
+    	piechart.setPrefHeight(15);
    
+    	//add data to fields
+    	txtTotalAnswers.setText(player.getCorrectAnswers() +"");
+    	txtTotalGames.setText(player.getGames() +"");
+    	txtTotalQuestions.setText(player.getTotalAnswers() +"");
+    	txtTotalStrikes.setText(player.getTotalStrikes() + "");
+    	txtTotalWins.setText(player.getWins() + "");
+    	if (player.getGames() == 0) txtWinLossRatio.setText("0");
+    	else txtWinLossRatio.setText(player.getWins()/(player.getGames()) + "");
+    	
     }
     
 
-    
-    @FXML
-    public void btn(ActionEvent event)
-    {
-    	ObservableList <Data> list=FXCollections.observableArrayList(
-    			new PieChart.Data("worng", 22),
-    			new PieChart.Data("easy", 10),
-    			new PieChart.Data("hard", 5),
-    			new PieChart.Data("meduim", 5)
-    			);
-    	piechart.setData(list);
-    }
-    
+    /*
+     * This method returns to the previous screen
+     */
     public void back(ActionEvent event)
     {
     	iWindow.swap(Window.Player_Menu);

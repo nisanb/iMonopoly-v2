@@ -1,6 +1,5 @@
 package Entity;
 
-import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -8,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import Controller.Logger;
+import Utils.NamedColor;
 import Utils.PlayerAuth;
 import Utils.PlayerState;
 
@@ -15,21 +15,21 @@ public class Player extends User implements Comparable<Player> {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer _cash;
+	private Double _cash;
 	private Integer _strikesNum;
-	private Boolean _inJail;
-	private Color _playerColor;
+	private NamedColor _playerColor;
 	private Map<Question, Boolean> _userAnswers;
 	private List<PropertyTile> _propertyList;
 	private Tilable _currentTile;
 	private PlayerState _state;
+	private transient Integer games = 0, wins = 0;
+	
 	/**
 	 * Player Constructor
-	 * 
 	 * @param nickname
 	 * @param cash
 	 */
-	public Player(String nickname, Integer cash, Color playerColor) {
+	public Player(String nickname, Double cash, NamedColor playerColor) {
 		super(nickname, PlayerAuth.PLAYER);
 		_propertyList = new ArrayList<>();
 		_userAnswers = new HashMap<>();
@@ -37,9 +37,12 @@ public class Player extends User implements Comparable<Player> {
 		_currentTile = MonDB.getInstance().getCurrentGame().getTile(0);
 		_cash = cash;
 		_playerColor = playerColor;
-		_inJail = false;
 		_state = PlayerState.WAITING;
 
+	}
+
+	public Player(String nickname) {
+		super(nickname, PlayerAuth.PLAYER);
 	}
 	
 	public PlayerState getState(){
@@ -72,11 +75,11 @@ public class Player extends User implements Comparable<Player> {
 		return _propertyList.remove(pro);
 	}
 
-	public Integer getCash() {
+	public Double getCash() {
 		return _cash;
 	}
 
-	protected void setCash(Integer cash) {
+	protected void setCash(Double cash) {
 		_cash = cash;
 	}
 
@@ -97,11 +100,7 @@ public class Player extends User implements Comparable<Player> {
 	}
 
 	public Boolean isInJail() {
-		return _inJail;
-	}
-
-	public void setIsInJail(Boolean inJail) {
-		_inJail = inJail;
+		return _state == PlayerState.JAILED;
 	}
 
 	public Map<Question, Boolean> getUserAnswers() {
@@ -109,7 +108,7 @@ public class Player extends User implements Comparable<Player> {
 	}
 
 	public void addCash(Object amount) {
-		_cash += Integer.parseInt(amount.toString());
+		_cash += Double.parseDouble(amount.toString());
 		Logger.log("Added $" + amount + " to " + getNickName());
 	}
 
@@ -118,19 +117,23 @@ public class Player extends User implements Comparable<Player> {
 	}
 
 	public Boolean hasEnough(Integer amount) {
-		return amount >= _cash;
+		return amount < _cash;
 	}
 
-	public Color getPlayerColor() {
+	public NamedColor getPlayerColor() {
 		return _playerColor;
 	}
 
-	public void setPlayerColor(Color playerColor) {
+	public void setPlayerColor(NamedColor playerColor) {
 		_playerColor = playerColor;
 	}
+	
+	public void addStrike(){
+		_strikesNum++;
+	}
 
-	public Integer getTotalAssetsWorth(){
-		Integer amount = 0;
+	public Double getTotalAssetsWorth(){
+		Double amount = 0.0;
 		for(PropertyTile p : _propertyList)
 			amount+=p.getCurrentPrice();
 		
@@ -154,4 +157,38 @@ public class Player extends User implements Comparable<Player> {
 		pt.setCurrentOwner(null);
 		return "Player "+toString()+" has sold "+pt+" for $"+pt.getSellPrice();
 	}
+	
+	public PropertyTile getCurrentProperty(){
+		return (PropertyTile) getCurrentTile();
+	}
+
+	
+	
+	
+	//=================================== Setters & Getters for statistics ==================================
+	
+	
+	public Integer getGames() {
+		return games;
+	}
+
+	public void setGames(Integer games) {
+		this.games = games;
+	}
+
+	public Integer getWins() {
+		return wins;
+	}
+
+	public void setWins(Integer wins) {
+		this.wins = wins;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		System.out.println("TEST: " + this + " - " + obj + " " + super.equals(obj));
+		return super.equals(obj);
+	}
+	
+	
 }

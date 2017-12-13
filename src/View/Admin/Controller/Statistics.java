@@ -8,7 +8,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import Controller.iWindow;
+import Utils.QuestionStrength;
 import Utils.Window;
+import View.IManagement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,27 +18,49 @@ import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.PieChart.Data;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class Statistics {
-    @FXML
-    private Label Players;
+	
+	//========================================== FX COMPONENTS ===============================================
+	
+	@FXML
+    private Label lblPlayers;
 
     @FXML
-    private Label Questions;
+    private Label lblQuestions;
 
     @FXML
-    private Label easy;
+    private Label lblEasy;
 
     @FXML
-    private Label Hard;
+    private Label lblHard;
 
     @FXML
-    private Label Games_Played;
+    private Label lblGamesPlayed;
 
     @FXML
-    private Label medium;
+    private Label lblMedium;
+    
+    @FXML
+    private TextField players;
+
+    @FXML
+    private TextField questions;
+
+    @FXML
+    private TextField easy;
+
+    @FXML
+    private TextField medium;
+
+    @FXML
+    private TextField hard;
+
+    @FXML
+    private TextField gamesPlayed;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -50,6 +74,33 @@ public class Statistics {
     @FXML // fx:id="piechart"
     private PieChart piechart; // Value injected by FXMLLoader
 
+	private IManagement _mng = iWindow.getManagement();
+    
+    
+    @FXML // This method is called by the FXMLLoader when initialization is complete
+    void initialize() {
+    	
+    	ObservableList <Data> list=FXCollections.observableArrayList(
+    			new PieChart.Data("Easy", _mng.getQuestionMap().get(QuestionStrength.EASY).size()),
+    			new PieChart.Data("Hard", _mng.getQuestionMap().get(QuestionStrength.HARD).size()),
+    			new PieChart.Data("Meduim", _mng.getQuestionMap().get(QuestionStrength.MEDIUM).size()));
+    			
+    	piechart.setData(list);
+    	piechart.setLegendVisible(true);
+    	piechart.setPrefHeight(15);
+    	players.setText(_mng.getListOfPlayers().size()+ "");
+    	questions.setText(_mng.getQuestions().size() + "");;
+    	gamesPlayed.setText(_mng.getGameData().size() + " ");
+    	easy.setText(_mng.getQuestionMap().get(QuestionStrength.EASY).size() + "");
+    	medium.setText(_mng.getQuestionMap().get(QuestionStrength.MEDIUM).size() + "");
+    	hard.setText(_mng.getQuestionMap().get(QuestionStrength.HARD).size() + "");
+    	
+    	setTexfFieldColor();
+    	
+    }
+    
+    //============================================ ACTION EVETNS ===============================================
+    
     @FXML
     void back(ActionEvent event) {
     	iWindow.swap(Window.Admin_Menu);
@@ -62,30 +113,12 @@ public class Statistics {
 
     }
     
-    @FXML
-    public void btn(ActionEvent event)
-    {
-    	ObservableList <Data> list=FXCollections.observableArrayList(
-    			new PieChart.Data("worng", 22),
-    			new PieChart.Data("easy", 10),
-    			new PieChart.Data("hard", 5),
-    			new PieChart.Data("meduim", 5)
-    			);
-    	piechart.setData(list);
+    
+    
+    //============================================== CSS ===================================================
+
+    private void setTexfFieldColor() {
+    	players.setStyle("-fx-font-weight: bold; -fx-background-color: white; -fx-font-alignment: center; -fx-text-fill: black; -fx-font-size: 14;");
     }
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
-    void initialize() {
-        assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Statistics.fxml'.";
-        assert piechart != null : "fx:id=\"piechart\" was not injected: check your FXML file 'Statistics.fxml'.";
-        ObservableList <Data> list=FXCollections.observableArrayList(
-    			new PieChart.Data("worng", 22),
-    			new PieChart.Data("easy", 10),
-    			new PieChart.Data("hard", 5),
-    			new PieChart.Data("meduim", 5)
-    			);
-    	piechart.setData(list);
-    	piechart.setLegendVisible(false);
-    	piechart.setPrefHeight(5.5);
-    }
 }

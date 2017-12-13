@@ -18,6 +18,11 @@ public class iWindow {
 	private static Scene currentScene;
 	private static FXMLLoader currentLoader;
 
+	/**
+	 * This method takes window and sets it as the current windows for user
+	 * @param primaryStage
+	 * @param toOpen
+	 */
 	public static void swap(Stage primaryStage, Window toOpen) {
 		currentStage = primaryStage;
 		
@@ -27,6 +32,10 @@ public class iWindow {
 		currentScene.getWindow().centerOnScreen();
 	}
 
+	/**
+	 * This method takes window and sets it as the current windows for user
+	 * @param toOpen
+	 */
 	public static void swap(Window toOpen) {
 
 		if (iWindow.currentScene != null) {
@@ -56,7 +65,7 @@ public class iWindow {
 		/**
 		 * Fade in the new window
 		 */
-		FadeTransition ft = new FadeTransition(Duration.millis(300), (AnchorPane) root);
+		FadeTransition ft = new FadeTransition(Duration.millis(300), root);
 		ft.setFromValue(0.5);
 		ft.setToValue(1.0);
 		ft.play();

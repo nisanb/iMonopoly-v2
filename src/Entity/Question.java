@@ -1,9 +1,10 @@
 package Entity;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import Controller.Logger;
+import Utils.Team;
 
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
@@ -16,11 +17,11 @@ public class Question {
 	private String qQuestion;
 	private boolean isMultipleChoise;
 	private List<Answer> qAnswers;
-	private String team;
+	private Team team;
 	private List<QuestionTag> tags;
 	
-	protected Question(long qNumber, QuestionStrength qStrength, String qQuestion, boolean isMultiple, 
-			List<Answer> qAnswers, String team, List<QuestionTag> tags) {
+	public Question(long qNumber, QuestionStrength qStrength, String qQuestion, boolean isMultiple, 
+			List<Answer> qAnswers, Team team, List<QuestionTag> tags) {
 		super();
 		this.qNumber = qNumber;
 		this.qStrength = qStrength;
@@ -31,11 +32,17 @@ public class Question {
 		this.tags = tags;
 	}
 	
-	public String getTeam() {
+	
+	public Question(long qNumber) {
+		this.qNumber = qNumber;
+	}
+	
+	
+	public Team getTeam() {
 		return team;
 	}
 
-	protected void setTeam(String team) {
+	protected void setTeam(Team team) {
 		this.team = team;
 	}
 
@@ -106,18 +113,53 @@ public class Question {
 	 * @return
 	 */
 	
-	public boolean checkCorrect(List<Answer> ans) {
+	public boolean checkCorrect(List<Integer> ans) {
 		if (ans == null) return false;
 		
 		//check if all player's answers are correct - if at least one answer is not correct return false
-		for (Answer a:ans) {
-			if (!qAnswers.get(qAnswers.indexOf(a)).isTrue()) {
+		try{
+		for (Integer a:ans) {
+			if (!qAnswers.get(a).isTrue()) {
 				return false;
 			}
 		}
+		return true;
+		}
+		catch(Exception e){
+			String exception = "Caught Exeption: Answer array sent is bigger than question answers array.";
+			Logger.log(exception);
+			Logger.gameLog(exception);
+			return false;
+		}
 		
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + (int) (qNumber ^ (qNumber >>> 32));
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Question other = (Question) obj;
+		if (qNumber != other.qNumber)
+			return false;
 		return true;
 	}
+	
+	
+	
 	
 	
 	/* NISAN'S METHOD

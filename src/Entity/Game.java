@@ -24,6 +24,7 @@ public class Game implements Serializable {
 	private List<Tilable> _gameTiles;
 	private LinkedList<Player> _playList;
 	private List<Player> _gamePlayers;
+
 	/**
 	 * Current
 	 */
@@ -45,7 +46,7 @@ public class Game implements Serializable {
 		 * Set Date
 		 */
 		this.setGameDate(new Date());
-		this.setCurrentRound(0);
+		this.setCurrentRound(1);
 		this._gameTiles = new ArrayList<>();
 		this._gameTiles.addAll(MonDB.getInstance().getTileSet());
 	}
@@ -55,6 +56,7 @@ public class Game implements Serializable {
 	 */
 	public void build(List<Player> playerList) {
 
+		System.out.println(playerList);
 		/**
 		 * Build players
 		 */
@@ -134,42 +136,6 @@ public class Game implements Serializable {
 		_currentLoggedUser = currentLoggedUser;
 	}
 
-	public void play() {
-		int currentPlayer;
-		int maxRounds = 50;
-
-		// count Rounds
-		// use nisan's methodology of pre/post visit
-		while (_currentRound < maxRounds) {
-			// roll dice (if double turn on flag and decide what to do with him)
-			// disable roll dice button and activate game buttons**
-			// move the player to the correct tile **
-			// set location - switch pointer of player and tile **
-			// check type of tile (make a move according to tile) **
-			// luck, property, jail, start
-			// check if this tile belongs to someone
-			// if he doesn't want to buy it get rent **
-			// get player's input (buy, sell)
-			// get correct (strength) question and present it to player **
-			// switch log window and question window
-			// disable all buttons (answer question buttons working)
-			// get player's answer **
-			// check player's answer **
-			// update player's parameters (total answers and correct answers)
-			// if question was answered correctly
-			// switch pointers of player and tile **
-			// take money from player **
-			// set the current property value
-			// if double flag give him another round (count round and don't
-			// switch player)
-			// else count round and get next player
-
-			// **private helper method
-
-		}
-
-	}
-
 	/**
 	 * This method checks if the conditions to end game have reached
 	 * 
@@ -216,7 +182,6 @@ public class Game implements Serializable {
 		try {
 			return _gameTiles.get(tileNumber);
 		} catch (Exception e) {
-
 			return null;
 		}
 	}
@@ -232,19 +197,35 @@ public class Game implements Serializable {
 	public Player nextPlayer() {
 		Player nextPlayer = _playList.removeFirst();
 		_playList.addLast(nextPlayer);
-		return nextPlayer;
+		return _playList.peekFirst();
 	}
 
 	public Player getCurrentPlayer() {
 		return _playList.peekFirst();
 	}
-	
-	public List<String> getPlayerList(){
+
+	public List<String> getPlayerList() {
 		List<String> newList = new ArrayList<String>();
-		for(Player p : _playList)
+		for (Player p : _playList)
 			newList.add(p.getNickName());
-		
+
 		return newList;
+	}
+
+	public List<Player> getPlayers() {
+		return this._playList;
+	}
+
+	public LinkedList<Player> getPlayList() {
+		return _playList;
+	}
+
+	public List<Player> getGamePlayers() {
+		return _gamePlayers;
+	}
+	
+	public Integer nextRound(){
+		return ++_currentRound;
 	}
 
 }

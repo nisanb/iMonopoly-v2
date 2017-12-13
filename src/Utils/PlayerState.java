@@ -1,5 +1,7 @@
 package Utils;
 
 public enum PlayerState {
-	WAITING, MOVING, JAILED;
+	WAITING, MOVING, JAILED, 
+	WANTS_TO_PURCHASE, ANSWERED_FOR_PURCHASE,
+	LUCKY_TILE;
 }
