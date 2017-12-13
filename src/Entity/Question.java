@@ -2,6 +2,8 @@ package Entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import Controller.Logger;
 import Utils.Team;
 
 import Utils.QuestionStrength;
@@ -115,13 +117,21 @@ public class Question {
 		if (ans == null) return false;
 		
 		//check if all player's answers are correct - if at least one answer is not correct return false
+		try{
 		for (Integer a:ans) {
 			if (!qAnswers.get(a).isTrue()) {
 				return false;
 			}
 		}
-		
 		return true;
+		}
+		catch(Exception e){
+			String exception = "Caught Exeption: Answer array sent is bigger than question answers array.";
+			Logger.log(exception);
+			Logger.gameLog(exception);
+			return false;
+		}
+		
 	}
 
 
