@@ -1,17 +1,16 @@
 Team: 
-	Raw Grade: 88
+	Raw Grade: 93
 	Penalties:
 		-0.05*20 misplaced interfaces between layers.
 		-0.05*20 view related logic in control layer (i.e. music).
 		-0*20	 refactor MonDB to SysData.
 		-1*5	 no javadoc / comments.
-		-1*5	 no class diagram submitted.
 Individual:
 	200681872:
-		Final Grade: 91.6
+		Final Grade: 95.1
 	203918743:
-		Final Grade: 91.6
+		Final Grade: 95.1
 	302875646:
-		Final Grade: 91.6
+		Final Grade: 95.1
 	305120404:
-		Final Grade: 91.6
+		Final Grade: 95.1
