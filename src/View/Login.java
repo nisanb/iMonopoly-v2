@@ -83,7 +83,6 @@ public class Login {
    
     @FXML
     void exitGmae() {
-    	System.out.println("EXIT CLICKED");
     	System.exit(0);
     }
     

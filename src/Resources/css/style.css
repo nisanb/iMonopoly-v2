@@ -26,6 +26,8 @@
 	-fx-background-radius: 2em;
 
 }
+
+/*General button style */
 Button {
     -fx-background-color: #2196f3;
     -fx-background-radius: 22;
@@ -34,22 +36,6 @@ Button {
     -fx-font-size: 14;
     -fx-font-weight: bold;
 }
-
-.mylistview .list-cell {
-    -fx-background-color: transparent;
-}
-.mylistview .list-view {
-    -fx-background-color: transparent;
-}
-
-.textbox {
-	-fx-background-color: transparent;
-}
-	
-Label {
-	-fx-text-fill: white;	
-}
-
 
 Button:hover{
 	 -fx-font-weight: bold;
@@ -71,9 +57,25 @@ Button:pressed{
 	  -fx-background-radius: 20;
 	   -fx-border-width:3;
 	   -fx-rotate:10;
-	  
-	
 }
+
+
+
+.mylistview .list-cell {
+    -fx-background-color: transparent;
+}
+.mylistview .list-view {
+    -fx-background-color: transparent;
+}
+
+.textbox {
+	-fx-background-color: transparent;
+}
+	
+Label {
+	-fx-text-fill: white;	
+}
+
 
 RadioButton{
 	-fx-text-fill: white;
@@ -151,5 +153,48 @@ ComboBox
 }
 #txtRentPrice{
 	-fx-text-fill: black;
+}
+
+
+
+
+
+
+
+
+
+/*Login exit button style */
+#btnExit{
+	 -fx-background-color: red;
+    -fx-background-radius: 22;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}
+
+
+#btnExit:hover{
+	 -fx-font-weight: bold;
+    -fx-background-color: blue;
+    -fx-background-radius: 22;
+    -fx-opacity: 50%;
+    -fx-background-insets: 0;
+    -fx-text-fill: #2196f3;
+    -fx-background-color: white;
+    
+}
+
+#btnExit:pressed{
+	-fx-font-weight: bold;
+	-fx-background-color: white;
+	-fx-background-radius: 22;
+	 -fx-font-size: 14;
+	  -fx-text-fill: #2196f3;
+	  -fx-background-radius: 20;
+	   -fx-border-width:3;
+	   -fx-rotate:10;
+	  
+	
 }
 
