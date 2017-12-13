@@ -414,6 +414,7 @@ public class GameEngine implements IGameEngine {
 		ui.allowRollDice(false);
 		ui.allowFinishTurn(false);
 		ui.allowSellProperty(false);
+		ui.allowTrade(false);
 	}
 
 	@Override

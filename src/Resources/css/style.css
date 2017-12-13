@@ -1,33 +1,25 @@
 .test{
 	-fx-background-color: #2196f3;
 }
-/* The increment and decrement button CSS class of scrollbar */
-.mylistview.increment-button ,.mylistview.decrement-button {
-    -fx-background-color:transparent;
-	-fx-background-radius: 2em;
-
-}
-
-/* The main scrollbar **track** CSS class  */ 
-.mylistview.scroll-bar:horizontal .track,
-.mylistview.scroll-bar:vertical .track{
-	-fx-background-color: transparent;
-	-fx-border-color:derive(gray,80%);
-
-	-fx-background-radius: 2em;
-	-fx-border-radius:2em;
-}
-
-/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
-.mylistview.scroll-bar:horizontal .thumb,
-.mylistview.scroll-bar:vertical .thumb {
-    -fx-background-color:derive(black,90%);
-	-fx-background-insets: 2, 0, 0;
-	-fx-background-radius: 2em;
-
-}
-
 /*General button style */
+TextArea{
+	-fx-background-color: transparent;
+	-fx-font-size: 14;
+	-fx-text-fill: white;
+}
+
+TextArea .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+TextArea .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+TextArea .scroll-pane .content{
+    -fx-background-color: transparent;
+}
 Button {
     -fx-background-color: #2196f3;
     -fx-background-radius: 22;
@@ -60,14 +52,6 @@ Button:pressed{
 }
 
 
-
-.mylistview .list-cell {
-    -fx-background-color: transparent;
-}
-.mylistview .list-view {
-    -fx-background-color: transparent;
-}
-
 .textbox {
 	-fx-background-color: transparent;
 }
@@ -78,7 +62,7 @@ Label {
 
 
 RadioButton{
-	-fx-text-fill: white;
+	-fx-text-fill: blue;
 }
 #namelabel{
 	-fx-text-fill: red;

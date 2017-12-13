@@ -21,6 +21,7 @@ public interface UIInterface {
 	 * if allow==false - hide option
 	 * @param allow
 	 */
+	public void allowTrade(Boolean allow);
 	public void allowPurchase(Boolean allow);
 	public void allowSellProperty(Boolean allow);
 	public void allowRent(Boolean allow);
@@ -120,4 +121,11 @@ public interface UIInterface {
 	 * @param currentPlayer
 	 */
 	void displayQMList(String currentPlayer);
+	
+	/**
+	 * Will blink the screen with red&blue colors when a user is going to jail
+	 */
+	public void blinkImage();
+	
+	
 }

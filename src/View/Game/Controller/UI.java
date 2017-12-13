@@ -23,6 +23,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -30,12 +31,21 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -54,6 +64,10 @@ public class UI implements UIInterface {
 	public static final IGameEngine ge = iWindow.getGameEngine();
 
 	SpecialList<PlayerUI> playerList;
+
+
+    @FXML
+    private ImageView bgImage;
 
 	@FXML
 	private Button button1 = new Button();
@@ -609,6 +623,11 @@ public class UI implements UIInterface {
 
 	@Override
 	public void displayQuestion(Question question, String player) {
+		txtAnswerPane1.setVisible(false);
+		txtAnswerPane2.setVisible(false);
+		txtAnswerPane3.setVisible(false);
+		txtAnswerPane4.setVisible(false);
+		
 		gameLogScrollPane.setVisible(false);
 		questionsPane.setVisible(true);
 		txtAnswerPane.setVisible(true);
@@ -618,15 +637,25 @@ public class UI implements UIInterface {
 		Pane[] answerPanes = {txtAnswerPane1, txtAnswerPane2, txtAnswerPane3, txtAnswerPane4};
 		TextArea[] txtAnsw = {txtAnsw1, txtAnsw2, txtAnsw3, txtAnsw4};
 		int i=0;
+		
+		for(TextArea p : txtAnsw)
+			p.setVisible(false);
+		
 		for(Pane p : answerPanes)
 			p.setVisible(false);
 		
 		for(Answer a : question.getqAnswers()){
 			txtAnsw[i].setText(a.toString());
+			txtAnsw[i].setVisible(true);
 			answerPanes[i].setVisible(true);
 			i++;
 		}
 
+	}
+	
+	@Override
+	public void allowTrade(Boolean allow){
+		btnOfferTrade.setDisable(true);
 	}
 	
 	@Override
@@ -676,32 +705,48 @@ public class UI implements UIInterface {
 
 	@FXML
 	void answer1(MouseEvent event) {
+		showAnswerClicked(txtAnswerPane1, txtAnswerPane1.isVisible(), txtAnsw1);
 		txtAnswerPane1.setVisible(!txtAnswerPane1.isVisible());
-		System.out.println("a");
+		
 		// ge.AnswerQuestion(1);
 	}
 
 	@FXML
 	void answer2(MouseEvent event) {
+		showAnswerClicked(txtAnswerPane2, txtAnswerPane2.isVisible(), txtAnsw2);
 		txtAnswerPane2.setVisible(!txtAnswerPane2.isVisible());
-		System.out.println("aa");
 		// ge.AnswerQuestion(2);
 	}
 
 	@FXML
 	void answer3(MouseEvent event) {
+		showAnswerClicked(txtAnswerPane3, txtAnswerPane3.isVisible(), txtAnsw3);
 		txtAnswerPane3.setVisible(!txtAnswerPane3.isVisible());
-		System.out.println("aaa");
 		// ge.AnswerQuestion(3);
 	}
 
 	@FXML
 	void answer4(MouseEvent event) {
+		showAnswerClicked(txtAnswerPane4, txtAnswerPane4.isVisible(), txtAnsw4);
 		txtAnswerPane4.setVisible(!txtAnswerPane4.isVisible());
-		System.out.println("aaaa");
 		// ge.AnswerQuestion(4);
 	}
 
+	private void showAnswerClicked(Pane answerPane, Boolean display, TextArea ta){
+		Timeline tl = new Timeline();
+		String originalColor = display?"white":"aqua";
+		String toChange = display?"aqua":"white";
+		tl.getKeyFrames().add(new KeyFrame(Duration.ZERO, "test", e->{
+			ta.setStyle("-fx-text-fill: "+originalColor+";");
+			ta.applyCss();
+		}));
+		tl.getKeyFrames().add(new KeyFrame(Duration.millis(200), "test", e->{
+			ta.setStyle("-fx-text-fill: "+toChange+";");
+			ta.applyCss();
+		}));
+		tl.play();
+	}
+	
 	@Override
 	public void BuildBoard() {
 
@@ -936,6 +981,10 @@ public class UI implements UIInterface {
 		qmSelectTag.setItems(obs);
 		
 
+	}
+	
+	@Override
+	public void blinkImage(){
 	}
 
 }
