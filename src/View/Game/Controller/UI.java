@@ -523,8 +523,9 @@ public class UI implements UIInterface {
 		PlayerUI pUI = playerList.get(player);
 	
 
-		
+		Integer j = 0;
 		while (tileFrom != tileTo) {
+			
 			final Integer tmpFrom = tileFrom;	
 			//Initiate a post visit from the current tile of current player before leaving
 			ge.postVisit(tileFrom);
@@ -547,16 +548,17 @@ public class UI implements UIInterface {
 			Timeline tl = new Timeline();
 			KeyValue transparent = new KeyValue(pUI.getRecentImage().opacityProperty(), 0.0);
 			KeyValue opaque = new KeyValue(pUI.getRecentImage().opacityProperty(), 1.0);
-			KeyFrame startFadeIn = new KeyFrame(Duration.ZERO, transparent);
-			KeyFrame endFadeIn = new KeyFrame(Duration.millis(500), opaque);
+			KeyFrame startFadeIn = new KeyFrame(Duration.millis(100*j), transparent);
+			KeyFrame endFadeIn = new KeyFrame(Duration.millis(1000+100*j++), opaque);
 			tl.getKeyFrames().addAll(startFadeIn, endFadeIn);
 			tl.play();
+			
 		tl.setOnFinished(e->{
 			Timeline tl2 = new Timeline();
 			KeyValue from = new KeyValue(tmpRecent.opacityProperty(), 0.7);
 			KeyValue to = new KeyValue(tmpRecent.opacityProperty(), 0.0);
 			KeyFrame startFadeOut = new KeyFrame(Duration.ZERO, from);
-			KeyFrame finishFadeOut = new KeyFrame(Duration.millis(250), to);
+			KeyFrame finishFadeOut = new KeyFrame(Duration.millis(500), to);
 			tl2.getKeyFrames().addAll(startFadeOut, finishFadeOut);
 			tl2.play();
 			tl2.setOnFinished(c->{
