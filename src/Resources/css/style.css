@@ -8,7 +8,7 @@
 
 }
 
-/* The main scrollbar **track** CSS class  */
+/* The main scrollbar **track** CSS class  */ 
 .mylistview.scroll-bar:horizontal .track,
 .mylistview.scroll-bar:vertical .track{
 	-fx-background-color: transparent;

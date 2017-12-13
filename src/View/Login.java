@@ -17,10 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;;
 
-public class Login {
-
-	//private IManagement manage = iWindow.getManagement();
-	
+public class Login {	
     @FXML
     private ResourceBundle resources;
     
