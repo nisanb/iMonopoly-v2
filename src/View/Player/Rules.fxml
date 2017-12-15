@@ -12,7 +12,7 @@
    <children>
       <ImageView fx:id="Save" fitHeight="615.0" fitWidth="800.0" layoutY="-7.0" onDragDetected="#btn" opacity="0.91" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-7.0">
          <image>
-            <Image url="@../../resources/ManagementGUI.png" />
+            <Image url="@../../Resources/ManagementGUI.png" />
          </image>
       </ImageView>
       <Button fx:id="Back" layoutX="592.0" layoutY="506.0" mnemonicParsing="false" onAction="#Back" prefHeight="27.0" prefWidth="140.0" text="Back" />

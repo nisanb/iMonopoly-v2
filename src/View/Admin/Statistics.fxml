@@ -13,12 +13,12 @@
    <children>
       <ImageView pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../../resources/ManagementGUI.png" />
+            <Image url="@../../Resources/ManagementGUI.png" />
          </image>
       </ImageView>
       <ImageView fx:id="btnVolume" fitHeight="25.0" fitWidth="50.0" layoutX="761.0" layoutY="536.0" onMouseClicked="#doSwapMusic" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="39.0" AnchorPane.rightAnchor="14.0">
          <image>
-            <Image url="@../resources/sound_on.png" />
+            <Image url="@../Resources/sound_on.png" />
          </image>
       </ImageView>
       <Label fx:id="lblPlayers" layoutX="155.0" layoutY="233.0" text="# Players:">

@@ -677,6 +677,7 @@ public class UI implements UIInterface {
 	public void gameLogDisplay() {
 		disableAllPanes();
 		gameLogScrollPane.setVisible(true);
+		gameLogs.setVisible(true);
 
 	}
 	

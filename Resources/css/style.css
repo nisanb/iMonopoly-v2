@@ -1,0 +1,184 @@
+.test{
+	-fx-background-color: #2196f3;
+}
+/*General button style */
+TextArea{
+	-fx-background-color: transparent;
+	-fx-font-size: 14;
+	-fx-text-fill: white;
+}
+
+TextArea .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+TextArea .scroll-pane .viewport{
+    -fx-background-color: transparent;
+}
+
+
+TextArea .scroll-pane .content{
+    -fx-background-color: transparent;
+}
+Button {
+    -fx-background-color: #2196f3;
+    -fx-background-radius: 22;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}
+
+Button:hover{
+	 -fx-font-weight: bold;
+    -fx-background-color: blue;
+    -fx-background-radius: 22;
+    -fx-opacity: 50%;
+    -fx-background-insets: 0;
+    -fx-text-fill: #2196f3;
+    -fx-background-color: white;
+    
+}
+
+Button:pressed{
+	-fx-font-weight: bold;
+	-fx-background-color: white;
+	-fx-background-radius: 22;
+	 -fx-font-size: 14;
+	  -fx-text-fill: #2196f3;
+	  -fx-background-radius: 20;
+	   -fx-border-width:3;
+	   -fx-rotate:10;
+}
+
+
+.textbox {
+	-fx-background-color: transparent;
+}
+	
+Label {
+	-fx-text-fill: white;	
+}
+
+
+RadioButton{
+	-fx-text-fill: blue;
+}
+#namelabel{
+	-fx-text-fill: red;
+}
+#namelabel1{
+	-fx-text-fill: red;
+}
+#nickNamesValid{
+	-fx-text-fill: red;
+}
+#valid
+{
+ -fx-border-color: red;
+ -fx-background-radius: 0;
+
+}
+
+TextField{	
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-background-insets: 0;
+    -fx-text-fill: black;
+    -fx-font-size: 14;
+
+}
+
+#txtPassword
+{
+	-fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-background-insets: 0;
+    -fx-text-fill: black;
+    -fx-font-size: 14;
+}
+
+ComboBox
+{
+
+    -fx-background-radius: 16;
+    -fx-background-insets: 0;
+    -fx-text-fill: black;
+    -fx-font-size: 14;
+}
+
+#b1{
+	-fx-background-image: url(http://www.mcarmel.co.il/uploadimages/96120853.GIF) 
+}
+
+#txt2Err
+{
+	-fx-text-fill: red;
+}
+#txtPlayer1Name{
+	-fx-text-fill: #0055ff;
+}
+#txtPlayer2Name{
+	-fx-text-fill: #04ff00;
+}
+
+#txtPlayer3Name{
+	-fx-text-fill: #e4ff00;
+}
+#txtPlayer4Name{
+	-fx-text-fill: RED;
+}
+
+#playerXRentOrBuy{
+	-fx-text-fill: black;
+}
+#txtBuyPrice{
+	-fx-text-fill: black;
+}
+#txtRentPrice{
+	-fx-text-fill: black;
+}
+
+
+
+
+
+
+
+
+
+/*Login exit button style */
+#btnExit{
+	 -fx-background-color: red;
+    -fx-background-radius: 22;
+    -fx-background-insets: 0;
+    -fx-text-fill: white;
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+}
+
+
+#btnExit:hover{
+	 -fx-font-weight: bold;
+    -fx-background-color: blue;
+    -fx-background-radius: 22;
+    -fx-opacity: 50%;
+    -fx-background-insets: 0;
+    -fx-text-fill: #2196f3;
+    -fx-background-color: white;
+    
+}
+
+#btnExit:pressed{
+	-fx-font-weight: bold;
+	-fx-background-color: white;
+	-fx-background-radius: 22;
+	 -fx-font-size: 14;
+	  -fx-text-fill: #2196f3;
+	  -fx-background-radius: 20;
+	   -fx-border-width:3;
+	   -fx-rotate:10;
+	  
+	
+}
+

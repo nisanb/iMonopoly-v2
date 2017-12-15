@@ -15,12 +15,12 @@
    <children>
       <ImageView fx:id="dice" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
-            <Image url="@../resources/ManagementGUI.png" />
+            <Image url="@../Resources/ManagementGUI.png" />
          </image>
       </ImageView>
       <ImageView fx:id="btnVolume" fitHeight="25.0" fitWidth="50.0" layoutX="761.0" layoutY="536.0" onMouseClicked="#doSwapMusic" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="39.0" AnchorPane.rightAnchor="14.0">
          <image>
-            <Image url="@../resources/sound_on.png" />
+            <Image url="@../Resources/sound_on.png" />
          </image>
       </ImageView>
       <TextField fx:id="frmNickname" accessibleText="test" layoutX="308.0" layoutY="355.0" opacity="0.75" prefHeight="32.0" prefWidth="185.0" promptText="NICKNAME" styleClass="button-red">

@@ -13,14 +13,14 @@
          <children>
             <ImageView pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@../../resources/ManagementGUI.png" />
+                  <Image url="@../../Resources/ManagementGUI.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
       <ImageView fitHeight="616.0" fitWidth="834.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../resources/ManagementGUI.png" />
+            <Image url="@../../Resources/ManagementGUI.png" />
          </image>
       </ImageView>
       <TableView fx:id="tableView" layoutX="102.0" layoutY="167.0" opacity="0.6" prefHeight="335.0" prefWidth="618.0">

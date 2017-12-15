@@ -301,9 +301,9 @@
       <AnchorPane fx:id="inBoardMenu" layoutX="690.0" layoutY="350.0" prefHeight="240.0" prefWidth="470.0">
          <children>
             <Pane fx:id="inBoardWhitePane" opacity="0.4" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: white;" visible="false" />
-            <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.5" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent;">
+            <ScrollPane fx:id="gameLogScrollPane" hbarPolicy="NEVER" minHeight="-Infinity" minWidth="-Infinity" opacity="0.5" prefHeight="260.0" prefWidth="470.0" style="-fx-background-color: Transparent; -fx-border-color: transparent; -fx-text-fill: white;">
                <content>
-                  <TextArea fx:id="gameLogs" editable="false" opacity="0.32" prefHeight="258.0" prefWidth="470.0" style="-fx-border-color: black;" wrapText="true">
+                  <TextArea fx:id="gameLogs" editable="false" opacity="0.32" prefHeight="258.0" prefWidth="470.0" style="-fx-border-color: black; -fx-text-fill: black;" wrapText="true">
                      <font>
                         <Font name="Calibri Bold" size="14.0" />
                      </font>
