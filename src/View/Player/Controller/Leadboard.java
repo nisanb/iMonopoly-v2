@@ -1,13 +1,19 @@
 package View.Player.Controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import Controller.iWindow;
 import Entity.Player;
 import Utils.Window;
 import View.IManagement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
 
@@ -18,22 +24,22 @@ public class Leadboard {
     private ImageView btnVolume;
 
     @FXML
-    private TableColumn<?, ?> number;
+    private TableColumn<Player,String> number;
 
     @FXML
-    private TableColumn<?, ?> name;
+    private TableColumn<Player,String> name;
 
     @FXML
-    private TableColumn<?, ?> games;
+    private TableColumn<Player,String> games;
 
     @FXML
-    private TableColumn<?, ?> wins;
+    private TableColumn<Player,String> wins;
 
     @FXML
-    private TableColumn<?, ?> winRatio;
+    private TableColumn<Player,String> winRatio;
 
     @FXML
-    private TableColumn<?, ?> quesRatio;
+    private TableColumn<Player,String> quesRatio;
     
     @FXML
     private TableView<Player> tableView;
@@ -47,23 +53,29 @@ public class Leadboard {
 	//=========================================== METHODS ===================================================
     @FXML
     void initialize() {
-    	/*
-    	ObservableList<Player> data = FXCollections.observableArrayList(_mng.getLeadBoard());
+    	List<Player> players = new ArrayList<Player>();
+    	for (int i = 0; i < 5; i++) {
+    		players.add(new Player("P"+(i+1), i*100000.0));
+    		players.get(i).setCorrectAnswers(10*i);
+    		players.get(i).setTotalAnswers(20*i);
+    		players.get(i).setWins(10*i);
+    		players.get(i).setGames(15*i);
+    		System.out.println(players.get(i));
+		}
     	
-    	tableView = new TableView<Player>(data);
-
-    	TableColumn<Player,String> name = new TableColumn<Player, String>("nickName");
-    	name.setCellValueFactory(new Callback<CellDataFeatures<Player, String>, ObservableValue<String>>() {
-    		public ObservableValue<String> call(CellDataFeatures<Player, String> p) {
-    			// p.getValue() returns the Person instance for a particular TableView row
-    			return p.getValue().getLeadboardNickName();	
-    			}
-    	});
-
-    	tableView.getColumns().add(name);
+    	ObservableList<Player> data = FXCollections.observableArrayList(players);
     	
-    	System.out.println(data.toString());
-    	*/    	
+        name = new TableColumn("First Name");
+        name.setCellValueFactory(new PropertyValueFactory<Player,String>("firstName"));
+
+        games = new TableColumn("Last Name");
+        games.setCellValueFactory(new PropertyValueFactory<Player,String>("nickName"));
+
+        wins = new TableColumn("games");
+        wins.setCellValueFactory(new PropertyValueFactory<Player,String>("wins"));
+                                     
+        tableView.setItems(data);
+    	    	
     }
     
     

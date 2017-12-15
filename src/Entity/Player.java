@@ -45,6 +45,12 @@ public class Player extends User implements Comparable<Player> {
 		super(nickname, PlayerAuth.PLAYER);
 	}
 	
+	
+	public Player(String nickname, Double cash) {
+		super(nickname, PlayerAuth.PLAYER);
+		_cash = cash;
+	}
+	
 	public PlayerState getState(){
 		return _state;
 	}
