@@ -24,7 +24,7 @@ public class Player extends User implements Comparable<Player> {
 	private PlayerState _state;
 	private transient Integer games = 0, wins = 0;
 	
-	/**
+	/** 
 	 * Player Constructor
 	 * @param nickname
 	 * @param cash

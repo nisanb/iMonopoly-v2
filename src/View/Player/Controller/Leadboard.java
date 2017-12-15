@@ -71,7 +71,7 @@ public class Leadboard {
         games = new TableColumn("Last Name");
         games.setCellValueFactory(new PropertyValueFactory<Player,String>("nickName"));
 
-        wins = new TableColumn("games");
+        wins = new TableColumn("games"); 
         wins.setCellValueFactory(new PropertyValueFactory<Player,String>("wins"));
                                      
         tableView.setItems(data);
