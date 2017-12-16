@@ -153,12 +153,13 @@ public class Player extends User implements Comparable<Player> {
 		return _propertyList.size();
 	}
 	
-	
+	/*
 	@Override
 	public String toString() {
 		return getNickName();
 	}
-
+*/
+	
 	public String sellProperty(){
 		PropertyTile pt = (PropertyTile) getCurrentTile();
 		addCash(pt.getSellPrice());
@@ -207,16 +208,62 @@ public class Player extends User implements Comparable<Player> {
 		leadBoardPosition = value;
 	}
 	
-	
-	
-	
-	
-	
-	
 	@Override
 	public boolean equals(Object obj) {
 		System.out.println("TEST: " + this + " - " + obj + " " + super.equals(obj));
 		return super.equals(obj);
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "Player [_cash=" + _cash + ", games=" + games + ", wins=" + wins + ", leadBoardPosition="
+				+ leadBoardPosition + ", winRatio=" + winRatio + ", questionRatio=" + questionRatio + ", getNickName()="
+				+ getNickName() + "]";
+	}
+
+	/**
+	 * @return the leadBoardPosition
+	 */
+	public Integer getLeadBoardPosition() {
+		return leadBoardPosition;
+	}
+
+	/**
+	 * @param leadBoardPosition the leadBoardPosition to set
+	 */
+	public void setLeadBoardPosition(Integer leadBoardPosition) {
+		this.leadBoardPosition = leadBoardPosition;
+	}
+
+	/**
+	 * @return the winRatio
+	 */
+	public String getWinRatio() {
+		return winRatio;
+	}
+
+	/**
+	 * @param winRatio the winRatio to set
+	 */
+	public void setWinRatio(String winRatio) {
+		this.winRatio = winRatio;
+	}
+
+	/**
+	 * @return the questionRatio
+	 */
+	public String getQuestionRatio() {
+		return questionRatio;
+	}
+
+	/**
+	 * @param questionRatio the questionRatio to set
+	 */
+	public void setQuestionRatio(String questionRatio) {
+		this.questionRatio = questionRatio;
 	}
 	
 	

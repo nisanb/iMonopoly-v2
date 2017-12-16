@@ -67,6 +67,7 @@ public class Leadboard {
     		players.get(i).calcWinRation();
     		players.get(i).clacQuestionRatio();
     		players.get(i).setLeeadboardPosition(i);
+    		System.out.println(players.get(i));
 		}
     	
     	//add players to list
