@@ -153,12 +153,12 @@ public class Player extends User implements Comparable<Player> {
 		return _propertyList.size();
 	}
 	
-	/*
+	
 	@Override
 	public String toString() {
 		return getNickName();
 	}
-*/
+
 	
 	public String sellProperty(){
 		PropertyTile pt = (PropertyTile) getCurrentTile();
@@ -212,16 +212,6 @@ public class Player extends User implements Comparable<Player> {
 	public boolean equals(Object obj) {
 		System.out.println("TEST: " + this + " - " + obj + " " + super.equals(obj));
 		return super.equals(obj);
-	}
-
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
-	@Override
-	public String toString() {
-		return "Player [_cash=" + _cash + ", games=" + games + ", wins=" + wins + ", leadBoardPosition="
-				+ leadBoardPosition + ", winRatio=" + winRatio + ", questionRatio=" + questionRatio + ", getNickName()="
-				+ getNickName() + "]";
 	}
 
 	/**
