@@ -22,7 +22,10 @@ public class Player extends User implements Comparable<Player> {
 	private List<PropertyTile> _propertyList;
 	private Tilable _currentTile;
 	private PlayerState _state;
-	private transient Integer games = 0, wins = 0;
+	//calculated params for statistics
+	private transient Integer games = 0, wins = 0, leadBoardPosition = Integer.MAX_VALUE;
+	private transient String winRatio = "null";
+	private transient String questionRatio = "null";
 	
 	/** 
 	 * Player Constructor
@@ -168,9 +171,7 @@ public class Player extends User implements Comparable<Player> {
 		return (PropertyTile) getCurrentTile();
 	}
 
-	
-	
-	
+
 	//=================================== Setters & Getters for statistics ==================================
 	
 	
@@ -189,6 +190,28 @@ public class Player extends User implements Comparable<Player> {
 	public void setWins(Integer wins) {
 		this.wins = wins;
 	}
+	
+	public void calcWinRation() {
+		if (this.games < 1) winRatio = "0.0";
+		else winRatio = (double)wins/(double)games+"";
+		if (winRatio.length() > 3) winRatio = winRatio.substring(0, 3);
+	}
+	
+	public void clacQuestionRatio() {
+		if (getTotalAnswers() < 1) questionRatio = "0.0";
+		else questionRatio = ((double)getCorrectAnswers()/(double)getTotalAnswers() + "");
+		if (questionRatio.length() > 3) questionRatio = questionRatio.substring(0, 3);
+	}
+	
+	public void setLeeadboardPosition(int value) {
+		leadBoardPosition = value;
+	}
+	
+	
+	
+	
+	
+	
 	
 	@Override
 	public boolean equals(Object obj) {

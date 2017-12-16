@@ -25,12 +25,12 @@
       </ImageView>
       <TableView fx:id="tableView" layoutX="102.0" layoutY="167.0" opacity="0.6" prefHeight="335.0" prefWidth="618.0">
         <columns>
-          <TableColumn fx:id="number" editable="false" prefWidth="75.0" text="Number" />
-          <TableColumn fx:id="name" editable="false" prefWidth="119.20001220703125" text="Name" />
-            <TableColumn fx:id="games" editable="false" prefWidth="101.5999755859375" text="Games" />
-            <TableColumn fx:id="wins" editable="false" prefWidth="103.20001220703125" text="Wins" />
-            <TableColumn fx:id="winRatio" editable="false" prefWidth="103.19998168945312" text="W/L Ratio" />
-            <TableColumn fx:id="quesRatio" editable="false" prefWidth="120.79998779296875" text="Questions Ratio" />
+            <TableColumn fx:id="number" editable="false" prefWidth="84.0000228881836" text="Number" />
+          <TableColumn fx:id="name" editable="false" prefWidth="111.199951171875" text="Name" />
+            <TableColumn fx:id="games" editable="false" prefWidth="94.39996337890625" text="Games" />
+            <TableColumn fx:id="wins" editable="false" prefWidth="111.20001220703125" text="Wins" />
+            <TableColumn fx:id="winRatio" editable="false" prefWidth="105.60006713867188" text="W/L Ratio" />
+            <TableColumn fx:id="quesRatio" editable="false" prefWidth="110.39999999999998" text="Questions Ratio" />
         </columns>
       </TableView>
       <Button layoutX="612.0" layoutY="531.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="140.0" text="Back" />

@@ -192,7 +192,7 @@ public class Management implements IManagement{
 	//=========================================== QUERIES ===============================================
 	/**
 	 * This method get all params required to create the lead board
-	 * @return all required data for lead board
+	 * @return all required data for lead board (top 10 players)
 	 */
 	@Override
 	public List<Player> getLeadBoard() {
@@ -229,7 +229,7 @@ public class Management implements IManagement{
 			}				
 		}
 		
-		
+		//sort players for leadboard
 		Collections.sort(leadboard, new Comparator<Player>() {
 
 			@Override
@@ -238,7 +238,16 @@ public class Management implements IManagement{
 			}
 		});
 		
-		return leadboard;
+		//set position in player and calculate statistics
+		for (int i = 0; i < leadboard.size(); i++) {
+			leadboard.get(i).setLeeadboardPosition(i);
+			leadboard.get(i).calcWinRation();
+			leadboard.get(i).clacQuestionRatio();
+		}
+				
+		//return top 10 players
+		if (leadboard.size() < 10) return leadboard;		
+		return leadboard.subList(0, 9);
 	}
 	
 	
