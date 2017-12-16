@@ -518,5 +518,9 @@ public class GameEngine implements IGameEngine {
 		avg /= _game.getPlayers().size();
 		return value + avg;
 	}
-	
+
+	@Override
+	public Game getCurrntGame() {
+		return this._game;
+	}
 }

@@ -31,7 +31,9 @@ public enum Window {
 	/**
 	 * Game
 	 */
-	Game_UI("Game/UI");
+	Game_UI("Game/UI"),
+	Game_Summary("Game/Summary");
+	
 	String fxmlFile;
 	
 	Window(String fxmlFile){

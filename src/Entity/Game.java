@@ -2,6 +2,8 @@ package Entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -226,6 +228,24 @@ public class Game implements Serializable {
 	
 	public Integer nextRound(){
 		return ++_currentRound;
+	}
+	
+	
+	//======================================== Game Statistics =============================================
+	public List<Player> getSummary(){
+		List<Player> toReturn = null;
+		toReturn.addAll(_playList);
+		toReturn.addAll(_gamePlayers);
+		
+		//calc total value of the player
+		for (Player p: toReturn) {
+			p.setGameMoney();
+		}
+		
+		
+		Collections.sort(toReturn);
+		
+		return toReturn;
 	}
 
 }

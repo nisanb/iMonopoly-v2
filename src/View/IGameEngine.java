@@ -2,6 +2,7 @@ package View;
 
 import java.util.List;
 
+import Entity.Game;
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
 import View.Game.Controller.UI;
@@ -52,4 +53,10 @@ public interface IGameEngine {
 	public void displayQuestion(QuestionStrength qs);
 	public String displayPrice(Double price);
 
+	
+	
+	/**
+	 * End of game methods
+	 */
+	public Game getCurrntGame();
 }

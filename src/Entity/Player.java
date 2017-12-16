@@ -10,6 +10,7 @@ import Controller.Logger;
 import Utils.NamedColor;
 import Utils.PlayerAuth;
 import Utils.PlayerState;
+import javafx.beans.property.Property;
 
 public class Player extends User implements Comparable<Player> {
 
@@ -68,12 +69,21 @@ public class Player extends User implements Comparable<Player> {
 
 	@Override
 	public int compareTo(Player o) {
-		return this.getTotalPropertyValue().compareTo(getTotalPropertyValue());
+		return this.getTotalValue().compareTo(getTotalValue());
 	}
 
-	public Integer getTotalPropertyValue() {
-		// TODO Auto-generated method stub
-		return 0;
+	/**
+	 * Get total value of properties + cash
+	 * @return
+	 */
+	public Double getTotalValue() {
+		double value = 0;
+		for (PropertyTile p:_propertyList) {
+			value += p.getCurrentPrice();
+		}
+		value = value + _cash;
+		
+		return value;
 	}
 
 	protected Boolean addProperty(PropertyTile pro) {
@@ -192,6 +202,9 @@ public class Player extends User implements Comparable<Player> {
 		this.wins = wins;
 	}
 	
+	
+	//====================================== GAME STATISTICS ===============================================
+	
 	public void calcWinRation() {
 		if (this.games < 1) winRatio = "0.0";
 		else winRatio = (double)wins/(double)games+"";
@@ -256,5 +269,8 @@ public class Player extends User implements Comparable<Player> {
 		this.questionRatio = questionRatio;
 	}
 	
+	public void setGameMoney() {
+		games = (int) (getTotalValue() + _cash.doubleValue());
+	}
 	
 }
