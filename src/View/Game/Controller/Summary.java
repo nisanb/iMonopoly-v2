@@ -1,9 +1,6 @@
 package View.Game.Controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-
 import Controller.iWindow;
 import Entity.Player;
 import Utils.Window;
@@ -42,15 +39,13 @@ public class Summary {
 	
     
     //LOCAL VARIABLES
-	IManagement _mng = iWindow.getManagement();
-	
+	IGameEngine _eng = iWindow.getGameEngine();
 	
 	
 	//=========================================== METHODS ===================================================
     @FXML
     void initialize() {
     	//get game data
-    	IGameEngine _eng = iWindow.getGameEngine();
     	List<Player> players = _eng.getCurrntGame().getSummary();
     	ObservableList<Player> data = FXCollections.observableArrayList(players);
     	
@@ -70,6 +65,7 @@ public class Summary {
     
     @FXML
     void back(ActionEvent event) {
+    	_eng.destroy();
     	iWindow.swap(Window.Player_Menu);
     }
 }

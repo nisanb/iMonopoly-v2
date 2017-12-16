@@ -269,6 +269,13 @@ public class Management implements IManagement{
 		
 		return player;
 	}
+
+	@Override
+	public void addGameToDB(Game game) {
+		_db.addGame(game);
+		
+	}
+	
 	
 
 }

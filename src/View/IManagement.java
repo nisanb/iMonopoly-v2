@@ -59,4 +59,6 @@ public interface IManagement {
 	
 	public long getNextQuestionNum();
 	
+	public void addGameToDB(Game game);						//add game to DB
+	
 }

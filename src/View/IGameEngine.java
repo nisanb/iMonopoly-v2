@@ -58,5 +58,6 @@ public interface IGameEngine {
 	/**
 	 * End of game methods
 	 */
-	public Game getCurrntGame();
+	public Game getCurrntGame();			//get game statistics
+	public void destroy();					//destroy game engine to build new one
 }

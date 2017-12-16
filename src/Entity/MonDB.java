@@ -367,6 +367,23 @@ public class MonDB implements Serializable {
 	}
 	
 	
+	/**
+	 * Add game to game data. the method won't add game until finding free index in map.
+	 * export the data at the end when game is added.
+	 * @param game
+	 */
+	public void addGame(Game game) {
+		Integer index = Collections.max(this.gameData.keySet()) + 1;
+		while (this.gameData.containsKey(index)) {
+			System.err.println("Already have this game " + index);
+			index++;
+		}
+		this.gameData.put(index, game);
+		exportData();
+		
+	}
+	
+	
 	
 	//========================================= QUSESTIONS CONTROL ============================================
 
@@ -460,7 +477,7 @@ public class MonDB implements Serializable {
 		for (Question q : list) {
 			toSet.get(q.getqStrength()).add(q);
 		}
-
+		
 		this.gameQuestions = toSet;
 	}
 	
