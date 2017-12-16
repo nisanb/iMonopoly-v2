@@ -1,4 +1,4 @@
-package View.Player.Controller;
+package View.Admin.Controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -90,7 +90,7 @@ public class Leadboard {
     
     @FXML
     void back(ActionEvent event) {
-    	iWindow.swap(Window.Player_Menu);
+    	iWindow.swap(Window.Admin_Menu);
     }
 }
 	

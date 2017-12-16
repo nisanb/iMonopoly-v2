@@ -84,5 +84,9 @@ public class Menu {
     void back(ActionEvent event) {
     	iWindow.swap(Window.Login);
     }
-
+    
+    @FXML
+    void openLead() {
+    	iWindow.swap(Window.Player_LeadBoard);
+    }
 }

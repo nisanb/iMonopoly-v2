@@ -26,6 +26,7 @@ public enum Window {
 	Admin_Questions("Admin/Questions"),
 	Admin_AddQuesion("Admin/AddQuestion"),
 	Admin_editQuestion("Admin/editQuestion"),
+	Admin_LeadBoard("Admin/Leadboard"),
 	
 	/**
 	 * Game
