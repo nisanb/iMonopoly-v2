@@ -55,21 +55,21 @@ public class Leadboard {
     @FXML
     void initialize() {
     	
-    	//create players for testing
-    	List<Player> players = new ArrayList<Player>();
-    	Random rand = new Random();
-    	for (int i = 0; i < 5; i++) {
-    		players.add(new Player("P"+(i+1), i*100000.0));
-    		players.get(i).setCorrectAnswers(10*i+rand.nextInt(50));
-    		players.get(i).setTotalAnswers(20*i+rand.nextInt(50));
-    		players.get(i).setWins(10*i+rand.nextInt(50));
-    		players.get(i).setGames(15*i+rand.nextInt(50));
-    		players.get(i).calcWinRation();
-    		players.get(i).clacQuestionRatio();
-    		players.get(i).setLeeadboardPosition(i);
-    		System.out.println(players.get(i));
-		}
+//    	//create players for testing
+//    	List<Player> players = new ArrayList<Player>();
+//    	Random rand = new Random();
+//    	for (int i = 0; i < 5; i++) {
+//    		players.add(new Player("P"+(i+1), i*100000.0));
+//    		players.get(i).setCorrectAnswers(10*i+rand.nextInt(50));
+//    		players.get(i).setTotalAnswers(20*i+rand.nextInt(50));
+//    		players.get(i).setWins(10*i+rand.nextInt(50));
+//    		players.get(i).setGames(15*i+rand.nextInt(50));
+//    		players.get(i).calcWinRation();
+//    		players.get(i).clacQuestionRatio();
+//    		players.get(i).setLeeadboardPosition(i+1);
+//		}
     	
+    	List<Player> players = _mng.getLeadBoard();
     	//add players to list
     	ObservableList<Player> data = FXCollections.observableArrayList(players);
     	
