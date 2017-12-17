@@ -221,6 +221,7 @@ public class Management implements IManagement{
 			else {
 				int index = leadboard.indexOf(winner);
 				leadboard.get(index).setGames(leadboard.get(index).getGames()+1);
+				leadboard.get(index).setWins(leadboard.get(index).getWins()+1);
 			}
 			
 			//add the losers to lead board

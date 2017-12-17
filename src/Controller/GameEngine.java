@@ -390,8 +390,6 @@ public class GameEngine implements IGameEngine {
 		if (currentPlayer().getState() != PlayerState.JAILED)
 			currentPlayer().setState(PlayerState.WAITING);
 		ui.updateRounds(_game.nextRound());
-		ui.updateRounds(_game.nextRound());
-		ui.updateRounds(_game.nextRound());
 		if (_game.isFinished()) {
 			Music.getInstance().stop("ui_1.mp3");
 			Music.getInstance().swap("theme.mp3");
