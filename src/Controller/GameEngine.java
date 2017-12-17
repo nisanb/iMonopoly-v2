@@ -19,6 +19,7 @@ import Utils.PlayerState;
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
 import Utils.TileType;
+import Utils.Window;
 import View.IGameEngine;
 import View.IManagement;
 import View.Game.Controller.UI;
@@ -529,10 +530,10 @@ public class GameEngine implements IGameEngine {
 	 * This method resets the game engine
 	 */
 	@Override
-	public void destroy() {
+	public void closeGame() {
 		IManagement mng = iWindow.getManagement();
 		mng.addGameToDB(_game);
-		this._instance = new GameEngine();
+		_instance = new GameEngine();
 		
 	}
 }

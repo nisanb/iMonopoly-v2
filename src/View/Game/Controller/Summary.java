@@ -65,7 +65,7 @@ public class Summary {
     
     @FXML
     void back(ActionEvent event) {
-    	_eng.destroy();
+    	_eng.closeGame();
     	iWindow.swap(Window.Player_Menu);
     }
 }

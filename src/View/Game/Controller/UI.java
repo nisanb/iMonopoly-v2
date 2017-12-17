@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import Controller.Logger;
+import Controller.Music;
 import Controller.iWindow;
 import Entity.Answer;
 import Entity.Player;
@@ -525,6 +526,8 @@ public class UI implements UIInterface {
 
 	@FXML
 	public void menuButton() {
+		Music.getInstance().stop("ui_1.mp3");
+		Music.getInstance().swap("theme.mp3");
 		iWindow.swap(Window.Player_Menu);
 	}
 

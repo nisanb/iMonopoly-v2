@@ -232,6 +232,11 @@ public class Game implements Serializable {
 	
 	
 	//======================================== Game Statistics =============================================
+	
+	/**
+	 * This method makes the summary of the game 
+	 * @return list of players sorted by total value on cahs and properties
+	 */
 	public List<Player> getSummary(){
 		List<Player> toReturn = null;
 		toReturn.addAll(_playList);

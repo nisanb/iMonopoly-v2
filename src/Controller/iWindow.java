@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import Utils.Window;
 import javafx.animation.FadeTransition;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -24,12 +25,14 @@ public class iWindow {
 	 * @param toOpen
 	 */
 	public static void swap(Stage primaryStage, Window toOpen) {
+		if (currentStage !=null) currentStage.close();
+		Platform.setImplicitExit(false);
 		currentStage = primaryStage;
-		
 		currentStage.initStyle(StageStyle.UNDECORATED);
 		swap(toOpen);
 		currentStage.show();
 		currentScene.getWindow().centerOnScreen();
+		
 	}
 
 	/**

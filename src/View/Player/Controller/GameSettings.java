@@ -27,6 +27,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class GameSettings {
 
@@ -133,7 +134,7 @@ public class GameSettings {
 		// get game params
 		txtBankrupt.getValueFactory().setValue((Integer) _mng.getParam(Param.BANKRUPTCY));
 		Logger.log("Aquired param money: "+_mng.getParam(Param.STARTING_CASH));
-		txtInitialSumOFMoney.getValueFactory().setValue(((Double) _mng.getParam(Param.STARTING_CASH)).intValue());
+		txtInitialSumOFMoney.getValueFactory().setValue(((Integer) _mng.getParam(Param.STARTING_CASH)).intValue());
 		txtNumOfRounds.getValueFactory().setValue((Integer) _mng.getParam(Param.MAX_ROUNDS));
 		txtPaymentRelaseFromJail.getValueFactory().setValue((Integer) _mng.getParam(Param.RELEASE_FROM_JAIL));
 
@@ -290,7 +291,7 @@ public class GameSettings {
 		}
 
 		_mng.build(playerList, paramList);
-		Music.getInstance().swap("theme.mp3");
+		Music.getInstance().stop("theme.mp3");
 		
 		Music.getInstance().swap("ui_1.mp3");
 		
