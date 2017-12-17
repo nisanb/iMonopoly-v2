@@ -5,9 +5,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+
 import Utils.Param;
 
 public class Game implements Serializable {
@@ -35,15 +38,7 @@ public class Game implements Serializable {
 	private Integer _currentRound;
 
 	protected Game() {
-
-		/**
-		 * Generate Game Number
-		 */
-		Random r = new Random();
-		do {
-			_gameNum = r.nextInt(999999) + 111111;
-		} while (MonDB.getInstance().getGameData().containsKey(_gameNum));
-
+		setGameNum();
 		/**
 		 * Set Date
 		 */
@@ -51,6 +46,23 @@ public class Game implements Serializable {
 		this.setCurrentRound(1);
 		this._gameTiles = new ArrayList<>();
 		this._gameTiles.addAll(MonDB.getInstance().getTileSet());
+	}
+	
+	
+	private void setGameNum() {
+		_gameNum = 0;
+		Random r = new Random();
+		while (_gameNum == 0) {
+			int num = r.nextInt(9999999) + 1000000;
+			if (MonDB.getInstance().getGameData().containsKey(num))
+				continue;
+			else _gameNum = num;
+		}
+		
+	}
+
+	public int getGameNum() {
+		return _gameNum;
 	}
 
 	/**
@@ -148,12 +160,8 @@ public class Game implements Serializable {
 		/**
 		 * In case rounds exceeded max rounds
 		 */
-		if (_currentRound > (Integer) Param.get(Param.MAX_ROUNDS)) // update max
-																	// rounds
-																	// and
-																	// bankruptcy
-																	// to value
-																	// from enum
+		if (_currentRound > (Integer) Param.get(Param.MAX_ROUNDS)) 
+
 			return true;
 
 		/**
@@ -231,6 +239,20 @@ public class Game implements Serializable {
 	}
 	
 	
+	public Player getWinner() {
+		double max = 0;
+		Player winner = null;
+		for (Player p:_gamePlayers) {
+			if (p.getTotalValue() > max) {
+				max = p.getTotalValue();
+				winner = p;
+			}
+		}
+		
+		return winner;
+	}
+	
+	
 	//======================================== Game Statistics =============================================
 	
 	/**
@@ -238,17 +260,25 @@ public class Game implements Serializable {
 	 * @return list of players sorted by total value on cahs and properties
 	 */
 	public List<Player> getSummary(){
-		List<Player> toReturn = null;
-		toReturn.addAll(_playList);
-		toReturn.addAll(_gamePlayers);
+		Set<Player> list = new HashSet<>();
+		list.addAll(_playList);
+		list.addAll(_gamePlayers);
 		
 		//calc total value of the player
-		for (Player p: toReturn) {
+		for (Player p: list) {
 			p.setGameMoney();
 		}
 		
-		
+		List<Player> toReturn = new ArrayList<>();
+		toReturn.addAll(list);		
 		Collections.sort(toReturn);
+		
+		//calc position
+		int i = 1;
+		for (Player p: list) {
+			p.setLeeadboardPosition(i);
+			i++;
+		}
 		
 		return toReturn;
 	}

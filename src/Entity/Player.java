@@ -208,13 +208,13 @@ public class Player extends User implements Comparable<Player> {
 	public void calcWinRation() {
 		if (this.games < 1) winRatio = "0.0";
 		else winRatio = (double)wins/(double)games+"";
-		if (winRatio.length() > 3) winRatio = winRatio.substring(0, 3);
+		if (winRatio.length() > 4) winRatio = winRatio.substring(0, 4);
 	}
 	
 	public void clacQuestionRatio() {
 		if (getTotalAnswers() < 1) questionRatio = "0.0";
 		else questionRatio = ((double)getCorrectAnswers()/(double)getTotalAnswers() + "");
-		if (questionRatio.length() > 3) questionRatio = questionRatio.substring(0, 3);
+		if (questionRatio.length() > 4) questionRatio = questionRatio.substring(0, 4);
 	}
 	
 	public void setLeeadboardPosition(int value) {
@@ -233,13 +233,7 @@ public class Player extends User implements Comparable<Player> {
 	public Integer getLeadBoardPosition() {
 		return leadBoardPosition;
 	}
-
-	/**
-	 * @param leadBoardPosition the leadBoardPosition to set
-	 */
-	public void setLeadBoardPosition(Integer leadBoardPosition) {
-		this.leadBoardPosition = leadBoardPosition;
-	}
+	
 
 	/**
 	 * @return the winRatio

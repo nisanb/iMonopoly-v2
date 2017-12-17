@@ -373,12 +373,7 @@ public class MonDB implements Serializable {
 	 * @param game
 	 */
 	public void addGame(Game game) {
-		Integer index = Collections.max(this.gameData.keySet()) + 1;
-		while (this.gameData.containsKey(index)) {
-			System.err.println("Already have this game " + index);
-			index++;
-		}
-		this.gameData.put(index, game);
+		this.gameData.put(game.getGameNum(), game);
 		exportData();
 		
 	}

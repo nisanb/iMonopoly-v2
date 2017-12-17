@@ -3,8 +3,11 @@ package Controller;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+
 import Entity.*;
 import Utils.Param;
 import Utils.PlayerAuth;
@@ -201,9 +204,13 @@ public class Management implements IManagement{
 		Map<Integer, Game> games = _db.getGameData();
 		List<Player> leadboard = new ArrayList<Player>();
 		
+		
 		for (Game game:games.values()) {
-			Player winner = game.getPlayers().get(0);
-			List<Player> losers = game.getGamePlayers();
+			Player winner = game.getWinner();
+			Set<Player> losers = new HashSet<>();
+			losers.addAll(game.getGamePlayers());
+			losers.addAll(game.getPlayers());
+			losers.remove(winner);
 			
 			//add the winner to lead board
 			if (!leadboard.contains(winner)) {
@@ -221,6 +228,7 @@ public class Management implements IManagement{
 				if (!leadboard.contains(p)) {
 					p.setGames(1);
 					p.setWins(0);
+					leadboard.add(p);
 				}
 				else {
 					int index = leadboard.indexOf(p);
@@ -234,15 +242,16 @@ public class Management implements IManagement{
 
 			@Override
 			public int compare(Player p1, Player p2) {
-				return p1.getWins().compareTo(p2.getWins());
+				return p2.getWins().compareTo(p1.getWins());
 			}
 		});
 		
 		//set position in player and calculate statistics
 		for (int i = 0; i < leadboard.size(); i++) {
-			leadboard.get(i).setLeeadboardPosition(i);
+			leadboard.get(i).setLeeadboardPosition(i+1);
 			leadboard.get(i).calcWinRation();
 			leadboard.get(i).clacQuestionRatio();
+			System.out.println(leadboard.get(i));
 		}
 				
 		//return top 10 players
