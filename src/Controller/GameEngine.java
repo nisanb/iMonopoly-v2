@@ -316,7 +316,6 @@ public class GameEngine implements IGameEngine {
 				// Fine the player for 50k
 				currentPlayer().deductCash(50000);
 				results += "Player " + currentPlayer() + " was fined for $50,000\n";
-
 				for (Map.Entry<Player, Boolean> entry : playerAnswers.entrySet()) {
 					if (!entry.getValue()) {
 						entry.getKey().addStrike();
@@ -389,6 +388,10 @@ public class GameEngine implements IGameEngine {
 		// TODO Auto-generated method stub
 		if (currentPlayer().getState() != PlayerState.JAILED)
 			currentPlayer().setState(PlayerState.WAITING);
+		ui.updateRounds(_game.nextRound());
+		ui.updateRounds(_game.nextRound());
+		ui.updateRounds(_game.nextRound());
+		ui.updateRounds(_game.nextRound());
 		ui.updateRounds(_game.nextRound());
 		if (_game.isFinished()) {
 			Music.getInstance().stop("ui_1.mp3");

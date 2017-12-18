@@ -96,6 +96,11 @@ public class User implements Serializable {
 		StringProperty toReturn = new SimpleStringProperty(nickName);
 		return toReturn;
 	}
+
+	public void addSingleStrike() {
+		this.totalStrikes++;
+		
+	}
 	
 	
 }

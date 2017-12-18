@@ -213,12 +213,13 @@ public class Management implements IManagement{
 			losers.remove(winner);
 			
 			//add the winner to lead board
-			if (!leadboard.contains(winner)) {
+			System.out.println(winner);
+			if (winner !=null && !leadboard.contains(winner)) {
 				winner.setGames(1);
 				winner.setWins(1);
 				leadboard.add(winner);
 			}
-			else {
+			else if (winner !=null){
 				int index = leadboard.indexOf(winner);
 				leadboard.get(index).setGames(leadboard.get(index).getGames()+1);
 				leadboard.get(index).setWins(leadboard.get(index).getWins()+1);

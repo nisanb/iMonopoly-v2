@@ -69,19 +69,20 @@ public class Player extends User implements Comparable<Player> {
 
 	@Override
 	public int compareTo(Player o) {
-		return this.getTotalValue().compareTo(getTotalValue());
+		return this.getTotalValue().compareTo(o.getTotalValue());
 	}
 
-	/**
+	/**]
 	 * Get total value of properties + cash
 	 * @return
 	 */
 	public Double getTotalValue() {
 		double value = 0;
+		if (_propertyList == null) return value;
 		for (PropertyTile p:_propertyList) {
 			value += p.getCurrentPrice();
 		}
-		value = value + _cash;
+		if (_cash != null) value = value + _cash;
 		
 		return value;
 	}
@@ -89,7 +90,7 @@ public class Player extends User implements Comparable<Player> {
 	protected Boolean addProperty(PropertyTile pro) {
 		return _propertyList.add(pro);
 	}
-
+	
 	protected Boolean removeProperty(PropertyTile pro) {
 		return _propertyList.remove(pro);
 	}
@@ -148,6 +149,7 @@ public class Player extends User implements Comparable<Player> {
 	}
 	
 	public void addStrike(){
+		super.addSingleStrike();
 		_strikesNum++;
 	}
 
