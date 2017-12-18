@@ -273,7 +273,8 @@ public class Game implements Serializable {
 		
 		List<Player> toReturn = new ArrayList<>();
 		toReturn.addAll(list);
-		Collections.sort(toReturn);
+		
+		Collections.sort(toReturn, (Comparator<Player>) (Player p1, Player p2)-> p2.getTotalValue().compareTo(p1.getTotalValue()));
 		
 		//calc position
 		int i = 1;
@@ -284,6 +285,10 @@ public class Game implements Serializable {
 				}
 			p.setLeeadboardPosition(i);
 			i++;
+		}
+		
+		for (Player p : toReturn) {
+			System.err.println(p.toString2());
 		}
 		
 		return toReturn;

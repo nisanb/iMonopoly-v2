@@ -78,7 +78,7 @@ public class Player extends User implements Comparable<Player> {
 	 */
 	public Double getTotalValue() {
 		double value = 0;
-		if (_propertyList == null) return value;
+		if (_propertyList == null) return _cash;
 		for (PropertyTile p:_propertyList) {
 			value += p.getCurrentPrice();
 		}
@@ -170,6 +170,11 @@ public class Player extends User implements Comparable<Player> {
 	public String toString() {
 		return getNickName();
 	}
+	
+	public String toString2() {
+		return "Player [_cash=" + _cash + ", _strikesNum=" + _strikesNum + ", getNickName()=" + getNickName() + "]";
+	}
+	
 
 	
 	public String sellProperty(){
