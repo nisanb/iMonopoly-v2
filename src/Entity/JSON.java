@@ -228,4 +228,23 @@ public class JSON {
 		return 1;
 	}
 	
+	
+	public String getFileAsString() {
+		String str = "";		
+		JSONParser parser = new JSONParser();
+		
+		try {
+			//get json file
+			InputStream is = getClass().getResourceAsStream(JsonPath);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+			Object obj = parser.parse(reader);
+			JSONObject jo = (JSONObject) obj;
+			str = obj.toString();
+		} catch (Exception e) {
+			
+		}
+		
+		return str;
+	}
+	
 }
