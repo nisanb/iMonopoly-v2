@@ -232,7 +232,6 @@ public class GameEngine implements IGameEngine {
 		}
 
 		Integer moveToTile = (dice.getSum() + currentPlayer().getCurrentTile().getTileNumber()) % 40;
-		moveToTile = 6;
 		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), moveToTile);
 		ui.allowFinishTurn(true);
 	}
