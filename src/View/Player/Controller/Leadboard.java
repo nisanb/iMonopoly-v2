@@ -6,6 +6,7 @@ import java.util.Random;
 
 import Controller.iWindow;
 import Entity.Player;
+import Entity.PlayerStats;
 import Utils.Window;
 import View.IManagement;
 import javafx.collections.FXCollections;
@@ -25,25 +26,25 @@ public class Leadboard {
     private ImageView btnVolume;
 
     @FXML
-    private TableColumn<Player,String> number;
+    private TableColumn<PlayerStats,String> number;
 
     @FXML
-    private TableColumn<Player,String> name;
+    private TableColumn<PlayerStats,String> name;
 
     @FXML
-    private TableColumn<Player,String> games;
+    private TableColumn<PlayerStats,String> games;
 
     @FXML
-    private TableColumn<Player,String> wins;
+    private TableColumn<PlayerStats,String> wins;
 
     @FXML
-    private TableColumn<Player,String> winRatio;
+    private TableColumn<PlayerStats,String> winRatio;
 
     @FXML
-    private TableColumn<Player,String> quesRatio;
+    private TableColumn<PlayerStats,String> quesRatio;
     
     @FXML
-    private TableView<Player> tableView;
+    private TableView<PlayerStats> tableView;
 	
     
     //LOCAL VARIABLES
@@ -69,18 +70,18 @@ public class Leadboard {
 //    		players.get(i).setLeeadboardPosition(i+1);
 //		}
     	
-    	List<Player> players = _mng.getLeadBoard();
+    	List<PlayerStats> players = _mng.getLeadBoard();
     	//add players to list
-    	ObservableList<Player> data = FXCollections.observableArrayList(players);
+    	ObservableList<PlayerStats> data = FXCollections.observableArrayList(players);
     	
     	
     	//add data to colomns
-    	number.		setCellValueFactory		(new PropertyValueFactory<Player, String>("leadBoardPosition"));
-        name.		setCellValueFactory		(new PropertyValueFactory<Player, String>("nickName"));
-        games.		setCellValueFactory		(new PropertyValueFactory<Player, String>("games"));
-        wins.		setCellValueFactory		(new PropertyValueFactory<Player, String>("wins"));
-        winRatio.	setCellValueFactory		(new PropertyValueFactory<Player, String>("winRatio"));
-        quesRatio.	setCellValueFactory		(new PropertyValueFactory<Player, String>("questionRatio"));
+    	number.		setCellValueFactory		(new PropertyValueFactory<PlayerStats, String>("counter_Games"));
+        name.		setCellValueFactory		(new PropertyValueFactory<PlayerStats, String>("nickName"));
+        games.		setCellValueFactory		(new PropertyValueFactory<PlayerStats, String>("counter_Games"));
+        wins.		setCellValueFactory		(new PropertyValueFactory<PlayerStats, String>("counter_Wins"));
+        winRatio.	setCellValueFactory		(new PropertyValueFactory<PlayerStats, String>("WinRate"));
+        quesRatio.	setCellValueFactory		(new PropertyValueFactory<PlayerStats, String>("counter_Questions"));
         
         //winRatio = new TableColumn();        
         tableView.setItems(data);

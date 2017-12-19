@@ -59,4 +59,7 @@ public class PlayerStats extends Player {
 		return getCounter_Wins().doubleValue() / getCounter_Games().doubleValue();
 	}
 
+	public int compareTo(PlayerStats o) {
+		return this.getCounter_Wins().compareTo(o.getCounter_Wins());
+	}
 }

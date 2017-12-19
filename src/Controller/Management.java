@@ -207,54 +207,45 @@ public class Management implements IManagement {
 	 * @return all required data for lead board (top 10 players)
 	 */
 	@Override
-	public List<Player> getLeadBoard() {
+	public List<PlayerStats> getLeadBoard() {
 
 		// calculate the statistics values
-		Map<Integer, Game> games = _db.getGameData();
-		List<Player> leadboard = new ArrayList<Player>();
+		List<PlayerStats> leadboard = new ArrayList<PlayerStats>();
 
-		for (Game game : games.values()) {
-			Player winner = game.getWinner();
-			Set<Player> losers = new HashSet<>();
-			losers.addAll(game.getGamePlayers());
-			losers.addAll(game.getPlayers());
-			losers.remove(winner);
-
-			// add the winner to lead board
-			System.out.println(winner);
-			if (winner != null && !leadboard.contains(winner)) {
-				leadboard.add(winner);
-			} else if (winner != null) {
-				int index = leadboard.indexOf(winner);
-			}
-
-			// add the losers to lead board
-			for (Player p : losers) {
-				if (!leadboard.contains(p)) {
-					leadboard.add(p);
-				} else {
-					int index = leadboard.indexOf(p);
-				}
-			}
+		for(User u : _db.getPlayerData())
+			leadboard.add(new PlayerStats(u.getNickName()));
+		
+		for(PlayerStats ps : leadboard){
+			ps = getPlayerData(ps);
 		}
-
-		// set position in player and calculate statistics
-		for (int i = 0; i < leadboard.size(); i++) {
-			System.out.println(leadboard.get(i));
-		}
-
-		// return top 10 players
-		if (leadboard.size() < 10)
-			return leadboard;
-		return leadboard.subList(0, 9);
+		
+		Collections.sort(leadboard, new Comparator<PlayerStats>(){
+			@Override
+			public int compare(PlayerStats o1, PlayerStats o2) {
+				// TODO Auto-generated method stub
+				return o1.compareTo(o2);
+			}
+		});
+		
+		return leadboard;
 	}
 
+	
 	/**
-	 * This method gets all required data fot player statistics
+	 * Override for getPlayerData
 	 */
 	@Override
-	public PlayerStats getPlayerData() {
-		PlayerStats ps = new PlayerStats(_db.getCurrentUser().getNickName());
+	public PlayerStats getPlayerData(){
+		return getPlayerData(new PlayerStats(_db.getCurrentUser().getNickName()));
+	}
+	
+	/**
+	 * Update playerstats with the player given
+	 * @param ps
+	 * @return
+	 */
+	@Override
+	public PlayerStats getPlayerData(PlayerStats ps) {
 
 		// Go through all games
 		Map<Integer, Game> games = _db.getGameData();

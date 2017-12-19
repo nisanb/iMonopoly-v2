@@ -20,8 +20,14 @@ public interface IManagement {
 	public String GetLoginUser(String UserNickName);	//logged user by nick name
 	public void login(String nickname);							
 	
-	public List<Player> getLeadBoard();
+	/**
+	 * Statistics and player data calculations
+	 * @return
+	 */
+	public List<PlayerStats> getLeadBoard();
 	public PlayerStats getPlayerData();
+	public PlayerStats getPlayerData(PlayerStats ps);
+	
 	public void build(List<String> playerList, Map<Param, Object> paramList);			//builds a game with given players
 
 	

@@ -6,6 +6,7 @@ import java.util.Random;
 
 import Controller.iWindow;
 import Entity.Player;
+import Entity.PlayerStats;
 import Utils.Window;
 import View.IManagement;
 import javafx.collections.FXCollections;
@@ -69,7 +70,7 @@ public class Leadboard {
 //    		players.get(i).setLeeadboardPosition(i+1);
 //		}
     	
-    	List<Player> players = _mng.getLeadBoard();
+    	List<PlayerStats> players = _mng.getLeadBoard();
     	//add players to list
     	ObservableList<Player> data = FXCollections.observableArrayList(players);
     	
