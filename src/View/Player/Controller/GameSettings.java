@@ -134,7 +134,8 @@ public class GameSettings {
 		// get game params
 		txtBankrupt.getValueFactory().setValue((Integer) _mng.getParam(Param.BANKRUPTCY));
 		Logger.log("Aquired param money: "+_mng.getParam(Param.STARTING_CASH));
-		txtInitialSumOFMoney.getValueFactory().setValue(((Integer) _mng.getParam(Param.STARTING_CASH)).intValue());
+		Integer initialMoney = ((Double)_mng.getParam(Param.STARTING_CASH)).intValue();
+		txtInitialSumOFMoney.getValueFactory().setValue(initialMoney);
 		txtNumOfRounds.getValueFactory().setValue((Integer) _mng.getParam(Param.MAX_ROUNDS));
 		txtPaymentRelaseFromJail.getValueFactory().setValue((Integer) _mng.getParam(Param.RELEASE_FROM_JAIL));
 
