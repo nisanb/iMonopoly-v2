@@ -59,7 +59,6 @@ public class iWindow {
 		try {
 			root = iWindow.currentLoader.load();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			Logger.log("Couldn't get file: "+iWindow.class.getResource("/View/" + toOpen + ".fxml"),true);
 			System.exit(0);

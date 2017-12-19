@@ -28,12 +28,12 @@ public class MonDB implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private static MonDB Data;
 	private Map<Param, Object> DBParams;
-	
+
 	/*
 	 * Tmp params - params only valid for current game
 	 */
 	private transient Map<Param, Object> tmpParams;
-	
+
 	transient private Game currentGame;
 	transient private User currentUser;
 	private List<Tilable> tileSet;
@@ -61,8 +61,9 @@ public class MonDB implements Serializable {
 		currentGame = null;
 	}
 
-	//========================================== BOARD =======================================================
-	
+	// ========================================== BOARD
+	// =======================================================
+
 	/**
 	 * Initiation of tile list
 	 */
@@ -115,7 +116,8 @@ public class MonDB implements Serializable {
 		Logger.log("Finished initiating tiles");
 	}
 
-	//========================================== SETTERS & GETTERS =============================================
+	// ========================================== SETTERS & GETTERS
+	// =============================================
 
 	public static MonDB getData() {
 		return Data;
@@ -155,10 +157,10 @@ public class MonDB implements Serializable {
 		}
 		return Data;
 	}
-	
 
 	/**
 	 * Randomly generate a question by question strength
+	 * 
 	 * @param str
 	 * @return
 	 */
@@ -171,25 +173,27 @@ public class MonDB implements Serializable {
 
 	/**
 	 * Randomly generate a question by question tag
+	 * 
 	 * @param str
 	 * @return
 	 */
 	public Question getRandomQuestion(QuestionTag tag) {
 		List<Question> toBeGenerated = new ArrayList<Question>();
-		for(List<Question> allQList : gameQuestions.values())
-			for(Question q : allQList)
-				if(q.getTags().contains(tag))
+		for (List<Question> allQList : gameQuestions.values())
+			for (Question q : allQList)
+				if (q.getTags().contains(tag))
 					toBeGenerated.add(q);
-		
-		if(toBeGenerated.isEmpty()){
+
+		if (toBeGenerated.isEmpty()) {
 			Logger.log("Could not display questions to that tag.");
 			Logger.log("Generating a random question..");
 			return getRandomQuestion(QuestionStrength.HARD);
-		}else{
-		
-		Random r = new Random();
-		return toBeGenerated.get(r.nextInt(toBeGenerated.size()));}
-		
+		} else {
+
+			Random r = new Random();
+			return toBeGenerated.get(r.nextInt(toBeGenerated.size()));
+		}
+
 	}
 
 	public Map<Integer, Game> getGameData() {
@@ -216,11 +220,11 @@ public class MonDB implements Serializable {
 		// TODO Auto-generated method stub
 		DBParams.put(p, value);
 	}
-	
+
 	public void setTmpParam(Param p, Object value) {
 		tmpParams.put(p, value);
 	}
-	
+
 	public User getCurrentUser() {
 		return currentUser;
 	}
@@ -231,10 +235,14 @@ public class MonDB implements Serializable {
 
 	/**
 	 * Logs in the user to the system
+	 * 
 	 * @param nickname
 	 */
 	public String login(String nickname) {
-		setCurrentUser(new User(verifyPlayer(nickname)));
+		if (getCurrentUser() == null)
+			setCurrentUser(new User(verifyPlayer(nickname)));
+		else
+			verifyPlayer(nickname);
 		return nickname;
 	}
 
@@ -245,11 +253,9 @@ public class MonDB implements Serializable {
 	protected void setTileSet(List<Tilable> tileSet) {
 		this.tileSet = tileSet;
 	}
-	
-	
-	
-	//============================================ INIT AND DATA ============================================
-	
+
+	// ============================================ INIT AND DATA
+	// ============================================
 
 	/**
 	 * This will initiate the first params to the system. DO NOT CHANGE
@@ -267,6 +273,7 @@ public class MonDB implements Serializable {
 
 	/**
 	 * Seraialize all relevant data
+	 * 
 	 * @return
 	 */
 	private static MonDB importData() {
@@ -279,7 +286,7 @@ public class MonDB implements Serializable {
 			Data.gameQuestions = JSON.getInstance().loadQuestions();
 			Data.tmpParams = new HashMap<>();
 			objInput.close();
-			
+
 			return Data;
 		} catch (Exception e) {
 			Logger.log("Failed to import database");
@@ -305,7 +312,6 @@ public class MonDB implements Serializable {
 		}
 	}
 
-	
 	/**
 	 * This method calls to reset all params method
 	 */
@@ -314,23 +320,30 @@ public class MonDB implements Serializable {
 		initParams();
 		Logger.log("Finished resetting params");
 	}
-	
-	
+
+	/**
+	 * Clear temporary params when quitting a game
+	 */
+	public void clearTmpParams() {
+		tmpParams.clear();
+	}
+
 	public static void main() {
 		MonDB d = new MonDB();
 		d.initTiles();
 	}
 
-	// ======================================= GAME & PLAYER CONTROL =========================================
-	
+	// ======================================= GAME & PLAYER CONTROL
+	// =========================================
 
 	/**
 	 * This method checks if user is already exists in system
+	 * 
 	 * @param nickname
 	 * @return player name
 	 */
 	public String verifyPlayer(String nickname) {
-		if(playerData == null)
+		if (playerData == null)
 			playerData = new ArrayList<>();
 		if (!playerData.contains(nickname)) {
 			Logger.log("Added player " + nickname + " to database.");
@@ -340,69 +353,69 @@ public class MonDB implements Serializable {
 
 		return playerData.get(playerData.indexOf(new User(nickname))).getNickName();
 	}
-	
+
 	/**
-	 * This method builds a new game 
-	 * @param playerList - players in the game
+	 * This method builds a new game
+	 * 
+	 * @param playerList
+	 *            - players in the game
 	 */
-	public void buildGame(List<String> playerList, Map<Param, Object> paramList){
-		
-		//Set temporary game params
-		for(Map.Entry<Param, Object> entry : paramList.entrySet()){
+	public void buildGame(List<String> playerList, Map<Param, Object> paramList) {
+
+		// Set temporary game params
+		for (Map.Entry<Param, Object> entry : paramList.entrySet()) {
 			Logger.log("Temporary param was set for current game: " + entry.getKey() + " - " + entry.getValue());
 			setTmpParam(entry.getKey(), entry.getValue());
 		}
-		
-		//Sets the current game players randomly
+
+		// Sets the current game players randomly
 		List<Player> newPlayerList = new ArrayList<>();
-		NamedColor[] clist = {NamedColor.BLUE, NamedColor.GREEN, NamedColor.YELLOW, NamedColor.RED};
-		int i=0;
+		NamedColor[] clist = { NamedColor.BLUE, NamedColor.GREEN, NamedColor.YELLOW, NamedColor.RED };
+		int i = 0;
 		currentGame = new Game();
-		for(String s : playerList){
+		for (String s : playerList) {
 			Logger.log("Adding player " + s + " with color " + clist[i]);
 			newPlayerList.add(new Player(MonDB.getInstance().login(s), 999999999.0, clist[i++]));
 		}
-	
+
 		currentGame.build(newPlayerList);
 	}
-	
-	
+
 	/**
-	 * Add game to game data. the method won't add game until finding free index in map.
-	 * export the data at the end when game is added.
+	 * Add game to game data. the method won't add game until finding free index
+	 * in map. export the data at the end when game is added.
+	 * 
 	 * @param game
 	 */
 	public void addGame(Game game) {
 		this.gameData.put(game.getGameNum(), game);
 		exportData();
-		
-	}
-	
-	
-	
-	//========================================= QUSESTIONS CONTROL ============================================
 
-	
+	}
+
+	// ========================================= QUSESTIONS CONTROL
+	// ============================================
+
 	/**
 	 * This method removes specific question from map and json
+	 * 
 	 * @param question
 	 *            q
 	 * @return true of removed
 	 */
 	public boolean deleteQuestion(Question q) {
-		
+
 		System.out.println(q);
 		if (this.gameQuestions == null)
 			return false;
-		
-		if (this.gameQuestions.get(q.getqStrength()) == null){
+
+		if (this.gameQuestions.get(q.getqStrength()) == null) {
 			return false;
 		}
 
 		// get the correct list
 		int indexToDelete = this.gameQuestions.get(q.getqStrength()).indexOf(q);
-		
-				
+
 		// if object was found delete it, save the new json, and return true
 		if (indexToDelete > -1) {
 
@@ -415,6 +428,7 @@ public class MonDB implements Serializable {
 
 	/**
 	 * This method adds new question to the map and saves it to json
+	 * 
 	 * @param q
 	 * @return
 	 */
@@ -424,10 +438,10 @@ public class MonDB implements Serializable {
 			this.gameQuestions = new HashMap<QuestionStrength, List<Question>>();
 		if (this.gameQuestions.get(q.getqStrength()) == null)
 			this.gameQuestions.put(q.getqStrength(), new ArrayList<Question>());
-		
+
 		// add the new question to the correct list and save the json
 		if (this.gameQuestions.get(q.getqStrength()).add(q)) {
-			JSON.getInstance().saveQuestions(this.gameQuestions);		
+			JSON.getInstance().saveQuestions(this.gameQuestions);
 			return true;
 		}
 
@@ -436,6 +450,7 @@ public class MonDB implements Serializable {
 
 	/**
 	 * Update question by deleting it and add the new one
+	 * 
 	 * @param qBefore
 	 * @param qAfter
 	 * @return true if succefull
@@ -450,6 +465,7 @@ public class MonDB implements Serializable {
 
 	/**
 	 * This method returns the question map as list
+	 * 
 	 * @return
 	 */
 	public List<Question> getQuestionsAsList() {
@@ -464,18 +480,26 @@ public class MonDB implements Serializable {
 	}
 
 	/**
-	 * This method gets a list of questions and sets it as the game question list
-	 * @param list of questions
+	 * This method gets a list of questions and sets it as the game question
+	 * list
+	 * 
+	 * @param list
+	 *            of questions
 	 */
 	public void setQuestionList(List<Question> list) {
 		Map<QuestionStrength, List<Question>> toSet = new HashMap<QuestionStrength, List<Question>>();
 		for (Question q : list) {
 			toSet.get(q.getqStrength()).add(q);
 		}
-		
+
 		this.gameQuestions = toSet;
 	}
-	
-	
-	
+
+	public void closeGame() {
+		Logger.log("Closing current game..");
+		tmpParams.clear();
+		gameData.put(currentGame.getGameNum(), currentGame);
+		currentGame = null;
+	}
+
 }

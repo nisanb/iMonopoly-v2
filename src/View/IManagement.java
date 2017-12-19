@@ -17,7 +17,7 @@ public interface IManagement {
 	 */
 	public String getLoggedPlayer();					//logged user as String
 	public String GetLoginUser(String UserNickName);	//logged user by nick name
-	public void login(String nickname);					//WTF
+	public void login(String nickname);							
 	
 	public List<Player> getLeadBoard();
 	public Player getPlayerData();

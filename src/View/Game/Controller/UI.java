@@ -528,6 +528,7 @@ public class UI implements UIInterface {
 	public void menuButton() {
 		Music.getInstance().stop("ui_1.mp3");
 		Music.getInstance().swap("theme.mp3");
+		ge.closeGame();
 		iWindow.swap(Window.Player_Menu);
 	}
 
@@ -855,6 +856,7 @@ public class UI implements UIInterface {
 
 	@FXML
 	void initialize() {
+		Logger.log("Initializing new Game UI");
 		_instance = this;
 		playerList = new SpecialList<>();
 

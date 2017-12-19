@@ -537,8 +537,7 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void closeGame() {
-		IManagement mng = iWindow.getManagement();
-		mng.addGameToDB(_game);
+		MonDB.getInstance().closeGame();
 		_instance = new GameEngine();
 		
 	}
