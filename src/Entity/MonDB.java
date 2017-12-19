@@ -26,7 +26,7 @@ public class MonDB implements Serializable {
 	 * Class Definitions
 	 */
 	private static final long serialVersionUID = 1L;
-	private static MonDB Data;
+	transient private static MonDB Data;
 	private Map<Param, Object> DBParams;
 
 	/*
@@ -36,7 +36,7 @@ public class MonDB implements Serializable {
 
 	transient private Game currentGame;
 	transient private User currentUser;
-	private List<Tilable> tileSet;
+	transient private List<Tilable> tileSet;
 
 	/**
 	 * Game Statistics & Data
@@ -56,7 +56,6 @@ public class MonDB implements Serializable {
 		tileSet = new LinkedList<>();
 		gameData = new HashMap<>();
 		initParams();
-		initTiles();
 		Logger.log("Finished creating new instance of DB");
 		currentGame = null;
 	}
@@ -70,7 +69,7 @@ public class MonDB implements Serializable {
 	protected void initTiles() {
 
 		Logger.log("Initiating Game Board Tiles..");
-
+		tileSet = new ArrayList<>();
 		// Initialise all tiles
 		tileSet.add(new StartTile(0, "Starting Point"));
 		tileSet.add(new PropertyTile(1, "uTorrent", QuestionStrength.MEDIUM));
@@ -247,6 +246,8 @@ public class MonDB implements Serializable {
 	}
 
 	public List<Tilable> getTileSet() {
+		if(tileSet == null)
+			initTiles();
 		return tileSet;
 	}
 

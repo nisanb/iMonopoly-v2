@@ -374,7 +374,7 @@ public class PlayerUI {
 	
 	@Override
 	public String toString() {
-		return getpNickname();
+		return getpName();
 	}
 
 }

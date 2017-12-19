@@ -63,6 +63,7 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void build(UI ui) {
+		Logger.log("Updating Game UI in Backend");
 		this.ui = ui;
 		this._game = MonDB.getInstance().getCurrentGame();
 		ui.build(_game.getGamePlayers());
@@ -407,6 +408,9 @@ public class GameEngine implements IGameEngine {
 	 * @param txt
 	 */
 	public void showInfo(String txt) {
+		if(ui==null)
+			Logger.log("For some reason UI is NULL!");
+		else
 		ui.showPlayInformation(txt);
 	}
 

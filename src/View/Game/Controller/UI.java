@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import Controller.GameEngine;
 import Controller.Logger;
 import Controller.Music;
 import Controller.iWindow;
@@ -62,7 +63,7 @@ public class UI implements UIInterface {
 	public static final double playerStatsLeyoutx = 80;
 	public static final int[] playersStatsY = { 60, 150, 240, 330 };
 
-	public static final IGameEngine ge = iWindow.getGameEngine();
+	public static IGameEngine ge;
 
 	SpecialList<PlayerUI> playerList;
 
@@ -890,6 +891,7 @@ public class UI implements UIInterface {
 
 		Logger.log("Initiated " + _tiles + " game tiles.");
 		inBoardPanes = new Pane[] { txtAnswerPane, buyRentPane, sellTradePane };
+		ge = GameEngine.getInstance();
 		ge.build(this);
 
 		initializeTiles();
