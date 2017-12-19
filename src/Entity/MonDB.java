@@ -346,7 +346,7 @@ public class MonDB implements Serializable {
 	public String verifyPlayer(String nickname) {
 		if (playerData == null)
 			playerData = new ArrayList<>();
-		if (!playerData.contains(nickname)) {
+		if (!playerData.contains(new User(nickname))) {
 			Logger.log("Added player " + nickname + " to database.");
 			playerData.add(new User(nickname, PlayerAuth.PLAYER));
 			exportData();

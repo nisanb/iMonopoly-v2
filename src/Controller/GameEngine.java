@@ -70,6 +70,7 @@ public class GameEngine implements IGameEngine {
 		ui.gameLog("A new game has been initiated.");
 		for (Player p : _game.getGamePlayers()) {
 			ui.gameLog("Player " + p + " has joined the game.");
+			p.setCurrentTile(_game.getTile(0));
 			updatePlayerProperties(p);
 		}
 
@@ -232,6 +233,10 @@ public class GameEngine implements IGameEngine {
 				return;
 			}
 		}
+		
+		Logger.log("Current Player: " + currentPlayer());
+		Logger.log("Current Tile: " + currentPlayer().getCurrentTile());
+		Logger.log("Current Tile # " + currentPlayer().getCurrentTile().getTileNumber());
 
 		Integer moveToTile = (dice.getSum() + currentPlayer().getCurrentTile().getTileNumber()) % 40;
 		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), moveToTile);

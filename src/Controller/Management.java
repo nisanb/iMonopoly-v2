@@ -212,9 +212,10 @@ public class Management implements IManagement {
 		// calculate the statistics values
 		List<PlayerStats> leadboard = new ArrayList<PlayerStats>();
 
-		for(User u : _db.getPlayerData())
+		for(User u : _db.getPlayerData()){
 			leadboard.add(new PlayerStats(u.getNickName()));
-		
+		}
+		Logger.log("Collected " + leadboard.size() + "leadboards users from " + _db.getPlayerData().size());
 		for(PlayerStats ps : leadboard){
 			ps = getPlayerData(ps);
 		}
@@ -226,6 +227,9 @@ public class Management implements IManagement {
 				return o1.compareTo(o2);
 			}
 		});
+		int i=1;
+		for(PlayerStats ps : leadboard)
+			ps.setLeadBoardPosition(i++);
 		
 		return leadboard;
 	}

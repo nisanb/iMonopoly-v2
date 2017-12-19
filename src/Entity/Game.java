@@ -76,7 +76,8 @@ public class Game implements Serializable {
 		 * Build players
 		 */
 		if (_gameTiles.size() != 40) {
-			throw new NullPointerException("Cannot initiate game - no tiles were set.");
+			MonDB.getInstance().initTiles();
+			_gameTiles.addAll(MonDB.getInstance().getTileSet());
 		}
 
 		/**

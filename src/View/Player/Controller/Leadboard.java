@@ -76,12 +76,12 @@ public class Leadboard {
     	
     	
     	//add data to colomns
-    	number.		setCellValueFactory		(new PropertyValueFactory<PlayerStats, String>("counter_Games"));
+    	number.		setCellValueFactory		(new PropertyValueFactory<PlayerStats, String>("LeaderBoardPosition"));
         name.		setCellValueFactory		(new PropertyValueFactory<PlayerStats, String>("nickName"));
         games.		setCellValueFactory		(new PropertyValueFactory<PlayerStats, String>("counter_Games"));
         wins.		setCellValueFactory		(new PropertyValueFactory<PlayerStats, String>("counter_Wins"));
         winRatio.	setCellValueFactory		(new PropertyValueFactory<PlayerStats, String>("WinRate"));
-        quesRatio.	setCellValueFactory		(new PropertyValueFactory<PlayerStats, String>("counter_Questions"));
+        quesRatio.	setCellValueFactory		(new PropertyValueFactory<PlayerStats, String>("QuestionRatio"));
         
         //winRatio = new TableColumn();        
         tableView.setItems(data);

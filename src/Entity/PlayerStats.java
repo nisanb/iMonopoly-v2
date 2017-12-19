@@ -7,9 +7,10 @@ public class PlayerStats extends Player {
 	private Integer counter_Questions;
 	private Integer counter_Wrong;
 	private Integer counter_Strikes;
-
+	private Integer leadboardPosition;
 	public PlayerStats(String nickname) {
 		super(nickname);
+		this.leadboardPosition = 0;
 		this.counter_Games = 0;
 		this.counter_Questions = 0;
 		this.counter_Strikes = 0;
@@ -29,6 +30,14 @@ public class PlayerStats extends Player {
 		counter_Questions += questionsNum;
 	}
 
+	public void setLeadBoardPosition(Integer pos){
+		this.leadboardPosition = pos;
+	}
+	
+	public Integer getLeaderBoardPosition(){
+		return this.leadboardPosition;
+	}
+	
 	public void addStrikes(Integer strikes) {
 		counter_Strikes+=strikes;
 	}
@@ -49,6 +58,11 @@ public class PlayerStats extends Player {
 		return counter_Strikes;
 	}
 
+	public String getQuestionRatio(){
+		if(counter_Questions==0)
+			return "N/A";
+		return (counter_Strikes.doubleValue()/counter_Questions*100)+"%";
+	}
 	public Integer getCounter_Strikes() {
 		return counter_Strikes;
 	}
@@ -60,6 +74,6 @@ public class PlayerStats extends Player {
 	}
 
 	public int compareTo(PlayerStats o) {
-		return this.getCounter_Wins().compareTo(o.getCounter_Wins());
+		return o.getWinRate().compareTo(this.getWinRate());
 	}
 }

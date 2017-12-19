@@ -50,7 +50,7 @@ public class User implements Serializable {
 		if (nickName == null) {
 			if (other.nickName != null)
 				return false;
-		} else if (!nickName.equals(other.nickName))
+		} else if (!nickName.toLowerCase().equals(other.nickName.toLowerCase()))
 			return false;
 		return true;
 	}
