@@ -500,8 +500,14 @@ public class MonDB implements Serializable {
 	public void closeGame() {
 		Logger.log("Closing current game..");
 		tmpParams.clear();
-		gameData.put(currentGame.getGameNum(), currentGame);
+		addGame(currentGame);
+		
 		currentGame = null;
+	}
+
+	public void login(String nickname, boolean b) {
+		this.currentUser = null;
+		login(nickname);
 	}
 
 }

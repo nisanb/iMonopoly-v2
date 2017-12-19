@@ -7,6 +7,7 @@ import Entity.*;
 import Utils.QuestionStrength;
 import javafx.scene.control.Spinner;
 import Utils.Param;
+import Utils.PlayerState;
 
 public interface IManagement {
 	
@@ -20,7 +21,7 @@ public interface IManagement {
 	public void login(String nickname);							
 	
 	public List<Player> getLeadBoard();
-	public Player getPlayerData();
+	public PlayerStats getPlayerData();
 	public void build(List<String> playerList, Map<Param, Object> paramList);			//builds a game with given players
 
 	
@@ -60,5 +61,6 @@ public interface IManagement {
 	public long getNextQuestionNum();
 	
 	public void addGameToDB(Game game);						//add game to DB
+	void login(String nickname, Boolean force);
 	
 }

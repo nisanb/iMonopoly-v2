@@ -16,7 +16,7 @@ public class User implements Serializable {
 	private int correctAnswers;
 	private int totalAnswers;
 	private int totalStrikes;
-	
+
 	public int getTotalStrikes() {
 		return totalStrikes;
 	}
@@ -25,22 +25,17 @@ public class User implements Serializable {
 		this.totalStrikes = totalStrikes;
 	}
 
-	public User(String nickname){
+	public User(String nickname) {
 		this.nickName = nickname;
 	}
-	
-	public User(String nickName, PlayerAuth playerAuth){
+
+	public User(String nickName, PlayerAuth playerAuth) {
 		this.nickName = nickName;
 		this.playerAuth = playerAuth;
 		this.correctAnswers = 0;
 		this.totalAnswers = 0;
 	}
-	
-	
-	
-	
-	
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -48,14 +43,9 @@ public class User implements Serializable {
 		result = prime * result + ((nickName == null) ? 0 : nickName.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
 		User other = (User) obj;
 		if (nickName == null) {
 			if (other.nickName != null)
@@ -68,30 +58,35 @@ public class User implements Serializable {
 	public void setNickName(String nickName) {
 		this.nickName = nickName;
 	}
+
 	public PlayerAuth getPlayerAuth() {
 		return playerAuth;
 	}
+
 	public void setPlayerAuth(PlayerAuth playerAuth) {
 		this.playerAuth = playerAuth;
 	}
+
 	public int getCorrectAnswers() {
 		return correctAnswers;
 	}
+
 	public void setCorrectAnswers(int correctAnswers) {
 		this.correctAnswers = correctAnswers;
 	}
+
 	public int getTotalAnswers() {
 		return totalAnswers;
 	}
+
 	public void setTotalAnswers(int totalAnswers) {
 		this.totalAnswers = totalAnswers;
 	}
-	
-	
+
 	public String getNickName() {
 		return this.nickName;
 	}
-	
+
 	public ObservableValue<String> getLeadboardNickName() {
 		StringProperty toReturn = new SimpleStringProperty(nickName);
 		return toReturn;
@@ -99,8 +94,12 @@ public class User implements Serializable {
 
 	public void addSingleStrike() {
 		this.totalStrikes++;
-		
+
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return nickName;
+	}
+
 }

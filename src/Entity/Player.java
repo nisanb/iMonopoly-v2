@@ -25,10 +25,6 @@ public class Player extends User implements Comparable<Player> {
 	private List<PropertyTile> _propertyList;
 	private Tilable _currentTile;
 	private PlayerState _state;
-	// calculated params for statistics
-	private transient Integer games = 0, wins = 0, leadBoardPosition = Integer.MAX_VALUE;
-	private transient String winRatio = "null";
-	private transient String questionRatio = "null";
 
 	/**
 	 * Player Constructor
@@ -211,92 +207,5 @@ public class Player extends User implements Comparable<Player> {
 	// =================================== Setters & Getters for statistics
 	// ==================================
 
-	public Integer getGames() {
-		return games;
-	}
-
-	public void setGames(Integer games) {
-		this.games = games;
-	}
-
-	public Integer getWins() {
-		return wins;
-	}
-
-	public void setWins(Integer wins) {
-		this.wins = wins;
-	}
-
-	// ====================================== GAME STATISTICS
-	// ===============================================
-
-	public void calcWinRation() {
-		if (this.games < 1)
-			winRatio = "0.0";
-		else
-			winRatio = (double) wins / (double) games + "";
-		if (winRatio.length() > 4)
-			winRatio = winRatio.substring(0, 4);
-	}
-
-	public void clacQuestionRatio() {
-		if (getTotalAnswers() < 1)
-			questionRatio = "0.0";
-		else
-			questionRatio = ((double) getCorrectAnswers() / (double) getTotalAnswers() + "");
-		if (questionRatio.length() > 4)
-			questionRatio = questionRatio.substring(0, 4);
-	}
-
-	public void setLeeadboardPosition(int value) {
-		leadBoardPosition = value;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		System.out.println("TEST: " + this + " - " + obj + " " + super.equals(obj));
-		return super.equals(obj);
-	}
-
-	/**
-	 * @return the leadBoardPosition
-	 */
-	public Integer getLeadBoardPosition() {
-		return leadBoardPosition;
-	}
-
-	/**
-	 * @return the winRatio
-	 */
-	public String getWinRatio() {
-		return winRatio;
-	}
-
-	/**
-	 * @param winRatio
-	 *            the winRatio to set
-	 */
-	public void setWinRatio(String winRatio) {
-		this.winRatio = winRatio;
-	}
-
-	/**
-	 * @return the questionRatio
-	 */
-	public String getQuestionRatio() {
-		return questionRatio;
-	}
-
-	/**
-	 * @param questionRatio
-	 *            the questionRatio to set
-	 */
-	public void setQuestionRatio(String questionRatio) {
-		this.questionRatio = questionRatio;
-	}
-
-	public void setGameMoney() {
-		games = (int) (getTotalValue() + _cash.doubleValue());
-	}
 
 }

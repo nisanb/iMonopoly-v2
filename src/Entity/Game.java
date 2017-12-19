@@ -27,7 +27,7 @@ public class Game implements Serializable {
 	/**
 	 * Lists
 	 */
-	private List<Tilable> _gameTiles;
+	transient private List<Tilable> _gameTiles;
 	private LinkedList<Player> _playList;
 	private List<Player> _gamePlayers;
 
@@ -268,7 +268,6 @@ public class Game implements Serializable {
 		
 		//calc total value of the player
 		for (Player p: list) {
-			p.setGameMoney();
 		}
 		
 		List<Player> toReturn = new ArrayList<>();
@@ -283,7 +282,6 @@ public class Game implements Serializable {
 				toReturn.remove(p);
 				toReturn.add(p);
 				}
-			p.setLeeadboardPosition(i);
 			i++;
 		}
 		

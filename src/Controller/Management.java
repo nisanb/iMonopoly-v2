@@ -16,18 +16,19 @@ import View.IManagement;
 import javafx.scene.control.Spinner;
 
 /**
- * This class connects the view and controller of admin windows
- * singelton class
+ * This class connects the view and controller of admin windows singelton class
  */
 
-public class Management implements IManagement{
+public class Management implements IManagement {
 
 	private static Management instance = null;
 	private static MonDB _db = MonDB.getInstance();
-	private Management(){}
 
-	protected static Management getInstance(){
-		if(instance == null)
+	private Management() {
+	}
+
+	protected static Management getInstance() {
+		if (instance == null)
 			instance = new Management();
 		return instance;
 	}
@@ -38,20 +39,21 @@ public class Management implements IManagement{
 	@Override
 	public List<Question> getQuestions() {
 		List<Question> toReturn = new ArrayList<Question>();
-		for(List<Question> ql : _db.getGameQuestions().values())
+		for (List<Question> ql : _db.getGameQuestions().values())
 			toReturn.addAll(ql);
 		return toReturn;
 	}
 
 	/**
 	 * this method returns a list of questions of given difficulty
+	 * 
 	 * @param difficulty
 	 */
 	@Override
 	public List<Question> getQuestionsByDifficulty(QuestionStrength qs) {
 		return _db.getGameQuestions().get(qs);
 	}
-	
+
 	/**
 	 * This method returns the map of questions form mondb
 	 */
@@ -67,24 +69,31 @@ public class Management implements IManagement{
 	public String getLoggedPlayer() {
 		return _db.getCurrentUser().getNickName();
 	}
-	
+
 	/**
 	 * set logged in user
 	 */
 	@Override
-	public void login(String nickname){
+	public void login(String nickname) {
 		_db.login(nickname);
+	}
+
+	@Override 
+	public void login(String nickname, Boolean force){
+		_db.login(nickname, true);
 	}
 
 	/**
 	 * get the logged in user
-	 * @param user's nick name
+	 * 
+	 * @param user's
+	 *            nick name
 	 */
 	@Override
 	public String GetLoginUser(String nickname) {
 
 		User u = new User(nickname, PlayerAuth.PLAYER);
-		if(!_db.getPlayerData().contains(u))
+		if (!_db.getPlayerData().contains(u))
 			_db.getPlayerData().add(u);
 
 		return u.getNickName();
@@ -94,12 +103,11 @@ public class Management implements IManagement{
 	 * calls to build game method
 	 */
 	@Override
-	public void build(List<String> playerList, Map<Param, Object> paramList){
+	public void build(List<String> playerList, Map<Param, Object> paramList) {
 		_db.buildGame(playerList, paramList);
 	}
 
 	@Override
-
 
 	/**
 	 * calls to reset all params in mondb
@@ -114,10 +122,9 @@ public class Management implements IManagement{
 	 */
 	@Override
 	public void setParam(Param p, Object value) {
-		_db.setParam(p, value);	
+		_db.setParam(p, value);
 	}
-	
-	
+
 	@Override
 	public Object getParam(Param p) {
 		return _db.getParam(p);
@@ -126,7 +133,9 @@ public class Management implements IManagement{
 
 	/**
 	 * add question to game questions
-	 * @param q - question to delete
+	 * 
+	 * @param q
+	 *            - question to delete
 	 */
 	@Override
 	public boolean addQuestion(Question q) {
@@ -135,7 +144,9 @@ public class Management implements IManagement{
 
 	/**
 	 * remove question from questions map
-	 * @param q - question to delete
+	 * 
+	 * @param q
+	 *            - question to delete
 	 */
 	@Override
 	public boolean removeQuestion(Question q) {
@@ -152,7 +163,6 @@ public class Management implements IManagement{
 		return _db.updateQuestion(qBefore, qAfter);
 	}
 
-	
 	@Override
 	public void btnSave(List<Player> a, Spinner NumOfRounds, Spinner InitialSumOFMoney, Spinner Bankrupt,
 			Spinner PaymentRelaseFromJail) {
@@ -161,7 +171,7 @@ public class Management implements IManagement{
 	}
 
 	@Override
-	public void exportDB(){
+	public void exportDB() {
 		MonDB.exportData();
 	}
 
@@ -172,12 +182,12 @@ public class Management implements IManagement{
 	public long getNextQuestionNum() {
 		List<Question> list = getQuestions();
 		long qnum = 0;
-		for (Question q: list) {
-			if (q.getqNumber() > qnum) qnum = q.getqNumber();
+		for (Question q : list) {
+			if (q.getqNumber() > qnum)
+				qnum = q.getqNumber();
 		}
-		return qnum+1;
+		return qnum + 1;
 	}
-
 
 	@Override
 	public Map<Integer, Game> getGameData() {
@@ -187,106 +197,92 @@ public class Management implements IManagement{
 	@Override
 	public List<User> getListOfPlayers() {
 		return _db.getPlayerData();
-	} 
-	
-	
-	
-	
-	//=========================================== QUERIES ===============================================
+	}
+
+	// =========================================== QUERIES
+	// ===============================================
 	/**
 	 * This method get all params required to create the lead board
+	 * 
 	 * @return all required data for lead board (top 10 players)
 	 */
 	@Override
 	public List<Player> getLeadBoard() {
-		
-		//calculate the statistics values
+
+		// calculate the statistics values
 		Map<Integer, Game> games = _db.getGameData();
 		List<Player> leadboard = new ArrayList<Player>();
-		
-		
-		for (Game game:games.values()) {
+
+		for (Game game : games.values()) {
 			Player winner = game.getWinner();
 			Set<Player> losers = new HashSet<>();
 			losers.addAll(game.getGamePlayers());
 			losers.addAll(game.getPlayers());
 			losers.remove(winner);
-			
-			//add the winner to lead board
-			System.out.println(winner);
-			if (winner !=null && !leadboard.contains(winner)) {
-				winner.setGames(1);
-				winner.setWins(1);
-				leadboard.add(winner);
-			}
-			else if (winner !=null){
-				int index = leadboard.indexOf(winner);
-				leadboard.get(index).setGames(leadboard.get(index).getGames()+1);
-				leadboard.get(index).setWins(leadboard.get(index).getWins()+1);
-			}
-			
-			//add the losers to lead board
-			for (Player p:losers) {
-				if (!leadboard.contains(p)) {
-					p.setGames(1);
-					p.setWins(0);
-					leadboard.add(p);
-				}
-				else {
-					int index = leadboard.indexOf(p);
-					leadboard.get(index).setGames(leadboard.get(index).getGames()+1);
-				}
-			}				
-		}
-		
-		//sort players for leadboard
-		Collections.sort(leadboard, new Comparator<Player>() {
 
-			@Override
-			public int compare(Player p1, Player p2) {
-				return p2.getWins().compareTo(p1.getWins());
+			// add the winner to lead board
+			System.out.println(winner);
+			if (winner != null && !leadboard.contains(winner)) {
+				leadboard.add(winner);
+			} else if (winner != null) {
+				int index = leadboard.indexOf(winner);
 			}
-		});
-		
-		//set position in player and calculate statistics
+
+			// add the losers to lead board
+			for (Player p : losers) {
+				if (!leadboard.contains(p)) {
+					leadboard.add(p);
+				} else {
+					int index = leadboard.indexOf(p);
+				}
+			}
+		}
+
+		// set position in player and calculate statistics
 		for (int i = 0; i < leadboard.size(); i++) {
-			leadboard.get(i).setLeeadboardPosition(i+1);
-			leadboard.get(i).calcWinRation();
-			leadboard.get(i).clacQuestionRatio();
 			System.out.println(leadboard.get(i));
 		}
-				
-		//return top 10 players
-		if (leadboard.size() < 10) return leadboard;		
+
+		// return top 10 players
+		if (leadboard.size() < 10)
+			return leadboard;
 		return leadboard.subList(0, 9);
 	}
-	
-	
+
 	/**
 	 * This method gets all required data fot player statistics
 	 */
 	@Override
-	public Player getPlayerData() {
-		Player player = new Player (_db.getCurrentUser().getNickName());
+	public PlayerStats getPlayerData() {
+		PlayerStats ps = new PlayerStats(_db.getCurrentUser().getNickName());
+
+		// Go through all games
 		Map<Integer, Game> games = _db.getGameData();
-		
-		//count game and wins
-		for (Game game:games.values()) {
-			if (game.getGamePlayers().contains(player)) player.setGames(player.getGames()+1);
-			else if (game.getPlayers().contains(player)) player.setWins(player.getWins()+1);
-			else continue;
+		Logger.log("Found " + games.size() + " games in database.");
+
+		// count game and wins
+		for (Game game : games.values()) {
+			if (!game.getPlayers().contains(ps))
+				continue;
 			
-		}	
-		
-		return player;
+			Player p = game.getPlayers().get(game.getPlayers().indexOf(ps));
+			ps.addGame();
+			if(game.getWinner().equals(p))
+				ps.addWin();
+			
+			ps.addQuestions(p.getTotalQuestions());
+			ps.addStrikes(p.getTotalFailed());
+			
+
+		}
+
+		return ps;
 	}
 
 	@Override
 	public void addGameToDB(Game game) {
 		_db.addGame(game);
-		
+
 	}
-	
-	
 
 }

@@ -7,6 +7,7 @@ import Controller.Logger;
 import Controller.Music;
 import Controller.iWindow;
 import Entity.Player;
+import Entity.PlayerStats;
 import Utils.Window;
 import View.IManagement;
 import javafx.collections.FXCollections;
@@ -93,23 +94,22 @@ public class Statistics {
     @FXML
     void initialize() {
     	//add data to pie
-    	Player player = _mng.getPlayerData();
+    	PlayerStats ps = _mng.getPlayerData();
         ObservableList <Data> list=FXCollections.observableArrayList(
-    			new PieChart.Data("Wins", player.getWins()),
-    			new PieChart.Data("Loses", player.getGames() - player.getWins())
+    			new PieChart.Data("Wins", ps.getCounter_Wins()),
+    			new PieChart.Data("Loses", ps.getCounter_Games() - ps.getCounter_Wins())
     			);
     	piechart.setData(list);
     	piechart.setLegendVisible(true);
     	piechart.setPrefHeight(15);
    
     	//add data to fields
-    	txtTotalAnswers.setText(player.getCorrectAnswers() +"");
-    	txtTotalGames.setText(player.getGames() +"");
-    	txtTotalQuestions.setText(player.getTotalAnswers() +"");
-    	txtTotalStrikes.setText(player.getTotalStrikes() + "");
-    	txtTotalWins.setText(player.getWins() + "");
-    	if (player.getGames() == 0) txtWinLossRatio.setText("0");
-    	else txtWinLossRatio.setText(player.getWins()/(player.getGames()) + "");
+    	txtTotalAnswers.setText(( ps.getCounter_Questions() - ps.getCounter_Wrong() )+"");
+    	txtTotalGames.setText(ps.getCounter_Games() +"");
+    	txtTotalQuestions.setText(ps.getCounter_Questions() +"");
+    	txtTotalStrikes.setText(ps.getCounter_Strikes() + "");
+    	txtTotalWins.setText(ps.getCounter_Wins() + "");
+    	txtWinLossRatio.setText(ps.getWinRate() + "");
     	
     }
     
