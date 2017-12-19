@@ -292,6 +292,9 @@ public class UI implements UIInterface {
 
 	@FXML
 	private Pane txtAnswerPane4 = new Pane();
+	
+	private Pane[] _answerPanes;
+	private TextArea[] _txtAnswerAreas;
 
 	@FXML // fx:id="player1Container"
 	private AnchorPane player1Container = new AnchorPane(); // Value injected by
@@ -628,10 +631,11 @@ public class UI implements UIInterface {
 
 	@Override
 	public void displayQuestion(Question question, String player) {
-		txtAnswerPane1.setVisible(false);
-		txtAnswerPane2.setVisible(false);
-		txtAnswerPane3.setVisible(false);
-		txtAnswerPane4.setVisible(false);
+		int i=0;
+		for(Pane answerPane : _answerPanes){
+			answerPane.setVisible(false);
+			showAnswerClicked(answerPane, answerPane.isVisible(), _txtAnswerAreas[i++]);
+		}
 		
 		gameLogScrollPane.setVisible(false);
 		questionsPane.setVisible(true);
@@ -639,20 +643,12 @@ public class UI implements UIInterface {
 		questionsPaneContainer.setVisible(true);
 		playerXIsAnswering.setText(player + " is answering question :");
 		theQuestion.setText(question.getqQuestion());
-		Pane[] answerPanes = {txtAnswerPane1, txtAnswerPane2, txtAnswerPane3, txtAnswerPane4};
-		TextArea[] txtAnsw = {txtAnsw1, txtAnsw2, txtAnsw3, txtAnsw4};
-		int i=0;
 		
-		for(TextArea p : txtAnsw)
-			p.setVisible(false);
-		
-		for(Pane p : answerPanes)
-			p.setVisible(false);
-		
+		i=0;
 		for(Answer a : question.getqAnswers()){
-			txtAnsw[i].setText(a.toString());
-			txtAnsw[i].setVisible(true);
-			answerPanes[i].setVisible(true);
+			_txtAnswerAreas[i].setText(a.toString());
+			_txtAnswerAreas[i].setVisible(true);
+			_answerPanes[i].setVisible(true);
 			i++;
 		}
 
@@ -872,7 +868,9 @@ public class UI implements UIInterface {
 		_playersStrikes = new Label[] { strikesPlayer1, strikesPlayer2, strikesPlayer3, strikesPlayer4 };
 		_playersCash = new Label[] { moneyPlayer1, moneyPlayer2, moneyPlayer3, moneyPlayer4 };
 		_playersValue = new Label[] { valuePlayer1, valuePlayer2, valuePlayer3, valuePlayer4 };
-
+		_answerPanes = new Pane[] {txtAnswerPane2, txtAnswerPane2, txtAnswerPane3, txtAnswerPane4};
+		_txtAnswerAreas = new TextArea[] {txtAnsw1, txtAnsw2, txtAnsw3, txtAnsw4};
+		
 		for (AnchorPane p : _playersAnchorPanes)
 			p.setVisible(false);
 
