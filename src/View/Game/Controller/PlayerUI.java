@@ -371,5 +371,10 @@ public class PlayerUI {
 			return false;
 		return true;
 	}
+	
+	@Override
+	public String toString() {
+		return getpNickname();
+	}
 
 }

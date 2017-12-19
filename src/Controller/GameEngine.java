@@ -64,6 +64,7 @@ public class GameEngine implements IGameEngine {
 	@Override
 	public void build(UI ui) {
 		this.ui = ui;
+		this._game = MonDB.getInstance().getCurrentGame();
 		ui.build(_game.getGamePlayers());
 		ui.gameLog("A new game has been initiated.");
 		for (Player p : _game.getGamePlayers()) {

@@ -11,9 +11,9 @@ import Utils.TileType;
 public class PropertyTile extends Tile {
 
 	private Integer initialPrice;
-	private Integer currentPrice;
-	private Integer tmpDiscount;
-	private Player currentOwner;
+	private transient Integer currentPrice;
+	private transient Integer tmpDiscount;
+	private transient Player currentOwner;
 	private QuestionStrength propertyStrength;
 
 	public PropertyTile(Integer tileNumber, String tileName, QuestionStrength qs) {
@@ -131,6 +131,7 @@ public class PropertyTile extends Tile {
 
 		// Proceed with purchase
 		if (currentOwner != null) {
+			Logger.log("Tile " + this + " already has an owner: " + currentOwner);
 			currentOwner.removeProperty(this);
 			currentOwner.addCash(currentPurchasePrice);
 			GameEngine.getInstance().updatePlayerProperties(currentOwner);

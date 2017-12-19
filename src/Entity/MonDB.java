@@ -372,6 +372,7 @@ public class MonDB implements Serializable {
 		List<Player> newPlayerList = new ArrayList<>();
 		NamedColor[] clist = { NamedColor.BLUE, NamedColor.GREEN, NamedColor.YELLOW, NamedColor.RED };
 		int i = 0;
+		Logger.log("Initiating new Game");
 		currentGame = new Game();
 		for (String s : playerList) {
 			Logger.log("Adding player " + s + " with color " + clist[i]);

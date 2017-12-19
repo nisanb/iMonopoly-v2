@@ -807,6 +807,7 @@ public class UI implements UIInterface {
 	@Override
 	public void updatePlayerProperties(String nickname, Double cash, Integer strikes, Double assetsWorth,
 			Integer assetsAmount) {
+		Logger.log("Attempting to update player " + nickname + " ("+playerList.size()+"): " + playerList.toArray().toString());
 		playerList.get(nickname).updateData(cash, strikes, assetsWorth, assetsAmount);
 	}
 
@@ -900,6 +901,7 @@ public class UI implements UIInterface {
 	public void build(List<Player> playerList) {
 		// Activate containers and player data according to the players given
 		int i = 0;
+		this.playerList = new SpecialList<>();
 		for (Player p : playerList) {
 			Logger.log("Adding player " + p + " to Game UI");
 			PlayerUI newPlayer = new PlayerUI(i, p.getNickName(), p.getPlayerColor(), _playersAnchorPanes[i],
