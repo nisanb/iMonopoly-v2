@@ -248,7 +248,7 @@ public class GameEngine implements IGameEngine {
 		if(currentPlayer().getState() == PlayerState.LUCKY_TILE){
 			LuckTile lt = ((LuckTile)currentPlayer().getCurrentTile());
 			
-			if(!lt.answered(currentQuestion.checkCorrect(answers))){
+			if(!lt.answered(currentQuestion.checkCorrect(answers, currentPlayer()))){
 				currentQuestion = questionStack.pop();
 				ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
 			}else{
@@ -260,7 +260,7 @@ public class GameEngine implements IGameEngine {
 		}
 		
 		if (currentPlayer().getState() == PlayerState.WANTS_TO_PURCHASE) {
-			if (currentQuestion.checkCorrect(answers)) {
+			if (currentQuestion.checkCorrect(answers, currentPlayer())) {
 				// Give discount
 				showInfo(currentPlayer() + " You have answered correct!\n" + "You received a discount of "
 						+ displayPrice(currentPlayer().getCurrentProperty().getBuyPrice()
@@ -287,8 +287,8 @@ public class GameEngine implements IGameEngine {
 		if (cycleThroughPlayers) {
 			if (!questionStack.isEmpty()) {
 				Logger.log("Transferring question to the next player..");
-				Logger.log("Player " + currentPlayer() + " answered " + currentQuestion.checkCorrect(answers));
-				playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers));
+				Logger.log("Player " + currentPlayer() + " answered " + currentQuestion.checkCorrect(answers, currentPlayer()));
+				playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers, currentPlayer()));
 				// This means we need to let the next player answer the same
 				// question
 				currentQuestion = questionStack.pop();
@@ -299,8 +299,8 @@ public class GameEngine implements IGameEngine {
 			}
 
 			// Analyze last answer
-			Logger.log("Player " + currentPlayer() + " answered " + currentQuestion.checkCorrect(answers));
-			playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers));
+			Logger.log("Player " + currentPlayer() + " answered " + currentQuestion.checkCorrect(answers, currentPlayer()));
+			playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers, currentPlayer()));
 
 			// Everyone finished..
 			cycleThroughPlayers = false;

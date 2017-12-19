@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import Controller.GameEngine;
 import Controller.Logger;
 import Utils.NamedColor;
 import Utils.PlayerAuth;
@@ -19,24 +20,27 @@ public class Player extends User implements Comparable<Player> {
 	private Double _cash;
 	private Integer _strikesNum;
 	private NamedColor _playerColor;
-	private Map<Question, Boolean> _userAnswers;
+	private Integer _totalQuestions;
+	private Integer _totalFailedAnswers;
 	private List<PropertyTile> _propertyList;
 	private Tilable _currentTile;
 	private PlayerState _state;
-	//calculated params for statistics
+	// calculated params for statistics
 	private transient Integer games = 0, wins = 0, leadBoardPosition = Integer.MAX_VALUE;
 	private transient String winRatio = "null";
 	private transient String questionRatio = "null";
-	
-	/** 
+
+	/**
 	 * Player Constructor
+	 * 
 	 * @param nickname
 	 * @param cash
 	 */
 	public Player(String nickname, Double cash, NamedColor playerColor) {
 		super(nickname, PlayerAuth.PLAYER);
 		_propertyList = new ArrayList<>();
-		_userAnswers = new HashMap<>();
+		_totalFailedAnswers = 0;
+		_totalQuestions = 0;
 		_strikesNum = 0;
 		_currentTile = MonDB.getInstance().getCurrentGame().getTile(0);
 		_cash = cash;
@@ -48,18 +52,17 @@ public class Player extends User implements Comparable<Player> {
 	public Player(String nickname) {
 		super(nickname, PlayerAuth.PLAYER);
 	}
-	
-	
+
 	public Player(String nickname, Double cash) {
 		super(nickname, PlayerAuth.PLAYER);
 		_cash = cash;
 	}
-	
-	public PlayerState getState(){
+
+	public PlayerState getState() {
 		return _state;
 	}
-	
-	public void setState(PlayerState ps){
+
+	public void setState(PlayerState ps) {
 		_state = ps;
 	}
 
@@ -72,25 +75,28 @@ public class Player extends User implements Comparable<Player> {
 		return this.getTotalValue().compareTo(o.getTotalValue());
 	}
 
-	/**]
-	 * Get total value of properties + cash
+	/**
+	 * ] Get total value of properties + cash
+	 * 
 	 * @return
 	 */
 	public Double getTotalValue() {
 		double value = 0;
-		if (_propertyList == null) return _cash;
-		for (PropertyTile p:_propertyList) {
+		if (_propertyList == null)
+			return _cash;
+		for (PropertyTile p : _propertyList) {
 			value += p.getCurrentPrice();
 		}
-		if (_cash != null) value = value + _cash;
-		
+		if (_cash != null)
+			value = value + _cash;
+
 		return value;
 	}
 
 	protected Boolean addProperty(PropertyTile pro) {
 		return _propertyList.add(pro);
 	}
-	
+
 	protected Boolean removeProperty(PropertyTile pro) {
 		return _propertyList.remove(pro);
 	}
@@ -123,10 +129,20 @@ public class Player extends User implements Comparable<Player> {
 		return _state == PlayerState.JAILED;
 	}
 
-	public Map<Question, Boolean> getUserAnswers() {
-		return Collections.unmodifiableMap(_userAnswers);
+	public void addQuestionAnswered(Boolean isRight) {
+		_totalQuestions++;
+		if (!isRight)
+			_totalFailedAnswers++;
 	}
 
+	public Integer getTotalQuestions(){
+		return _totalQuestions;
+	}
+	
+	public Integer getTotalFailed(){
+		return _totalFailedAnswers;
+	}
+	
 	public void addCash(Object amount) {
 		_cash += Double.parseDouble(amount.toString());
 		Logger.log("Added $" + amount + " to " + getNickName());
@@ -147,52 +163,54 @@ public class Player extends User implements Comparable<Player> {
 	public void setPlayerColor(NamedColor playerColor) {
 		_playerColor = playerColor;
 	}
-	
-	public void addStrike(){
+
+	public void addStrike() {
 		super.addSingleStrike();
 		_strikesNum++;
+		if(_strikesNum==3){
+			GameEngine.getInstance().gameLog("Player " + this + " reached 3 strikes and is being taken to jail.");
+			MonDB.getInstance().getTileSet().get(30).visit(this);
+			_strikesNum = 0;
+			GameEngine.getInstance().updatePlayerProperties(this);
+		}
 	}
 
-	public Double getTotalAssetsWorth(){
+	public Double getTotalAssetsWorth() {
 		Double amount = 0.0;
-		for(PropertyTile p : _propertyList)
-			amount+=p.getCurrentPrice();
-		
+		for (PropertyTile p : _propertyList)
+			amount += p.getCurrentPrice();
+
 		return amount;
 	}
-	
-	public Integer getTotalAssets(){
+
+	public Integer getTotalAssets() {
 		return _propertyList.size();
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		return getNickName();
 	}
-	
+
 	public String toString2() {
 		return "Player [_cash=" + _cash + ", _strikesNum=" + _strikesNum + ", getNickName()=" + getNickName() + "]";
 	}
-	
 
-	
-	public String sellProperty(){
+	public String sellProperty() {
 		PropertyTile pt = (PropertyTile) getCurrentTile();
 		addCash(pt.getSellPrice());
 		_propertyList.remove(pt);
 		pt.setCurrentOwner(null);
-		return "Player "+toString()+" has sold "+pt+" for $"+pt.getSellPrice();
+		return "Player " + toString() + " has sold " + pt + " for $" + pt.getSellPrice();
 	}
-	
-	public PropertyTile getCurrentProperty(){
+
+	public PropertyTile getCurrentProperty() {
 		return (PropertyTile) getCurrentTile();
 	}
 
+	// =================================== Setters & Getters for statistics
+	// ==================================
 
-	//=================================== Setters & Getters for statistics ==================================
-	
-	
 	public Integer getGames() {
 		return games;
 	}
@@ -208,26 +226,32 @@ public class Player extends User implements Comparable<Player> {
 	public void setWins(Integer wins) {
 		this.wins = wins;
 	}
-	
-	
-	//====================================== GAME STATISTICS ===============================================
-	
+
+	// ====================================== GAME STATISTICS
+	// ===============================================
+
 	public void calcWinRation() {
-		if (this.games < 1) winRatio = "0.0";
-		else winRatio = (double)wins/(double)games+"";
-		if (winRatio.length() > 4) winRatio = winRatio.substring(0, 4);
+		if (this.games < 1)
+			winRatio = "0.0";
+		else
+			winRatio = (double) wins / (double) games + "";
+		if (winRatio.length() > 4)
+			winRatio = winRatio.substring(0, 4);
 	}
-	
+
 	public void clacQuestionRatio() {
-		if (getTotalAnswers() < 1) questionRatio = "0.0";
-		else questionRatio = ((double)getCorrectAnswers()/(double)getTotalAnswers() + "");
-		if (questionRatio.length() > 4) questionRatio = questionRatio.substring(0, 4);
+		if (getTotalAnswers() < 1)
+			questionRatio = "0.0";
+		else
+			questionRatio = ((double) getCorrectAnswers() / (double) getTotalAnswers() + "");
+		if (questionRatio.length() > 4)
+			questionRatio = questionRatio.substring(0, 4);
 	}
-	
+
 	public void setLeeadboardPosition(int value) {
 		leadBoardPosition = value;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		System.out.println("TEST: " + this + " - " + obj + " " + super.equals(obj));
@@ -240,7 +264,6 @@ public class Player extends User implements Comparable<Player> {
 	public Integer getLeadBoardPosition() {
 		return leadBoardPosition;
 	}
-	
 
 	/**
 	 * @return the winRatio
@@ -250,7 +273,8 @@ public class Player extends User implements Comparable<Player> {
 	}
 
 	/**
-	 * @param winRatio the winRatio to set
+	 * @param winRatio
+	 *            the winRatio to set
 	 */
 	public void setWinRatio(String winRatio) {
 		this.winRatio = winRatio;
@@ -264,14 +288,15 @@ public class Player extends User implements Comparable<Player> {
 	}
 
 	/**
-	 * @param questionRatio the questionRatio to set
+	 * @param questionRatio
+	 *            the questionRatio to set
 	 */
 	public void setQuestionRatio(String questionRatio) {
 		this.questionRatio = questionRatio;
 	}
-	
+
 	public void setGameMoney() {
 		games = (int) (getTotalValue() + _cash.doubleValue());
 	}
-	
+
 }
