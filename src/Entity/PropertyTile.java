@@ -193,6 +193,7 @@ public class PropertyTile extends Tile {
 
 	@Override
 	public void visit(Player currentPlayer) {
+
 		String txtToDispaly = "Player " + currentPlayer + ", you have landed on property " + this + " .\n";
 
 		if (!isOwned()) {
@@ -200,6 +201,8 @@ public class PropertyTile extends Tile {
 					+ GameEngine.getInstance().displayPrice(getBuyPrice().doubleValue()) + ".\n"
 					+ "Click on \"Buy Property\" in order to purchase,\n"
 					+ "or \"Finish Turn\" in order to skip your turn.";
+			GameEngine.getInstance().allowPurchaseProperty(true);
+			GameEngine.getInstance().allowFinishTurn(true);
 		} else {
 			if (!currentOwner.equals(currentPlayer)) {
 				//The current owner is not the player whos' turn is now
@@ -207,6 +210,9 @@ public class PropertyTile extends Tile {
 							+ "You can attempt to purchase this property by clicking \"Buy Property\",\n"
 							+ "or pay the rent which is a total of "
 							+ GameEngine.getInstance().displayPrice(getRentPrice().doubleValue());
+					GameEngine.getInstance().allowPurchaseProperty(true);
+					GameEngine.getInstance().allowRent(true);
+					
 			}
 			else{
 					txtToDispaly += "This property is owned by yourself.\nYou may choose to sell this property for "

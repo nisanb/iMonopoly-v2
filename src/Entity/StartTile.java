@@ -1,5 +1,6 @@
 package Entity;
 
+import Controller.GameEngine;
 import Controller.Music;
 import Utils.Param;
 import Utils.TileType;
@@ -13,7 +14,7 @@ public class StartTile extends Tile implements Tilable {
 
 	@Override
 	public void preVisit(Player currentPlayer) {
-		if(currentPlayer.isInJail())
+		if(!verifyRights(currentPlayer))
 			return;
 		
 		currentPlayer.addCash(Param.get(Param.START_TILE_VISIT));
@@ -21,7 +22,7 @@ public class StartTile extends Tile implements Tilable {
 	}
 	@Override
 	public void visit(Player currentPlayer) {
-		if(currentPlayer.isInJail())
+		if(!verifyRights(currentPlayer))
 			return;
 		
 		currentPlayer.addCash(Param.get(Param.START_TILE_VISIT));
@@ -34,5 +35,9 @@ public class StartTile extends Tile implements Tilable {
 	@Override
 	public String toString() {
 		return super.toString();
+	}
+	
+	private Boolean verifyRights(Player currentPlayer){
+		return !currentPlayer.isInJail() && GameEngine.getInstance().getCurrntGame().getPlayers().size() < GameEngine.getInstance().getCurrntGame().getCurrentRound();
 	}
 }

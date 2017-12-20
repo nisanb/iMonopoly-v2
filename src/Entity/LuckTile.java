@@ -85,7 +85,7 @@ public class LuckTile extends Tile {
 		}
 		
 		GameEngine.getInstance().showInfo(results);
-			
+		GameEngine.getInstance().allowFinishTurn(true);
 	}
 	
 	private String displayPrice(Double price){

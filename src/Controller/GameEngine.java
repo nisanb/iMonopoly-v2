@@ -101,6 +101,7 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void btnQMShow(QuestionTag qt) {
+		disableAll();
 		if (qt == null)
 			return;
 		ui.gameLog("Player " + currentPlayer() + " selected Question Tag: " + qt);
@@ -378,11 +379,11 @@ public class GameEngine implements IGameEngine {
 			}
 
 			ui.showPlayInformation("Everyone finished answering..\nPlayers Result: \n\n" + results);
-
 			for (Player p : playerAnswers.keySet())
 				updatePlayerProperties(p);
 			playerAnswers.clear();
 			currentQuestion = null;
+			ui.allowFinishTurn(true);
 
 		}
 
@@ -396,8 +397,6 @@ public class GameEngine implements IGameEngine {
 		currentPlayer().verifyStrikes();
 		if (currentPlayer().getState() != PlayerState.JAILED)
 			currentPlayer().setState(PlayerState.WAITING);
-		ui.updateRounds(_game.nextRound());
-		ui.updateRounds(_game.nextRound());
 		ui.updateRounds(_game.nextRound());
 		if (_game.isFinished()) {
 			Music.getInstance().stop("ui_1.mp3");
@@ -477,19 +476,7 @@ public class GameEngine implements IGameEngine {
 		disableAll();
 		ui.allowFinishTurn(true);
 		currentPlayer().getCurrentTile().visit(currentPlayer());
-		if (currentPlayer().getCurrentTile().getTileType() == TileType.Property) {
-			PropertyTile pt = (PropertyTile) currentPlayer().getCurrentTile();
-			if (!pt.isOwned()){
-				ui.allowPurchase(true);
-			}
-			else {
-				if (!pt.getCurrentOwner().equals(currentPlayer())) {
-					ui.allowPurchase(true);
-					ui.allowRent(true);
-					ui.allowFinishTurn(false);
-				}
-			}
-		}
+		
 
 	}
 
@@ -524,6 +511,7 @@ public class GameEngine implements IGameEngine {
 	}
 
 	public void displayQMTile() {
+		disableAll();
 		ui.displayQMList(currentPlayer().getNickName());
 	}
 	
@@ -567,6 +555,10 @@ public class GameEngine implements IGameEngine {
 	
 	public void allowPurchaseProperty(boolean b) {
 		ui.allowPurchase(true);
+	}
+
+	public void allowRent(boolean b) {
+		ui.allowRent(true);
 	}
 	
 	
