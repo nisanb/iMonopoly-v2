@@ -163,12 +163,6 @@ public class Player extends User implements Comparable<Player> {
 	public void addStrike() {
 		super.addSingleStrike();
 		_strikesNum++;
-		if(_strikesNum==3){
-			GameEngine.getInstance().gameLog("Player " + this + " reached 3 strikes and is being taken to jail.");
-			MonDB.getInstance().getTileSet().get(30).visit(this);
-			_strikesNum = 0;
-			GameEngine.getInstance().updatePlayerProperties(this);
-		}
 	}
 
 	public Double getTotalAssetsWorth() {
@@ -202,6 +196,15 @@ public class Player extends User implements Comparable<Player> {
 
 	public PropertyTile getCurrentProperty() {
 		return (PropertyTile) getCurrentTile();
+	}
+
+	public void verifyStrikes() {
+		if(_strikesNum > 3){
+		GameEngine.getInstance().gameLog("Player " + this + " reached 3 strikes and is being taken to jail.");
+		MonDB.getInstance().getTileSet().get(30).visit(this);
+		_strikesNum = 0;
+		GameEngine.getInstance().updatePlayerProperties(this);
+		}
 	}
 
 	// =================================== Setters & Getters for statistics

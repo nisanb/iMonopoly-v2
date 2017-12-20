@@ -392,7 +392,7 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void btnFinishTurn() {
-		// TODO Auto-generated method stub
+		currentPlayer().verifyStrikes();
 		if (currentPlayer().getState() != PlayerState.JAILED)
 			currentPlayer().setState(PlayerState.WAITING);
 		ui.updateRounds(_game.nextRound());
@@ -464,7 +464,6 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void preVisit(Integer tileNumber) {
-		currentPlayer().setCurrentTile(_game.getTile(tileNumber));
 		currentPlayer().getCurrentTile().preVisit(currentPlayer());
 	}
 
@@ -473,6 +472,7 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void Visit(Integer tileNumber) {
+		currentPlayer().setCurrentTile(_game.getTile(tileNumber));
 		currentPlayer().getCurrentTile().visit(currentPlayer());
 		if (currentPlayer().getCurrentTile().getTileType() == TileType.Property) {
 			PropertyTile pt = (PropertyTile) currentPlayer().getCurrentTile();
