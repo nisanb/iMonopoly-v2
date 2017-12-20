@@ -142,7 +142,7 @@ public class SysParam {
     
     
     /**
-     * This method load the saved params from monDB
+     * This method load the saved params from MonDB
      */
     private void loadParams() {
     	for (Map.Entry<Spinner, Param> temp : _params.entrySet()) {
@@ -207,8 +207,8 @@ public class SysParam {
     private void saveParams() {
     	for (Map.Entry<Spinner, Param> n: _params.entrySet()) {
     		if (!validateNumbers(n.getKey().getValue().toString())) {
-    			errorLabelControl("Can not save parametes with letters", true);
-    			return;
+    			errorLabelControl("Can not save parametes with letters (Spinner: " +n.getKey().getValue()+")", true);
+    			return;	
     		}
     	}
     	

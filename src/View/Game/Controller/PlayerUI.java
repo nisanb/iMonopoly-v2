@@ -55,7 +55,7 @@ public class PlayerUI {
 		this._assets = 0.0;
 		// Set containers
 		this.pNickname.setText(pName);
-		this._cash = ((Integer) Param.get(Param.STARTING_CASH)).doubleValue();
+		this._cash = (Double) Param.get(Param.STARTING_CASH);
 
 		this._spCash = new SimpleStringProperty();
 		this.pMoney.textProperty().bind(this._spCash);

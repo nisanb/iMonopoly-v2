@@ -35,7 +35,8 @@ public class LuckTile extends Tile {
 
 	@Override
 	public void visit(Player currentPlayer) {
-		// TODO Auto-generated method stub
+		//Dont allow finish turn
+		GameEngine.getInstance().allowFinishTurn(false);
 		answers.clear();
 		Logger.gameLog("Player " + currentPlayer + " reached Lucky Tile!");
 		Logger.gameLog("System is generating 2 questions..");

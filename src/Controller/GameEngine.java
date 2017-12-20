@@ -152,8 +152,8 @@ public class GameEngine implements IGameEngine {
 		currentPlayer().setState(PlayerState.WANTS_TO_PURCHASE);
 		QuestionStrength qs = ((PropertyTile) currentPlayer().getCurrentTile()).getPropertyStrength();
 		displayQuestion(qs);
-
-		ui.allowFinishTurn(true);
+		
+		
 	}
 
 	/**
@@ -178,6 +178,7 @@ public class GameEngine implements IGameEngine {
 	public void btnSellProperty() {
 		ui.allowSellProperty(false);
 		ui.gameLog(currentPlayer().sellProperty());
+		updatePlayerProperties(currentPlayer());
 	}
 
 	/**
@@ -239,8 +240,8 @@ public class GameEngine implements IGameEngine {
 		Logger.log("Current Tile # " + currentPlayer().getCurrentTile().getTileNumber());
 
 		Integer moveToTile = (dice.getSum() + currentPlayer().getCurrentTile().getTileNumber()) % 40;
-		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), moveToTile);
 		ui.allowFinishTurn(true);
+		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), moveToTile);
 	}
 
 	/**
@@ -473,15 +474,19 @@ public class GameEngine implements IGameEngine {
 	@Override
 	public void Visit(Integer tileNumber) {
 		currentPlayer().setCurrentTile(_game.getTile(tileNumber));
+		disableAll();
+		ui.allowFinishTurn(true);
 		currentPlayer().getCurrentTile().visit(currentPlayer());
 		if (currentPlayer().getCurrentTile().getTileType() == TileType.Property) {
 			PropertyTile pt = (PropertyTile) currentPlayer().getCurrentTile();
-			if (!pt.isOwned())
+			if (!pt.isOwned()){
 				ui.allowPurchase(true);
+			}
 			else {
 				if (!pt.getCurrentOwner().equals(currentPlayer())) {
 					ui.allowPurchase(true);
 					ui.allowRent(true);
+					ui.allowFinishTurn(false);
 				}
 			}
 		}
@@ -551,4 +556,18 @@ public class GameEngine implements IGameEngine {
 		_instance = new GameEngine();
 		
 	}
+
+	public void allowFinishTurn(boolean b) {
+		ui.allowFinishTurn(b);
+	}
+
+	public void allowSellProperty(boolean b) {
+		ui.allowSellProperty(true);
+	}
+	
+	public void allowPurchaseProperty(boolean b) {
+		ui.allowPurchase(true);
+	}
+	
+	
 }

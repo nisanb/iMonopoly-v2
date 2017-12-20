@@ -92,7 +92,7 @@ public class GameSettings {
 	private Spinner<Integer> txtNumOfRounds; // Value injected by FXMLLoader
 
 	@FXML // fx:id="txtInitialSumOFMoney"
-	private Spinner<Integer> txtInitialSumOFMoney; // Value injected by
+	private Spinner<Double> txtInitialSumOFMoney; // Value injected by
 													// FXMLLoader
 
 	@FXML // fx:id="txtBankrupt"
@@ -134,7 +134,13 @@ public class GameSettings {
 		// get game params
 		txtBankrupt.getValueFactory().setValue((Integer) _mng.getParam(Param.BANKRUPTCY));
 		Logger.log("Aquired param money: "+_mng.getParam(Param.STARTING_CASH));
-		Integer initialMoney = ((Double)_mng.getParam(Param.STARTING_CASH)).intValue();
+		Double initialMoney = 0.0;
+		try{
+		initialMoney = (Double)_mng.getParam(Param.STARTING_CASH);
+		}
+		catch(Exception e){
+			Logger.log("Couldn't get money!");
+		}
 		txtInitialSumOFMoney.getValueFactory().setValue(initialMoney);
 		txtNumOfRounds.getValueFactory().setValue((Integer) _mng.getParam(Param.MAX_ROUNDS));
 		txtPaymentRelaseFromJail.getValueFactory().setValue((Integer) _mng.getParam(Param.RELEASE_FROM_JAIL));

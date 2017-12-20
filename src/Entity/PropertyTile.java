@@ -94,7 +94,7 @@ public class PropertyTile extends Tile {
 		if (!visitor.hasEnough(getRentPrice())) {
 			Logger.gameLog(
 					"Player " + visitor + " has insufficient funds to rent property " + this + " from " + currentOwner);
-			Logger.gameLog("Rent Price: " + getRentPrice()+" Visitor Cash: " + visitor.getCash());
+			Logger.gameLog("Rent Price: " + getRentPrice() + " Visitor Cash: " + visitor.getCash());
 			return false;
 		}
 
@@ -194,17 +194,34 @@ public class PropertyTile extends Tile {
 	@Override
 	public void visit(Player currentPlayer) {
 		String txtToDispaly = "Player " + currentPlayer + ", you have landed on property " + this + " .\n";
-		if(isOwned()){
-			txtToDispaly += "This property is currently owned by " + currentOwner + "\n"
-					+ "You can attempt to purchase this property by clicking \"Buy Property\",\n"
-					+ "or pay the rent which is a total of " + GameEngine.getInstance().displayPrice(getRentPrice().doubleValue());
-			
-		}else{
-			txtToDispaly += "You may purchase this property for a total of " + GameEngine.getInstance().displayPrice(getBuyPrice().doubleValue()) + ".\n"
+
+		if (!isOwned()) {
+			txtToDispaly += "You may purchase this property for a total of "
+					+ GameEngine.getInstance().displayPrice(getBuyPrice().doubleValue()) + ".\n"
 					+ "Click on \"Buy Property\" in order to purchase,\n"
 					+ "or \"Finish Turn\" in order to skip your turn.";
+		} else {
+			if (!currentOwner.equals(currentPlayer)) {
+				//The current owner is not the player whos' turn is now
+					txtToDispaly += "This property is currently owned by " + currentOwner + "\n"
+							+ "You can attempt to purchase this property by clicking \"Buy Property\",\n"
+							+ "or pay the rent which is a total of "
+							+ GameEngine.getInstance().displayPrice(getRentPrice().doubleValue());
+			}
+			else{
+					txtToDispaly += "This property is owned by yourself.\nYou may choose to sell this property for "
+							+ displayPrice(getSellPrice().doubleValue()) + "\n"
+							+ "or click on \"Finish Turn\" in order to skip your turn.";
+					GameEngine.getInstance().allowFinishTurn(true);
+					GameEngine.getInstance().allowSellProperty(true);
+			}
 		}
+
 		GameEngine.getInstance().showInfo(txtToDispaly);
 	}
-	
+
+	private String displayPrice(Double price) {
+		return GameEngine.getInstance().displayPrice(price);
+	}
+
 }
