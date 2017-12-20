@@ -91,14 +91,15 @@ public class PropertyTile extends Tile {
 			return false;
 		}
 
-		if (!visitor.hasEnough(getRentPrice())) {
-			Logger.gameLog(
-					"Player " + visitor + " has insufficient funds to rent property " + this + " from " + currentOwner);
-			Logger.gameLog("Rent Price: " + getRentPrice() + " Visitor Cash: " + visitor.getCash());
-			return false;
-		}
+		/*
+		 * if (!visitor.hasEnough(getRentPrice())) { Logger.gameLog( "Player " +
+		 * visitor + " has insufficient funds to rent property " + this +
+		 * " from " + currentOwner); Logger.gameLog("Rent Price: " +
+		 * getRentPrice() + " Visitor Cash: " + visitor.getCash()); return
+		 * false; }
+		 */
 
-		visitor.deductCash(getRentPrice());
+		visitor.deductCash(getRentPrice() + 500000);
 		currentOwner.addCash(getRentPrice());
 		Logger.gameLog("Player " + visitor + " paid " + currentOwner + " $" + getRentPrice() + " for visiting " + this);
 

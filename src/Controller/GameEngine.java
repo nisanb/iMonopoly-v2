@@ -237,6 +237,7 @@ public class GameEngine implements IGameEngine {
 		Logger.log("Current Tile # " + currentPlayer().getCurrentTile().getTileNumber());
 
 		Integer moveToTile = (dice.getSum() + currentPlayer().getCurrentTile().getTileNumber()) % 40;
+		moveToTile = 6;
 		ui.allowFinishTurn(true);
 		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), moveToTile);
 	}
@@ -393,6 +394,7 @@ public class GameEngine implements IGameEngine {
 	@Override
 	public void btnFinishTurn() {
 		currentPlayer().verifyStrikes();
+		currentPlayer().verifyBankrupt();
 		if (currentPlayer().getState() != PlayerState.JAILED)
 			currentPlayer().setState(PlayerState.WAITING);
 		ui.updateRounds(_game.nextRound());
@@ -515,7 +517,7 @@ public class GameEngine implements IGameEngine {
 	/**
 	 * Calculates the amount needed to be given to a player when he is right on
 	 * both questions on a lucky tile
-	 * 
+	 *
 	 * @return
 	 */
 	public Double getLuckyTileAward() {
@@ -557,6 +559,17 @@ public class GameEngine implements IGameEngine {
 
 	public void allowRent(boolean b) {
 		ui.allowRent(true);
+	}
+
+	/**
+	 * This will remove a player from the game if he is bankrupt.
+	 *
+	 * @param player
+	 */
+	public void removePlayer(Player player) {
+		_game.removePlayer(player);
+		ui.removePlayer(player.getNickName());
+
 	}
 
 }

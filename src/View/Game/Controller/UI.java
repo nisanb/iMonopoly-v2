@@ -857,7 +857,6 @@ public class UI implements UIInterface {
 		_playersValue = new Label[] { valuePlayer1, valuePlayer2, valuePlayer3, valuePlayer4 };
 		_answerPanes = new Pane[] { txtAnswerPane2, txtAnswerPane2, txtAnswerPane3, txtAnswerPane4 };
 		_txtAnswerAreas = new TextArea[] { txtAnsw1, txtAnsw2, txtAnsw3, txtAnsw4 };
-
 		for (AnchorPane p : _playersAnchorPanes)
 			p.setVisible(false);
 
@@ -972,13 +971,17 @@ public class UI implements UIInterface {
 		qtList.addAll(Arrays.asList(QuestionTag.values()));
 
 		ObservableList<QuestionTag> obs = FXCollections.observableArrayList(qtList);
-
 		qmSelectTag.setItems(obs);
 
 	}
 
 	@Override
 	public void blinkImage() {
+	}
+
+	@Override
+	public void removePlayer(String playerToRemove) {
+		_playersAnchorPanes[playerList.indexOf(playerToRemove)].setVisible(false);
 	}
 
 }

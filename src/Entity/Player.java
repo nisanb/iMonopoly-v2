@@ -2,9 +2,11 @@ package Entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import Controller.GameEngine;
 import Controller.Logger;
 import Utils.NamedColor;
+import Utils.Param;
 import Utils.PlayerAuth;
 import Utils.PlayerState;
 
@@ -23,7 +25,7 @@ public class Player extends User implements Comparable<Player> {
 
 	/**
 	 * Player Constructor
-	 * 
+	 *
 	 * @param nickname
 	 * @param cash
 	 */
@@ -68,7 +70,7 @@ public class Player extends User implements Comparable<Player> {
 
 	/**
 	 * ] Get total value of properties + cash
-	 * 
+	 *
 	 * @return
 	 */
 	public Double getTotalValue() {
@@ -126,14 +128,14 @@ public class Player extends User implements Comparable<Player> {
 			_totalFailedAnswers++;
 	}
 
-	public Integer getTotalQuestions(){
+	public Integer getTotalQuestions() {
 		return _totalQuestions;
 	}
-	
-	public Integer getTotalFailed(){
+
+	public Integer getTotalFailed() {
 		return _totalFailedAnswers;
 	}
-	
+
 	public void addCash(Object amount) {
 		_cash += Double.parseDouble(amount.toString());
 		Logger.log("Added $" + amount + " to " + getNickName());
@@ -194,16 +196,24 @@ public class Player extends User implements Comparable<Player> {
 	}
 
 	public void verifyStrikes() {
-		if(_strikesNum > 3){
-		GameEngine.getInstance().gameLog("Player " + this + " reached 3 strikes and is being taken to jail.");
-		MonDB.getInstance().getTileSet().get(30).visit(this);
-		_strikesNum = 0;
-		GameEngine.getInstance().updatePlayerProperties(this);
+		if (_strikesNum > 3) {
+			GameEngine.getInstance().gameLog("Player " + this + " reached 3 strikes and is being taken to jail.");
+			MonDB.getInstance().getTileSet().get(30).visit(this);
+			_strikesNum = 0;
+			GameEngine.getInstance().updatePlayerProperties(this);
 		}
+	}
+
+	public void verifyBankrupt() {
+		// TODO Auto-generated method stub
+		Double bankrupt = ((Integer) Param.get(Param.BANKRUPTCY)).doubleValue();
+		if (_cash < bankrupt) {
+			GameEngine.getInstance().removePlayer(this);
+		}
+
 	}
 
 	// =================================== Setters & Getters for statistics
 	// ==================================
-
 
 }

@@ -274,4 +274,8 @@ public class Game implements Serializable {
 		return toReturn;
 	}
 
+	public void removePlayer(Player player) {
+		_playList.remove(player);
+	}
+
 }
