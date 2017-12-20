@@ -2,14 +2,19 @@ package Controller;
 
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
+import Entity.MonDB;
 import Utils.Window;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 public class iWindow {
@@ -20,7 +25,7 @@ public class iWindow {
 
 	/**
 	 * This method takes window and sets it as the current windows for user
-	 * 
+	 *
 	 * @param primaryStage
 	 * @param toOpen
 	 */
@@ -34,11 +39,25 @@ public class iWindow {
 		currentStage.show();
 		currentScene.getWindow().centerOnScreen();
 
+		currentStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			@Override
+			public void handle(WindowEvent we) {
+				int confirm = JOptionPane.showOptionDialog(null, "Are You Sure to Close iShark Monopoly?",
+						"Exit Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, null, null);
+				if (confirm == 0) {
+					Logger.log("Received closing request..");
+					MonDB.getInstance().closeGame();
+					System.exit(0);
+
+				}
+
+			}
+		});
 	}
 
 	/**
 	 * This method takes window and sets it as the current windows for user
-	 * 
+	 *
 	 * @param toOpen
 	 */
 	public static void swap(Window toOpen) {
@@ -57,6 +76,7 @@ public class iWindow {
 		 * Start new window
 		 */
 		iWindow.currentLoader = new FXMLLoader(iWindow.class.getResource("/View/" + toOpen + ".fxml"));
+
 		Parent root = null;
 		try {
 			root = iWindow.currentLoader.load();

@@ -159,7 +159,7 @@ public class MonDB implements Serializable {
 
 	/**
 	 * Randomly generate a question by question strength
-	 * 
+	 *
 	 * @param str
 	 * @return
 	 */
@@ -172,7 +172,7 @@ public class MonDB implements Serializable {
 
 	/**
 	 * Randomly generate a question by question tag
-	 * 
+	 *
 	 * @param str
 	 * @return
 	 */
@@ -234,7 +234,7 @@ public class MonDB implements Serializable {
 
 	/**
 	 * Logs in the user to the system
-	 * 
+	 *
 	 * @param nickname
 	 */
 	public String login(String nickname) {
@@ -246,7 +246,7 @@ public class MonDB implements Serializable {
 	}
 
 	public List<Tilable> getTileSet() {
-		if(tileSet == null)
+		if (tileSet == null)
 			initTiles();
 		return tileSet;
 	}
@@ -260,7 +260,7 @@ public class MonDB implements Serializable {
 
 	/**
 	 * This will initiate the first params to the system. DO NOT CHANGE
-	 * 
+	 *
 	 * @return
 	 */
 	private void initParams() {
@@ -274,7 +274,7 @@ public class MonDB implements Serializable {
 
 	/**
 	 * Seraialize all relevant data
-	 * 
+	 *
 	 * @return
 	 */
 	private static MonDB importData() {
@@ -339,7 +339,7 @@ public class MonDB implements Serializable {
 
 	/**
 	 * This method checks if user is already exists in system
-	 * 
+	 *
 	 * @param nickname
 	 * @return player name
 	 */
@@ -357,7 +357,7 @@ public class MonDB implements Serializable {
 
 	/**
 	 * This method builds a new game
-	 * 
+	 *
 	 * @param playerList
 	 *            - players in the game
 	 */
@@ -377,7 +377,8 @@ public class MonDB implements Serializable {
 		currentGame = new Game();
 		for (String s : playerList) {
 			Logger.log("Adding player " + s + " with color " + clist[i]);
-			newPlayerList.add(new Player(MonDB.getInstance().login(s), (Double)Param.get(Param.STARTING_CASH), clist[i++]));
+			newPlayerList
+					.add(new Player(MonDB.getInstance().login(s), (Double) Param.get(Param.STARTING_CASH), clist[i++]));
 		}
 
 		currentGame.build(newPlayerList);
@@ -386,7 +387,7 @@ public class MonDB implements Serializable {
 	/**
 	 * Add game to game data. the method won't add game until finding free index
 	 * in map. export the data at the end when game is added.
-	 * 
+	 *
 	 * @param game
 	 */
 	public void addGame(Game game) {
@@ -400,7 +401,7 @@ public class MonDB implements Serializable {
 
 	/**
 	 * This method removes specific question from map and json
-	 * 
+	 *
 	 * @param question
 	 *            q
 	 * @return true of removed
@@ -430,7 +431,7 @@ public class MonDB implements Serializable {
 
 	/**
 	 * This method adds new question to the map and saves it to json
-	 * 
+	 *
 	 * @param q
 	 * @return
 	 */
@@ -452,7 +453,7 @@ public class MonDB implements Serializable {
 
 	/**
 	 * Update question by deleting it and add the new one
-	 * 
+	 *
 	 * @param qBefore
 	 * @param qAfter
 	 * @return true if succefull
@@ -467,7 +468,7 @@ public class MonDB implements Serializable {
 
 	/**
 	 * This method returns the question map as list
-	 * 
+	 *
 	 * @return
 	 */
 	public List<Question> getQuestionsAsList() {
@@ -484,7 +485,7 @@ public class MonDB implements Serializable {
 	/**
 	 * This method gets a list of questions and sets it as the game question
 	 * list
-	 * 
+	 *
 	 * @param list
 	 *            of questions
 	 */
@@ -499,9 +500,11 @@ public class MonDB implements Serializable {
 
 	public void closeGame() {
 		Logger.log("Closing current game..");
-		tmpParams.clear();
-		addGame(currentGame);
-		
+		if (tmpParams != null)
+			tmpParams.clear();
+		if (currentGame != null)
+			addGame(currentGame);
+
 		currentGame = null;
 	}
 
