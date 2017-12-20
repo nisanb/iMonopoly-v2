@@ -12,7 +12,6 @@ import java.util.Random;
 import java.util.Set;
 
 import Utils.Param;
-import Utils.PlayerState;
 
 public class Game implements Serializable {
 
@@ -258,18 +257,9 @@ public class Game implements Serializable {
 
 		Collections.sort(toReturn,
 				(Comparator<Player>) (Player p1, Player p2) -> p2.getTotalValue().compareTo(p1.getTotalValue()));
-
-		// calc position
-		for (Player p : toReturn) {
-			if (p.getState() == PlayerState.BANKRUPTCY) {
-				toReturn.remove(p);
-				toReturn.add(p);
-			}
-		}
-
-		for (Player p : toReturn) {
-			System.err.println(p.toString2());
-		}
+		int i = 1;
+		for (Player p : toReturn)
+			p.set_leadboardPosition(i++);
 
 		return toReturn;
 	}

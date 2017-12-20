@@ -22,6 +22,7 @@ public class Player extends User implements Comparable<Player> {
 	private List<PropertyTile> _propertyList;
 	private Tilable _currentTile;
 	private PlayerState _state;
+	private Integer _leadboardPosition;
 
 	/**
 	 * Player Constructor
@@ -39,6 +40,7 @@ public class Player extends User implements Comparable<Player> {
 		_cash = cash;
 		_playerColor = playerColor;
 		_state = PlayerState.WAITING;
+		_leadboardPosition = 0;
 
 	}
 
@@ -61,6 +63,14 @@ public class Player extends User implements Comparable<Player> {
 
 	public List<PropertyTile> getPropertyList() {
 		return _propertyList;
+	}
+
+	public void set_leadboardPosition(Integer pos) {
+		this._leadboardPosition = pos;
+	}
+
+	public Integer get_leadboardPosition() {
+		return _leadboardPosition;
 	}
 
 	@Override

@@ -46,13 +46,14 @@ public class Summary {
 	void initialize() {
 		// get game data
 		List<Player> players = _eng.getCurrntGame().getSummary();
+
 		ObservableList<Player> data = FXCollections.observableArrayList(players);
 
 		// add data to colomns
-		number.setCellValueFactory(new PropertyValueFactory<Player, String>("leadBoardPosition"));
+		number.setCellValueFactory(new PropertyValueFactory<Player, String>("_leadboardPosition"));
 		name.setCellValueFactory(new PropertyValueFactory<Player, String>("nickName"));
-		net.setCellValueFactory(new PropertyValueFactory<Player, String>("games"));
-		cash.setCellValueFactory(new PropertyValueFactory<Player, String>("_cash"));
+		net.setCellValueFactory(new PropertyValueFactory<Player, String>("TotalValue"));
+		cash.setCellValueFactory(new PropertyValueFactory<Player, String>("Cash"));
 
 		// winRatio = new TableColumn();
 		tableView.setItems(data);
