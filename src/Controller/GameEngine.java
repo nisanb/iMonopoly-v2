@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Stack;
-import java.util.TreeMap;
 
 import Entity.Dice;
 import Entity.Game;
@@ -18,10 +17,8 @@ import Entity.Question;
 import Utils.PlayerState;
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
-import Utils.TileType;
 import Utils.Window;
 import View.IGameEngine;
-import View.IManagement;
 import View.Game.Controller.UI;
 
 public class GameEngine implements IGameEngine {
@@ -37,7 +34,7 @@ public class GameEngine implements IGameEngine {
 	private Stack<Question> questionStack = null;
 	private Boolean cycleThroughPlayers = false;
 	private Map<Player, Boolean> playerAnswers;
-	
+
 	/**
 	 * Private constructor
 	 */
@@ -49,7 +46,7 @@ public class GameEngine implements IGameEngine {
 
 	/**
 	 * Singleton instance
-	 * 
+	 *
 	 * @return
 	 */
 	public static GameEngine getInstance() {
@@ -117,17 +114,17 @@ public class GameEngine implements IGameEngine {
 		ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
 
 	}
-	
-	public void displayQuestions(List<Question> questionList){
-		for(Question q : questionList)
+
+	public void displayQuestions(List<Question> questionList) {
+		for (Question q : questionList)
 			questionStack.push(q);
-		
+
 		currentPlayer().setState(PlayerState.LUCKY_TILE);
-		//Display the first question for the player
+		// Display the first question for the player
 		currentQuestion = questionStack.pop();
-		
+
 		ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
-		
+
 	}
 
 	/**
@@ -153,8 +150,7 @@ public class GameEngine implements IGameEngine {
 		currentPlayer().setState(PlayerState.WANTS_TO_PURCHASE);
 		QuestionStrength qs = ((PropertyTile) currentPlayer().getCurrentTile()).getPropertyStrength();
 		displayQuestion(qs);
-		
-		
+
 	}
 
 	/**
@@ -235,7 +231,7 @@ public class GameEngine implements IGameEngine {
 				return;
 			}
 		}
-		
+
 		Logger.log("Current Player: " + currentPlayer());
 		Logger.log("Current Tile: " + currentPlayer().getCurrentTile());
 		Logger.log("Current Tile # " + currentPlayer().getCurrentTile().getTileNumber());
@@ -251,21 +247,21 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void AnswerQuestion(List<Integer> answers) {
-		
-		if(currentPlayer().getState() == PlayerState.LUCKY_TILE){
-			LuckTile lt = ((LuckTile)currentPlayer().getCurrentTile());
-			
-			if(!lt.answered(currentQuestion.checkCorrect(answers, currentPlayer()))){
+
+		if (currentPlayer().getState() == PlayerState.LUCKY_TILE) {
+			LuckTile lt = ((LuckTile) currentPlayer().getCurrentTile());
+
+			if (!lt.answered(currentQuestion.checkCorrect(answers, currentPlayer()))) {
 				currentQuestion = questionStack.pop();
 				ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
-			}else{
-				//Result time..
+			} else {
+				// Result time..
 				lt.checkResults(currentPlayer());
 				updatePlayerProperties(currentPlayer());
 			}
-			
+
 		}
-		
+
 		if (currentPlayer().getState() == PlayerState.WANTS_TO_PURCHASE) {
 			if (currentQuestion.checkCorrect(answers, currentPlayer())) {
 				// Give discount
@@ -294,7 +290,8 @@ public class GameEngine implements IGameEngine {
 		if (cycleThroughPlayers) {
 			if (!questionStack.isEmpty()) {
 				Logger.log("Transferring question to the next player..");
-				Logger.log("Player " + currentPlayer() + " answered " + currentQuestion.checkCorrect(answers, currentPlayer()));
+				Logger.log("Player " + currentPlayer() + " answered "
+						+ currentQuestion.checkCorrect(answers, currentPlayer()));
 				playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers, currentPlayer()));
 				// This means we need to let the next player answer the same
 				// question
@@ -306,7 +303,8 @@ public class GameEngine implements IGameEngine {
 			}
 
 			// Analyze last answer
-			Logger.log("Player " + currentPlayer() + " answered " + currentQuestion.checkCorrect(answers, currentPlayer()));
+			Logger.log("Player " + currentPlayer() + " answered "
+					+ currentQuestion.checkCorrect(answers, currentPlayer()));
 			playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers, currentPlayer()));
 
 			// Everyone finished..
@@ -409,14 +407,14 @@ public class GameEngine implements IGameEngine {
 
 	/**
 	 * Display information for player on screen
-	 * 
+	 *
 	 * @param txt
 	 */
 	public void showInfo(String txt) {
-		if(ui==null)
+		if (ui == null)
 			Logger.log("For some reason UI is NULL!");
 		else
-		ui.showPlayInformation(txt);
+			ui.showPlayInformation(txt);
 	}
 
 	/**
@@ -442,7 +440,7 @@ public class GameEngine implements IGameEngine {
 
 	/**
 	 * Return the current player whos turn his
-	 * 
+	 *
 	 * @return
 	 */
 	private Player currentPlayer() {
@@ -451,7 +449,7 @@ public class GameEngine implements IGameEngine {
 
 	/**
 	 * Launch a call to ui - update players' properties displayed in the UI
-	 * 
+	 *
 	 * @param player
 	 */
 	public void updatePlayerProperties(Player player) {
@@ -476,7 +474,6 @@ public class GameEngine implements IGameEngine {
 		disableAll();
 		ui.allowFinishTurn(true);
 		currentPlayer().getCurrentTile().visit(currentPlayer());
-		
 
 	}
 
@@ -505,8 +502,8 @@ public class GameEngine implements IGameEngine {
 	public String displayPrice(Double price) {
 		return "$" + NumberFormat.getNumberInstance(Locale.US).format(price);
 	}
-	
-	public String displayPrice(Integer price){
+
+	public String displayPrice(Integer price) {
 		return displayPrice(price.doubleValue());
 	}
 
@@ -514,16 +511,17 @@ public class GameEngine implements IGameEngine {
 		disableAll();
 		ui.displayQMList(currentPlayer().getNickName());
 	}
-	
+
 	/**
-	 * Calculates the amount needed to be given to a player when he is right on both questions
-	 * on a lucky tile
+	 * Calculates the amount needed to be given to a player when he is right on
+	 * both questions on a lucky tile
+	 * 
 	 * @return
 	 */
-	public Double getLuckyTileAward(){
+	public Double getLuckyTileAward() {
 		Double value = 100000.0;
 		Double avg = 0.0;
-		for(Player p : _game.getPlayers()){
+		for (Player p : _game.getPlayers()) {
 			avg += p.getTotalAssetsWorth();
 		}
 		avg /= _game.getPlayers().size();
@@ -542,7 +540,7 @@ public class GameEngine implements IGameEngine {
 	public void closeGame() {
 		MonDB.getInstance().closeGame();
 		_instance = new GameEngine();
-		
+
 	}
 
 	public void allowFinishTurn(boolean b) {
@@ -552,7 +550,7 @@ public class GameEngine implements IGameEngine {
 	public void allowSellProperty(boolean b) {
 		ui.allowSellProperty(true);
 	}
-	
+
 	public void allowPurchaseProperty(boolean b) {
 		ui.allowPurchase(true);
 	}
@@ -560,6 +558,5 @@ public class GameEngine implements IGameEngine {
 	public void allowRent(boolean b) {
 		ui.allowRent(true);
 	}
-	
-	
+
 }

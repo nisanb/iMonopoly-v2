@@ -1,17 +1,12 @@
 package Entity;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import Controller.GameEngine;
 import Controller.Logger;
 import Utils.NamedColor;
 import Utils.PlayerAuth;
 import Utils.PlayerState;
-import javafx.beans.property.Property;
 
 public class Player extends User implements Comparable<Player> {
 

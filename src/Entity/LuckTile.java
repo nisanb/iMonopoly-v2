@@ -35,7 +35,7 @@ public class LuckTile extends Tile {
 
 	@Override
 	public void visit(Player currentPlayer) {
-		//Dont allow finish turn
+		// Dont allow finish turn
 		GameEngine.getInstance().allowFinishTurn(false);
 		answers.clear();
 		Logger.gameLog("Player " + currentPlayer + " reached Lucky Tile!");
@@ -60,35 +60,35 @@ public class LuckTile extends Tile {
 			return true;
 		return false;
 	}
-	
-	public void checkResults(Player p){
-		if(answers.get(0) && answers.get(1)){
-			//User is right on both
+
+	public void checkResults(Player p) {
+		if (answers.get(0) && answers.get(1)) {
+			// User is right on both
 			Double receivedCash = GameEngine.getInstance().getLuckyTileAward();
 			p.addCash(receivedCash);
-			GameEngine.getInstance().showInfo("Player " + p+", You received "+displayPrice(receivedCash)
-					+"\nfor answering right on both questions!");
+			GameEngine.getInstance().showInfo("Player " + p + ", You received " + displayPrice(receivedCash)
+					+ "\nfor answering right on both questions!");
 			return;
 		}
-		String results = "Player " + p+",\n";
-		//User is wrong on medium question
-		if(!answers.get(0)){
+		String results = "Player " + p + ",\n";
+		// User is wrong on medium question
+		if (!answers.get(0)) {
 			p.deductCash(50000);
 			p.addStrike();
-			results +="You were fined for "+displayPrice(50000.0)+", \n"
+			results += "You were fined for " + displayPrice(50000.0) + ", \n"
 					+ "and were added a strike, for failing to answer the medium question.\n\n";
 		}
-		
-		if(!answers.get(1)){
+
+		if (!answers.get(1)) {
 			p.deductCash(25000);
-			results += "You were fined for "+displayPrice(25000.0)+" for failing to answer the hard question.";
+			results += "You were fined for " + displayPrice(25000.0) + " for failing to answer the hard question.";
 		}
-		
+
 		GameEngine.getInstance().showInfo(results);
 		GameEngine.getInstance().allowFinishTurn(true);
 	}
-	
-	private String displayPrice(Double price){
+
+	private String displayPrice(Double price) {
 		return GameEngine.getInstance().displayPrice(price);
 	}
 

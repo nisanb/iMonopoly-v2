@@ -3,17 +3,19 @@ package Controller;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import Entity.*;
+import Entity.Game;
+import Entity.MonDB;
+import Entity.Player;
+import Entity.PlayerStats;
+import Entity.Question;
+import Entity.User;
 import Utils.Param;
 import Utils.PlayerAuth;
 import Utils.QuestionStrength;
 import View.IManagement;
-import javafx.scene.control.Spinner;
 
 /**
  * This class connects the view and controller of admin windows singelton class
@@ -46,7 +48,7 @@ public class Management implements IManagement {
 
 	/**
 	 * this method returns a list of questions of given difficulty
-	 * 
+	 *
 	 * @param difficulty
 	 */
 	@Override
@@ -78,14 +80,14 @@ public class Management implements IManagement {
 		_db.login(nickname);
 	}
 
-	@Override 
-	public void login(String nickname, Boolean force){
+	@Override
+	public void login(String nickname, Boolean force) {
 		_db.login(nickname, true);
 	}
 
 	/**
 	 * get the logged in user
-	 * 
+	 *
 	 * @param user's
 	 *            nick name
 	 */
@@ -133,7 +135,7 @@ public class Management implements IManagement {
 
 	/**
 	 * add question to game questions
-	 * 
+	 *
 	 * @param q
 	 *            - question to delete
 	 */
@@ -144,7 +146,7 @@ public class Management implements IManagement {
 
 	/**
 	 * remove question from questions map
-	 * 
+	 *
 	 * @param q
 	 *            - question to delete
 	 */
@@ -161,13 +163,6 @@ public class Management implements IManagement {
 	@Override
 	public boolean updateQuestion(Question qBefore, Question qAfter) {
 		return _db.updateQuestion(qBefore, qAfter);
-	}
-
-	@Override
-	public void btnSave(List<Player> a, Spinner NumOfRounds, Spinner InitialSumOFMoney, Spinner Bankrupt,
-			Spinner PaymentRelaseFromJail) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -203,7 +198,7 @@ public class Management implements IManagement {
 	// ===============================================
 	/**
 	 * This method get all params required to create the lead board
-	 * 
+	 *
 	 * @return all required data for lead board (top 10 players)
 	 */
 	@Override
@@ -212,39 +207,39 @@ public class Management implements IManagement {
 		// calculate the statistics values
 		List<PlayerStats> leadboard = new ArrayList<PlayerStats>();
 
-		for(User u : _db.getPlayerData()){
+		for (User u : _db.getPlayerData()) {
 			leadboard.add(new PlayerStats(u.getNickName()));
 		}
 		Logger.log("Collected " + leadboard.size() + "leadboards users from " + _db.getPlayerData().size());
-		for(PlayerStats ps : leadboard){
+		for (PlayerStats ps : leadboard) {
 			ps = getPlayerData(ps);
 		}
-		
-		Collections.sort(leadboard, new Comparator<PlayerStats>(){
+
+		Collections.sort(leadboard, new Comparator<PlayerStats>() {
 			@Override
 			public int compare(PlayerStats o1, PlayerStats o2) {
 				// TODO Auto-generated method stub
 				return o1.compareTo(o2);
 			}
 		});
-		int i=1;
-		for(PlayerStats ps : leadboard)
+		int i = 1;
+		for (PlayerStats ps : leadboard)
 			ps.setLeadBoardPosition(i++);
-		
+
 		return leadboard;
 	}
 
-	
 	/**
 	 * Override for getPlayerData
 	 */
 	@Override
-	public PlayerStats getPlayerData(){
+	public PlayerStats getPlayerData() {
 		return getPlayerData(new PlayerStats(_db.getCurrentUser().getNickName()));
 	}
-	
+
 	/**
 	 * Update playerstats with the player given
+	 *
 	 * @param ps
 	 * @return
 	 */
@@ -259,15 +254,14 @@ public class Management implements IManagement {
 		for (Game game : games.values()) {
 			if (!game.getPlayers().contains(ps))
 				continue;
-			
+
 			Player p = game.getPlayers().get(game.getPlayers().indexOf(ps));
 			ps.addGame();
-			if(game.getWinner().equals(p))
+			if (game.getWinner().equals(p))
 				ps.addWin();
-			
+
 			ps.addQuestions(p.getTotalQuestions());
 			ps.addStrikes(p.getTotalFailed());
-			
 
 		}
 

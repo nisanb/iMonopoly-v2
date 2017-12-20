@@ -79,7 +79,7 @@ public class PropertyTile extends Tile {
 
 	/**
 	 * When a visitor wishes to pay rent
-	 * 
+	 *
 	 * @param visitor
 	 * @return
 	 */
@@ -108,7 +108,7 @@ public class PropertyTile extends Tile {
 
 	/**
 	 * When a buyer wants to buy the property
-	 * 
+	 *
 	 * @param newBuyer
 	 * @return
 	 */
@@ -205,21 +205,20 @@ public class PropertyTile extends Tile {
 			GameEngine.getInstance().allowFinishTurn(true);
 		} else {
 			if (!currentOwner.equals(currentPlayer)) {
-				//The current owner is not the player whos' turn is now
-					txtToDispaly += "This property is currently owned by " + currentOwner + "\n"
-							+ "You can attempt to purchase this property by clicking \"Buy Property\",\n"
-							+ "or pay the rent which is a total of "
-							+ GameEngine.getInstance().displayPrice(getRentPrice().doubleValue());
-					GameEngine.getInstance().allowPurchaseProperty(true);
-					GameEngine.getInstance().allowRent(true);
-					
-			}
-			else{
-					txtToDispaly += "This property is owned by yourself.\nYou may choose to sell this property for "
-							+ displayPrice(getSellPrice().doubleValue()) + "\n"
-							+ "or click on \"Finish Turn\" in order to skip your turn.";
-					GameEngine.getInstance().allowFinishTurn(true);
-					GameEngine.getInstance().allowSellProperty(true);
+				// The current owner is not the player whos' turn is now
+				txtToDispaly += "This property is currently owned by " + currentOwner + "\n"
+						+ "You can attempt to purchase this property by clicking \"Buy Property\",\n"
+						+ "or pay the rent which is a total of "
+						+ GameEngine.getInstance().displayPrice(getRentPrice().doubleValue());
+				GameEngine.getInstance().allowPurchaseProperty(true);
+				GameEngine.getInstance().allowRent(true);
+
+			} else {
+				txtToDispaly += "This property is owned by yourself.\nYou may choose to sell this property for "
+						+ displayPrice(getSellPrice().doubleValue()) + "\n"
+						+ "or click on \"Finish Turn\" in order to skip your turn.";
+				GameEngine.getInstance().allowFinishTurn(true);
+				GameEngine.getInstance().allowSellProperty(true);
 			}
 		}
 

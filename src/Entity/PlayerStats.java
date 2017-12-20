@@ -5,9 +5,9 @@ public class PlayerStats extends Player {
 	private Integer counter_Games;
 	private Integer counter_Wins;
 	private Integer counter_Questions;
-	private Integer counter_Wrong;
 	private Integer counter_Strikes;
 	private Integer leadboardPosition;
+
 	public PlayerStats(String nickname) {
 		super(nickname);
 		this.leadboardPosition = 0;
@@ -15,7 +15,6 @@ public class PlayerStats extends Player {
 		this.counter_Questions = 0;
 		this.counter_Strikes = 0;
 		this.counter_Wins = 0;
-		this.counter_Wrong = 0;
 	}
 
 	public void addGame() {
@@ -30,16 +29,16 @@ public class PlayerStats extends Player {
 		counter_Questions += questionsNum;
 	}
 
-	public void setLeadBoardPosition(Integer pos){
+	public void setLeadBoardPosition(Integer pos) {
 		this.leadboardPosition = pos;
 	}
-	
-	public Integer getLeaderBoardPosition(){
+
+	public Integer getLeaderBoardPosition() {
 		return this.leadboardPosition;
 	}
-	
+
 	public void addStrikes(Integer strikes) {
-		counter_Strikes+=strikes;
+		counter_Strikes += strikes;
 	}
 
 	public Integer getCounter_Games() {
@@ -58,17 +57,18 @@ public class PlayerStats extends Player {
 		return counter_Strikes;
 	}
 
-	public String getQuestionRatio(){
-		if(counter_Questions==0)
+	public String getQuestionRatio() {
+		if (counter_Questions == 0)
 			return "N/A";
-		return (counter_Strikes.doubleValue()/counter_Questions*100)+"%";
+		return (counter_Strikes.doubleValue() / counter_Questions * 100) + "%";
 	}
+
 	public Integer getCounter_Strikes() {
 		return counter_Strikes;
 	}
 
 	public Double getWinRate() {
-		if(getCounter_Games()==0)
+		if (getCounter_Games() == 0)
 			return 0.0;
 		return getCounter_Wins().doubleValue() / getCounter_Games().doubleValue();
 	}

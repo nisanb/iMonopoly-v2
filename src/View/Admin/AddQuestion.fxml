@@ -28,7 +28,7 @@
             <Image url="@../Resources/sound_on.png" />
          </image>
       </ImageView>
-      <Button fx:id="save" layoutX="236.0" layoutY="583.0" mnemonicParsing="false" onAction="#AddQuestion" prefHeight="27.0" prefWidth="140.0" text="Save" />
+      <Button fx:id="save" layoutX="236.0" layoutY="583.0" mnemonicParsing="false" onAction="#addQuestion" prefHeight="27.0" prefWidth="140.0" text="Save" />
       <Button layoutX="407.0" layoutY="583.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="140.0" text="Back" />
       <ImageView fitHeight="48.0" fitWidth="56.0" layoutX="357.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
          <image>

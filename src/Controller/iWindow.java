@@ -8,7 +8,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -21,22 +20,25 @@ public class iWindow {
 
 	/**
 	 * This method takes window and sets it as the current windows for user
+	 * 
 	 * @param primaryStage
 	 * @param toOpen
 	 */
 	public static void swap(Stage primaryStage, Window toOpen) {
-		if (currentStage !=null) currentStage.close();
+		if (currentStage != null)
+			currentStage.close();
 		Platform.setImplicitExit(false);
 		currentStage = primaryStage;
 		currentStage.initStyle(StageStyle.UNDECORATED);
 		swap(toOpen);
 		currentStage.show();
 		currentScene.getWindow().centerOnScreen();
-		
+
 	}
 
 	/**
 	 * This method takes window and sets it as the current windows for user
+	 * 
 	 * @param toOpen
 	 */
 	public static void swap(Window toOpen) {
@@ -50,7 +52,7 @@ public class iWindow {
 			ft.setToValue(0.5);
 			ft.play();
 		}
-		
+
 		/**
 		 * Start new window
 		 */
@@ -60,7 +62,7 @@ public class iWindow {
 			root = iWindow.currentLoader.load();
 		} catch (IOException e) {
 			e.printStackTrace();
-			Logger.log("Couldn't get file: "+iWindow.class.getResource("/View/" + toOpen + ".fxml"),true);
+			Logger.log("Couldn't get file: " + iWindow.class.getResource("/View/" + toOpen + ".fxml"), true);
 			System.exit(0);
 		}
 
@@ -83,13 +85,12 @@ public class iWindow {
 
 		currentScene.getWindow().centerOnScreen();
 	}
-	
-	
-	public static Management getManagement(){
+
+	public static Management getManagement() {
 		return Management.getInstance();
 	}
 
-	public static GameEngine getGameEngine(){
+	public static GameEngine getGameEngine() {
 		return GameEngine.getInstance();
 	}
 }

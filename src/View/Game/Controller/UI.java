@@ -2,7 +2,6 @@ package View.Game.Controller;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import Controller.GameEngine;
@@ -25,7 +24,6 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -33,21 +31,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.effect.Blend;
-import javafx.scene.effect.BlendMode;
-import javafx.scene.effect.ColorAdjust;
-import javafx.scene.effect.DropShadow;
-import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -67,9 +56,8 @@ public class UI implements UIInterface {
 
 	SpecialList<PlayerUI> playerList;
 
-
-    @FXML
-    private ImageView bgImage;
+	@FXML
+	private ImageView bgImage;
 
 	@FXML
 	private Button button1 = new Button();
@@ -79,10 +67,10 @@ public class UI implements UIInterface {
 
 	@FXML
 	private Button main = new Button();
-	
+
 	@FXML
-    private Label qmPlayerText;
-	 
+	private Label qmPlayerText;
+
 	@FXML
 	private ImageView imgPlayer1 = new ImageView();
 	@FXML
@@ -96,14 +84,14 @@ public class UI implements UIInterface {
 	private Pane player1StatsPane = new Pane();
 
 	@FXML
-    private Pane qmPane;
-	
+	private Pane qmPane;
+
 	@FXML
-    private ListView<QuestionTag> qmSelectTag;
-	
+	private ListView<QuestionTag> qmSelectTag;
+
 	@FXML
-    private Button btnQMShow;
-	
+	private Button btnQMShow;
+
 	@FXML
 	private Label lblMoney1 = new Label();
 
@@ -292,7 +280,7 @@ public class UI implements UIInterface {
 
 	@FXML
 	private Pane txtAnswerPane4 = new Pane();
-	
+
 	private Pane[] _answerPanes;
 	private TextArea[] _txtAnswerAreas;
 
@@ -543,60 +531,58 @@ public class UI implements UIInterface {
 	@Override
 	public void movePlayer(String player, int tileFrom, int tileTo) {
 		PlayerUI pUI = playerList.get(player);
-	
 
 		Integer j = 0;
 		while (tileFrom != tileTo) {
-			
-			final Integer tmpFrom = tileFrom;	
-			//Initiate a post visit from the current tile of current player before leaving
+
+			final Integer tmpFrom = tileFrom;
+			// Initiate a post visit from the current tile of current player
+			// before leaving
 			ge.postVisit(tileFrom);
 
 			tileFrom %= 40;
 			Integer nextLocation = (tileFrom + 1) % 40;
-		
-			
-			
+
 			/**
 			 * Remove old image
 			 */
 			ImageView tmpRecent = pUI.getRecentImage();
 			_tiles.get(nextLocation).getChildren().add(pUI.getNewImage());
-			
-			//Move the player
+
+			// Move the player
 			/**
 			 * Add new image
 			 */
 			Timeline tl = new Timeline();
 			KeyValue transparent = new KeyValue(pUI.getRecentImage().opacityProperty(), 0.0);
 			KeyValue opaque = new KeyValue(pUI.getRecentImage().opacityProperty(), 1.0);
-			KeyFrame startFadeIn = new KeyFrame(Duration.millis(100*j), transparent);
-			KeyFrame endFadeIn = new KeyFrame(Duration.millis(1000+100*j++), opaque);
+			KeyFrame startFadeIn = new KeyFrame(Duration.millis(100 * j), transparent);
+			KeyFrame endFadeIn = new KeyFrame(Duration.millis(1000 + 100 * j++), opaque);
 			tl.getKeyFrames().addAll(startFadeIn, endFadeIn);
 			tl.play();
-			
-		tl.setOnFinished(e->{
-			Timeline tl2 = new Timeline();
-			KeyValue from = new KeyValue(tmpRecent.opacityProperty(), 0.7);
-			KeyValue to = new KeyValue(tmpRecent.opacityProperty(), 0.0);
-			KeyFrame startFadeOut = new KeyFrame(Duration.ZERO, from);
-			KeyFrame finishFadeOut = new KeyFrame(Duration.millis(500), to);
-			tl2.getKeyFrames().addAll(startFadeOut, finishFadeOut);
-			tl2.play();
-			tl2.setOnFinished(c->{
-				_tiles.get(tmpFrom).getChildren().remove(tmpRecent);
-				pUI.getRecentImage().setOpacity(1.0);
+
+			tl.setOnFinished(e -> {
+				Timeline tl2 = new Timeline();
+				KeyValue from = new KeyValue(tmpRecent.opacityProperty(), 0.7);
+				KeyValue to = new KeyValue(tmpRecent.opacityProperty(), 0.0);
+				KeyFrame startFadeOut = new KeyFrame(Duration.ZERO, from);
+				KeyFrame finishFadeOut = new KeyFrame(Duration.millis(500), to);
+				tl2.getKeyFrames().addAll(startFadeOut, finishFadeOut);
+				tl2.play();
+				tl2.setOnFinished(c -> {
+					_tiles.get(tmpFrom).getChildren().remove(tmpRecent);
+					pUI.getRecentImage().setOpacity(1.0);
+				});
+
 			});
-			
-		});
-			//Initiate previsit
+			// Initiate previsit
 			ge.preVisit(nextLocation);
 			tileFrom = nextLocation;
 		}
-		
-		//Visit - happens when player arrives to the final tile
+
+		// Visit - happens when player arrives to the final tile
 		ge.Visit(tileTo);
-		
+
 	}
 
 	@FXML
@@ -631,21 +617,21 @@ public class UI implements UIInterface {
 
 	@Override
 	public void displayQuestion(Question question, String player) {
-		int i=0;
-		for(Pane answerPane : _answerPanes){
+		int i = 0;
+		for (Pane answerPane : _answerPanes) {
 			answerPane.setVisible(false);
 			showAnswerClicked(answerPane, answerPane.isVisible(), _txtAnswerAreas[i++]);
 		}
-		
+
 		gameLogScrollPane.setVisible(false);
 		questionsPane.setVisible(true);
 		txtAnswerPane.setVisible(true);
 		questionsPaneContainer.setVisible(true);
 		playerXIsAnswering.setText(player + " is answering question :");
 		theQuestion.setText(question.getqQuestion());
-		
-		i=0;
-		for(Answer a : question.getqAnswers()){
+
+		i = 0;
+		for (Answer a : question.getqAnswers()) {
 			_txtAnswerAreas[i].setText(a.toString());
 			_txtAnswerAreas[i].setVisible(true);
 			_answerPanes[i].setVisible(true);
@@ -653,18 +639,18 @@ public class UI implements UIInterface {
 		}
 
 	}
-	
+
 	@Override
-	public void allowTrade(Boolean allow){
+	public void allowTrade(Boolean allow) {
 		btnOfferTrade.setDisable(true);
 	}
-	
+
 	@Override
 	public void updateCurrentPlayer(String nickname) {
 		Logger.log("Adding glow to player " + nickname);
-		for(PlayerUI p : playerList)
+		for (PlayerUI p : playerList)
 			p.glow(false);
-		
+
 		playerList.get(nickname).glow(true);
 	}
 
@@ -681,8 +667,8 @@ public class UI implements UIInterface {
 		gameLogs.setVisible(true);
 
 	}
-	
-	private void disableAllPanes(){
+
+	private void disableAllPanes() {
 		qmPane.setVisible(false);
 		buyRentPane.setVisible(false);
 		questionsPaneContainer.setVisible(false);
@@ -709,7 +695,7 @@ public class UI implements UIInterface {
 	void answer1(MouseEvent event) {
 		showAnswerClicked(txtAnswerPane1, txtAnswerPane1.isVisible(), txtAnsw1);
 		txtAnswerPane1.setVisible(!txtAnswerPane1.isVisible());
-		
+
 		// ge.AnswerQuestion(1);
 	}
 
@@ -734,21 +720,21 @@ public class UI implements UIInterface {
 		// ge.AnswerQuestion(4);
 	}
 
-	private void showAnswerClicked(Pane answerPane, Boolean display, TextArea ta){
+	private void showAnswerClicked(Pane answerPane, Boolean display, TextArea ta) {
 		Timeline tl = new Timeline();
-		String originalColor = display?"white":"aqua";
-		String toChange = display?"aqua":"white";
-		tl.getKeyFrames().add(new KeyFrame(Duration.ZERO, "test", e->{
-			ta.setStyle("-fx-text-fill: "+originalColor+";");
+		String originalColor = display ? "white" : "aqua";
+		String toChange = display ? "aqua" : "white";
+		tl.getKeyFrames().add(new KeyFrame(Duration.ZERO, "test", e -> {
+			ta.setStyle("-fx-text-fill: " + originalColor + ";");
 			ta.applyCss();
 		}));
-		tl.getKeyFrames().add(new KeyFrame(Duration.millis(200), "test", e->{
-			ta.setStyle("-fx-text-fill: "+toChange+";");
+		tl.getKeyFrames().add(new KeyFrame(Duration.millis(200), "test", e -> {
+			ta.setStyle("-fx-text-fill: " + toChange + ";");
 			ta.applyCss();
 		}));
 		tl.play();
 	}
-	
+
 	@Override
 	public void BuildBoard() {
 
@@ -804,7 +790,8 @@ public class UI implements UIInterface {
 	@Override
 	public void updatePlayerProperties(String nickname, Double cash, Integer strikes, Double assetsWorth,
 			Integer assetsAmount) {
-		Logger.log("Attempting to update player " + nickname + " ("+playerList.size()+"): " + playerList.toArray().toString());
+		Logger.log("Attempting to update player " + nickname + " (" + playerList.size() + "): "
+				+ playerList.toArray().toString());
 		playerList.get(nickname).updateData(cash, strikes, assetsWorth, assetsAmount);
 	}
 
@@ -815,13 +802,13 @@ public class UI implements UIInterface {
 	}
 
 	@Override
-	public void markTile(Integer tileNumber, NamedColor playerColor){
-		_tiles.get(tileNumber).setStyle("-fx-background-color: "+playerColor+"; -fx-opacity: 0.5;");
+	public void markTile(Integer tileNumber, NamedColor playerColor) {
+		_tiles.get(tileNumber).setStyle("-fx-background-color: " + playerColor + "; -fx-opacity: 0.5;");
 		_tiles.get(tileNumber).setEffect(new Glow(1.0));
 		_tiles.get(tileNumber).applyCss();
-		
+
 	}
-	
+
 	////////////////////////////////////////////////// initialize
 
 	private void initializeDicesFirstTime() {
@@ -868,9 +855,9 @@ public class UI implements UIInterface {
 		_playersStrikes = new Label[] { strikesPlayer1, strikesPlayer2, strikesPlayer3, strikesPlayer4 };
 		_playersCash = new Label[] { moneyPlayer1, moneyPlayer2, moneyPlayer3, moneyPlayer4 };
 		_playersValue = new Label[] { valuePlayer1, valuePlayer2, valuePlayer3, valuePlayer4 };
-		_answerPanes = new Pane[] {txtAnswerPane2, txtAnswerPane2, txtAnswerPane3, txtAnswerPane4};
-		_txtAnswerAreas = new TextArea[] {txtAnsw1, txtAnsw2, txtAnsw3, txtAnsw4};
-		
+		_answerPanes = new Pane[] { txtAnswerPane2, txtAnswerPane2, txtAnswerPane3, txtAnswerPane4 };
+		_txtAnswerAreas = new TextArea[] { txtAnsw1, txtAnsw2, txtAnsw3, txtAnsw4 };
+
 		for (AnchorPane p : _playersAnchorPanes)
 			p.setVisible(false);
 
@@ -935,7 +922,7 @@ public class UI implements UIInterface {
 		buyRentPane.setVisible(true);
 		ge.btnBuyProperty();
 	}
-	
+
 	@FXML
 	void btnQMShow(ActionEvent event) {
 		ge.btnQMShow(qmSelectTag.getSelectionModel().getSelectedItem());
@@ -972,27 +959,26 @@ public class UI implements UIInterface {
 	}
 
 	@Override
-	public void updateRounds(Integer roundNumber){
+	public void updateRounds(Integer roundNumber) {
 		round.setText(roundNumber.toString());
 	}
-	
+
 	@Override
-	public void displayQMList(String currentPlayer){
+	public void displayQMList(String currentPlayer) {
 		disableAllPanes();
-		qmPlayerText.setText(currentPlayer+", please choose a tag from the list below.");
+		qmPlayerText.setText(currentPlayer + ", please choose a tag from the list below.");
 		qmPane.setVisible(true);
 		List<QuestionTag> qtList = new ArrayList<QuestionTag>();
 		qtList.addAll(Arrays.asList(QuestionTag.values()));
-		
+
 		ObservableList<QuestionTag> obs = FXCollections.observableArrayList(qtList);
 
 		qmSelectTag.setItems(obs);
-		
 
 	}
-	
+
 	@Override
-	public void blinkImage(){
+	public void blinkImage() {
 	}
 
 }

@@ -35,7 +35,6 @@ public class Game implements Serializable {
 	 * Current
 	 */
 	private User _currentLoggedUser;
-	private Player _currentPlayer;
 	private Integer _currentRound;
 
 	protected Game() {
@@ -48,8 +47,7 @@ public class Game implements Serializable {
 		this._gameTiles = new ArrayList<>();
 		this._gameTiles.addAll(MonDB.getInstance().getTileSet());
 	}
-	
-	
+
 	private void setGameNum() {
 		_gameNum = 0;
 		Random r = new Random();
@@ -57,9 +55,10 @@ public class Game implements Serializable {
 			int num = r.nextInt(9999999) + 1000000;
 			if (MonDB.getInstance().getGameData().containsKey(num))
 				continue;
-			else _gameNum = num;
+			else
+				_gameNum = num;
 		}
-		
+
 	}
 
 	public int getGameNum() {
@@ -85,7 +84,6 @@ public class Game implements Serializable {
 		 */
 		_playList = new LinkedList<>();
 		_playList.addAll(playerList);
-		_currentPlayer = nextPlayer();
 		_gamePlayers = playerList;
 
 	}
@@ -97,14 +95,14 @@ public class Game implements Serializable {
 
 		/**
 		 * Why is this here? TODO Mickey
-		 * 
+		 *
 		 * LinkedList<Player> playList = new LinkedList<>(); for(Player p :
 		 * _playerList.keySet()) playList.add(p);
-		 * 
+		 *
 		 * while(!isFinished()){ Player currentPlayer =
 		 * playList.get(_currentRound%playList.size());
 		 * currentPlayer.addCash(1000); //Players turn //TODO Implement .. }
-		 * 
+		 *
 		 **/
 	}
 
@@ -136,7 +134,7 @@ public class Game implements Serializable {
 
 	/**
 	 * Will move a player to the tile given
-	 * 
+	 *
 	 * @param player
 	 * @param tileNum
 	 */
@@ -154,7 +152,7 @@ public class Game implements Serializable {
 
 	/**
 	 * This method checks if the conditions to end game have reached
-	 * 
+	 *
 	 * @return
 	 */
 	public boolean isFinished() {
@@ -162,7 +160,7 @@ public class Game implements Serializable {
 		/**
 		 * In case rounds exceeded max rounds
 		 */
-		if (_currentRound > (Integer) Param.get(Param.MAX_ROUNDS)) 
+		if (_currentRound > (Integer) Param.get(Param.MAX_ROUNDS))
 
 			return true;
 
@@ -173,21 +171,6 @@ public class Game implements Serializable {
 			return true;
 
 		return false;
-	}
-
-	/**
-	 * This method sums the value of players properties
-	 * 
-	 * @param p
-	 * @return
-	 */
-	private int getPropertyVlaue(Player p) {
-		int value = 0;
-		for (PropertyTile pt : p.getPropertyList()) {
-			value += pt.getCurrentPrice();
-		}
-
-		return value;
 	}
 
 	public Tilable getTile(int tileNumber) {
@@ -235,61 +218,59 @@ public class Game implements Serializable {
 	public List<Player> getGamePlayers() {
 		return _gamePlayers;
 	}
-	
-	public Integer nextRound(){
+
+	public Integer nextRound() {
 		return ++_currentRound;
 	}
-	
-	
+
 	public Player getWinner() {
-		if (this._playList == null) return null;
+		if (this._playList == null)
+			return null;
 		double max = 0;
 		Player winner = null;
-		for (Player p:_playList) {
+		for (Player p : _playList) {
 			if (p.getTotalValue() > max) {
 				max = p.getTotalValue();
 				winner = p;
 			}
 		}
-		
+
 		return winner;
 	}
-	
-	
-	//======================================== Game Statistics =============================================
-	
+
+	// ======================================== Game Statistics
+	// =============================================
+
 	/**
-	 * This method makes the summary of the game 
+	 * This method makes the summary of the game
+	 *
 	 * @return list of players sorted by total value on cahs and properties
 	 */
-	public List<Player> getSummary(){
+	public List<Player> getSummary() {
 		Set<Player> list = new HashSet<>();
 		list.addAll(_playList);
 		list.addAll(_gamePlayers);
-		
-		//calc total value of the player
-		for (Player p: list) {
-		}
-		
+
+		// calc total value of the player
+
 		List<Player> toReturn = new ArrayList<>();
 		toReturn.addAll(list);
-		
-		Collections.sort(toReturn, (Comparator<Player>) (Player p1, Player p2)-> p2.getTotalValue().compareTo(p1.getTotalValue()));
-		
-		//calc position
-		int i = 1;
-		for (Player p: toReturn) {
+
+		Collections.sort(toReturn,
+				(Comparator<Player>) (Player p1, Player p2) -> p2.getTotalValue().compareTo(p1.getTotalValue()));
+
+		// calc position
+		for (Player p : toReturn) {
 			if (p.getState() == PlayerState.BANKRUPTCY) {
 				toReturn.remove(p);
 				toReturn.add(p);
-				}
-			i++;
+			}
 		}
-		
+
 		for (Player p : toReturn) {
 			System.err.println(p.toString2());
 		}
-		
+
 		return toReturn;
 	}
 
