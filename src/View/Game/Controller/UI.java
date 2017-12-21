@@ -622,6 +622,7 @@ public class UI implements UIInterface {
 			answerPane.setVisible(false);
 			showAnswerClicked(answerPane, answerPane.isVisible(), _txtAnswerAreas[i++]);
 		}
+		char temp[]={'a','b','c','d'};
 
 		gameLogScrollPane.setVisible(false);
 		questionsPane.setVisible(true);
@@ -632,7 +633,8 @@ public class UI implements UIInterface {
 
 		i = 0;
 		for (Answer a : question.getqAnswers()) {
-			_txtAnswerAreas[i].setText(a.toString());
+			a.toString();
+			_txtAnswerAreas[i].setText(temp[i]+". "+a.toString());
 			_txtAnswerAreas[i].setVisible(true);
 			_answerPanes[i].setVisible(true);
 			i++;
