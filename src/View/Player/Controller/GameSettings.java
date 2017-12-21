@@ -33,7 +33,6 @@ public class GameSettings {
 	// ========================================== FX COMPONENTS
 	// ================================================
 
-	@FXML // ResourceBundle that was given to the FXMLLoader
 	private ResourceBundle resources;
 
 	@FXML
