@@ -80,13 +80,13 @@
             <Image url="@../../Resources/10.png" />
          </image>
       </ImageView>
-      <SubScene height="40.0" layoutX="203.0" layoutY="158.0" opacity="0.2" width="347.0">
+      <SubScene height="40.0" layoutX="166.0" layoutY="158.0" opacity="0.2" width="416.0">
          <root>
             <Region />
          </root>
       </SubScene>
       <TextField fx:id="txt4" layoutX="478.0" layoutY="286.0" opacity="0.7" prefHeight="25.0" prefWidth="91.0" promptText="Nickname" />
-      <Slider fx:id="slide1" blockIncrement="1.0" focusTraversable="false" layoutX="210.0" layoutY="170.0" majorTickUnit="1.0" max="4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" min="2.0" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="0" onMouseClicked="#check1" pickOnBounds="false" prefHeight="25.0" prefWidth="329.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2.0">
+      <Slider fx:id="slide1" blockIncrement="1.0" focusTraversable="false" layoutX="239.0" layoutY="170.0" majorTickUnit="1.0" max="4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" min="2.0" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="0" onMouseClicked="#check1" pickOnBounds="false" prefHeight="26.0" prefWidth="285.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2.0">
          <opaqueInsets>
             <Insets bottom="12.0" />
          </opaqueInsets>

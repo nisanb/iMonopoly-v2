@@ -30,8 +30,7 @@ import javafx.scene.input.MouseEvent;
 
 public class GameSettings {
 
-	// ========================================== FX COMPONENTS
-	// ================================================
+	// ===================================== FX COMPONENTS ======================================
 
 	private ResourceBundle resources;
 
