@@ -20,7 +20,7 @@ public class monopolyTest1 {
 		// You can just-
 		// assertTrue(sum>=2&&sum<=12);
 		// instead of if and else
-		// What about sum=2 or sum=12?!
+		// What about sum=2 or sum=12?
 		if (sum > 2 && sum < 12) {
 			// Why use assertTrue(true)?
 			assertTrue(true);
