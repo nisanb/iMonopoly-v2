@@ -14,6 +14,7 @@ import Entity.MonDB;
 import Entity.Player;
 import Entity.PropertyTile;
 import Entity.Question;
+import Utils.Param;
 import Utils.PlayerState;
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
@@ -87,7 +88,11 @@ public class GameEngine implements IGameEngine {
 		ui.updateCurrentPlayer(_game.nextPlayer().getNickName());
 		ui.gameLog(currentPlayer() + "s' turn");
 		if (currentPlayer().isInJail()) {
-			ui.gameLog("Player " + currentPlayer() + " will not attempt to roll a double to get out of jail!");
+			ui.showBailOut(true);
+			ui.gameLog("Player " + currentPlayer() + " will now attempt to roll a double to get out of jail!");
+
+		} else {
+			ui.showBailOut(false);
 		}
 		ui.allowRollDice(true);
 
@@ -394,6 +399,7 @@ public class GameEngine implements IGameEngine {
 	public void btnFinishTurn() {
 		currentPlayer().verifyStrikes();
 		currentPlayer().verifyBankrupt();
+		updatePlayerProperties(currentPlayer());
 		if (currentPlayer().getState() != PlayerState.JAILED)
 			currentPlayer().setState(PlayerState.WAITING);
 		ui.updateRounds(_game.nextRound());
@@ -404,6 +410,14 @@ public class GameEngine implements IGameEngine {
 		}
 		btnNextTurn();
 
+	}
+
+	@Override
+	public void btnBailOut() {
+		currentPlayer().deductCash((Integer) Param.get(Param.RELEASE_FROM_JAIL));
+		ui.gameLog(currentPlayer() + " has bailed out of jail!");
+		currentPlayer().setState(PlayerState.WAITING);
+		ui.showBailOut(false);
 	}
 
 	/**

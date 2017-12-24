@@ -68,6 +68,7 @@ public class LuckTile extends Tile {
 			p.addCash(receivedCash);
 			GameEngine.getInstance().showInfo("Player " + p + ", You received " + displayPrice(receivedCash)
 					+ "\nfor answering right on both questions!");
+			GameEngine.getInstance().allowFinishTurn(true);
 			return;
 		}
 		String results = "Player " + p + ",\n";

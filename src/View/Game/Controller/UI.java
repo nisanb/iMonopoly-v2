@@ -63,6 +63,9 @@ public class UI implements UIInterface {
 	private Button button1 = new Button();
 
 	@FXML
+	private Button btnBailOut;
+
+	@FXML
 	private Button buttonMenu = new Button();
 
 	@FXML
@@ -270,16 +273,16 @@ public class UI implements UIInterface {
 	private Pane paneCurrentTurnPlayer4 = new Pane();
 
 	@FXML
-	private Pane txtAnswerPane1 = new Pane();
+	private Pane txtAnswerPane1;
 
 	@FXML
-	private Pane txtAnswerPane2 = new Pane();
+	private Pane txtAnswerPane2;
 
 	@FXML
-	private Pane txtAnswerPane3 = new Pane();
+	private Pane txtAnswerPane3;
 
 	@FXML
-	private Pane txtAnswerPane4 = new Pane();
+	private Pane txtAnswerPane4;
 
 	private Pane[] _answerPanes;
 	private TextArea[] _txtAnswerAreas;
@@ -617,13 +620,14 @@ public class UI implements UIInterface {
 
 	@Override
 	public void displayQuestion(Question question, String player) {
-		int i = 0;
-		for (Pane answerPane : _answerPanes) {
-			answerPane.setVisible(false);
-			showAnswerClicked(answerPane, answerPane.isVisible(), _txtAnswerAreas[i++]);
-		}
-		char temp[]={'a','b','c','d'};
 
+		for (int i = 0; i < 4; i++) {
+			_answerPanes[i].setVisible(false);
+			showAnswerClicked(_answerPanes[i], false, _txtAnswerAreas[i]);
+			_txtAnswerAreas[i].setVisible(false);
+		}
+
+		char temp[] = { 'a', 'b', 'c', 'd' };
 		gameLogScrollPane.setVisible(false);
 		questionsPane.setVisible(true);
 		txtAnswerPane.setVisible(true);
@@ -631,12 +635,12 @@ public class UI implements UIInterface {
 		playerXIsAnswering.setText(player + " is answering question :");
 		theQuestion.setText(question.getqQuestion());
 
-		i = 0;
+		int i = 0;
 		for (Answer a : question.getqAnswers()) {
-			a.toString();
-			_txtAnswerAreas[i].setText(temp[i]+". "+a.toString());
+			Logger.log(a.toString());
+			_txtAnswerAreas[i].setText(temp[i] + ". " + a.toString());
 			_txtAnswerAreas[i].setVisible(true);
-			_answerPanes[i].setVisible(true);
+			// _answerPanes[i].setVisible(true);
 			i++;
 		}
 
@@ -681,44 +685,44 @@ public class UI implements UIInterface {
 	@FXML
 	void sendAnswerBtn(MouseEvent event) {
 		List<Integer> answers = new ArrayList<Integer>();
-		if (txtAnswerPane1.isVisible())
-			answers.add(0);
-		if (txtAnswerPane2.isVisible())
-			answers.add(1);
-		if (txtAnswerPane3.isVisible())
-			answers.add(2);
-		if (txtAnswerPane4.isVisible())
-			answers.add(3);
+
+		for (int i = 0; i < _answerPanes.length; i++)
+			if (_answerPanes[i].isVisible())
+				answers.add(i);
+
 		Logger.log("Sending answers: " + answers + " to GameEngine");
 		ge.AnswerQuestion(answers);
 	}
 
 	@FXML
 	void answer1(MouseEvent event) {
-		showAnswerClicked(txtAnswerPane1, txtAnswerPane1.isVisible(), txtAnsw1);
 		txtAnswerPane1.setVisible(!txtAnswerPane1.isVisible());
+		showAnswerClicked(txtAnswerPane1, txtAnswerPane1.isVisible(), txtAnsw1);
 
 		// ge.AnswerQuestion(1);
 	}
 
 	@FXML
 	void answer2(MouseEvent event) {
-		showAnswerClicked(txtAnswerPane2, txtAnswerPane2.isVisible(), txtAnsw2);
 		txtAnswerPane2.setVisible(!txtAnswerPane2.isVisible());
+		showAnswerClicked(txtAnswerPane2, txtAnswerPane2.isVisible(), txtAnsw2);
+
 		// ge.AnswerQuestion(2);
 	}
 
 	@FXML
 	void answer3(MouseEvent event) {
-		showAnswerClicked(txtAnswerPane3, txtAnswerPane3.isVisible(), txtAnsw3);
 		txtAnswerPane3.setVisible(!txtAnswerPane3.isVisible());
+		showAnswerClicked(txtAnswerPane3, txtAnswerPane3.isVisible(), txtAnsw3);
+
 		// ge.AnswerQuestion(3);
 	}
 
 	@FXML
 	void answer4(MouseEvent event) {
-		showAnswerClicked(txtAnswerPane4, txtAnswerPane4.isVisible(), txtAnsw4);
 		txtAnswerPane4.setVisible(!txtAnswerPane4.isVisible());
+		showAnswerClicked(txtAnswerPane4, txtAnswerPane4.isVisible(), txtAnsw4);
+
 		// ge.AnswerQuestion(4);
 	}
 
@@ -760,18 +764,6 @@ public class UI implements UIInterface {
 		 * txtPlayer4Name.setText(playersList.get(3));
 		 * player4Container.setVisible(true); players[0][3].setVisible(true); }
 		 */
-	}
-
-	@Override
-	public void showAnswer(int answerNum) {
-		if (answerNum == 1)
-			txtAnswerPane1.setVisible(true);
-		if (answerNum == 2)
-			txtAnswerPane2.setVisible(true);
-		if (answerNum == 3)
-			txtAnswerPane3.setVisible(true);
-		if (answerNum == 4)
-			txtAnswerPane4.setVisible(true);
 	}
 
 	@Override
@@ -847,6 +839,8 @@ public class UI implements UIInterface {
 		_instance = this;
 		playerList = new SpecialList<>();
 
+		btnBailOut.setVisible(false);
+
 		/**
 		 * Sets the content panes and labels according to player numbers
 		 */
@@ -857,7 +851,7 @@ public class UI implements UIInterface {
 		_playersStrikes = new Label[] { strikesPlayer1, strikesPlayer2, strikesPlayer3, strikesPlayer4 };
 		_playersCash = new Label[] { moneyPlayer1, moneyPlayer2, moneyPlayer3, moneyPlayer4 };
 		_playersValue = new Label[] { valuePlayer1, valuePlayer2, valuePlayer3, valuePlayer4 };
-		_answerPanes = new Pane[] { txtAnswerPane2, txtAnswerPane2, txtAnswerPane3, txtAnswerPane4 };
+		_answerPanes = new Pane[] { txtAnswerPane1, txtAnswerPane2, txtAnswerPane3, txtAnswerPane4 };
 		_txtAnswerAreas = new TextArea[] { txtAnsw1, txtAnsw2, txtAnsw3, txtAnsw4 };
 		for (AnchorPane p : _playersAnchorPanes)
 			p.setVisible(false);
@@ -907,6 +901,16 @@ public class UI implements UIInterface {
 	@Override
 	public void allowSellProperty(Boolean allow) {
 		btnSellProperty.setDisable(!allow);
+	}
+
+	@FXML
+	void btnBailOut(ActionEvent event) {
+		ge.btnBailOut();
+	}
+
+	@Override
+	public void showBailOut(Boolean show) {
+		btnBailOut.setVisible(show);
 	}
 
 	@FXML

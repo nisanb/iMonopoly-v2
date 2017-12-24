@@ -206,7 +206,7 @@ public class Player extends User implements Comparable<Player> {
 	}
 
 	public void verifyStrikes() {
-		if (_strikesNum > 3) {
+		if (_strikesNum > 2) {
 			GameEngine.getInstance().gameLog("Player " + this + " reached 3 strikes and is being taken to jail.");
 			MonDB.getInstance().getTileSet().get(30).visit(this);
 			_strikesNum = 0;

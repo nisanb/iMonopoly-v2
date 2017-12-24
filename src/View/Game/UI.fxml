@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Game.Controller.UI">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: transparent;;" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.Game.Controller.UI">
    <children>
       <ImageView fx:id="bgImage" fitHeight="691.0" fitWidth="1229.0" layoutX="51.0" layoutY="39.0">
          <image>
@@ -326,22 +326,22 @@
                   <Pane fx:id="txtAnswerPane1" layoutX="8.0" layoutY="88.0" prefHeight="55.0" prefWidth="225.0" style="-fx-background-color: transparent;" visible="false" />
                   <Pane fx:id="txtAnswerPane4" layoutX="238.0" layoutY="148.0" prefHeight="55.0" prefWidth="225.0" visible="false" />
                   <Pane fx:id="txtAnswerPane3" layoutX="8.0" layoutY="148.0" prefHeight="55.0" prefWidth="225.0" visible="false" />
-                  <TextArea fx:id="txtAnsw1" editable="false" layoutX="10.0" layoutY="90.0" onMouseClicked="#answer1" onMousePressed="#answer1" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: transparent;" text="1. Answer 1" wrapText="true">
+                  <TextArea fx:id="txtAnsw1" editable="false" layoutX="10.0" layoutY="90.0" onMouseClicked="#answer1" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: transparent;" text="1. Answer 1" wrapText="true">
                      <font>
                         <Font name="Calibri Bold" size="12.0" />
                      </font>
                   </TextArea>
-                  <TextArea fx:id="txtAnsw2" editable="false" layoutX="240.0" layoutY="90.0" onMouseClicked="#answer2" onMousePressed="#answer2" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: transparent;" text="2. Answer 2" wrapText="true">
+                  <TextArea fx:id="txtAnsw2" editable="false" layoutX="240.0" layoutY="90.0" onMouseClicked="#answer2" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: transparent;" text="2. Answer 2" wrapText="true">
                      <font>
                         <Font name="Calibri Bold" size="12.0" />
                      </font>
                   </TextArea>
-                  <TextArea fx:id="txtAnsw3" editable="false" layoutX="10.0" layoutY="150.0" onMouseClicked="#answer3" onMousePressed="#answer3" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: transparent;" text="1. Answer 1&#10;" wrapText="true">
+                  <TextArea fx:id="txtAnsw3" editable="false" layoutX="10.0" layoutY="150.0" onMouseClicked="#answer3" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: transparent;" text="1. Answer 1&#10;" wrapText="true">
                      <font>
                         <Font name="Calibri Bold" size="12.0" />
                      </font>
                   </TextArea>
-                  <TextArea fx:id="txtAnsw4" editable="false" layoutX="240.0" layoutY="150.0" onMouseClicked="#answer4" onMousePressed="#answer4" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: transparent;" text="2. Answer 2" wrapText="true">
+                  <TextArea fx:id="txtAnsw4" editable="false" layoutX="240.0" layoutY="150.0" onMouseClicked="#answer4" prefHeight="50.0" prefWidth="220.0" style="-fx-background-color: transparent;" text="2. Answer 2" wrapText="true">
                      <font>
                         <Font name="Calibri Bold" size="12.0" />
                      </font>
@@ -424,7 +424,6 @@
             <Font name="Calibri Bold" size="20.0" />
          </font>
       </Button>
-      <Button fx:id="btnTest" layoutX="409.0" layoutY="702.0" mnemonicParsing="false" onMouseClicked="#btnTest" text="Button" />
       <FlowPane fx:id="tile00" layoutX="1173.0" layoutY="630.0" prefHeight="100.0" prefWidth="107.0" />
       <FlowPane fx:id="tile01" layoutX="1115.0" layoutY="643.0" prefHeight="87.0" prefWidth="58.0" />
       <FlowPane fx:id="tile02" layoutX="1064.0" layoutY="643.0" prefHeight="87.0" prefWidth="51.0" />
@@ -465,5 +464,10 @@
       <FlowPane fx:id="tile37" layoutX="1195.0" layoutY="466.0" prefHeight="50.0" prefWidth="83.0" />
       <FlowPane fx:id="tile38" layoutX="1195.0" layoutY="520.0" prefHeight="50.0" prefWidth="83.0" />
       <FlowPane fx:id="tile39" layoutX="1195.0" layoutY="574.0" prefHeight="50.0" prefWidth="83.0" />
+      <Button fx:id="btnBailOut" layoutX="372.0" layoutY="605.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnBailOut" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: blue;" text="Bail Out!" textFill="WHITE">
+         <font>
+            <Font name="Calibri Bold" size="20.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

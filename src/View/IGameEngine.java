@@ -11,53 +11,68 @@ public interface IGameEngine {
 
 	// please add any extra variables inside the methods if needed
 	/**
-	 * Sets the Game UI Object
-	 * DO NOT TOUCH
+	 * Sets the Game UI Object DO NOT TOUCH
 	 */
 	public void build(UI ui);
-	
+
 	/**
 	 * Button Clicked methods sent from UI
 	 */
 	public void btnNextTurn();
+
 	public void btnBuyProperty();
+
 	public void btnPayRent();
+
 	public void btnSellProperty();
+
 	public void btnOfferTrade();
+
 	public void btnQuitGame();
+
 	public void btnRollDice();
+
 	public void btnFinishTurn();
+
 	public void btnQMShow(QuestionTag qt);
-	
+
+	public void btnBailOut();
+
 	/**
 	 * Forward a string to the game log in the UI
+	 * 
 	 * @param str
 	 */
 	public void gameLog(String str);
-	
+
 	/**
-	 * 
-	 * @param answers 1/2/3/4 -- not 0
+	 *
+	 * @param answers
+	 *            1/2/3/4 -- not 0
 	 */
 	public void AnswerQuestion(List<Integer> answers);
 
 	/**
 	 * Tile previsit, postvisit and visit
+	 * 
 	 * @param tileNumber
 	 */
 	void preVisit(Integer tileNumber);
+
 	void Visit(Integer tileNumber);
+
 	void postVisit(Integer tileNumber);
+
 	void moveTo(Integer tileTo);
 
 	public void displayQuestion(QuestionStrength qs);
+
 	public String displayPrice(Double price);
 
-	
-	
 	/**
 	 * End of game methods
 	 */
-	public Game getCurrntGame();			//get game statistics
-	public void closeGame();				//destroy game engine to build new one
+	public Game getCurrntGame(); // get game statistics
+
+	public void closeGame(); // destroy game engine to build new one
 }

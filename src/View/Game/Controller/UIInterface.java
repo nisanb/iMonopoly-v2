@@ -33,6 +33,8 @@ public interface UIInterface {
 
 	public void allowFinishTurn(Boolean enabled);
 
+	public void showBailOut(Boolean show);
+
 	/**
 	 * Will display score board sorted by player total property value and cash
 	 */
@@ -78,13 +80,6 @@ public interface UIInterface {
 	public void gameLogDisplay();
 
 	public void BuildBoard();
-
-	/**
-	 *
-	 * @param answerNum
-	 *            show the right answer
-	 */
-	public void showAnswer(int answerNum);
 
 	/**
 	 * Will change the dice visibility with the 'amount' number
@@ -151,7 +146,7 @@ public interface UIInterface {
 
 	/**
 	 * Will remove a player from the game if he is bankrupt
-	 * 
+	 *
 	 * @param playerToRemove
 	 */
 	public void removePlayer(String playerToRemove);
