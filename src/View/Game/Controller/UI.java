@@ -1015,18 +1015,25 @@ public class UI implements UIInterface {
 	}
 	
 	
+	
+	
 	private void resetAnsBox() {
 		for (int i = 0; i < _ansBox.size(); i++) {
-			_ansBox.get(i).setSelected(false);
+			_ansBox.get(i).setSelected(false);			//reset check box
+			_txtAnswerAreas[i].setText("");				//reset answer text
 		}
 	}
 	
-	private void getPlayerAnswers() {
+	private List<Integer> getPlayerAnswers() {
+		List<Integer> answers = new ArrayList<Integer>();
+		
 		for (int i = 0; i < _ansBox.size(); i++) {
 			if (_ansBox.get(i).isSelected()) {
-				
+				answers.add(i);
 			}
 		}
+		
+		return answers;
 	}
 
 }
