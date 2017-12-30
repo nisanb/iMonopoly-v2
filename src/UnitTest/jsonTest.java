@@ -28,6 +28,7 @@ public class jsonTest {
 		//check if the file has the same content
 		assertTrue("Successful", input.equals(output));
 		
+		
 	}
 
 }

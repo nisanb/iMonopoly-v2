@@ -121,7 +121,7 @@ public class Question {
 
 	public boolean checkCorrect(List<Integer> ans, Player player) {
 		if (ans.size() == 0) {
-			player.addQuestionAnswered(false);
+			if (player !=null) player.addQuestionAnswered(false);
 			return false;
 		}
 
@@ -130,12 +130,13 @@ public class Question {
 		try {
 			for (Integer a : ans) {
 				if (!qAnswers.get(a).isTrue()) {
-					player.addQuestionAnswered(false);
+					if (player !=null) player.addQuestionAnswered(false);
 					return false;
 				}
 			}
-
-			player.addQuestionAnswered(true);
+			
+			if (player !=null) player.addQuestionAnswered(true);
+			
 			return true;
 		} catch (Exception e) {
 			String exception = "Caught Exeption: Answer array sent is bigger than question answers array.";
