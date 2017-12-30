@@ -87,23 +87,6 @@ public class Game implements Serializable {
 
 	}
 
-	protected void run() {
-		// This will start the game
-
-		// This will build the players' cycle
-
-		/**
-		 * Why is this here? TODO Mickey
-		 *
-		 * LinkedList<Player> playList = new LinkedList<>(); for(Player p :
-		 * _playerList.keySet()) playList.add(p);
-		 *
-		 * while(!isFinished()){ Player currentPlayer =
-		 * playList.get(_currentRound%playList.size());
-		 * currentPlayer.addCash(1000); //Players turn //TODO Implement .. }
-		 *
-		 **/
-	}
 
 	// Adds a player to the game
 	protected void addPlayer(Player player) {
@@ -237,13 +220,12 @@ public class Game implements Serializable {
 		return winner;
 	}
 
-	// ======================================== Game Statistics
-	// =============================================
+	// ===================================== Game Statistics ===================================
 
 	/**
 	 * This method makes the summary of the game
 	 *
-	 * @return list of players sorted by total value on cahs and properties
+	 * @return list of players sorted by total value on cash and properties
 	 */
 	public List<Player> getSummary() {
 		Set<Player> list = new HashSet<>();
