@@ -318,11 +318,7 @@
                         <Font name="Calibri Bold" size="16.0" />
                      </font>
                   </Label>
-                  <Label fx:id="theQuestion" alignment="TOP_LEFT" layoutX="12.0" layoutY="25.0" prefHeight="55.0" prefWidth="452.0" text="Question: What is the meaning of agile?" textOverrun="WORD_ELLIPSIS">
-                     <font>
-                        <Font name="Calibri Bold" size="16.0" />
-                     </font>
-                  </Label>
+                  <TextArea fx:id="theQuestion" layoutX="22.0" layoutY="31.0" prefHeight="50.0" prefWidth="435.0" wrapText="true" />
                   <Pane fx:id="txtAnswerPane2" layoutX="238.0" layoutY="88.0" prefHeight="55.0" prefWidth="225.0" visible="false" />
                   <Pane fx:id="txtAnswerPane1" layoutX="8.0" layoutY="88.0" prefHeight="55.0" prefWidth="225.0" style="-fx-background-color: transparent;" visible="false" />
                   <Pane fx:id="txtAnswerPane4" layoutX="238.0" layoutY="148.0" prefHeight="55.0" prefWidth="225.0" visible="false" />
@@ -332,7 +328,7 @@
                         <Font name="Calibri Bold" size="12.0" />
                      </font>
                   </TextArea>
-                  <TextArea fx:id="txtAnsw2" editable="false" layoutX="240.0" layoutY="90.0" onMouseClicked="#answer2" prefHeight="50.0" prefWidth="207.0" style="-fx-background-color: transparent;" text="2. Answer 2" wrapText="true">
+                  <TextArea fx:id="txtAnsw2" editable="false" layoutX="256.0" layoutY="90.0" onMouseClicked="#answer2" prefHeight="50.0" prefWidth="207.0" style="-fx-background-color: transparent;" text="2. Answer 2" wrapText="true">
                      <font>
                         <Font name="Calibri Bold" size="12.0" />
                      </font>
@@ -342,7 +338,7 @@
                         <Font name="Calibri Bold" size="12.0" />
                      </font>
                   </TextArea>
-                  <TextArea fx:id="txtAnsw4" editable="false" layoutX="240.0" layoutY="150.0" onMouseClicked="#answer4" prefHeight="50.0" prefWidth="207.0" style="-fx-background-color: transparent;" text="2. Answer 2" wrapText="true">
+                  <TextArea fx:id="txtAnsw4" editable="false" layoutX="256.0" layoutY="150.0" onMouseClicked="#answer4" prefHeight="50.0" prefWidth="207.0" style="-fx-background-color: transparent;" text="2. Answer 2" wrapText="true">
                      <font>
                         <Font name="Calibri Bold" size="12.0" />
                      </font>
@@ -354,8 +350,8 @@
                   </Button>
                   <CheckBox fx:id="cb1" layoutX="4.0" layoutY="106.0" mnemonicParsing="false" />
                   <CheckBox fx:id="cb3" layoutX="5.0" layoutY="166.0" mnemonicParsing="false" />
-                  <CheckBox fx:id="cb2" layoutX="449.0" layoutY="107.0" mnemonicParsing="false" />
-                  <CheckBox fx:id="cb4" layoutX="449.0" layoutY="166.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="cb2" layoutX="236.0" layoutY="105.0" mnemonicParsing="false" />
+                  <CheckBox fx:id="cb4" layoutX="236.0" layoutY="164.0" mnemonicParsing="false" />
                </children>
             </Pane>
             <Pane fx:id="buyRentPane" prefHeight="240.0" prefWidth="470.0" style="-fx-background-color: transparent;" visible="false">

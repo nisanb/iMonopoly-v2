@@ -1,6 +1,5 @@
 package View.Game.Controller;
 
-import java.awt.Checkbox;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -254,7 +253,7 @@ public class UI implements UIInterface {
 	private Pane questionsPaneContainer = new Pane();
 
 	@FXML
-	private Label theQuestion = new Label();
+	private TextArea theQuestion = new TextArea();
 
 	@FXML
 	private Button btnPayRent = new Button();
@@ -624,42 +623,7 @@ public class UI implements UIInterface {
 
 	}
 
-	@Override
-	public void displayQuestion(Question question, String player) {
-		//reset and hide all fields
-		
-		
-		//reset selections
-		
-		
-		//show only possible answers
-		
-		
-		
-		for (int i = 0; i < 4; i++) {
-			_answerPanes[i].setVisible(false);
-			showAnswerClicked(_answerPanes[i], false, _txtAnswerAreas[i]);
-			_txtAnswerAreas[i].setVisible(false);
-		}
 
-		char temp[] = { 'a', 'b', 'c', 'd' };
-		gameLogScrollPane.setVisible(false);
-		questionsPane.setVisible(true);
-		txtAnswerPane.setVisible(true);
-		questionsPaneContainer.setVisible(true);
-		playerXIsAnswering.setText(player + " is answering question :");
-		theQuestion.setText(question.getqQuestion());
-
-		int i = 0;
-		for (Answer a : question.getqAnswers()) {
-			Logger.log(a.toString());
-			_txtAnswerAreas[i].setText(temp[i] + ". " + a.toString());
-			_txtAnswerAreas[i].setVisible(true);
-			// _answerPanes[i].setVisible(true);
-			i++;
-		}
-
-	}
 
 	@Override
 	public void allowTrade(Boolean allow) {
@@ -697,25 +661,12 @@ public class UI implements UIInterface {
 		txtAnswerPane.setVisible(false);
 	}
 
-	@FXML
-	void sendAnswerBtn(MouseEvent event) {
-		//TODO - Update this method to support check box
-		//required change - for each checkbox add answer number if selected
-		
-		List<Integer> answers = new ArrayList<Integer>();
 
-		for (int i = 0; i < _answerPanes.length; i++)
-			if (_answerPanes[i].isVisible())
-				answers.add(i);
-
-		Logger.log("Sending answers: " + answers + " to GameEngine");
-		ge.AnswerQuestion(answers);
-	}
 
 	@FXML
 	void answer1(MouseEvent event) {
 		txtAnswerPane1.setVisible(!txtAnswerPane1.isVisible());
-		showAnswerClicked(txtAnswerPane1, txtAnswerPane1.isVisible(), txtAnsw1);
+//		showAnswerClicked(txtAnswerPane1, txtAnswerPane1.isVisible(), txtAnsw1);
 
 		// ge.AnswerQuestion(1);
 	}
@@ -723,7 +674,7 @@ public class UI implements UIInterface {
 	@FXML
 	void answer2(MouseEvent event) {
 		txtAnswerPane2.setVisible(!txtAnswerPane2.isVisible());
-		showAnswerClicked(txtAnswerPane2, txtAnswerPane2.isVisible(), txtAnsw2);
+//		showAnswerClicked(txtAnswerPane2, txtAnswerPane2.isVisible(), txtAnsw2);
 
 		// ge.AnswerQuestion(2);
 	}
@@ -731,7 +682,7 @@ public class UI implements UIInterface {
 	@FXML
 	void answer3(MouseEvent event) {
 		txtAnswerPane3.setVisible(!txtAnswerPane3.isVisible());
-		showAnswerClicked(txtAnswerPane3, txtAnswerPane3.isVisible(), txtAnsw3);
+//		showAnswerClicked(txtAnswerPane3, txtAnswerPane3.isVisible(), txtAnsw3);
 
 		// ge.AnswerQuestion(3);
 	}
@@ -739,25 +690,25 @@ public class UI implements UIInterface {
 	@FXML
 	void answer4(MouseEvent event) {
 		txtAnswerPane4.setVisible(!txtAnswerPane4.isVisible());
-		showAnswerClicked(txtAnswerPane4, txtAnswerPane4.isVisible(), txtAnsw4);
+//		showAnswerClicked(txtAnswerPane4, txtAnswerPane4.isVisible(), txtAnsw4);
 
 		// ge.AnswerQuestion(4);
 	}
 
-	private void showAnswerClicked(Pane answerPane, Boolean display, TextArea ta) {
-		Timeline tl = new Timeline();
-		String originalColor = display ? "white" : "aqua";
-		String toChange = display ? "aqua" : "white";
-		tl.getKeyFrames().add(new KeyFrame(Duration.ZERO, "test", e -> {
-			ta.setStyle("-fx-text-fill: " + originalColor + ";");
-			ta.applyCss();
-		}));
-		tl.getKeyFrames().add(new KeyFrame(Duration.millis(200), "test", e -> {
-			ta.setStyle("-fx-text-fill: " + toChange + ";");
-			ta.applyCss();
-		}));
-		tl.play();
-	}
+//	private void showAnswerClicked(Pane answerPane, Boolean display, TextArea ta) {
+//		Timeline tl = new Timeline();
+//		String originalColor = display ? "white" : "aqua";
+//		String toChange = display ? "aqua" : "white";
+//		tl.getKeyFrames().add(new KeyFrame(Duration.ZERO, "test", e -> {
+//			ta.setStyle("-fx-text-fill: " + originalColor + ";");
+//			ta.applyCss();
+//		}));
+//		tl.getKeyFrames().add(new KeyFrame(Duration.millis(200), "test", e -> {
+//			ta.setStyle("-fx-text-fill: " + toChange + ";");
+//			ta.applyCss();
+//		}));
+//		tl.play();
+//	}
 
 	@Override
 	public void BuildBoard() {
@@ -1015,11 +966,62 @@ public class UI implements UIInterface {
 	}
 	
 	
+	@Override
+	public void displayQuestion(Question question, String player) {
+		//reset and hide all fields
+		resetAnsBox();
+		
+		//show only possible answers
+	
+		for (int i = 0; i < 4; i++) {
+			_answerPanes[i].setVisible(false);
+//			showAnswerClicked(_answerPanes[i], false, _txtAnswerAreas[i]);
+			_txtAnswerAreas[i].setVisible(false);
+		}
+
+		char temp[] = { 'a', 'b', 'c', 'd' };
+		gameLogScrollPane.setVisible(false);
+		questionsPane.setVisible(true);
+		txtAnswerPane.setVisible(true);
+		questionsPaneContainer.setVisible(true);
+		playerXIsAnswering.setText(player + " is answering question :");
+		theQuestion.setText(question.getqQuestion());
+
+		int i = 0;
+		for (Answer a : question.getqAnswers()) {
+			Logger.log(a.toString());
+			_txtAnswerAreas[i].setText(temp[i] + ". " + a.toString());
+			_txtAnswerAreas[i].setVisible(true);
+			_ansBox.get(i).setVisible(true);
+			// _answerPanes[i].setVisible(true);
+			i++;
+		}
+
+	}
+	
+	
+	@FXML
+	void sendAnswerBtn(MouseEvent event) {
+		//TODO - Update this method to support check box
+		//required change - for each checkbox add answer number if selected
+		
+		List<Integer> answers = new ArrayList<Integer>();
+		answers = getPlayerAnswers();
+
+//		for (int i = 0; i < _answerPanes.length; i++)
+//			if (_answerPanes[i].isVisible())
+//				answers.add(i);
+
+		Logger.log("Sending answers: " + answers + " to GameEngine");
+		ge.AnswerQuestion(answers);
+	}
+	
 	
 	
 	private void resetAnsBox() {
 		for (int i = 0; i < _ansBox.size(); i++) {
 			_ansBox.get(i).setSelected(false);			//reset check box
+			_ansBox.get(i).setVisible(false);
 			_txtAnswerAreas[i].setText("");				//reset answer text
 		}
 	}
@@ -1035,5 +1037,8 @@ public class UI implements UIInterface {
 		
 		return answers;
 	}
+	
+	
+
 
 }
