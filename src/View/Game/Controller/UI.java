@@ -1,5 +1,6 @@
 package View.Game.Controller;
 
+import java.awt.Checkbox;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -27,6 +28,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -447,6 +449,10 @@ public class UI implements UIInterface {
 	@FXML
 	private FlowPane tile39;
 
+	@FXML 
+	private CheckBox cb1, cb2, cb3, cb4;
+	private List<CheckBox> _ansBox = new ArrayList<>();
+	
 	private SpecialList<FlowPane> _tiles;
 
 	AnchorPane _playersAnchorPanes[];
@@ -620,7 +626,16 @@ public class UI implements UIInterface {
 
 	@Override
 	public void displayQuestion(Question question, String player) {
-
+		//reset and hide all fields
+		
+		
+		//reset selections
+		
+		
+		//show only possible answers
+		
+		
+		
 		for (int i = 0; i < 4; i++) {
 			_answerPanes[i].setVisible(false);
 			showAnswerClicked(_answerPanes[i], false, _txtAnswerAreas[i]);
@@ -684,6 +699,9 @@ public class UI implements UIInterface {
 
 	@FXML
 	void sendAnswerBtn(MouseEvent event) {
+		//TODO - Update this method to support check box
+		//required change - for each checkbox add answer number if selected
+		
 		List<Integer> answers = new ArrayList<Integer>();
 
 		for (int i = 0; i < _answerPanes.length; i++)
@@ -874,6 +892,12 @@ public class UI implements UIInterface {
 		ge = GameEngine.getInstance();
 		ge.build(this);
 
+		//add answer checkbox to arraylist
+		_ansBox.add(cb1);
+		_ansBox.add(cb2);
+		_ansBox.add(cb3);
+		_ansBox.add(cb4);
+		
 		initializeTiles();
 		initializeDicesFirstTime();
 		BuildBoard();
@@ -988,6 +1012,21 @@ public class UI implements UIInterface {
 	@Override
 	public void removePlayer(String playerToRemove) {
 		_playersAnchorPanes[playerList.indexOf(playerToRemove)].setVisible(false);
+	}
+	
+	
+	private void resetAnsBox() {
+		for (int i = 0; i < _ansBox.size(); i++) {
+			_ansBox.get(i).setSelected(false);
+		}
+	}
+	
+	private void getPlayerAnswers() {
+		for (int i = 0; i < _ansBox.size(); i++) {
+			if (_ansBox.get(i).isSelected()) {
+				
+			}
+		}
 	}
 
 }
