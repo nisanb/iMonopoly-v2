@@ -1,51 +1,142 @@
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 
 import org.junit.Test;
 
+import Controller.GameEngine;
+import Controller.Logger;
+import Controller.Management;
 import Entity.Dice;
+import Entity.Game;
+import Entity.GoToJail;
+import Entity.JSON;
+import Entity.MonDB;
+import Entity.Player;
+import Entity.PropertyTile;
+import Entity.Tile;
+import Utils.NamedColor;
+import Utils.Param;
+import Utils.PlayerState;
+import Utils.PropertyType;
+import Utils.QuestionStrength;
+import View.Game.Controller.UI;
 
 public class monopolyTest1 {
 	Dice dice = new Dice();
-
+	Player p;
+	Player p2;
+	
 	@Test
-	public void rollDiceSum() {
-
-		// Why check this method? are you checking JAVAs' random ?
-		// Instead you could check if a user position is correct after rolling a
-		// dice..
-		// Same applies to rollDice1 and rollDice2
-		int sum = dice.getDice1() + dice.getDice2();
-
-		// You can just-
-		// assertTrue(sum>=2&&sum<=12);
-		// instead of if and else
-		// What about sum=2 or sum=12?
-		if (sum > 2 && sum < 12) {
-			// Why use assertTrue(true)?
-			assertTrue(true);
-		} else
-			// this always returns true...
-			assertFalse(false);
-
+	public void initialize(){
+		Logger.initializeMyFileWriter();
+		MonDB.getInstance().resetParamsToDefault();
+		MonDB.getInstance().getCurrentGame();
+		List<String> list=new ArrayList<>();
+		list.add("player1");
+		list.add("player2");
+		MonDB.getInstance().buildGame(list, new HashMap<>());
+		p=new Player("player1",5655.0,NamedColor.BLUE);
+		p2=new Player("player2",5655.0,NamedColor.RED);
+	}
+	
+	@Test
+	public void checkSellProperty() {
+	p=new Player("player1",5655.0,NamedColor.BLUE);
+	p2=new Player("player2",5655.0,NamedColor.RED);
+	PropertyTile pro=new PropertyTile(1, "test tile", QuestionStrength.EASY );
+	pro.addPlayer(p);
+	pro.setCurrentPrice(909090000);
+	p.setCurrentTile(pro);
+	pro.getInitialPrice();
+	Double cashBeforeSell=p.getCash();	
+	p.sellProperty();	
+	System.out.println("cash at start : "+cashBeforeSell+ "\n cash now: "+p.getCash());
+	System.out.println(cashBeforeSell<p.getCash());
+	assertTrue(cashBeforeSell<p.getCash());
+	}
+	
+	@Test
+	public void checkPropertyStrength(){
+		Logger.initializeMyFileWriter();
+		MonDB.getInstance().getCurrentGame();
+		PropertyTile pro=new PropertyTile(1, "test tile", QuestionStrength.EASY );
+		pro.setCurrentPrice(90909999);
+		System.out.println(pro.getPropertyStrength().toString());
+		System.out.println(PropertyType.HARD);
+		assertTrue(pro.getPropertyStrength().toString().equals(PropertyType.HARD.toString()));
 	}
 
+	
 	@Test
-	public void rollDice1() {
-		int first = dice.getDice1();
-		if (first > 0 && first < 7) {
-			assertTrue(true);
-		} else
-			assertFalse(false);
+	public void playerMoveNotInJail() {
+		Logger.initializeMyFileWriter();
+		MonDB.getInstance().resetParamsToDefault();
+		MonDB.getInstance().getCurrentGame();
+		List<String> list=new ArrayList<>();
+		list.add("player1");
+		list.add("player2");
+		MonDB.getInstance().buildGame(list, new HashMap<>());
+		Player p=new Player("player1",5655.0,NamedColor.BLUE);
+		Player p2=new Player("player2",5655.0,NamedColor.RED);
+		int currentTile=MonDB.getInstance().getCurrentGame().getCurrentPlayer().getCurrentTile().getTileNumber();
+		int dice=RollDice();	
+		int afterRollTile=MonDB.getInstance().getCurrentGame().getCurrentPlayer().getCurrentTile().getTileNumber();
+		assertTrue(currentTile+dice==afterRollTile);
 	}
+	
+	@Test
+	public void playerMoveInJail() {
+		Logger.initializeMyFileWriter();
+		MonDB.getInstance().resetParamsToDefault();
+		MonDB.getInstance().getCurrentGame();
+		List<String> list=new ArrayList<>();
+		list.add("player1");
+		list.add("player2");
+		MonDB.getInstance().buildGame(list, new HashMap<>());
+		Player p=new Player("player1",5655.0,NamedColor.BLUE);
+		Player p2=new Player("player2",5655.0,NamedColor.RED);
+		MonDB.getInstance().getCurrentGame().getCurrentPlayer().setCurrentTile(MonDB.getInstance().getCurrentGame().getTile(10));
+		MonDB.getInstance().getCurrentGame().getCurrentPlayer().setState(PlayerState.JAILED);
+		int currentTile=MonDB.getInstance().getCurrentGame().getCurrentPlayer().getCurrentTile().getTileNumber();
+		RollDice();
+		int afterRollTile=MonDB.getInstance().getCurrentGame().getCurrentPlayer().getCurrentTile().getTileNumber();
+		assertTrue(currentTile==afterRollTile);
+	}
+	
+	public int RollDice() {
+		boolean flag=true;
+		Game _game=MonDB.getInstance().getCurrentGame();
+		Dice dice = _game.rollDice();
+		System.out.println("Player " + _game.getCurrentPlayer() + " rolled " + dice.getSum() + " !");
+		Player currentPlayer=_game.getCurrentPlayer();
+		/**
+		 * Jail Treatment
+		 */
+		if (MonDB.getInstance().getCurrentGame().getCurrentPlayer().isInJail()) {
+			flag=false;
+			if (dice.getDice1().equals(dice.getDice2())) {
+				System.out.println("Player " + currentPlayer + " rolled a double and is free from jail!");
+				currentPlayer.setState(PlayerState.WAITING);
+			} else {
+				System.out.println("Player " + currentPlayer+ " did not roll a double. Moving on to next turn.");
+			}
+		}
+		System.out.println("Current Player: " + currentPlayer);
+		System.out.println("Current Tile: " + currentPlayer.getCurrentTile());
+		System.out.println("Current Tile # " + currentPlayer.getCurrentTile().getTileNumber());
+		if (flag){
+			Integer moveToTile = (dice.getSum() + MonDB.getInstance().getCurrentGame().getCurrentPlayer().getCurrentTile().getTileNumber()) % 40;
+			System.out.println("move to tile  "+ moveToTile);
+			MonDB.getData().getCurrentGame().getCurrentPlayer().setCurrentTile(_game.getTile(moveToTile));
+		}
+		return dice.getDice1()+dice.getDice2();
+	}
+	
+	
 
-	@Test
-	public void rollDice2() {
-		int second = dice.getDice2();
-		if (second > 0 && second < 7) {
-			assertTrue(true);
-		} else
-			assertFalse(false);
-	}
 
 }
