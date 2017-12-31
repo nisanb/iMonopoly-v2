@@ -1,4 +1,4 @@
-package UnitTest;
+
 
 import static org.junit.Assert.*;
 
@@ -47,8 +47,10 @@ public class QuestionTest {
 			//check question method 
 			//System.out.println("CHECKING QUESTION " + q.getqNumber() + " Correct Answers Are: " + correct + "AFTER CHECKED: " + q.checkCorrect(answers, null));
 			assertTrue(q.checkCorrect(answers, null));
-			System.out.println("Passed " + q.getqNumber());		
+			System.out.println("Passed " + q.getqNumber());	
 		}
+		
+		System.err.println("Finished - Question.chackCorrect method is working well!");
 		
 	}
 

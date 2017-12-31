@@ -1,4 +1,4 @@
-package UnitTest;
+
 
 import static org.junit.Assert.assertTrue;
 
@@ -10,8 +10,9 @@ import java.util.List;
 import org.junit.Test;
 
 import Entity.Player;
+import Utils.PlayerComparator;
 
-public class SortingTest {
+public class PlayerSortingTest {
 
 	@Test
 	public void test() {
@@ -22,8 +23,7 @@ public class SortingTest {
 		toReturn.add(new Player("P4", 800.0));
 
 		// the comparator to be tested
-		Collections.sort(toReturn,
-				(Comparator<Player>) (Player p1, Player p2) -> p2.getTotalValue().compareTo(p1.getTotalValue()));
+		Collections.sort(toReturn, new PlayerComparator());
 
 		String expected = "P1 P4 P3 P2 ";
 		String runResault = "";
