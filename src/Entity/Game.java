@@ -28,6 +28,11 @@ public class Game implements Serializable {
 	 */
 	transient private List<Tilable> _gameTiles;
 	private LinkedList<Player> _playList;
+	
+	public void set_playList(LinkedList<Player> _playList) {
+		this._playList = _playList;
+	}
+
 	private List<Player> _gamePlayers;
 
 	/**
@@ -36,7 +41,7 @@ public class Game implements Serializable {
 	private User _currentLoggedUser;
 	private Integer _currentRound;
 
-	protected Game() {
+	public Game() {
 		setGameNum();
 		/**
 		 * Set Date
@@ -45,6 +50,14 @@ public class Game implements Serializable {
 		this.setCurrentRound(1);
 		this._gameTiles = new ArrayList<>();
 		this._gameTiles.addAll(MonDB.getInstance().getTileSet());
+	}
+	
+	//this constructor is for testing
+	public Game(boolean isTest, LinkedList<Player> list) {
+		this._gameNum = 1;
+		this.setGameDate(new Date());
+		this.setCurrentRound(1);
+		this._gamePlayers = list;		
 	}
 
 	private void setGameNum() {
@@ -229,8 +242,8 @@ public class Game implements Serializable {
 	 */
 	public List<Player> getSummary() {
 		Set<Player> list = new HashSet<>();
-		list.addAll(_playList);
-		list.addAll(_gamePlayers);
+		if (_playList !=null) list.addAll(_playList);
+		if (_gamePlayers !=null) list.addAll(_gamePlayers);
 
 		// calc total value of the player
 
