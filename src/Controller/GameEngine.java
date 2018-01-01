@@ -222,7 +222,7 @@ public class GameEngine implements IGameEngine {
 		ui.gameLog("Player " + _game.getCurrentPlayer() + " rolled " + dice.getSum() + " !");
 		ui.changeDice(1, dice.getDice1());
 		ui.changeDice(2, dice.getDice2());
-
+		
 		/**
 		 * Jail Treatment
 		 */
@@ -414,10 +414,19 @@ public class GameEngine implements IGameEngine {
 
 	@Override
 	public void btnBailOut() {
-		currentPlayer().deductCash((Integer) Param.get(Param.RELEASE_FROM_JAIL));
+		
 		ui.gameLog(currentPlayer() + " has bailed out of jail!");
-		currentPlayer().setState(PlayerState.WAITING);
+		bailOut();
+		
+		//updatePlayer(currentPlayer());
 		ui.showBailOut(false);
+		
+	}
+	
+	public void bailOut(){
+		currentPlayer().deductCash((Integer) Param.get(Param.RELEASE_FROM_JAIL));
+		currentPlayer().setState(PlayerState.WAITING);
+		
 	}
 
 	/**
