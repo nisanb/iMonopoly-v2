@@ -18,7 +18,7 @@ import Utils.PlayerState;
 import Utils.PropertyType;
 import Utils.QuestionStrength;
 
-public class monopolyTest1 {
+public class bailOutStateTest {
 
 	@Test
 	public void bailOutState() {

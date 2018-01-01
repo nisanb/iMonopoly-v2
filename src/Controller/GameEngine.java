@@ -414,10 +414,8 @@ public class GameEngine implements IGameEngine {
 
 	@Override
 	public void btnBailOut() {
-		
 		ui.gameLog(currentPlayer() + " has bailed out of jail!");
 		bailOut();
-		
 		//updatePlayer(currentPlayer());
 		ui.showBailOut(false);
 		

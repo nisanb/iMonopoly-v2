@@ -26,6 +26,10 @@ public class jsonTest {
 		String output = JSON.getInstance().getFileAsString();
 		
 		//check if the file has the same content
+		System.out.println("//////////////");
+		System.out.println(input);
+		System.out.println(output);
+		System.out.println("//////////////");
 		assertTrue("Successful", input.equals(output));
 		
 		
