@@ -50,7 +50,13 @@ public class PropertyTile extends Tile {
 	}
 
 	public QuestionStrength getPropertyStrength() {
-		return propertyStrength;
+		if (this.currentPrice.compareTo((Integer) Param.get(Param.PROPERTY_MINPRICE_HARD)) > 0)
+			return QuestionStrength.HARD;
+
+		if (this.currentPrice.compareTo((Integer) Param.get(Param.PROPERTY_MEDIUM_DISCOUNT)) > 0)
+			return QuestionStrength.MEDIUM;
+
+		return QuestionStrength.EASY;
 	}
 
 	public void setPropertyStrength(QuestionStrength propertyStrength) {
