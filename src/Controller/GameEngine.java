@@ -64,14 +64,18 @@ public class GameEngine implements IGameEngine {
 		Logger.log("Updating Game UI in Backend");
 		this.ui = ui;
 		this._game = MonDB.getInstance().getCurrentGame();
-		ui.build(_game.getGamePlayers());
-		ui.gameLog("A new game has been initiated.");
-		for (Player p : _game.getGamePlayers()) {
-			ui.gameLog("Player " + p + " has joined the game.");
-			p.setCurrentTile(_game.getTile(0));
-			updatePlayerProperties(p);
-		}
 
+		if (ui != null) {
+			ui.gameLog("A new game has been initiated.");
+			ui.build(_game.getGamePlayers());
+
+			for (Player p : _game.getGamePlayers()) {
+				ui.gameLog("Player " + p + " has joined the game.");
+				p.setCurrentTile(_game.getTile(0));
+				updatePlayerProperties(p);
+			}
+
+		}
 		btnNextTurn();
 	}
 
@@ -222,7 +226,7 @@ public class GameEngine implements IGameEngine {
 		ui.gameLog("Player " + _game.getCurrentPlayer() + " rolled " + dice.getSum() + " !");
 		ui.changeDice(1, dice.getDice1());
 		ui.changeDice(2, dice.getDice2());
-		
+
 		/**
 		 * Jail Treatment
 		 */
@@ -416,15 +420,16 @@ public class GameEngine implements IGameEngine {
 	public void btnBailOut() {
 		ui.gameLog(currentPlayer() + " has bailed out of jail!");
 		bailOut();
-		//updatePlayer(currentPlayer());
+		// updatePlayer(currentPlayer());
 		ui.showBailOut(false);
-		
+
 	}
-	
-	public void bailOut(){
+
+	public void bailOut() {
+		System.out.println("Bailing Out: " + currentPlayer());
 		currentPlayer().deductCash((Integer) Param.get(Param.RELEASE_FROM_JAIL));
 		currentPlayer().setState(PlayerState.WAITING);
-		
+
 	}
 
 	/**

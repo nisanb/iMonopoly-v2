@@ -57,7 +57,7 @@ public class Player extends User implements Comparable<Player> {
 		return _state;
 	}
 
-	public void setState(PlayerState ps) {
+	public synchronized void setState(PlayerState ps) {
 		_state = ps;
 	}
 

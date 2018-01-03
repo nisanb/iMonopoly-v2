@@ -122,6 +122,10 @@ public class MonDB implements Serializable {
 		return Data;
 	}
 
+	public void clearCurrentGame() {
+		this.currentGame = null;
+	}
+
 	protected static void setData(MonDB data) {
 		Data = data;
 	}

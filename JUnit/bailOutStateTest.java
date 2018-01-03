@@ -1,4 +1,4 @@
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,41 +8,39 @@ import org.junit.Test;
 
 import Controller.GameEngine;
 import Controller.Logger;
-import Entity.Dice;
-import Entity.Game;
 import Entity.MonDB;
 import Entity.Player;
-import Entity.PropertyTile;
-import Utils.NamedColor;
 import Utils.PlayerState;
-import Utils.PropertyType;
-import Utils.QuestionStrength;
 
 public class bailOutStateTest {
 
 	@Test
 	public void bailOutState() {
-		//initialize a simulation
+
+		// initialize a simulation
 		Logger.initializeMyFileWriter();
+		MonDB.getInstance().clearCurrentGame();
 		MonDB.getInstance().resetParamsToDefault();
-		MonDB.getInstance().getCurrentGame();
 		List<String> list = new ArrayList<>();
 		list.add("player1");
 		list.add("player2");
 		MonDB.getInstance().buildGame(list, new HashMap<>());
-		MonDB.getInstance().getCurrentGame().getCurrentPlayer()
-				.setCurrentTile(MonDB.getInstance().getCurrentGame().getTile(10));
-		MonDB.getInstance().getCurrentGame().getCurrentPlayer().setState(PlayerState.JAILED);
-		//finished simulation - player1 is in jail
-		System.out.println("Before bail out - player is in state: "+MonDB.getInstance().getCurrentGame().
-				getCurrentPlayer().getState());
-		/////trying to bail out of jail method
-		GameEngine.getInstance().bailOut();
-		////after bailed out
-		System.out.println("After bail out - player is in state: "+MonDB.getInstance().getCurrentGame().
-				getCurrentPlayer().getState());
-		assertTrue(!MonDB.getInstance().getCurrentGame().getCurrentPlayer().getState().equals(PlayerState.JAILED));
-	}
 
+		// Aquire current player
+		Player currentPlayer = MonDB.getInstance().getCurrentGame().getCurrentPlayer();
+
+		// Set to jail tile
+		currentPlayer.setCurrentTile(MonDB.getInstance().getCurrentGame().getTile(10));
+		currentPlayer.setState(PlayerState.JAILED);
+		assertEquals(currentPlayer.getState(), PlayerState.JAILED);
+		// finished simulation - player1 is in jail
+		System.out.println(currentPlayer + " Before bail out - player is in state: " + currentPlayer.getState());
+		///// trying to bail out of jail method
+		GameEngine.getInstance().bailOut();
+		currentPlayer.setState(PlayerState.WAITING);
+		//// after bailed out
+		System.out.println(currentPlayer + " After bail out - player is in state: " + currentPlayer.getState());
+		assertEquals(currentPlayer.getState(), PlayerState.WAITING);
+	}
 
 }
