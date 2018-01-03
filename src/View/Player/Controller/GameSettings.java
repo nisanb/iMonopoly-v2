@@ -312,7 +312,7 @@ public class GameSettings {
 	 * @param playerList
 	 * @return
 	 */
-	private boolean duplicates(final List<String> playerList) {
+	public boolean duplicates(final List<String> playerList) {
 		Set<String> dup = new HashSet<String>();
 		for (String i : playerList) {
 			if (dup.contains(i))

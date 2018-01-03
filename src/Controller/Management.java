@@ -174,7 +174,7 @@ public class Management implements IManagement {
 	 * this method returns the next question num to create
 	 */
 	@Override
-	public long getNextQuestionNum() {
+	public long getNextQuestionNum(List<Question> toReturn) {
 		List<Question> list = getQuestions();
 		long qnum = 0;
 		for (Question q : list) {

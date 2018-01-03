@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import Controller.iWindow;
@@ -152,6 +153,7 @@ public class AddQuestion {
 	private ArrayList<QuestionTag> tags;
 	private Team team;
 	private IManagement mng = iWindow.getManagement();
+	private List<Question> getAllQuestion= new ArrayList();
 
 	@FXML // This method is called by the FXMLLoader when initialization is
 			// complete
@@ -160,9 +162,11 @@ public class AddQuestion {
 		getTeam();
 		getTag();
 		SetButtonToFalse();
-
+		
+		//get all question//
+		List<Question> a= mng.getQuestions();
 		// get qnum
-		qNum = mng.getNextQuestionNum();
+		qNum = mng.getNextQuestionNum(a);
 		txtQuestion1.setText(qNum + "");
 
 		// ans1//

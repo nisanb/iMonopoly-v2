@@ -85,7 +85,7 @@ public interface IManagement {
 
 	public void exportDB();
 
-	public long getNextQuestionNum();
+	public long getNextQuestionNum(List<Question> toReturn);
 
 	public void addGameToDB(Game game); // add game to DB
 
