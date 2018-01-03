@@ -248,14 +248,16 @@ public class Management implements IManagement {
 
 		// Go through all games
 		Map<Integer, Game> games = _db.getGameData();
-		Logger.log("Found " + games.size() + " games in database.");
-
+		Logger.log("Player " + ps + " is being reviewed.");
+		Player tmp = new Player(ps.getNickName());
 		// count game and wins
 		for (Game game : games.values()) {
-			if (!game.getPlayers().contains(ps))
+			if (!game.getGamePlayers().contains(tmp)) {
+				Logger.log("Player " + ps + " is not in the list + " + game.getPlayers().toString());
 				continue;
+			}
 
-			Player p = game.getPlayers().get(game.getPlayers().indexOf(ps));
+			Player p = game.getGamePlayers().get(game.getGamePlayers().indexOf(ps));
 			ps.addGame();
 			if (game.getWinner().equals(p))
 				ps.addWin();

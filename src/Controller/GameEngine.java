@@ -246,6 +246,7 @@ public class GameEngine implements IGameEngine {
 		Logger.log("Current Tile # " + currentPlayer().getCurrentTile().getTileNumber());
 
 		Integer moveToTile = (dice.getSum() + currentPlayer().getCurrentTile().getTileNumber()) % 40;
+		moveToTile = 6;
 		ui.allowFinishTurn(true);
 		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), moveToTile);
 	}
