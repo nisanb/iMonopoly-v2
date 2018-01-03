@@ -26,7 +26,7 @@
       </ImageView>
       <ImageView fx:id="btnVolume" fitHeight="25.0" fitWidth="50.0" layoutX="720.400000000001" layoutY="577.599999999999" onMouseClicked="#doSwapMusic" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="47.80000000000098" AnchorPane.rightAnchor="31.199999999999022">
          <image>
-            <Image url="@../resources/sound_on.png" />
+            <Image url="@../Resources/sound_on.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="416.0" fitWidth="752.0" layoutX="86.0" layoutY="155.0" opacity="0.16" pickOnBounds="true" preserveRatio="true">

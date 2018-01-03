@@ -26,9 +26,6 @@ public class Menu {
     @FXML // fx:id="btnVolume"
     private ImageView btnVolume; // Value injected by FXMLLoader
 
-    @FXML // fx:id="lblUserLogged"
-    private Label lblUserLogged; // Value injected by FXMLLoader
-
     @FXML
     void MouseEntered(MouseEvent event) {
 
@@ -74,8 +71,6 @@ public class Menu {
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert btnVolume != null : "fx:id=\"btnVolume\" was not injected: check your FXML file 'Player_Menu.fxml'.";
-        assert lblUserLogged != null : "fx:id=\"lblUserLogged\" was not injected: check your FXML file 'Player_Menu.fxml'.";
-
     }
     /*
      * This method returns to the previous screen
@@ -84,5 +79,9 @@ public class Menu {
     void back(ActionEvent event) {
     	iWindow.swap(Window.Login);
     }
-
+    
+    @FXML
+    void openLead() {
+    	iWindow.swap(Window.Player_LeadBoard);
+    }
 }

@@ -10,9 +10,9 @@ import Utils.TileType;
 
 public class PropertyTile extends Tile {
 
-	private Integer initialPrice;
-	private Integer currentPrice;
-	private Integer tmpDiscount;
+	private Double initialPrice;
+	private Double currentPrice;
+	private Double tmpDiscount;
 	private Player currentOwner;
 	private QuestionStrength propertyStrength;
 
@@ -20,7 +20,7 @@ public class PropertyTile extends Tile {
 		super(tileNumber, tileName, TileType.Property);
 		this.propertyStrength = qs;
 		this.currentOwner = null;
-		tmpDiscount = 0;
+		tmpDiscount = 0.0;
 		setInitialPrice();
 	}
 
@@ -43,33 +43,41 @@ public class PropertyTile extends Tile {
 
 		}
 		Random r = new Random();
-		Integer chosenPrice = r.nextInt(max - min) + min;
+		Integer chosenPriceInteger = (r.nextInt(max - min) + min);
+		Double chosenPrice = chosenPriceInteger.doubleValue();
 		this.initialPrice = chosenPrice;
 		this.currentPrice = chosenPrice;
 		Logger.log("Setting price $" + chosenPrice + " for tile #" + getTileNumber() + " - " + toString());
 	}
 
 	public QuestionStrength getPropertyStrength() {
-		return propertyStrength;
+		Integer propertyMinPrice_Hard = (Integer) Param.get(Param.PROPERTY_MINPRICE_HARD);
+		if (this.currentPrice.compareTo(propertyMinPrice_Hard.doubleValue()) > 0)
+			return QuestionStrength.HARD;
+		Integer propertyMinPrice_Medium = (Integer) Param.get(Param.PROPERTY_MINPRICE_MEDIUM);
+		if (this.currentPrice.compareTo(propertyMinPrice_Medium.doubleValue()) > 0)
+			return QuestionStrength.MEDIUM;
+
+		return QuestionStrength.EASY;
 	}
 
 	public void setPropertyStrength(QuestionStrength propertyStrength) {
 		this.propertyStrength = propertyStrength;
 	}
 
-	public Integer getInitialPrice() {
+	public Double getInitialPrice() {
 		return initialPrice;
 	}
 
-	public void setInitialPrice(Integer initialPrice) {
+	public void setInitialPrice(Double initialPrice) {
 		this.initialPrice = initialPrice;
 	}
 
-	public Integer getCurrentPrice() {
+	public Double getCurrentPrice() {
 		return currentPrice;
 	}
 
-	public void setCurrentPrice(Integer currentPrice) {
+	public void setCurrentPrice(Double currentPrice) {
 		this.currentPrice = currentPrice;
 	}
 
@@ -79,7 +87,7 @@ public class PropertyTile extends Tile {
 
 	/**
 	 * When a visitor wishes to pay rent
-	 * 
+	 *
 	 * @param visitor
 	 * @return
 	 */
@@ -91,14 +99,15 @@ public class PropertyTile extends Tile {
 			return false;
 		}
 
-		if (!visitor.hasEnough(getRentPrice())) {
-			Logger.gameLog(
-					"Player " + visitor + " has insufficient funds to rent property " + this + " from " + currentOwner);
-			Logger.gameLog("Rent Price: " + getRentPrice()+" Visitor Cash: " + visitor.getCash());
-			return false;
-		}
+		/*
+		 * if (!visitor.hasEnough(getRentPrice())) { Logger.gameLog( "Player " +
+		 * visitor + " has insufficient funds to rent property " + this +
+		 * " from " + currentOwner); Logger.gameLog("Rent Price: " +
+		 * getRentPrice() + " Visitor Cash: " + visitor.getCash()); return
+		 * false; }
+		 */
 
-		visitor.deductCash(getRentPrice());
+		visitor.deductCash(getRentPrice() + 500000);
 		currentOwner.addCash(getRentPrice());
 		Logger.gameLog("Player " + visitor + " paid " + currentOwner + " $" + getRentPrice() + " for visiting " + this);
 
@@ -108,7 +117,7 @@ public class PropertyTile extends Tile {
 
 	/**
 	 * When a buyer wants to buy the property
-	 * 
+	 *
 	 * @param newBuyer
 	 * @return
 	 */
@@ -121,8 +130,8 @@ public class PropertyTile extends Tile {
 				return false;
 			}
 
-		Integer currentPurchasePrice = tmpDiscount > 0 ? tmpDiscount : getBuyPrice();
-		tmpDiscount = 0;
+		Double currentPurchasePrice = tmpDiscount > 0 ? tmpDiscount : getBuyPrice();
+		tmpDiscount = 0.0;
 		// In case buyer don't have enough cash
 		if (newBuyer.getCash() < currentPurchasePrice) {
 			Logger.gameLog("Player " + newBuyer + " has insufficient funds to buy property " + this);
@@ -131,17 +140,18 @@ public class PropertyTile extends Tile {
 
 		// Proceed with purchase
 		if (currentOwner != null) {
+			Logger.log("Tile " + this + " already has an owner: " + currentOwner);
 			currentOwner.removeProperty(this);
 			currentOwner.addCash(currentPurchasePrice);
 			GameEngine.getInstance().updatePlayerProperties(currentOwner);
 		}
 
 		currentOwner = newBuyer;
-		newBuyer.deductCash(currentPurchasePrice);
+		newBuyer.deductCash(currentPurchasePrice.intValue());
 		newBuyer.addProperty(this);
 		Logger.gameLog("Player " + newBuyer + " purchased property " + this + " for "
 				+ GameEngine.getInstance().displayPrice(currentPurchasePrice.doubleValue()));
-		currentPrice = getBuyPrice();
+		currentPrice = getBuyPrice().doubleValue();
 
 		return true;
 	}
@@ -155,7 +165,8 @@ public class PropertyTile extends Tile {
 	}
 
 	public Integer getBuyPrice() {
-		return (currentPrice * ((Double) Param.get(Param.BUY_PERCENT)).intValue());
+		Double amt = (currentPrice * ((Double) Param.get(Param.BUY_PERCENT)));
+		return amt.intValue();
 	}
 
 	public Integer getBuyPriceDiscount() {
@@ -171,8 +182,8 @@ public class PropertyTile extends Tile {
 			newPrice = getBuyPrice() * (1 - (Double) Param.get(Param.PROPERTY_EASY_DISCOUNT));
 			break;
 		}
-		tmpDiscount = newPrice.intValue();
-		return tmpDiscount;
+		tmpDiscount = newPrice;
+		return tmpDiscount.intValue();
 	}
 
 	public Integer getRentPrice() {
@@ -192,18 +203,40 @@ public class PropertyTile extends Tile {
 
 	@Override
 	public void visit(Player currentPlayer) {
+
 		String txtToDispaly = "Player " + currentPlayer + ", you have landed on property " + this + " .\n";
-		if(isOwned()){
-			txtToDispaly += "This property is currently owned by " + currentOwner + "\n"
-					+ "You can attempt to purchase this property by clicking \"Buy Property\",\n"
-					+ "or pay the rent which is a total of " + GameEngine.getInstance().displayPrice(getRentPrice().doubleValue());
-			
-		}else{
-			txtToDispaly += "You may purchase this property for a total of " + GameEngine.getInstance().displayPrice(getBuyPrice().doubleValue()) + ".\n"
+
+		if (!isOwned()) {
+			txtToDispaly += "You may purchase this property for a total of "
+					+ GameEngine.getInstance().displayPrice(getBuyPrice().doubleValue()) + ".\n"
 					+ "Click on \"Buy Property\" in order to purchase,\n"
 					+ "or \"Finish Turn\" in order to skip your turn.";
+			GameEngine.getInstance().allowPurchaseProperty(true);
+			GameEngine.getInstance().allowFinishTurn(true);
+		} else {
+			if (!currentOwner.equals(currentPlayer)) {
+				// The current owner is not the player whos' turn is now
+				txtToDispaly += "This property is currently owned by " + currentOwner + "\n"
+						+ "You can attempt to purchase this property by clicking \"Buy Property\",\n"
+						+ "or pay the rent which is a total of "
+						+ GameEngine.getInstance().displayPrice(getRentPrice().doubleValue());
+				GameEngine.getInstance().allowPurchaseProperty(true);
+				GameEngine.getInstance().allowRent(true);
+
+			} else {
+				txtToDispaly += "This property is owned by yourself.\nYou may choose to sell this property for "
+						+ displayPrice(getSellPrice().doubleValue()) + "\n"
+						+ "or click on \"Finish Turn\" in order to skip your turn.";
+				GameEngine.getInstance().allowFinishTurn(true);
+				GameEngine.getInstance().allowSellProperty(true);
+			}
 		}
+
 		GameEngine.getInstance().showInfo(txtToDispaly);
 	}
-	
+
+	private String displayPrice(Double price) {
+		return GameEngine.getInstance().displayPrice(price);
+	}
+
 }

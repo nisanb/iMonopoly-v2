@@ -1,75 +1,89 @@
 package View.Player.Controller;
 
+import java.util.List;
+
 import Controller.iWindow;
-import Entity.Player;
+import Entity.PlayerStats;
 import Utils.Window;
 import View.IManagement;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
-
 public class Leadboard {
-	//======================================= FX COMPONENTS ==================================================
-    
+	// ======================================= FX COMPONENTS
+	// ==================================================
+
 	@FXML
-    private ImageView btnVolume;
+	private ImageView btnVolume;
 
-    @FXML
-    private TableColumn<?, ?> number;
+	@FXML
+	private TableColumn<PlayerStats, String> number;
 
-    @FXML
-    private TableColumn<?, ?> name;
+	@FXML
+	private TableColumn<PlayerStats, String> name;
 
-    @FXML
-    private TableColumn<?, ?> games;
+	@FXML
+	private TableColumn<PlayerStats, String> games;
 
-    @FXML
-    private TableColumn<?, ?> wins;
+	@FXML
+	private TableColumn<PlayerStats, String> wins;
 
-    @FXML
-    private TableColumn<?, ?> winRatio;
+	@FXML
+	private TableColumn<PlayerStats, String> winRatio;
 
-    @FXML
-    private TableColumn<?, ?> quesRatio;
-    
-    @FXML
-    private TableView<Player> tableView;
-	
-    
-    //LOCAL VARIABLES
+	@FXML
+	private TableColumn<PlayerStats, String> quesRatio;
+
+	@FXML
+	private TableView<PlayerStats> tableView;
+
+	// LOCAL VARIABLES
 	IManagement _mng = iWindow.getManagement();
-	
-	
-	
-	//=========================================== METHODS ===================================================
-    @FXML
-    void initialize() {
-    	/*
-    	ObservableList<Player> data = FXCollections.observableArrayList(_mng.getLeadBoard());
-    	
-    	tableView = new TableView<Player>(data);
 
-    	TableColumn<Player,String> name = new TableColumn<Player, String>("nickName");
-    	name.setCellValueFactory(new Callback<CellDataFeatures<Player, String>, ObservableValue<String>>() {
-    		public ObservableValue<String> call(CellDataFeatures<Player, String> p) {
-    			// p.getValue() returns the Person instance for a particular TableView row
-    			return p.getValue().getLeadboardNickName();	
-    			}
-    	});
+	// =========================================== METHODS
+	// ===================================================
+	@FXML
+	void initialize() {
 
-    	tableView.getColumns().add(name);
-    	
-    	System.out.println(data.toString());
-    	*/    	
-    }
-    
-    
-    @FXML
-    void back(ActionEvent event) {
-    	iWindow.swap(Window.Admin_Menu);
-    }
+		// //create players for testing
+		// List<Player> players = new ArrayList<Player>();
+		// Random rand = new Random();
+		// for (int i = 0; i < 5; i++) {
+		// players.add(new Player("P"+(i+1), i*100000.0));
+		// players.get(i).setCorrectAnswers(10*i+rand.nextInt(50));
+		// players.get(i).setTotalAnswers(20*i+rand.nextInt(50));
+		// players.get(i).setWins(10*i+rand.nextInt(50));
+		// players.get(i).setGames(15*i+rand.nextInt(50));
+		// players.get(i).calcWinRation();
+		// players.get(i).clacQuestionRatio();
+		// players.get(i).setLeeadboardPosition(i+1);
+		// }
+
+		List<PlayerStats> players = _mng.getLeadBoard();
+		// add players to list
+		ObservableList<PlayerStats> data = FXCollections.observableArrayList(players);
+
+		// add data to colomns
+		number.setCellValueFactory(new PropertyValueFactory<PlayerStats, String>("LeaderBoardPosition"));
+		name.setCellValueFactory(new PropertyValueFactory<PlayerStats, String>("nickName"));
+		games.setCellValueFactory(new PropertyValueFactory<PlayerStats, String>("counter_Games"));
+		wins.setCellValueFactory(new PropertyValueFactory<PlayerStats, String>("counter_Wins"));
+		winRatio.setCellValueFactory(new PropertyValueFactory<PlayerStats, String>("WinRate"));
+		quesRatio.setCellValueFactory(new PropertyValueFactory<PlayerStats, String>("QuestionRatio"));
+
+		// winRatio = new TableColumn();
+		tableView.setItems(data);
+
+	}
+
+	@FXML
+	void back(ActionEvent event) {
+		iWindow.swap(Window.Player_Menu);
+	}
 }
-	

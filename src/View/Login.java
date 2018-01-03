@@ -69,7 +69,7 @@ public class Login {
     	}
     	else
     	{
-    	mng.login(frmNickname.getText());
+    	mng.login(frmNickname.getText(), true);
     	setUserBGC("white");
     	iWindow.swap(Window.Player_Menu);
     	}

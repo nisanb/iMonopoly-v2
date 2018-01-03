@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Stack;
-import java.util.TreeMap;
 
 import Entity.Dice;
 import Entity.Game;
@@ -15,10 +14,11 @@ import Entity.MonDB;
 import Entity.Player;
 import Entity.PropertyTile;
 import Entity.Question;
+import Utils.Param;
 import Utils.PlayerState;
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
-import Utils.TileType;
+import Utils.Window;
 import View.IGameEngine;
 import View.Game.Controller.UI;
 
@@ -35,7 +35,7 @@ public class GameEngine implements IGameEngine {
 	private Stack<Question> questionStack = null;
 	private Boolean cycleThroughPlayers = false;
 	private Map<Player, Boolean> playerAnswers;
-	
+
 	/**
 	 * Private constructor
 	 */
@@ -47,7 +47,7 @@ public class GameEngine implements IGameEngine {
 
 	/**
 	 * Singleton instance
-	 * 
+	 *
 	 * @return
 	 */
 	public static GameEngine getInstance() {
@@ -61,14 +61,21 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void build(UI ui) {
+		Logger.log("Updating Game UI in Backend");
 		this.ui = ui;
-		ui.build(_game.getGamePlayers());
-		ui.gameLog("A new game has been initiated.");
-		for (Player p : _game.getGamePlayers()) {
-			ui.gameLog("Player " + p + " has joined the game.");
-			updatePlayerProperties(p);
-		}
+		this._game = MonDB.getInstance().getCurrentGame();
 
+		if (ui != null) {
+			ui.gameLog("A new game has been initiated.");
+			ui.build(_game.getGamePlayers());
+
+			for (Player p : _game.getGamePlayers()) {
+				ui.gameLog("Player " + p + " has joined the game.");
+				p.setCurrentTile(_game.getTile(0));
+				updatePlayerProperties(p);
+			}
+
+		}
 		btnNextTurn();
 	}
 
@@ -85,7 +92,11 @@ public class GameEngine implements IGameEngine {
 		ui.updateCurrentPlayer(_game.nextPlayer().getNickName());
 		ui.gameLog(currentPlayer() + "s' turn");
 		if (currentPlayer().isInJail()) {
-			ui.gameLog("Player " + currentPlayer() + " will not attempt to roll a double to get out of jail!");
+			ui.showBailOut(true);
+			ui.gameLog("Player " + currentPlayer() + " will now attempt to roll a double to get out of jail!");
+
+		} else {
+			ui.showBailOut(false);
 		}
 		ui.allowRollDice(true);
 
@@ -96,6 +107,7 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void btnQMShow(QuestionTag qt) {
+		disableAll();
 		if (qt == null)
 			return;
 		ui.gameLog("Player " + currentPlayer() + " selected Question Tag: " + qt);
@@ -111,17 +123,17 @@ public class GameEngine implements IGameEngine {
 		ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
 
 	}
-	
-	public void displayQuestions(List<Question> questionList){
-		for(Question q : questionList)
+
+	public void displayQuestions(List<Question> questionList) {
+		for (Question q : questionList)
 			questionStack.push(q);
-		
+
 		currentPlayer().setState(PlayerState.LUCKY_TILE);
-		//Display the first question for the player
+		// Display the first question for the player
 		currentQuestion = questionStack.pop();
-		
+
 		ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
-		
+
 	}
 
 	/**
@@ -148,7 +160,6 @@ public class GameEngine implements IGameEngine {
 		QuestionStrength qs = ((PropertyTile) currentPlayer().getCurrentTile()).getPropertyStrength();
 		displayQuestion(qs);
 
-		ui.allowFinishTurn(true);
 	}
 
 	/**
@@ -173,6 +184,7 @@ public class GameEngine implements IGameEngine {
 	public void btnSellProperty() {
 		ui.allowSellProperty(false);
 		ui.gameLog(currentPlayer().sellProperty());
+		updatePlayerProperties(currentPlayer());
 	}
 
 	/**
@@ -229,9 +241,13 @@ public class GameEngine implements IGameEngine {
 			}
 		}
 
+		Logger.log("Current Player: " + currentPlayer());
+		Logger.log("Current Tile: " + currentPlayer().getCurrentTile());
+		Logger.log("Current Tile # " + currentPlayer().getCurrentTile().getTileNumber());
+
 		Integer moveToTile = (dice.getSum() + currentPlayer().getCurrentTile().getTileNumber()) % 40;
-		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), moveToTile);
 		ui.allowFinishTurn(true);
+		ui.movePlayer(currentPlayer().getNickName(), currentPlayer().getCurrentTile().getTileNumber(), moveToTile);
 	}
 
 	/**
@@ -240,23 +256,23 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void AnswerQuestion(List<Integer> answers) {
-		
-		if(currentPlayer().getState() == PlayerState.LUCKY_TILE){
-			LuckTile lt = ((LuckTile)currentPlayer().getCurrentTile());
-			
-			if(!lt.answered(currentQuestion.checkCorrect(answers))){
+
+		if (currentPlayer().getState() == PlayerState.LUCKY_TILE) {
+			LuckTile lt = ((LuckTile) currentPlayer().getCurrentTile());
+
+			if (!lt.answered(currentQuestion.checkCorrect(answers, currentPlayer()))) {
 				currentQuestion = questionStack.pop();
 				ui.displayQuestion(currentQuestion, currentPlayer().getNickName());
-			}else{
-				//Result time..
+			} else {
+				// Result time..
 				lt.checkResults(currentPlayer());
 				updatePlayerProperties(currentPlayer());
 			}
-			
+
 		}
-		
+
 		if (currentPlayer().getState() == PlayerState.WANTS_TO_PURCHASE) {
-			if (currentQuestion.checkCorrect(answers)) {
+			if (currentQuestion.checkCorrect(answers, currentPlayer())) {
 				// Give discount
 				showInfo(currentPlayer() + " You have answered correct!\n" + "You received a discount of "
 						+ displayPrice(currentPlayer().getCurrentProperty().getBuyPrice()
@@ -278,13 +294,15 @@ public class GameEngine implements IGameEngine {
 
 			currentPlayer().setState(PlayerState.ANSWERED_FOR_PURCHASE);
 			ui.allowPurchase(true);
+			ui.allowFinishTurn(true);
 		}
 
 		if (cycleThroughPlayers) {
 			if (!questionStack.isEmpty()) {
 				Logger.log("Transferring question to the next player..");
-				Logger.log("Player " + currentPlayer() + " answered " + currentQuestion.checkCorrect(answers));
-				playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers));
+				Logger.log("Player " + currentPlayer() + " answered "
+						+ currentQuestion.checkCorrect(answers, currentPlayer()));
+				playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers, currentPlayer()));
 				// This means we need to let the next player answer the same
 				// question
 				currentQuestion = questionStack.pop();
@@ -295,8 +313,9 @@ public class GameEngine implements IGameEngine {
 			}
 
 			// Analyze last answer
-			Logger.log("Player " + currentPlayer() + " answered " + currentQuestion.checkCorrect(answers));
-			playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers));
+			Logger.log("Player " + currentPlayer() + " answered "
+					+ currentQuestion.checkCorrect(answers, currentPlayer()));
+			playerAnswers.put(currentPlayer(), currentQuestion.checkCorrect(answers, currentPlayer()));
 
 			// Everyone finished..
 			cycleThroughPlayers = false;
@@ -314,7 +333,6 @@ public class GameEngine implements IGameEngine {
 				// Fine the player for 50k
 				currentPlayer().deductCash(50000);
 				results += "Player " + currentPlayer() + " was fined for $50,000\n";
-
 				for (Map.Entry<Player, Boolean> entry : playerAnswers.entrySet()) {
 					if (!entry.getValue()) {
 						entry.getKey().addStrike();
@@ -369,11 +387,11 @@ public class GameEngine implements IGameEngine {
 			}
 
 			ui.showPlayInformation("Everyone finished answering..\nPlayers Result: \n\n" + results);
-
 			for (Player p : playerAnswers.keySet())
 				updatePlayerProperties(p);
 			playerAnswers.clear();
 			currentQuestion = null;
+			ui.allowFinishTurn(true);
 
 		}
 
@@ -384,21 +402,48 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void btnFinishTurn() {
-		// TODO Auto-generated method stub
+		currentPlayer().verifyStrikes();
+		currentPlayer().verifyBankrupt();
+		updatePlayerProperties(currentPlayer());
 		if (currentPlayer().getState() != PlayerState.JAILED)
 			currentPlayer().setState(PlayerState.WAITING);
 		ui.updateRounds(_game.nextRound());
+		if (_game.isFinished()) {
+			Music.getInstance().stop("ui_1.mp3");
+			Music.getInstance().swap("theme.mp3");
+			iWindow.swap(Window.Game_Summary);
+		}
 		btnNextTurn();
+
+	}
+
+	@Override
+	public void btnBailOut() {
+		ui.gameLog(currentPlayer() + " has bailed out of jail!");
+		bailOut();
+		Music.getInstance().play("cash_in.mp3");
+		updatePlayerProperties(currentPlayer());
+		ui.showBailOut(false);
+
+	}
+
+	public void bailOut() {
+		System.out.println("Bailing Out: " + currentPlayer());
+		currentPlayer().deductCash((Integer) Param.get(Param.RELEASE_FROM_JAIL));
+		currentPlayer().setState(PlayerState.WAITING);
 
 	}
 
 	/**
 	 * Display information for player on screen
-	 * 
+	 *
 	 * @param txt
 	 */
 	public void showInfo(String txt) {
-		ui.showPlayInformation(txt);
+		if (ui == null)
+			Logger.log("For some reason UI is NULL!");
+		else
+			ui.showPlayInformation(txt);
 	}
 
 	/**
@@ -424,7 +469,7 @@ public class GameEngine implements IGameEngine {
 
 	/**
 	 * Return the current player whos turn his
-	 * 
+	 *
 	 * @return
 	 */
 	private Player currentPlayer() {
@@ -433,7 +478,7 @@ public class GameEngine implements IGameEngine {
 
 	/**
 	 * Launch a call to ui - update players' properties displayed in the UI
-	 * 
+	 *
 	 * @param player
 	 */
 	public void updatePlayerProperties(Player player) {
@@ -446,7 +491,6 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void preVisit(Integer tileNumber) {
-		currentPlayer().setCurrentTile(_game.getTile(tileNumber));
 		currentPlayer().getCurrentTile().preVisit(currentPlayer());
 	}
 
@@ -455,18 +499,10 @@ public class GameEngine implements IGameEngine {
 	 */
 	@Override
 	public void Visit(Integer tileNumber) {
+		currentPlayer().setCurrentTile(_game.getTile(tileNumber));
+		disableAll();
+		ui.allowFinishTurn(true);
 		currentPlayer().getCurrentTile().visit(currentPlayer());
-		if (currentPlayer().getCurrentTile().getTileType() == TileType.Property) {
-			PropertyTile pt = (PropertyTile) currentPlayer().getCurrentTile();
-			if (!pt.isOwned())
-				ui.allowPurchase(true);
-			else {
-				if (!pt.getCurrentOwner().equals(currentPlayer())) {
-					ui.allowPurchase(true);
-					ui.allowRent(true);
-				}
-			}
-		}
 
 	}
 
@@ -495,28 +531,72 @@ public class GameEngine implements IGameEngine {
 	public String displayPrice(Double price) {
 		return "$" + NumberFormat.getNumberInstance(Locale.US).format(price);
 	}
-	
-	public String displayPrice(Integer price){
+
+	public String displayPrice(Integer price) {
 		return displayPrice(price.doubleValue());
 	}
 
 	public void displayQMTile() {
+		disableAll();
 		ui.displayQMList(currentPlayer().getNickName());
 	}
-	
+
 	/**
-	 * Calculates the amount needed to be given to a player when he is right on both questions
-	 * on a lucky tile
+	 * Calculates the amount needed to be given to a player when he is right on
+	 * both questions on a lucky tile
+	 *
 	 * @return
 	 */
-	public Double getLuckyTileAward(){
+	public Double getLuckyTileAward() {
 		Double value = 100000.0;
 		Double avg = 0.0;
-		for(Player p : _game.getPlayers()){
+		for (Player p : _game.getPlayers()) {
 			avg += p.getTotalAssetsWorth();
 		}
 		avg /= _game.getPlayers().size();
 		return value + avg;
 	}
-	
+
+	@Override
+	public Game getCurrntGame() {
+		return this._game;
+	}
+
+	/**
+	 * This method resets the game engine
+	 */
+	@Override
+	public void closeGame() {
+		MonDB.getInstance().closeGame();
+		_instance = new GameEngine();
+
+	}
+
+	public void allowFinishTurn(boolean b) {
+		ui.allowFinishTurn(b);
+	}
+
+	public void allowSellProperty(boolean b) {
+		ui.allowSellProperty(true);
+	}
+
+	public void allowPurchaseProperty(boolean b) {
+		ui.allowPurchase(true);
+	}
+
+	public void allowRent(boolean b) {
+		ui.allowRent(true);
+	}
+
+	/**
+	 * This will remove a player from the game if he is bankrupt.
+	 *
+	 * @param player
+	 */
+	public void removePlayer(Player player) {
+		_game.removePlayer(player);
+		ui.removePlayer(player.getNickName());
+
+	}
+
 }

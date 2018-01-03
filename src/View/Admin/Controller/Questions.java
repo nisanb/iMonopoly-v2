@@ -219,6 +219,8 @@ public class Questions {
         falseButtons.add(FalseBu); falseButtons.add(FalseBu2); falseButtons.add(FalseBu3); falseButtons.add(FalseBu4);
         answerList.add(txtanswer1);answerList.add(txtanswer2); answerList.add(txtanswer3); answerList.add(txtanswer4);
         answerLabels.add(Answer1); answerLabels.add(answer2); answerLabels.add(answer3); answerLabels.add(answer4);
+        
+        this.save.setDisable(true);
 	}
 	
 	//========================================== ACTION EVENTS ===============================================
@@ -521,7 +523,7 @@ public class Questions {
 		List2.setDisable(false);
 		List1.setEditable(true);
 		List2.setEditable(true);
-
+		save.setDisable(false);
 		
 		//iWindow.swap(Window.Admin_editQuestion);
 	}

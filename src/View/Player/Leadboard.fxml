@@ -13,24 +13,24 @@
          <children>
             <ImageView pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <image>
-                  <Image url="@../../resources/ManagementGUI.png" />
+                  <Image url="@../../Resources/ManagementGUI.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
       <ImageView fitHeight="616.0" fitWidth="834.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../resources/ManagementGUI.png" />
+            <Image url="@../../Resources/ManagementGUI.png" />
          </image>
       </ImageView>
-      <TableView fx:id="tableView" layoutX="102.0" layoutY="167.0" opacity="0.6" prefHeight="335.0" prefWidth="618.0">
+      <TableView fx:id="tableView" layoutX="91.0" layoutY="168.0" opacity="0.68" prefHeight="348.0" prefWidth="648.0" stylesheets="@../../Resources/css/tableStyle.css">
         <columns>
-          <TableColumn fx:id="number" prefWidth="75.0" text="Number" />
-          <TableColumn fx:id="name" prefWidth="119.20001220703125" text="Name" />
-            <TableColumn fx:id="games" prefWidth="101.5999755859375" text="Games" />
-            <TableColumn fx:id="wins" prefWidth="103.20001220703125" text="Wins" />
-            <TableColumn fx:id="winRatio" prefWidth="103.19998168945312" text="W/L Ratio" />
-            <TableColumn fx:id="quesRatio" prefWidth="120.79998779296875" text="Questions Ratio" />
+            <TableColumn fx:id="number" editable="false" prefWidth="74.39998626708984" text="Number" />
+          <TableColumn fx:id="name" editable="false" prefWidth="117.60003662109375" text="Name" />
+            <TableColumn fx:id="games" editable="false" prefWidth="86.39996337890625" text="Games" />
+            <TableColumn fx:id="wins" editable="false" prefWidth="88.800048828125" text="Wins" />
+            <TableColumn fx:id="winRatio" editable="false" prefWidth="121.60006713867188" text="W/L Ratio" />
+            <TableColumn fx:id="quesRatio" editable="false" prefWidth="143.20001220703125" text="Questions Ratio" />
         </columns>
       </TableView>
       <Button layoutX="612.0" layoutY="531.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="140.0" text="Back" />

@@ -55,7 +55,7 @@ public class PlayerUI {
 		this._assets = 0.0;
 		// Set containers
 		this.pNickname.setText(pName);
-		this._cash = ((Integer) Param.get(Param.STARTING_CASH)).doubleValue();
+		this._cash = (Double) Param.get(Param.STARTING_CASH);
 
 		this._spCash = new SimpleStringProperty();
 		this.pMoney.textProperty().bind(this._spCash);
@@ -83,7 +83,7 @@ public class PlayerUI {
 
 	/**
 	 * Partial constructor for comparision
-	 * 
+	 *
 	 * @param playerName
 	 */
 	public PlayerUI(String playerName) {
@@ -149,8 +149,8 @@ public class PlayerUI {
 			pStrikesTL.play();
 		}
 
-		//Check if player assets needs to be updated
-		if(_assets != assetsWorth){
+		// Check if player assets needs to be updated
+		if (_assets != assetsWorth) {
 			Double assetsDiff = assetsWorth - _assets;
 			Double assetsJumps = assetsDiff / 1000;
 
@@ -193,7 +193,7 @@ public class PlayerUI {
 
 	/**
 	 * Set the glow of the player pane
-	 * 
+	 *
 	 * @param glow
 	 *            true/false
 	 */
@@ -339,7 +339,7 @@ public class PlayerUI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
@@ -352,7 +352,7 @@ public class PlayerUI {
 
 	/*
 	 * (non-Javadoc)
-	 * 
+	 *
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
@@ -370,6 +370,18 @@ public class PlayerUI {
 		} else if (!pName.equals(other.pName))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return getpName();
+	}
+
+	/**
+	 * Will display the player as bankrupt when removed
+	 */
+	public void remove() {
+
 	}
 
 }

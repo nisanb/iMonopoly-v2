@@ -26,11 +26,14 @@ public enum Window {
 	Admin_Questions("Admin/Questions"),
 	Admin_AddQuesion("Admin/AddQuestion"),
 	Admin_editQuestion("Admin/editQuestion"),
+	Admin_LeadBoard("Admin/Leadboard"),
 	
 	/**
 	 * Game
 	 */
-	Game_UI("Game/UI");
+	Game_UI("Game/UI"),
+	Game_Summary("Game/Summary");
+	
 	String fxmlFile;
 	
 	Window(String fxmlFile){

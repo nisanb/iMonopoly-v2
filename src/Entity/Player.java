@@ -1,13 +1,12 @@
 package Entity;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import Controller.GameEngine;
 import Controller.Logger;
 import Utils.NamedColor;
+import Utils.Param;
 import Utils.PlayerAuth;
 import Utils.PlayerState;
 
@@ -18,38 +17,47 @@ public class Player extends User implements Comparable<Player> {
 	private Double _cash;
 	private Integer _strikesNum;
 	private NamedColor _playerColor;
-	private Map<Question, Boolean> _userAnswers;
+	private Integer _totalQuestions;
+	private Integer _totalFailedAnswers;
 	private List<PropertyTile> _propertyList;
 	private Tilable _currentTile;
 	private PlayerState _state;
-	private transient Integer games = 0, wins = 0;
-	
+	private Integer _leadboardPosition;
+
 	/**
 	 * Player Constructor
+	 *
 	 * @param nickname
 	 * @param cash
 	 */
 	public Player(String nickname, Double cash, NamedColor playerColor) {
 		super(nickname, PlayerAuth.PLAYER);
 		_propertyList = new ArrayList<>();
-		_userAnswers = new HashMap<>();
+		_totalFailedAnswers = 0;
+		_totalQuestions = 0;
 		_strikesNum = 0;
 		_currentTile = MonDB.getInstance().getCurrentGame().getTile(0);
 		_cash = cash;
 		_playerColor = playerColor;
 		_state = PlayerState.WAITING;
+		_leadboardPosition = 0;
 
 	}
 
 	public Player(String nickname) {
 		super(nickname, PlayerAuth.PLAYER);
 	}
-	
-	public PlayerState getState(){
+
+	public Player(String nickname, Double cash) {
+		super(nickname, PlayerAuth.PLAYER);
+		_cash = cash;
+	}
+
+	public PlayerState getState() {
 		return _state;
 	}
-	
-	public void setState(PlayerState ps){
+
+	public synchronized void setState(PlayerState ps) {
 		_state = ps;
 	}
 
@@ -57,14 +65,35 @@ public class Player extends User implements Comparable<Player> {
 		return _propertyList;
 	}
 
-	@Override
-	public int compareTo(Player o) {
-		return this.getTotalPropertyValue().compareTo(getTotalPropertyValue());
+	public void set_leadboardPosition(Integer pos) {
+		this._leadboardPosition = pos;
 	}
 
-	public Integer getTotalPropertyValue() {
-		// TODO Auto-generated method stub
-		return 0;
+	public Integer get_leadboardPosition() {
+		return _leadboardPosition;
+	}
+
+	@Override
+	public int compareTo(Player o) {
+		return this.getTotalValue().compareTo(o.getTotalValue());
+	}
+
+	/**
+	 * ] Get total value of properties + cash
+	 *
+	 * @return
+	 */
+	public Double getTotalValue() {
+		double value = 0;
+		if (_propertyList == null)
+			return _cash;
+		for (PropertyTile p : _propertyList) {
+			value += p.getCurrentPrice();
+		}
+		if (_cash != null)
+			value = value + _cash;
+
+		return value;
 	}
 
 	protected Boolean addProperty(PropertyTile pro) {
@@ -103,8 +132,18 @@ public class Player extends User implements Comparable<Player> {
 		return _state == PlayerState.JAILED;
 	}
 
-	public Map<Question, Boolean> getUserAnswers() {
-		return Collections.unmodifiableMap(_userAnswers);
+	public void addQuestionAnswered(Boolean isRight) {
+		_totalQuestions++;
+		if (!isRight)
+			_totalFailedAnswers++;
+	}
+
+	public Integer getTotalQuestions() {
+		return _totalQuestions;
+	}
+
+	public Integer getTotalFailed() {
+		return _totalFailedAnswers;
 	}
 
 	public void addCash(Object amount) {
@@ -127,68 +166,64 @@ public class Player extends User implements Comparable<Player> {
 	public void setPlayerColor(NamedColor playerColor) {
 		_playerColor = playerColor;
 	}
-	
-	public void addStrike(){
+
+	public void addStrike() {
+		super.addSingleStrike();
 		_strikesNum++;
 	}
 
-	public Double getTotalAssetsWorth(){
+	public Double getTotalAssetsWorth() {
 		Double amount = 0.0;
-		for(PropertyTile p : _propertyList)
-			amount+=p.getCurrentPrice();
-		
+		for (PropertyTile p : _propertyList)
+			amount += p.getCurrentPrice();
+
 		return amount;
 	}
-	
-	public Integer getTotalAssets(){
+
+	public Integer getTotalAssets() {
 		return _propertyList.size();
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		return getNickName();
 	}
 
-	public String sellProperty(){
+	public String toString2() {
+		return "Player [_cash=" + _cash + ", _strikesNum=" + _strikesNum + ", getNickName()=" + getNickName() + "]";
+	}
+
+	public String sellProperty() {
 		PropertyTile pt = (PropertyTile) getCurrentTile();
 		addCash(pt.getSellPrice());
 		_propertyList.remove(pt);
 		pt.setCurrentOwner(null);
-		return "Player "+toString()+" has sold "+pt+" for $"+pt.getSellPrice();
+		return "Player " + toString() + " has sold " + pt + " for $" + pt.getSellPrice();
 	}
-	
-	public PropertyTile getCurrentProperty(){
+
+	public PropertyTile getCurrentProperty() {
 		return (PropertyTile) getCurrentTile();
 	}
 
-	
-	
-	
-	//=================================== Setters & Getters for statistics ==================================
-	
-	
-	public Integer getGames() {
-		return games;
+	public void verifyStrikes() {
+		if (_strikesNum > 2) {
+			GameEngine.getInstance().gameLog("Player " + this + " reached 3 strikes and is being taken to jail.");
+			MonDB.getInstance().getTileSet().get(30).visit(this);
+			_strikesNum = 0;
+			GameEngine.getInstance().updatePlayerProperties(this);
+		}
 	}
 
-	public void setGames(Integer games) {
-		this.games = games;
+	public void verifyBankrupt() {
+		// TODO Auto-generated method stub
+		Double bankrupt = ((Integer) Param.get(Param.BANKRUPTCY)).doubleValue();
+		if (_cash < bankrupt) {
+			GameEngine.getInstance().removePlayer(this);
+		}
+
 	}
 
-	public Integer getWins() {
-		return wins;
-	}
+	// =================================== Setters & Getters for statistics
+	// ==================================
 
-	public void setWins(Integer wins) {
-		this.wins = wins;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		System.out.println("TEST: " + this + " - " + obj + " " + super.equals(obj));
-		return super.equals(obj);
-	}
-	
-	
 }

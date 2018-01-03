@@ -45,9 +45,10 @@ public class Music {
 		if (soundMap.containsKey(resource)) {
 			MediaPlayer currentPlayer = soundMap.get(resource);
 
-			if (currentPlayer.getStatus().equals(MediaPlayer.Status.PAUSED)) {
+			if (currentPlayer.getStatus().equals(MediaPlayer.Status.PAUSED) || 
+					currentPlayer.getStatus().equals(MediaPlayer.Status.STOPPED)) {
 				// Currently paused, play it
-				currentPlayer.seek(currentPlayer.getCurrentTime());
+				currentPlayer.seek(Duration.ZERO);
 				currentPlayer.play();
 			} else {
 				currentPlayer.pause();
@@ -72,6 +73,14 @@ public class Music {
 		final URL resource = getClass().getResource("../Resources/Sounds/" + res);
 		Logger.log("Aquired resource: " + resource);
 		return resource;
+	}
+	
+	
+	public void stop(String key) {
+		final URL resource = getResource(key);
+		if (soundMap.containsKey(resource)) {
+			soundMap.get(resource).stop();
+		}
 	}
 
 }

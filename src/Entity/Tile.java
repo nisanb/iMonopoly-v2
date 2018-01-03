@@ -9,14 +9,14 @@ import Utils.TileType;
 public class Tile implements Tilable, Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private Integer _tileNumber;
 	private String _tileName;
 	private Set<Player> _currentPlayers;
 	public TileType _tileType;
-	
+
 	public Tile(Integer tileNumber, String tileName, TileType tileType) {
 		super();
 		_tileNumber = tileNumber;
@@ -25,7 +25,7 @@ public class Tile implements Tilable, Serializable {
 		_tileType = tileType;
 
 	}
-	
+
 	public Tile(int tileNumber) {
 		_tileNumber = tileNumber;
 	}
@@ -64,35 +64,29 @@ public class Tile implements Tilable, Serializable {
 		return _currentPlayers;
 	}
 
-	
 	@Override
 	public void preVisit(Player currentPlayer) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void visit(Player currentPlayer) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void postVisit(Player currentPlayer) {
 		// TODO Auto-generated method stub
-		
-	}
-	
-	public boolean addPlayer(Player p) {
-		if (p == null) return false;
-		return _currentPlayers.add(p);
-		
+
 	}
 
-	private boolean removePlayer(Player p) {
-		if (p == null) return false;
-		return _currentPlayers.remove(p);
-		
+	public boolean addPlayer(Player p) {
+		if (p == null)
+			return false;
+		return _currentPlayers.add(p);
+
 	}
 
 	@Override
@@ -119,8 +113,7 @@ public class Tile implements Tilable, Serializable {
 			return false;
 		return true;
 	}
-	
-	
+
 	@Override
 	public String toString() {
 		return this.getTileName();

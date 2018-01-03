@@ -4,14 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Controller.Logger;
-import Utils.Team;
-
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
+import Utils.Team;
 
 public class Question {
 
-	
 	private long qNumber;
 	private QuestionStrength qStrength;
 	private String qQuestion;
@@ -19,8 +17,8 @@ public class Question {
 	private List<Answer> qAnswers;
 	private Team team;
 	private List<QuestionTag> tags;
-	
-	public Question(long qNumber, QuestionStrength qStrength, String qQuestion, boolean isMultiple, 
+
+	public Question(long qNumber, QuestionStrength qStrength, String qQuestion, boolean isMultiple,
 			List<Answer> qAnswers, Team team, List<QuestionTag> tags) {
 		super();
 		this.qNumber = qNumber;
@@ -31,13 +29,11 @@ public class Question {
 		this.isMultipleChoise = isMultiple;
 		this.tags = tags;
 	}
-	
-	
+
 	public Question(long qNumber) {
 		this.qNumber = qNumber;
 	}
-	
-	
+
 	public Team getTeam() {
 		return team;
 	}
@@ -57,24 +53,31 @@ public class Question {
 	public long getqNumber() {
 		return qNumber;
 	}
+
 	protected void setqNumber(long qNumber) {
 		this.qNumber = qNumber;
 	}
+
 	public QuestionStrength getqStrength() {
 		return qStrength;
 	}
+
 	protected void setqStrength(QuestionStrength qStrength) {
 		this.qStrength = qStrength;
 	}
+
 	public String getqQuestion() {
 		return qQuestion;
 	}
+
 	protected void setqQuestion(String qQuestion) {
 		this.qQuestion = qQuestion;
 	}
+
 	public List<Answer> getqAnswers() {
 		return qAnswers;
 	}
+
 	protected void setqAnswers(List<Answer> qAnswers) {
 		this.qAnswers = qAnswers;
 	}
@@ -86,7 +89,7 @@ public class Question {
 	protected void setMultipleChoise(boolean isMultipleChoise) {
 		this.isMultipleChoise = isMultipleChoise;
 	}
-	
+
 	protected void addAnswer(Answer a1) {
 		if (this.qAnswers == null)
 			this.qAnswers = new ArrayList<Answer>();
@@ -96,44 +99,53 @@ public class Question {
 	@Override
 	public String toString() {
 		return "Question [qNumber=" + qNumber + ", qStrength=" + qStrength + ", qQuestion=" + qQuestion
-				+ ", isMultipleChoise=" + isMultipleChoise + ", qAnswers=" + qAnswers + ", team=" + team + ", tags="+printTags()+"]";
+				+ ", isMultipleChoise=" + isMultipleChoise + ", qAnswers=" + qAnswers + ", team=" + team + ", tags="
+				+ printTags() + "]";
 	}
-	
+
 	private String printTags() {
-		String tag ="";
+		String tag = "";
 		for (int i = 0; i < this.tags.size(); i++) {
-			tag += this.tags.get(i) +" ";
+			tag += this.tags.get(i) + " ";
 		}
 		return tag;
 	}
-	
+
 	/**
-	 * Will check that given answers from FE to a question are exactly the answers expected
+	 * Will check that given answers from FE to a question are exactly the
+	 * answers expected
+	 *
 	 * @param answers
 	 * @return
 	 */
-	
-	public boolean checkCorrect(List<Integer> ans) {
-		if (ans == null) return false;
-		
-		//check if all player's answers are correct - if at least one answer is not correct return false
-		try{
-		for (Integer a:ans) {
-			if (!qAnswers.get(a).isTrue()) {
-				return false;
+
+	public boolean checkCorrect(List<Integer> ans, Player player) {
+		if (ans.size() == 0) {
+			if (player !=null) player.addQuestionAnswered(false);
+			return false;
+		}
+
+		// check if all player's answers are correct - if at least one answer is
+		// not correct return false
+		try {
+			for (Integer a : ans) {
+				if (!qAnswers.get(a).isTrue()) {
+					if (player !=null) player.addQuestionAnswered(false);
+					return false;
+				}
 			}
-		}
-		return true;
-		}
-		catch(Exception e){
+			
+			if (player !=null) player.addQuestionAnswered(true);
+			
+			return true;
+		} catch (Exception e) {
 			String exception = "Caught Exeption: Answer array sent is bigger than question answers array.";
 			Logger.log(exception);
 			Logger.gameLog(exception);
 			return false;
 		}
-		
-	}
 
+	}
 
 	@Override
 	public int hashCode() {
@@ -142,7 +154,6 @@ public class Question {
 		result = prime * result + (int) (qNumber ^ (qNumber >>> 32));
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -157,26 +168,17 @@ public class Question {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
-	/* NISAN'S METHOD
-	 public boolean checkCorrect2(List<Answer> answers){
-		
-		//If size isn't equal
-		if(answers.size() != qAnswers.size())
-			return false;
-		
-		Set<Answer> hashSet = new HashSet<>();
-		hashSet.addAll(answers);
-		hashSet.addAll(qAnswers);
-		
-		if(hashSet.size() != qAnswers.size())
-			return false;
-		
-		return true;
-	}
+
+	/*
+	 * NISAN'S METHOD public boolean checkCorrect2(List<Answer> answers){
+	 *
+	 * //If size isn't equal if(answers.size() != qAnswers.size()) return false;
+	 *
+	 * Set<Answer> hashSet = new HashSet<>(); hashSet.addAll(answers);
+	 * hashSet.addAll(qAnswers);
+	 *
+	 * if(hashSet.size() != qAnswers.size()) return false;
+	 *
+	 * return true; }
 	 */
 }

@@ -26,7 +26,7 @@
       </ImageView>
       <ImageView fx:id="btnVolume" fitHeight="25.0" fitWidth="50.0" layoutX="761.0" layoutY="536.0" onMouseClicked="#doSwapMusic" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="39.0" AnchorPane.rightAnchor="14.0">
          <image>
-            <Image url="@../resources/sound_on.png" />
+            <Image url="@../Resources/sound_on.png" />
          </image>
       </ImageView>
       <ButtonBar layoutX="33.0" layoutY="182.0" prefHeight="40.0" prefWidth="200.0" />
@@ -44,7 +44,7 @@
       </Label>
       <ImageView fx:id="img2" fitHeight="60.0" fitWidth="46.0" layoutX="305.0" layoutY="223.0">
          <image>
-            <Image url="@../../resources/9.png" />
+            <Image url="@../../Resources/9.png" />
          </image>
       </ImageView>
       <TextField fx:id="txt1" layoutX="179.0" layoutY="286.0" opacity="0.7" prefHeight="25.0" prefWidth="91.0" promptText="Nickname" />
@@ -55,7 +55,7 @@
       </Label>
       <ImageView fx:id="img3" fitHeight="60.0" fitWidth="46.0" layoutX="401.0" layoutY="222.0">
          <image>
-            <Image url="@../../resources/8.png" />
+            <Image url="@../../Resources/8.png" />
          </image>
       </ImageView>
       <TextField fx:id="txt2" layoutX="278.0" layoutY="286.0" opacity="0.7" prefHeight="25.0" prefWidth="91.0" promptText="Nickname" />
@@ -67,7 +67,7 @@
       </Label>
       <ImageView fx:id="img1" fitHeight="60.0" fitWidth="46.0" layoutX="206.0" layoutY="222.0">
          <image>
-            <Image url="@../../resources/7.png" />
+            <Image url="@../../Resources/7.png" />
          </image>
       </ImageView>
       <Label fx:id="label4" layoutX="504.0" layoutY="205.0" text="Player4">
@@ -77,16 +77,16 @@
       </Label>
       <ImageView fx:id="img4" fitHeight="60.0" fitWidth="46.0" layoutX="501.0" layoutY="223.0">
          <image>
-            <Image url="@../../resources/10.png" />
+            <Image url="@../../Resources/10.png" />
          </image>
       </ImageView>
-      <SubScene height="40.0" layoutX="203.0" layoutY="158.0" opacity="0.2" width="347.0">
+      <SubScene height="40.0" layoutX="166.0" layoutY="158.0" opacity="0.2" width="416.0">
          <root>
             <Region />
          </root>
       </SubScene>
       <TextField fx:id="txt4" layoutX="478.0" layoutY="286.0" opacity="0.7" prefHeight="25.0" prefWidth="91.0" promptText="Nickname" />
-      <Slider fx:id="slide1" blockIncrement="1.0" focusTraversable="false" layoutX="210.0" layoutY="170.0" majorTickUnit="1.0" max="4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" min="2.0" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="0" onMouseClicked="#check1" pickOnBounds="false" prefHeight="25.0" prefWidth="329.0" showTickLabels="true" showTickMarks="true" value="2.0">
+      <Slider fx:id="slide1" blockIncrement="1.0" focusTraversable="false" layoutX="239.0" layoutY="170.0" majorTickUnit="1.0" max="4.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" min="2.0" minHeight="-Infinity" minWidth="-Infinity" minorTickCount="0" onMouseClicked="#check1" pickOnBounds="false" prefHeight="26.0" prefWidth="285.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="2.0">
          <opaqueInsets>
             <Insets bottom="12.0" />
          </opaqueInsets>
@@ -125,8 +125,8 @@
             <Font name="Calibri Bold" size="16.0" />
          </font>
       </Label>
-		<Spinner fx:id="txtNumOfRounds" amountToStepBy="1" editable="true" initialValue="50" layoutX="399.0" layoutY="354.0" max="100" min="0" opacity="0.7" />
-        <Spinner fx:id="txtInitialSumOFMoney" amountToStepBy="50000" editable="true" initialValue="100000" layoutX="399.0" layoutY="391.0" max="1000000" min="0" opacity="0.7" />
+		<Spinner fx:id="txtNumOfRounds" amountToStepBy="1" editable="false" initialValue="50" layoutX="399.0" layoutY="354.0" max="100" min="0" opacity="0.7" />
+        <Spinner fx:id="txtInitialSumOFMoney" amountToStepBy="100000.0" editable="false" initialValue="10000.0" layoutX="399.0" layoutY="391.0" max="999999999.0" min="50000.0" opacity="0.7" />
 
       
              <Spinner fx:id="txtBankrupt" amountToStepBy="50000" editable="true" initialValue="-100000" layoutX="399.0" layoutY="426.0" max="0" min="-1000000" opacity="0.7" />

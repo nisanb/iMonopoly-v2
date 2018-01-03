@@ -30,10 +30,8 @@ import javafx.scene.input.MouseEvent;
 
 public class GameSettings {
 
-	// ========================================== FX COMPONENTS
-	// ================================================
+	// ===================================== FX COMPONENTS ======================================
 
-	@FXML // ResourceBundle that was given to the FXMLLoader
 	private ResourceBundle resources;
 
 	@FXML
@@ -91,7 +89,7 @@ public class GameSettings {
 	private Spinner<Integer> txtNumOfRounds; // Value injected by FXMLLoader
 
 	@FXML // fx:id="txtInitialSumOFMoney"
-	private Spinner<Integer> txtInitialSumOFMoney; // Value injected by
+	private Spinner<Double> txtInitialSumOFMoney; // Value injected by
 													// FXMLLoader
 
 	@FXML // fx:id="txtBankrupt"
@@ -133,7 +131,14 @@ public class GameSettings {
 		// get game params
 		txtBankrupt.getValueFactory().setValue((Integer) _mng.getParam(Param.BANKRUPTCY));
 		Logger.log("Aquired param money: "+_mng.getParam(Param.STARTING_CASH));
-		txtInitialSumOFMoney.getValueFactory().setValue(((Double) _mng.getParam(Param.STARTING_CASH)).intValue());
+		Double initialMoney = 0.0;
+		try{
+		initialMoney = (Double)_mng.getParam(Param.STARTING_CASH);
+		}
+		catch(Exception e){
+			Logger.log("Couldn't get money!");
+		}
+		txtInitialSumOFMoney.getValueFactory().setValue(initialMoney);
 		txtNumOfRounds.getValueFactory().setValue((Integer) _mng.getParam(Param.MAX_ROUNDS));
 		txtPaymentRelaseFromJail.getValueFactory().setValue((Integer) _mng.getParam(Param.RELEASE_FROM_JAIL));
 
@@ -290,7 +295,7 @@ public class GameSettings {
 		}
 
 		_mng.build(playerList, paramList);
-		Music.getInstance().swap("theme.mp3");
+		Music.getInstance().stop("theme.mp3");
 		
 		Music.getInstance().swap("ui_1.mp3");
 		
@@ -307,7 +312,7 @@ public class GameSettings {
 	 * @param playerList
 	 * @return
 	 */
-	private boolean duplicates(final List<String> playerList) {
+	public boolean duplicates(final List<String> playerList) {
 		Set<String> dup = new HashSet<String>();
 		for (String i : playerList) {
 			if (dup.contains(i))

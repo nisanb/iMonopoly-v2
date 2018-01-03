@@ -2,10 +2,15 @@ package Entity;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
+
 import Utils.Param;
 
 public class Game implements Serializable {
@@ -21,27 +26,23 @@ public class Game implements Serializable {
 	/**
 	 * Lists
 	 */
-	private List<Tilable> _gameTiles;
+	transient private List<Tilable> _gameTiles;
 	private LinkedList<Player> _playList;
+	
+	public void set_playList(LinkedList<Player> _playList) {
+		this._playList = _playList;
+	}
+
 	private List<Player> _gamePlayers;
 
 	/**
 	 * Current
 	 */
 	private User _currentLoggedUser;
-	private Player _currentPlayer;
 	private Integer _currentRound;
 
-	protected Game() {
-
-		/**
-		 * Generate Game Number
-		 */
-		Random r = new Random();
-		do {
-			_gameNum = r.nextInt(999999) + 111111;
-		} while (MonDB.getInstance().getGameData().containsKey(_gameNum));
-
+	public Game() {
+		setGameNum();
 		/**
 		 * Set Date
 		 */
@@ -49,6 +50,31 @@ public class Game implements Serializable {
 		this.setCurrentRound(1);
 		this._gameTiles = new ArrayList<>();
 		this._gameTiles.addAll(MonDB.getInstance().getTileSet());
+	}
+	
+	//this constructor is for testing
+	public Game(boolean isTest, LinkedList<Player> list) {
+		this._gameNum = 1;
+		this.setGameDate(new Date());
+		this.setCurrentRound(1);
+		this._gamePlayers = list;		
+	}
+
+	private void setGameNum() {
+		_gameNum = 0;
+		Random r = new Random();
+		while (_gameNum == 0) {
+			int num = r.nextInt(9999999) + 1000000;
+			if (MonDB.getInstance().getGameData().containsKey(num))
+				continue;
+			else
+				_gameNum = num;
+		}
+
+	}
+
+	public int getGameNum() {
+		return _gameNum;
 	}
 
 	/**
@@ -61,7 +87,8 @@ public class Game implements Serializable {
 		 * Build players
 		 */
 		if (_gameTiles.size() != 40) {
-			throw new NullPointerException("Cannot initiate game - no tiles were set.");
+			MonDB.getInstance().initTiles();
+			_gameTiles.addAll(MonDB.getInstance().getTileSet());
 		}
 
 		/**
@@ -69,28 +96,10 @@ public class Game implements Serializable {
 		 */
 		_playList = new LinkedList<>();
 		_playList.addAll(playerList);
-		_currentPlayer = nextPlayer();
 		_gamePlayers = playerList;
 
 	}
 
-	protected void run() {
-		// This will start the game
-
-		// This will build the players' cycle
-
-		/**
-		 * Why is this here? TODO Mickey
-		 * 
-		 * LinkedList<Player> playList = new LinkedList<>(); for(Player p :
-		 * _playerList.keySet()) playList.add(p);
-		 * 
-		 * while(!isFinished()){ Player currentPlayer =
-		 * playList.get(_currentRound%playList.size());
-		 * currentPlayer.addCash(1000); //Players turn //TODO Implement .. }
-		 * 
-		 **/
-	}
 
 	// Adds a player to the game
 	protected void addPlayer(Player player) {
@@ -120,7 +129,7 @@ public class Game implements Serializable {
 
 	/**
 	 * Will move a player to the tile given
-	 * 
+	 *
 	 * @param player
 	 * @param tileNum
 	 */
@@ -138,7 +147,7 @@ public class Game implements Serializable {
 
 	/**
 	 * This method checks if the conditions to end game have reached
-	 * 
+	 *
 	 * @return
 	 */
 	public boolean isFinished() {
@@ -146,12 +155,8 @@ public class Game implements Serializable {
 		/**
 		 * In case rounds exceeded max rounds
 		 */
-		if (_currentRound > (Integer) Param.get(Param.MAX_ROUNDS)) // update max
-																	// rounds
-																	// and
-																	// bankruptcy
-																	// to value
-																	// from enum
+		if (_currentRound > (Integer) Param.get(Param.MAX_ROUNDS))
+
 			return true;
 
 		/**
@@ -161,21 +166,6 @@ public class Game implements Serializable {
 			return true;
 
 		return false;
-	}
-
-	/**
-	 * This method sums the value of players properties
-	 * 
-	 * @param p
-	 * @return
-	 */
-	private int getPropertyVlaue(Player p) {
-		int value = 0;
-		for (PropertyTile pt : p.getPropertyList()) {
-			value += pt.getCurrentPrice();
-		}
-
-		return value;
 	}
 
 	public Tilable getTile(int tileNumber) {
@@ -223,9 +213,54 @@ public class Game implements Serializable {
 	public List<Player> getGamePlayers() {
 		return _gamePlayers;
 	}
-	
-	public Integer nextRound(){
+
+	public Integer nextRound() {
 		return ++_currentRound;
+	}
+
+	public Player getWinner() {
+		if (this._playList == null)
+			return null;
+		double max = 0;
+		Player winner = null;
+		for (Player p : _playList) {
+			if (p.getTotalValue() > max) {
+				max = p.getTotalValue();
+				winner = p;
+			}
+		}
+
+		return winner;
+	}
+
+	// ===================================== Game Statistics ===================================
+
+	/**
+	 * This method makes the summary of the game
+	 *
+	 * @return list of players sorted by total value on cash and properties
+	 */
+	public List<Player> getSummary() {
+		Set<Player> list = new HashSet<>();
+		if (_playList !=null) list.addAll(_playList);
+		if (_gamePlayers !=null) list.addAll(_gamePlayers);
+
+		// calc total value of the player
+
+		List<Player> toReturn = new ArrayList<>();
+		toReturn.addAll(list);
+
+		Collections.sort(toReturn,
+				(Comparator<Player>) (Player p1, Player p2) -> p2.getTotalValue().compareTo(p1.getTotalValue()));
+		int i = 1;
+		for (Player p : toReturn)
+			p.set_leadboardPosition(i++);
+
+		return toReturn;
+	}
+
+	public void removePlayer(Player player) {
+		_playList.remove(player);
 	}
 
 }
