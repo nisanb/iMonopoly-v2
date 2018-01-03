@@ -1,4 +1,4 @@
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,9 +8,7 @@ import org.junit.Test;
 
 import Controller.Logger;
 import Entity.MonDB;
-import Entity.Player;
 import Entity.PropertyTile;
-import Utils.NamedColor;
 import Utils.PropertyType;
 import Utils.QuestionStrength;
 
@@ -26,7 +24,7 @@ public class updatePropertyStrengthTest {
 		list.add("player2");
 		MonDB.getInstance().buildGame(list, new HashMap<>());
 		PropertyTile pro = new PropertyTile(1, "test tile", QuestionStrength.EASY);
-		pro.setCurrentPrice(90909999);
+		pro.setCurrentPrice(90909999.0);
 		System.out.println(pro.getPropertyStrength().toString());
 		System.out.println(PropertyType.HARD);
 		assertTrue(pro.getPropertyStrength().toString().equals(PropertyType.HARD.toString()));
