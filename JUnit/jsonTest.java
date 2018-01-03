@@ -3,6 +3,7 @@
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -17,20 +18,18 @@ public class jsonTest {
 	@Test
 	public void test() {
 		//read json into string after load
-		String input = JSON.getInstance().getFileAsString();
 		
-		Map<QuestionStrength, List<Question>> list = JSON.getInstance().loadQuestions();
-		JSON.getInstance().saveQuestions(list);
+		Map<QuestionStrength, List<Question>> list1 = JSON.getInstance().loadQuestions();
+		JSON.getInstance().saveQuestions(list1);
 		
 		//read json into output after save
-		String output = JSON.getInstance().getFileAsString();
+		Map<QuestionStrength, List<Question>> list2 = JSON.getInstance().loadQuestions();
 		
-		//check if the file has the same content
-		System.out.println("//////////////");
-		System.out.println(input);
-		System.out.println(output);
-		System.out.println("//////////////");
-		assertTrue("Successful", input.equals(output));
+		System.out.println(list1.equals(list2));
+		
+		
+		//check if both question lists are equal
+		assertTrue("Successful", list1.equals(list2));
 		
 		
 	}
