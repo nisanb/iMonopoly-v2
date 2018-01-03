@@ -426,25 +426,25 @@
          </font>
       </Button>
       <FlowPane fx:id="tile00" layoutX="1173.0" layoutY="630.0" prefHeight="100.0" prefWidth="107.0" />
-      <FlowPane fx:id="tile01" layoutX="1115.0" layoutY="643.0" prefHeight="87.0" prefWidth="58.0" />
-      <FlowPane fx:id="tile02" layoutX="1064.0" layoutY="643.0" prefHeight="87.0" prefWidth="51.0" />
-      <FlowPane fx:id="tile03" layoutX="1013.0" layoutY="643.0" prefHeight="87.0" prefWidth="51.0" />
-      <FlowPane fx:id="tile04" layoutX="957.0" layoutY="646.0" prefHeight="87.0" prefWidth="51.0" />
-      <FlowPane fx:id="tile05" layoutX="900.0" layoutY="643.0" prefHeight="80.0" prefWidth="51.0" />
-      <FlowPane fx:id="tile06" layoutX="844.0" layoutY="650.0" prefHeight="80.0" prefWidth="58.0" />
-      <FlowPane fx:id="tile07" layoutX="790.0" layoutY="647.0" prefHeight="80.0" prefWidth="58.0" />
-      <FlowPane fx:id="tile08" layoutX="732.0" layoutY="650.0" prefHeight="80.0" prefWidth="58.0" />
-      <FlowPane fx:id="tile09" layoutX="680.0" layoutY="647.0" prefHeight="80.0" prefWidth="52.0" />
-      <FlowPane fx:id="tile10" layoutX="584.0" layoutY="631.0" prefHeight="80.0" prefWidth="90.0" />
-      <FlowPane fx:id="tile11" layoutX="584.0" layoutY="574.0" prefHeight="50.0" prefWidth="70.0" />
-      <FlowPane fx:id="tile12" layoutX="584.0" layoutY="524.0" prefHeight="50.0" prefWidth="76.0" />
+      <FlowPane fx:id="tile01" layoutX="1115.0" layoutY="643.0" prefHeight="70.0" prefWidth="58.0" />
+      <FlowPane fx:id="tile02" layoutX="1064.0" layoutY="643.0" prefHeight="70.0" prefWidth="51.0" />
+      <FlowPane fx:id="tile03" layoutX="1011.0" layoutY="649.0" prefHeight="63.0" prefWidth="51.0" />
+      <FlowPane fx:id="tile04" layoutX="957.0" layoutY="649.0" prefHeight="63.0" prefWidth="51.0" />
+      <FlowPane fx:id="tile05" layoutX="900.0" layoutY="643.0" prefHeight="70.0" prefWidth="58.0" />
+      <FlowPane fx:id="tile06" layoutX="844.0" layoutY="650.0" prefHeight="63.0" prefWidth="58.0" />
+      <FlowPane fx:id="tile07" layoutX="790.0" layoutY="642.0" prefHeight="70.0" prefWidth="52.0" />
+      <FlowPane fx:id="tile08" layoutX="732.0" layoutY="648.0" prefHeight="63.0" prefWidth="58.0" />
+      <FlowPane fx:id="tile09" layoutX="680.0" layoutY="647.0" prefHeight="63.0" prefWidth="52.0" />
+      <FlowPane fx:id="tile10" layoutX="584.0" layoutY="624.0" prefHeight="87.0" prefWidth="97.0" />
+      <FlowPane fx:id="tile11" layoutX="584.0" layoutY="574.0" prefHeight="50.0" prefWidth="76.0" />
+      <FlowPane fx:id="tile12" layoutX="584.0" layoutY="519.0" prefHeight="55.0" prefWidth="76.0" />
       <FlowPane fx:id="tile13" layoutX="581.0" layoutY="461.0" prefHeight="55.0" prefWidth="76.0" />
       <FlowPane fx:id="tile14" layoutX="578.0" layoutY="407.0" prefHeight="55.0" prefWidth="76.0" />
-      <FlowPane fx:id="tile15" layoutX="581.0" layoutY="357.0" prefHeight="55.0" prefWidth="76.0" />
+      <FlowPane fx:id="tile15" layoutX="581.0" layoutY="356.0" prefHeight="55.0" prefWidth="76.0" />
       <FlowPane fx:id="tile16" layoutX="581.0" layoutY="303.0" prefHeight="55.0" prefWidth="76.0" />
-      <FlowPane fx:id="tile17" layoutX="578.0" layoutY="241.0" prefHeight="55.0" prefWidth="76.0" />
-      <FlowPane fx:id="tile18" layoutX="578.0" layoutY="195.0" prefHeight="55.0" prefWidth="76.0" />
-      <FlowPane fx:id="tile19" layoutX="578.0" layoutY="134.0" prefHeight="55.0" prefWidth="76.0" />
+      <FlowPane fx:id="tile17" layoutX="578.0" layoutY="244.0" prefHeight="55.0" prefWidth="83.0" />
+      <FlowPane fx:id="tile18" layoutX="579.0" layoutY="190.0" prefHeight="55.0" prefWidth="83.0" />
+      <FlowPane fx:id="tile19" layoutX="578.0" layoutY="134.0" prefHeight="55.0" prefWidth="83.0" />
       <FlowPane fx:id="tile20" layoutX="578.0" layoutY="42.0" prefHeight="93.0" prefWidth="97.0" />
       <FlowPane fx:id="tile21" layoutX="679.0" layoutY="42.0" prefHeight="70.0" prefWidth="58.0" />
       <FlowPane fx:id="tile22" layoutX="732.0" layoutY="42.0" prefHeight="77.0" prefWidth="58.0" />
@@ -456,15 +456,15 @@
       <FlowPane fx:id="tile28" layoutX="1068.0" layoutY="39.0" prefHeight="77.0" prefWidth="51.0" />
       <FlowPane fx:id="tile29" layoutX="1120.0" layoutY="39.0" prefHeight="77.0" prefWidth="51.0" />
       <FlowPane fx:id="tile30" layoutX="1173.0" layoutY="39.0" prefHeight="100.0" prefWidth="107.0" />
-      <FlowPane fx:id="tile31" layoutX="1195.0" layoutY="139.0" prefHeight="50.0" prefWidth="83.0" />
+      <FlowPane fx:id="tile31" layoutX="1195.0" layoutY="139.0" prefHeight="50.0" prefWidth="76.0" />
       <FlowPane fx:id="tile32" layoutX="1195.0" layoutY="194.0" prefHeight="50.0" prefWidth="83.0" />
-      <FlowPane fx:id="tile33" layoutX="1195.0" layoutY="246.0" prefHeight="50.0" prefWidth="83.0" />
-      <FlowPane fx:id="tile34" layoutX="1195.0" layoutY="300.0" prefHeight="50.0" prefWidth="83.0" />
-      <FlowPane fx:id="tile35" layoutX="1194.0" layoutY="356.0" prefHeight="50.0" prefWidth="83.0" />
-      <FlowPane fx:id="tile36" layoutX="1195.0" layoutY="411.0" prefHeight="50.0" prefWidth="83.0" />
-      <FlowPane fx:id="tile37" layoutX="1195.0" layoutY="466.0" prefHeight="50.0" prefWidth="83.0" />
-      <FlowPane fx:id="tile38" layoutX="1195.0" layoutY="520.0" prefHeight="50.0" prefWidth="83.0" />
-      <FlowPane fx:id="tile39" layoutX="1195.0" layoutY="574.0" prefHeight="50.0" prefWidth="83.0" />
+      <FlowPane fx:id="tile33" layoutX="1195.0" layoutY="246.0" prefHeight="50.0" prefWidth="76.0" />
+      <FlowPane fx:id="tile34" layoutX="1194.0" layoutY="301.0" prefHeight="50.0" prefWidth="76.0" />
+      <FlowPane fx:id="tile35" layoutX="1194.0" layoutY="358.0" prefHeight="50.0" prefWidth="76.0" />
+      <FlowPane fx:id="tile36" layoutX="1195.0" layoutY="411.0" prefHeight="50.0" prefWidth="76.0" />
+      <FlowPane fx:id="tile37" layoutX="1195.0" layoutY="466.0" prefHeight="50.0" prefWidth="76.0" />
+      <FlowPane fx:id="tile38" layoutX="1195.0" layoutY="520.0" prefHeight="50.0" prefWidth="76.0" />
+      <FlowPane fx:id="tile39" layoutX="1195.0" layoutY="574.0" prefHeight="50.0" prefWidth="76.0" />
       <Button fx:id="btnBailOut" layoutX="372.0" layoutY="605.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#btnBailOut" prefHeight="38.0" prefWidth="169.0" style="-fx-background-color: blue;" text="Bail Out!" textFill="WHITE">
          <font>
             <Font name="Calibri Bold" size="20.0" />
