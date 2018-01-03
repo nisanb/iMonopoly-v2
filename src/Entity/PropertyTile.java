@@ -10,9 +10,9 @@ import Utils.TileType;
 
 public class PropertyTile extends Tile {
 
-	private Integer initialPrice;
-	private Integer currentPrice;
-	private Integer tmpDiscount;
+	private Double initialPrice;
+	private Double currentPrice;
+	private Double tmpDiscount;
 	private Player currentOwner;
 	private QuestionStrength propertyStrength;
 
@@ -20,7 +20,7 @@ public class PropertyTile extends Tile {
 		super(tileNumber, tileName, TileType.Property);
 		this.propertyStrength = qs;
 		this.currentOwner = null;
-		tmpDiscount = 0;
+		tmpDiscount = 0.0;
 		setInitialPrice();
 	}
 
@@ -43,17 +43,19 @@ public class PropertyTile extends Tile {
 
 		}
 		Random r = new Random();
-		Integer chosenPrice = r.nextInt(max - min) + min;
+		Integer chosenPriceInteger = (r.nextInt(max - min) + min);
+		Double chosenPrice = chosenPriceInteger.doubleValue();
 		this.initialPrice = chosenPrice;
 		this.currentPrice = chosenPrice;
 		Logger.log("Setting price $" + chosenPrice + " for tile #" + getTileNumber() + " - " + toString());
 	}
 
 	public QuestionStrength getPropertyStrength() {
-		if (this.currentPrice.compareTo((Integer) Param.get(Param.PROPERTY_MINPRICE_HARD)) > 0)
+		Integer propertyMinPrice_Hard = (Integer) Param.get(Param.PROPERTY_MINPRICE_HARD);
+		if (this.currentPrice.compareTo(propertyMinPrice_Hard.doubleValue()) > 0)
 			return QuestionStrength.HARD;
-
-		if (this.currentPrice.compareTo((Integer) Param.get(Param.PROPERTY_MEDIUM_DISCOUNT)) > 0)
+		Integer propertyMinPrice_Medium = (Integer) Param.get(Param.PROPERTY_MINPRICE_MEDIUM);
+		if (this.currentPrice.compareTo(propertyMinPrice_Medium.doubleValue()) > 0)
 			return QuestionStrength.MEDIUM;
 
 		return QuestionStrength.EASY;
@@ -63,19 +65,19 @@ public class PropertyTile extends Tile {
 		this.propertyStrength = propertyStrength;
 	}
 
-	public Integer getInitialPrice() {
+	public Double getInitialPrice() {
 		return initialPrice;
 	}
 
-	public void setInitialPrice(Integer initialPrice) {
+	public void setInitialPrice(Double initialPrice) {
 		this.initialPrice = initialPrice;
 	}
 
-	public Integer getCurrentPrice() {
+	public Double getCurrentPrice() {
 		return currentPrice;
 	}
 
-	public void setCurrentPrice(Integer currentPrice) {
+	public void setCurrentPrice(Double currentPrice) {
 		this.currentPrice = currentPrice;
 	}
 
@@ -128,8 +130,8 @@ public class PropertyTile extends Tile {
 				return false;
 			}
 
-		Integer currentPurchasePrice = tmpDiscount > 0 ? tmpDiscount : getBuyPrice();
-		tmpDiscount = 0;
+		Double currentPurchasePrice = tmpDiscount > 0 ? tmpDiscount : getBuyPrice();
+		tmpDiscount = 0.0;
 		// In case buyer don't have enough cash
 		if (newBuyer.getCash() < currentPurchasePrice) {
 			Logger.gameLog("Player " + newBuyer + " has insufficient funds to buy property " + this);
@@ -145,11 +147,11 @@ public class PropertyTile extends Tile {
 		}
 
 		currentOwner = newBuyer;
-		newBuyer.deductCash(currentPurchasePrice);
+		newBuyer.deductCash(currentPurchasePrice.intValue());
 		newBuyer.addProperty(this);
 		Logger.gameLog("Player " + newBuyer + " purchased property " + this + " for "
 				+ GameEngine.getInstance().displayPrice(currentPurchasePrice.doubleValue()));
-		currentPrice = getBuyPrice();
+		currentPrice = getBuyPrice().doubleValue();
 
 		return true;
 	}
@@ -163,7 +165,8 @@ public class PropertyTile extends Tile {
 	}
 
 	public Integer getBuyPrice() {
-		return (currentPrice * ((Double) Param.get(Param.BUY_PERCENT)).intValue());
+		Double amt = (currentPrice * ((Double) Param.get(Param.BUY_PERCENT)));
+		return amt.intValue();
 	}
 
 	public Integer getBuyPriceDiscount() {
@@ -179,8 +182,8 @@ public class PropertyTile extends Tile {
 			newPrice = getBuyPrice() * (1 - (Double) Param.get(Param.PROPERTY_EASY_DISCOUNT));
 			break;
 		}
-		tmpDiscount = newPrice.intValue();
-		return tmpDiscount;
+		tmpDiscount = newPrice;
+		return tmpDiscount.intValue();
 	}
 
 	public Integer getRentPrice() {

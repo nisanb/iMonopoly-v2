@@ -294,6 +294,7 @@ public class GameEngine implements IGameEngine {
 
 			currentPlayer().setState(PlayerState.ANSWERED_FOR_PURCHASE);
 			ui.allowPurchase(true);
+			ui.allowFinishTurn(true);
 		}
 
 		if (cycleThroughPlayers) {
@@ -420,7 +421,8 @@ public class GameEngine implements IGameEngine {
 	public void btnBailOut() {
 		ui.gameLog(currentPlayer() + " has bailed out of jail!");
 		bailOut();
-		// updatePlayer(currentPlayer());
+		Music.getInstance().play("cash_in.mp3");
+		updatePlayerProperties(currentPlayer());
 		ui.showBailOut(false);
 
 	}
