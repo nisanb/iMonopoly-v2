@@ -1,0 +1,18 @@
+Team: 
+	Raw Grade: 90.5
+	Penalties:
+		-0.2*5 questions.json should be the only questions file;
+                save.json doesn't pass schema check.
+        -0.2*5 some areas are lacking in documentation.
+        -0.5*15 mvc variant picked as DP; report missing code snippets or references;
+        -0*30   buy property button still enabled after buying property in a turn;
+                players' dice rolls not counting when both in jail, its weird that you have to press bail out to free them (played the cash sound too).
+Individual:
+	200681872:
+		Final Grade: 93.35
+	203918743:
+		Final Grade: 93.35
+	302875646:
+		Final Grade: 93.35
+	305120404:
+		Final Grade: 93.35
