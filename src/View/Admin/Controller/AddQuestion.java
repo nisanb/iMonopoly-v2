@@ -328,14 +328,16 @@ public class AddQuestion {
 			Map<QuestionStrength, List<Question>> temp = JSON.getInstance().loadQuestions(file.getAbsolutePath());
 
 			//add the questions to the question map
+			if (temp == null) errorLabelControl("Something went wrong with file", true);
 			for (Map.Entry<QuestionStrength, List<Question>> ls : temp.entrySet()) {
 				for (Question q : ls.getValue()) {
 					mng.addQuestion(q);					
 				}
 			}
+			
+			errorLabelControl("Qustion file was added", true);
 		}
 		
-		errorLabelControl("Qustion file was added", true);
 		qNum = JSON.getInstance().getNextQuestionNum();
 		txtQuestion1.setText(""+qNum);
 	}

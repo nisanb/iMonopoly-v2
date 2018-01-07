@@ -121,6 +121,7 @@ public class JSON {
 		} catch (Exception e) {
 			e.printStackTrace();
 			resetPathToDefault();
+			return null;
 		}
 		
 		// print questions
