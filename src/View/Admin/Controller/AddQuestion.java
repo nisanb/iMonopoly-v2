@@ -4,15 +4,18 @@
 
 package View.Admin.Controller;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import Controller.iWindow;
 import Entity.Answer;
+import Entity.JSON;
 import Entity.Question;
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
@@ -32,6 +35,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 
 public class AddQuestion {
 
@@ -140,6 +144,9 @@ public class AddQuestion {
 
 	@FXML
 	private Label lblError;
+	
+	@FXML 
+	private Button ext;
 
 	// local variables
 	private String ans1;
@@ -166,7 +173,7 @@ public class AddQuestion {
 		//get all question//
 		List<Question> a= mng.getQuestions();
 		// get qnum
-		qNum = mng.getNextQuestionNum(a);
+		qNum = JSON.getInstance().getNextQuestionNum();
 		txtQuestion1.setText(qNum + "");
 
 		// ans1//
@@ -183,6 +190,7 @@ public class AddQuestion {
 		group4.getToggles().add(FalseBu4);
 
 		errorLabelControl(null, false);
+		lblError.setStyle("-fx-color: red;");
 	}
 
 	// ============================================= ACTION EVENTS
@@ -301,6 +309,39 @@ public class AddQuestion {
 
 		team = TeamComboBox.getSelectionModel().getSelectedItem();
 	}
+	
+	@FXML
+	public void addFromFile(ActionEvent e) {
+		FileChooser fc = new FileChooser();
+		fc.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("json", "*.json"));
+		fc.setTitle("Import JSON File");
+		File file = fc.showOpenDialog(null);
+		
+		
+		if(file == null) {
+			errorLabelControl("Something went wrong with file import", true);
+			return;
+		}
+		
+		else {
+			errorLabelControl("", false);
+			Map<QuestionStrength, List<Question>> temp = JSON.getInstance().loadQuestions(file.getAbsolutePath());
+
+			//add the questions to the question map
+			for (Map.Entry<QuestionStrength, List<Question>> ls : temp.entrySet()) {
+				for (Question q : ls.getValue()) {
+					mng.addQuestion(q);					
+				}
+			}
+		}
+		
+		errorLabelControl("Qustion file was added", true);
+		qNum = JSON.getInstance().getNextQuestionNum();
+		txtQuestion1.setText(""+qNum);
+	}
+	
+
+	
 
 	// ========================================= FORM CONTROLS
 	// =================================================
@@ -390,8 +431,10 @@ public class AddQuestion {
 		errorLabelControl(null, false);
 
 		Question q = new Question(qNum, qStrength, question, isMultiple, ans, team, tags);
-		if (mng.addQuestion(q))
+		if (mng.addQuestion(q)) {
 			iWindow.swap(Window.Admin_AddQuesion);
+			JSON.getInstance().addQuestionNum();
+		}
 	}
 
 	/**
@@ -407,7 +450,7 @@ public class AddQuestion {
 		if (msg == null) {
 			this.lblError.setText(" ");
 		} else {
-			this.lblError.setText("Error: " + msg);
+			this.lblError.setText("Note: " + msg);
 			System.out.println(msg);
 		}
 	}

@@ -52,7 +52,7 @@ public class MonDB implements Serializable {
 		Data = this;
 		playerData = new ArrayList<>();
 		tmpParams = new HashMap<>();
-		this.gameQuestions = JSON.getInstance().loadQuestions();
+		this.gameQuestions = JSON.getInstance().loadQuestions(null);
 		tileSet = new LinkedList<>();
 		gameData = new HashMap<>();
 		initParams();
@@ -288,7 +288,7 @@ public class MonDB implements Serializable {
 			ObjectInputStream objInput = new ObjectInputStream(input);
 			MonDB Data = (MonDB) objInput.readObject();
 			Logger.log("Successfully imported Data.cer");
-			Data.gameQuestions = JSON.getInstance().loadQuestions();
+			Data.gameQuestions = JSON.getInstance().loadQuestions(null);
 			Data.tmpParams = new HashMap<>();
 			objInput.close();
 

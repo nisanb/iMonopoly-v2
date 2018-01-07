@@ -19,11 +19,11 @@ public class jsonTest {
 	public void test() {
 		//read json into string after load
 		
-		Map<QuestionStrength, List<Question>> list1 = JSON.getInstance().loadQuestions();
+		Map<QuestionStrength, List<Question>> list1 = JSON.getInstance().loadQuestions(null);
 		JSON.getInstance().saveQuestions(list1);
 		
 		//read json into output after save
-		Map<QuestionStrength, List<Question>> list2 = JSON.getInstance().loadQuestions();
+		Map<QuestionStrength, List<Question>> list2 = JSON.getInstance().loadQuestions(null);
 		
 		System.out.println(list1.equals(list2));
 		

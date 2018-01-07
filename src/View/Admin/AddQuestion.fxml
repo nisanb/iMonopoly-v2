@@ -28,8 +28,8 @@
             <Image url="@../Resources/sound_on.png" />
          </image>
       </ImageView>
-      <Button fx:id="save" layoutX="236.0" layoutY="583.0" mnemonicParsing="false" onAction="#addQuestion" prefHeight="27.0" prefWidth="140.0" text="Save" />
-      <Button layoutX="407.0" layoutY="583.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="140.0" text="Back" />
+      <Button fx:id="save" layoutX="325.0" layoutY="584.0" mnemonicParsing="false" onAction="#addQuestion" prefHeight="27.0" prefWidth="140.0" text="Save" />
+      <Button layoutX="496.0" layoutY="584.0" mnemonicParsing="false" onAction="#back" prefHeight="27.0" prefWidth="140.0" text="Back" />
       <ImageView fitHeight="48.0" fitWidth="56.0" layoutX="357.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../Resources/arrow_right.png" />
@@ -146,5 +146,6 @@
       <TextField fx:id="txtQuestion1" editable="false" layoutX="250.0" layoutY="196.0" opacity="0.71" prefHeight="25.0" prefWidth="392.0" />
       <ComboBox fx:id="TeamComboBox" layoutX="250.0" layoutY="232.0" onAction="#setTeam" onMouseClicked="#CheckDiffAndSetAns" opacity="0.71" prefHeight="25.0" prefWidth="392.0" promptText="Select Team" />
       <Label fx:id="lblError" layoutX="145.0" layoutY="554.0" prefHeight="18.0" prefWidth="540.0" text="problem" textFill="RED" />
+      <Button fx:id="ext" layoutX="165.0" layoutY="584.0" mnemonicParsing="false" onAction="#addFromFile" prefHeight="27.0" prefWidth="140.0" text="External File" />
    </children>
 </AnchorPane>
