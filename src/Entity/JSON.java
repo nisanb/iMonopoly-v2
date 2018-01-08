@@ -2,6 +2,7 @@ package Entity;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,6 +17,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import Controller.Logger;
 import Utils.QuestionStrength;
 import Utils.QuestionTag;
 import Utils.Team;
@@ -23,8 +25,9 @@ import Utils.Team;
 public class JSON {
 	private static JSON json;
 	private static String JsonPath = "/Resources/JSON/save.json";
+	private static String originalPath = JsonPath;
 	private static int autoQuestionNumber = 1;
-	private static boolean reNumber = false;
+	private static boolean reNumber = true;
 
 	private JSON() {
 	}
@@ -39,18 +42,23 @@ public class JSON {
 
 	/**
 	 * Will read questions from JSON File
-	 * 
+	 * if the questions are from file chooser get from the relevant location and finally reset the path
+	 * if null importing the questions only from the main json file
 	 * @return TODO: READ QUESTIONS FROM JSON
 	 */
 	@SuppressWarnings("unchecked")
-	public Map<QuestionStrength, List<Question>> loadQuestions() {
-
+	public Map<QuestionStrength, List<Question>> loadQuestions(String externalPath) {
+		if (externalPath !=null) {
+			JsonPath = externalPath;
+		}
+		Logger.log("Reading questions form path: " + JsonPath);
 		HashMap<QuestionStrength, List<Question>> questions = new HashMap<QuestionStrength, List<Question>>();
 		JSONParser parser = new JSONParser();
 
 		try {
 			// get json file
-			InputStream is = getClass().getResourceAsStream(JsonPath);
+			InputStream is = getClass().getResourceAsStream(originalPath);
+			if (externalPath !=null) is = new FileInputStream(externalPath);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(is));
 			Object obj = parser.parse(reader);
 			JSONObject jo = (JSONObject) obj;
@@ -112,17 +120,24 @@ public class JSON {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-
+			resetPathToDefault();
+			return null;
 		}
-
+		
 		// print questions
 		// for (List<Question> q:questions.values()) {
 		// for (Question temp:q) {
 		// System.out.println(temp);
 		// }
 		// }
-
+		resetPathToDefault();
+		
 		return questions;
+	}
+
+	private void resetPathToDefault() {
+		JsonPath = originalPath;
+		System.out.println("Restting JSON Path: " + JsonPath);
 	}
 
 	/**
@@ -233,6 +248,14 @@ public class JSON {
 		}
 
 		return str;
+	}
+	
+	public int getNextQuestionNum() {
+		return autoQuestionNumber;
+	}
+	
+	public void addQuestionNum() {
+		autoQuestionNumber++;
 	}
 
 }

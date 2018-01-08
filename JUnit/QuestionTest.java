@@ -17,7 +17,7 @@ public class QuestionTest {
 	public void test() {
 		//load questions and convert it to list
 		List<Question> questions = new ArrayList<Question>();
-		for (Map.Entry<QuestionStrength, List<Question>> ls : JSON.getInstance().loadQuestions().entrySet()) {
+		for (Map.Entry<QuestionStrength, List<Question>> ls : JSON.getInstance().loadQuestions(null).entrySet()) {
 			for (Question q : ls.getValue()) {
 				questions.add(q);
 			}

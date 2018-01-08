@@ -113,4 +113,12 @@ public class iWindow {
 	public static GameEngine getGameEngine() {
 		return GameEngine.getInstance();
 	}
+	
+	public static Stage getCurrentStage() {
+		return currentStage;
+	}
+	
+	public static Scene getCurrentScene() {
+		return currentScene;
+	}
 }
