@@ -48,7 +48,7 @@ public class iWindow {
 					Logger.log("Received closing request..");
 					MonDB.getInstance().closeGame();
 					System.exit(0);
-int annnnnnnnnnnnnnn ;
+
 				}
 
 			}
